@@ -1,0 +1,1079 @@
+[2024-06-11 11:00:17] production.ERROR: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1) at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#15 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#16 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#22 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#24 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#26 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#27 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#31 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#32 {main}
+
+[previous exception] [object] (PDOException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#35 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#42 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#43 {main}
+
+[previous exception] [object] (PDOException(code: 0): PDO::__construct(): php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#35 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#42 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#43 {main}
+"} 
+[2024-06-11 11:00:22] production.ERROR: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) {"view":{"view":"E:\\laragon\\www\\owrners\\core\\resources\\views\\errors\\500.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-1116025805 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#442</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1116025805\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","exception":"<pre class=sf-dump id=sf-dump-2073036916 data-indent-pad=\"  \"><span class=sf-dump-note>Symfony\\Component\\HttpKernel\\Exception\\HttpException</span> {<a class=sf-dump-ref>#441</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"<span class=sf-dump-str title=\"210 characters\">SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1)</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=sf-dump-str title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php
+101 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Exceptions\\Handler.php</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>550</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Exception`\">previous</span>: <span class=sf-dump-note title=\"Illuminate\\Database\\QueryException
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Database</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>QueryException</span> {<a class=sf-dump-ref href=#sf-dump-2073036916-ref2404 title=\"6 occurrences\">#404</a><samp data-depth=2 id=sf-dump-2073036916-ref2404 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"<span class=sf-dump-str title=\"210 characters\">SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1)</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>2002</span>
+    #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=sf-dump-str title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php
+91 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connection.php</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>760</span>
+    -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Exception`\">previous</span>: <span class=sf-dump-note>PDOException</span> {<a class=sf-dump-ref>#409</a><samp data-depth=3 class=sf-dump-compact>
+      #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"<span class=sf-dump-str title=\"115 characters\">SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known. </span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>2002</span>
+      #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=sf-dump-str title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php
+101 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connectors\\Connector.php</span>\"
+      #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>70</span>
+      -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Exception`\">previous</span>: <span class=sf-dump-note>PDOException</span> {<a class=sf-dump-ref>#408</a> &#8230;6}
+      +<span class=sf-dump-public title=\"Public property\">errorInfo</span>: <span class=sf-dump-note>array:3</span> [ &#8230;3]
+      <span class=sf-dump-meta>trace</span>: { &#8230;43}
+    </samp>}
+    +<span class=sf-dump-public title=\"Public property\">errorInfo</span>: <span class=sf-dump-note>array:3</span> [<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"5 characters\">HY000</span>\"
+      <span class=sf-dump-index>1</span> => <span class=sf-dump-num>2002</span>
+      <span class=sf-dump-index>2</span> => \"<span class=sf-dump-str title=\"92 characters\">php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known. </span>\"
+    </samp>]
+    #<span class=sf-dump-protected title=\"Protected property\">sql</span>: \"<span class=sf-dump-str title=\"62 characters\">select * from `static_options` where `option_name` = ? limit 1</span>\"
+    #<span class=sf-dump-protected title=\"Protected property\">bindings</span>: <span class=sf-dump-note>array:1</span> [<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-index>0</span> => \"<span class=sf-dump-str title=\"26 characters\">site_force_ssl_redirection</span>\"
+    </samp>]
+    <span class=sf-dump-meta>trace</span>: {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760
+Stack level 33.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connection.php:760</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:899
+Stack level 32.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connection.php:899</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:879
+Stack level 31.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connection.php:879</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:723
+Stack level 30.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connection.php:723</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:422
+Stack level 29.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Connection.php:422</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php:2706
+Stack level 28.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Query\\Builder.php:2706</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php:2694
+Stack level 27.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Query\\Builder.php:2694</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php:3230
+Stack level 26.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Query\\Builder.php:3230</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php:2695
+Stack level 25.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Query\\Builder.php:2695</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php:710
+Stack level 24.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Eloquent\\Builder.php:710</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php:694
+Stack level 23.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Eloquent\\Builder.php:694</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php:296
+Stack level 22.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Database\\Concerns\\BuildsQueries.php:296</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php:103
+Stack level 21.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>app\\Helper\\helpers.php:103</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php:397
+Stack level 20.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Cache\\Repository.php:397</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php:408
+Stack level 19.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Cache\\CacheManager.php:408</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php:338
+Stack level 18.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Support\\Facades\\Facade.php:338</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php:104
+Stack level 17.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>app\\Helper\\helpers.php:104</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php:31
+Stack level 16.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>app\\Providers\\AppServiceProvider.php:31</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:36
+Stack level 15.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Container\\BoundMethod.php:36</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php:41
+Stack level 14.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Container\\Util.php:41</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:93
+Stack level 13.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Container\\BoundMethod.php:93</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:37
+Stack level 12.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Container\\BoundMethod.php:37</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php:661
+Stack level 11.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Container\\Container.php:661</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:929
+Stack level 10.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Application.php:929</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:910
+Stack level 9.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Application.php:910</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"Illuminate\\Foundation\\Application-&gt;Illuminate\\Foundation\\{closure}()
+Stack level 8.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">Illuminate\\Foundation\\Application-&gt;Illuminate\\Foundation</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-class\">\\</span>{closure}()</span> {}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:911
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Application.php:911</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php:17
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php:17</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php:242
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Application.php:242</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:176
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:176</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:160
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:160</span> { &#8230;4}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:134
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:134</span> { &#8230;5}
+      <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\index.php:72
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>owrners\\index.php:72</span> { &#8230;4}
+    </samp>}
+  </samp>}
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">statusCode</span>: <span class=sf-dump-num>500</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">headers</span>: []
+  <span class=sf-dump-meta>trace</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php:550
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Exceptions\\Handler.php:550</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Exceptions\\Handler-&gt;prepareResponse($request, Throwable $e)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Exceptions</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Handler-&gt;prepareResponse($request, Throwable $e)</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>if (! $this-&gt;isHttpException($e)) {</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Exceptions\\Handler-&gt;prepareResponse($request, Throwable $e)\">    $e = new HttpException(500, $e-&gt;getMessage(), $e);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+    </samp>}
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php:460
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Exceptions\\Handler.php:460</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Exceptions\\Handler-&gt;renderExceptionResponse($request, Throwable $e)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Exceptions</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Handler-&gt;renderExceptionResponse($request, Throwable $e)</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                ? $this-&gt;prepareJsonResponse($request, $e)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Exceptions\\Handler-&gt;renderExceptionResponse($request, Throwable $e)\">                : $this-&gt;prepareResponse($request, $e);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php:377
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Exceptions\\Handler.php:377</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Exceptions\\Handler-&gt;render($request, Throwable $e)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Exceptions</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Handler-&gt;render($request, Throwable $e)</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>    $e instanceof ValidationException =&gt; $this-&gt;convertValidationExceptionToResponse($e, $request),</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Exceptions\\Handler-&gt;render($request, Throwable $e)\">    default =&gt; $this-&gt;renderExceptionResponse($request, $e),</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>};</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php:57
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>app\\Exceptions\\Handler.php:57</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"App\\Exceptions\\Handler-&gt;render($request, Throwable $exception)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">App\\Exceptions</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Handler-&gt;render($request, Throwable $exception)</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>    }</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in App\\Exceptions\\Handler-&gt;render($request, Throwable $exception)\">    return parent::render($request, $exception);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:493
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:493</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;renderException($request, Throwable $e)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;renderException($request, Throwable $e)</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;renderException($request, Throwable $e)\">    return $this-&gt;app[ExceptionHandler::class]-&gt;render($request, $e);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:138
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www\\owrners\\core\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span>src\\Illuminate\\Foundation\\Http\\Kernel.php:138</span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span>Kernel-&gt;handle($request)</span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)\">    $response = $this-&gt;renderException($request, $e);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=sf-dump-meta title=\"E:\\laragon\\www\\owrners\\index.php:72
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">E:\\laragon\\www</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span>owrners\\index.php:72</span> {<samp data-depth=3 class=sf-dump-compact>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$response = $kernel-&gt;handle(</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"\">    $request = Illuminate\\Http\\Request::capture()</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-2073036916\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#15 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#16 E:\\laragon\\www\\owrners\\core\\resources\\views\\errors\\500.blade.php(9): get_static_option('site_meta_descr...')
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#22 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#26 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#27 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#32 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(493): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(138): Illuminate\\Foundation\\Http\\Kernel->renderException(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#35 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#36 {main}
+
+[previous exception] [object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#15 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#16 E:\\laragon\\www\\owrners\\core\\storage\\framework\\views\\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#22 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#26 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#27 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#32 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(493): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(138): Illuminate\\Foundation\\Http\\Kernel->renderException(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#35 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#36 {main}
+
+[previous exception] [object] (PDOException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\storage\\framework\\views\\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#35 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#42 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#43 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#44 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(493): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#45 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(138): Illuminate\\Foundation\\Http\\Kernel->renderException(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#46 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#47 {main}
+
+[previous exception] [object] (PDOException(code: 0): PDO::__construct(): php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\storage\\framework\\views\\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#35 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#42 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#43 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#44 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(493): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#45 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(138): Illuminate\\Foundation\\Http\\Kernel->renderException(Object(Illuminate\\Http\\Request), Object(Illuminate\\Database\\QueryException))
+#46 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#47 {main}
+"} 
+[2024-06-11 11:00:26] production.ERROR: Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  in E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:70
+Stack trace:
+#0 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(100): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(50): Illuminate\Database\Connectors\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#6 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#8 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#9 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#10 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#11 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(899): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(879): Illuminate\Database\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(723): Illuminate\Database\Connection->handleQueryException(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(422): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2706): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#16 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#17 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#18 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2695): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#20 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#21 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#22 E:\laragon\www\owrners\core\app\Helper\helpers.php(103): Illuminate\Database\Eloquent\Builder->first()
+#23 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Cache\Repository.php(397): {closure}()
+#24 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Cache\CacheManager.php(408): Illuminate\Cache\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#25 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(338): Illuminate\Cache\CacheManager->__call('remember', Array)
+#26 E:\laragon\www\owrners\core\app\Helper\helpers.php(104): Illuminate\Support\Facades\Facade::__callStatic('remember', Array)
+#27 E:\laragon\www\owrners\core\storage\framework\views\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#28 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(109): require('E:\\laragon\\www\\...')
+#29 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(110): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#30 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('E:\\laragon\\www\\...', Array)
+#31 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(70): Illuminate\View\Engines\PhpEngine->evaluatePath('E:\\laragon\\www\\...', Array)
+#32 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(195): Illuminate\View\Engines\CompilerEngine->get('E:\\laragon\\www\\...', Array)
+#33 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(178): Illuminate\View\View->getContents()
+#34 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(147): Illuminate\View\View->renderContents()
+#35 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(69): Illuminate\View\View->render()
+#36 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#37 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(57): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#38 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(87): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#39 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(629): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#40 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(554): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#41 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(460): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#42 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(377): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#43 E:\laragon\www\owrners\core\app\Exceptions\Handler.php(57): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#44 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(233): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Illuminate\View\ViewException))
+#45 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(210): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Illuminate\View\ViewException))
+#46 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(270): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Illuminate\View\ViewException))
+#47 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Illuminate\View\ViewException))
+#48 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  in E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php:70
+Stack trace:
+#0 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(100): Illuminate\Database\Connectors\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\Connector.php(50): Illuminate\Database\Connectors\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connectors\ConnectionFactory.php(184): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#6 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(1217): Illuminate\Database\Connection->getPdo()
+#8 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(486): Illuminate\Database\Connection->getReadPdo()
+#9 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(414): Illuminate\Database\Connection->getPdoForSelect(true)
+#10 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(753): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#11 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(899): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(879): Illuminate\Database\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(723): Illuminate\Database\Connection->handleQueryException(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(422): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2706): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#16 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#17 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#18 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2695): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#20 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#21 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#22 E:\laragon\www\owrners\core\app\Helper\helpers.php(103): Illuminate\Database\Eloquent\Builder->first()
+#23 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Cache\Repository.php(397): {closure}()
+#24 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Cache\CacheManager.php(408): Illuminate\Cache\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#25 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(338): Illuminate\Cache\CacheManager->__call('remember', Array)
+#26 E:\laragon\www\owrners\core\app\Helper\helpers.php(104): Illuminate\Support\Facades\Facade::__callStatic('remember', Array)
+#27 E:\laragon\www\owrners\core\storage\framework\views\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#28 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(109): require('E:\\laragon\\www\\...')
+#29 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(110): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#30 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('E:\\laragon\\www\\...', Array)
+#31 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(70): Illuminate\View\Engines\PhpEngine->evaluatePath('E:\\laragon\\www\\...', Array)
+#32 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(195): Illuminate\View\Engines\CompilerEngine->get('E:\\laragon\\www\\...', Array)
+#33 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(178): Illuminate\View\View->getContents()
+#34 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(147): Illuminate\View\View->renderContents()
+#35 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(69): Illuminate\View\View->render()
+#36 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#37 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(57): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#38 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(87): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#39 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(629): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#40 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(554): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#41 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(460): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#42 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(377): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#43 E:\laragon\www\owrners\core\app\Exceptions\Handler.php(57): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#44 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(233): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Illuminate\View\ViewException))
+#45 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(210): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Illuminate\View\ViewException))
+#46 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(270): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Illuminate\View\ViewException))
+#47 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Illuminate\View\ViewException))
+#48 {main}
+
+Next Illuminate\Database\QueryException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) in E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php:760
+Stack trace:
+#0 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(899): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(879): Illuminate\Database\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(723): Illuminate\Database\Connection->handleQueryException(Object(Illuminate\Database\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php(422): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2706): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#5 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2694): Illuminate\Database\Query\Builder->runSelect()
+#6 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(3230): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#7 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(2695): Illuminate\Database\Query\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(710): Illuminate\Database\Query\Builder->get(Array)
+#9 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(694): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#10 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Concerns\BuildsQueries.php(296): Illuminate\Database\Eloquent\Builder->get(Array)
+#11 E:\laragon\www\owrners\core\app\Helper\helpers.php(103): Illuminate\Database\Eloquent\Builder->first()
+#12 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Cache\Repository.php(397): {closure}()
+#13 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Cache\CacheManager.php(408): Illuminate\Cache\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#14 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(338): Illuminate\Cache\CacheManager->__call('remember', Array)
+#15 E:\laragon\www\owrners\core\app\Helper\helpers.php(104): Illuminate\Support\Facades\Facade::__callStatic('remember', Array)
+#16 E:\laragon\www\owrners\core\storage\framework\views\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#17 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(109): require('E:\\laragon\\www\\...')
+#18 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php(110): Illuminate\Filesystem\Filesystem::Illuminate\Filesystem\{closure}()
+#19 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(58): Illuminate\Filesystem\Filesystem->getRequire('E:\\laragon\\www\\...', Array)
+#20 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(70): Illuminate\View\Engines\PhpEngine->evaluatePath('E:\\laragon\\www\\...', Array)
+#21 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(195): Illuminate\View\Engines\CompilerEngine->get('E:\\laragon\\www\\...', Array)
+#22 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(178): Illuminate\View\View->getContents()
+#23 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(147): Illuminate\View\View->renderContents()
+#24 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(69): Illuminate\View\View->render()
+#25 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#26 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(57): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#27 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(87): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#28 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(629): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#29 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(554): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#30 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(460): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#31 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(377): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#32 E:\laragon\www\owrners\core\app\Exceptions\Handler.php(57): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#33 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(233): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Illuminate\View\ViewException))
+#34 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(210): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Illuminate\View\ViewException))
+#35 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(270): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Illuminate\View\ViewException))
+#36 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Illuminate\View\ViewException))
+#37 {main}
+
+Next Illuminate\View\ViewException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) (View: E:\laragon\www\owrners\core\resources\views\errors\500.blade.php) in E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Database\Connection.php:760
+Stack trace:
+#0 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\PhpEngine.php(60): Illuminate\View\Engines\CompilerEngine->handleViewException(Object(Illuminate\Database\QueryException), 2)
+#1 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\Engines\CompilerEngine.php(70): Illuminate\View\Engines\PhpEngine->evaluatePath('E:\\laragon\\www\\...', Array)
+#2 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(195): Illuminate\View\Engines\CompilerEngine->get('E:\\laragon\\www\\...', Array)
+#3 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(178): Illuminate\View\View->getContents()
+#4 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\View\View.php(147): Illuminate\View\View->renderContents()
+#5 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(69): Illuminate\View\View->render()
+#6 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Http\Response.php(35): Illuminate\Http\Response->setContent(Object(Illuminate\View\View))
+#7 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(57): Illuminate\Http\Response->__construct(Object(Illuminate\View\View), 500, Array)
+#8 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Routing\ResponseFactory.php(87): Illuminate\Routing\ResponseFactory->make(Object(Illuminate\View\View), 500, Array)
+#9 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(629): Illuminate\Routing\ResponseFactory->view('errors::500', Array, 500, Array)
+#10 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(554): Illuminate\Foundation\Exceptions\Handler->renderHttpException(Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#11 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(460): Illuminate\Foundation\Exceptions\Handler->prepareResponse(Object(Illuminate\Http\Request), Object(Symfony\Component\HttpKernel\Exception\HttpException))
+#12 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions\Handler.php(377): Illuminate\Foundation\Exceptions\Handler->renderExceptionResponse(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#13 E:\laragon\www\owrners\core\app\Exceptions\Handler.php(57): Illuminate\Foundation\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Spatie\LaravelIgnition\Exceptions\ViewException))
+#14 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(233): App\Exceptions\Handler->render(Object(Illuminate\Http\Request), Object(Illuminate\View\ViewException))
+#15 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(210): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Illuminate\View\ViewException))
+#16 E:\laragon\www\owrners\core\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php(270): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Illuminate\View\ViewException))
+#17 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Illuminate\View\ViewException))
+#18 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  in E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70
+Stack trace:
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\storage\\framework\\views\\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#35 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#42 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#43 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#44 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(233): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\ViewException))
+#45 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(210): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->renderHttpResponse(Object(Illuminate\\View\\ViewException))
+#46 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Illuminate\\View\\ViewException))
+#47 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(Object(Illuminate\\View\\ViewException))
+#48 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  in E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70
+Stack trace:
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\storage\\framework\\views\\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#35 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#42 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#43 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#44 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(233): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\ViewException))
+#45 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(210): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->renderHttpResponse(Object(Illuminate\\View\\ViewException))
+#46 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Illuminate\\View\\ViewException))
+#47 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(Object(Illuminate\\View\\ViewException))
+#48 {main}
+
+Next Illuminate\\Database\\QueryException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) in E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760
+Stack trace:
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_meta_descr...', 600, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#15 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#16 E:\\laragon\\www\\owrners\\core\\storage\\framework\\views\\2375fbe3319b6978fa298a3f73f7fd4150bbb71b.php(8): get_static_option('site_meta_descr...')
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(109): require('E:\\\\laragon\\\\www\\\\...')
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(110): Illuminate\\Filesystem\\Filesystem::Illuminate\\Filesystem\\{closure}()
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(58): Illuminate\\Filesystem\\Filesystem->getRequire('E:\\\\laragon\\\\www\\\\...', Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#22 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#26 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#27 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#32 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(233): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\ViewException))
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(210): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->renderHttpResponse(Object(Illuminate\\View\\ViewException))
+#35 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Illuminate\\View\\ViewException))
+#36 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(Object(Illuminate\\View\\ViewException))
+#37 {main}
+
+Next Illuminate\\View\\ViewException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_meta_description limit 1) (View: E:\\laragon\\www\\owrners\\core\\resources\\views\\errors\\500.blade.php) in E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760
+Stack trace:
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\PhpEngine.php(60): Illuminate\\View\\Engines\\CompilerEngine->handleViewException(Object(Illuminate\\Database\\QueryException), 2)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\CompilerEngine.php(70): Illuminate\\View\\Engines\\PhpEngine->evaluatePath('E:\\\\laragon\\\\www\\\\...', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(195): Illuminate\\View\\Engines\\CompilerEngine->get('E:\\\\laragon\\\\www\\\\...', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(178): Illuminate\\View\\View->getContents()
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\View\\View.php(147): Illuminate\\View\\View->renderContents()
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(69): Illuminate\\View\\View->render()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Response.php(35): Illuminate\\Http\\Response->setContent(Object(Illuminate\\View\\View))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(57): Illuminate\\Http\\Response->__construct(Object(Illuminate\\View\\View), 500, Array)
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(87): Illuminate\\Routing\\ResponseFactory->make(Object(Illuminate\\View\\View), 500, Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(629): Illuminate\\Routing\\ResponseFactory->view('errors::500', Array, 500, Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(554): Illuminate\\Foundation\\Exceptions\\Handler->renderHttpException(Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(460): Illuminate\\Foundation\\Exceptions\\Handler->prepareResponse(Object(Illuminate\\Http\\Request), Object(Symfony\\Component\\HttpKernel\\Exception\\HttpException))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(377): Illuminate\\Foundation\\Exceptions\\Handler->renderExceptionResponse(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#13 E:\\laragon\\www\\owrners\\core\\app\\Exceptions\\Handler.php(57): Illuminate\\Foundation\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Spatie\\LaravelIgnition\\Exceptions\\ViewException))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(233): App\\Exceptions\\Handler->render(Object(Illuminate\\Http\\Request), Object(Illuminate\\View\\ViewException))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(210): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->renderHttpResponse(Object(Illuminate\\View\\ViewException))
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(270): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleException(Object(Illuminate\\View\\ViewException))
+#17 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(Object(Illuminate\\View\\ViewException))
+#18 {main}
+  thrown at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 {main}
+"} 
+[2024-06-11 11:00:54] production.ERROR: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1) at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#15 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#16 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#22 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#24 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#26 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#27 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#31 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#32 {main}
+
+[previous exception] [object] (PDOException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#35 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#42 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#43 {main}
+
+[previous exception] [object] (PDOException(code: 0): PDO::__construct(): php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#35 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#42 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#43 {main}
+"} 
+[2024-06-11 11:01:00] production.ERROR: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  (SQL: select * from `static_options` where `option_name` = site_force_ssl_redirection limit 1) at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:760)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#5 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#11 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#15 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#16 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#22 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#24 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#26 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#27 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#31 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#32 {main}
+
+[previous exception] [object] (PDOException(code: 2002): SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#35 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#42 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#43 {main}
+
+[previous exception] [object] (PDOException(code: 0): PDO::__construct(): php_network_getaddresses: getaddrinfo for YOUR_DATABASE_HOST failed: No such host is known.  at E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=YOUR...', 'root', '', Array)
+#1 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(100): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=YOUR...', 'root', '', Array)
+#2 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(50): Illuminate\\Database\\Connectors\\Connector->tryAgainIfCausedByLostConnection(Object(PDOException), 'mysql:host=YOUR...', 'root', '', Array)
+#3 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=YOUR...', Array, Array)
+#4 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(184): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#5 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#6 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1181): call_user_func(Object(Closure))
+#7 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(1217): Illuminate\\Database\\Connection->getPdo()
+#8 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(486): Illuminate\\Database\\Connection->getReadPdo()
+#9 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(414): Illuminate\\Database\\Connection->getPdoForSelect(true)
+#10 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(753): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('select * from `...', Array)
+#11 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(899): Illuminate\\Database\\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#12 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(879): Illuminate\\Database\\Connection->tryAgainIfCausedByLostConnection(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#13 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(723): Illuminate\\Database\\Connection->handleQueryException(Object(Illuminate\\Database\\QueryException), 'select * from `...', Array, Object(Closure))
+#14 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(422): Illuminate\\Database\\Connection->run('select * from `...', Array, Object(Closure))
+#15 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2706): Illuminate\\Database\\Connection->select('select * from `...', Array, true)
+#16 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2694): Illuminate\\Database\\Query\\Builder->runSelect()
+#17 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(3230): Illuminate\\Database\\Query\\Builder->Illuminate\\Database\\Query\\{closure}()
+#18 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2695): Illuminate\\Database\\Query\\Builder->onceWithColumns(Array, Object(Closure))
+#19 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(710): Illuminate\\Database\\Query\\Builder->get(Array)
+#20 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Builder.php(694): Illuminate\\Database\\Eloquent\\Builder->getModels(Array)
+#21 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Concerns\\BuildsQueries.php(296): Illuminate\\Database\\Eloquent\\Builder->get(Array)
+#22 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(103): Illuminate\\Database\\Eloquent\\Builder->first()
+#23 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\Repository.php(397): {closure}()
+#24 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Cache\\CacheManager.php(408): Illuminate\\Cache\\Repository->remember('site_force_ssl_...', 600, Object(Closure))
+#25 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(338): Illuminate\\Cache\\CacheManager->__call('remember', Array)
+#26 E:\\laragon\\www\\owrners\\core\\app\\Helper\\helpers.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('remember', Array)
+#27 E:\\laragon\\www\\owrners\\core\\app\\Providers\\AppServiceProvider.php(31): get_static_option('site_force_ssl_...')
+#28 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): App\\Providers\\AppServiceProvider->boot()
+#29 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#30 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#31 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(37): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#32 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(661): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#33 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(929): Illuminate\\Container\\Container->call(Array)
+#34 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(910): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#35 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 41)
+#36 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(911): array_walk(Array, Object(Closure))
+#37 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#38 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(242): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#39 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#40 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(160): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#41 E:\\laragon\\www\\owrners\\core\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(134): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#42 E:\\laragon\\www\\owrners\\index.php(72): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#43 {main}
+"} 
