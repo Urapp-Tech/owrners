@@ -3,9 +3,9 @@
         <div class="single-right-content">
             <div class="navbar-right-flex">
                 <div class="navbar-right-item position-relative">
-                    <a href="#0" class="navbar-right-chat search-header-open">
+                    {{-- <a href="#0" class="navbar-right-chat search-header-open">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    </a> --}}
                     <div class="header-global-search">
                         <div class="header-global-search-header">
                             <h5 class="header-global-search-title">{{ __('Search') }}</h5>
@@ -710,9 +710,9 @@
         <div class="single-right-content">
             <div class="navbar-right-flex">
                 <div class="navbar-right-item position-relative">
-                    <a href="#0" class="navbar-right-chat search-header-open">
+                    {{-- <a href="#0" class="navbar-right-chat search-header-open">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                    </a>
+                    </a> --}}
                     <div class="header-global-search">
                         <div class="header-global-search-header">
                             <h5 class="header-global-search-title">{{ __('Search') }}</h5>

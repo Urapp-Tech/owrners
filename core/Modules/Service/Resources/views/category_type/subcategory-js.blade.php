@@ -9,13 +9,6 @@
                 dropdownParent: $('#editSubCategoryModal')
             });
 
-            $('.category_type_select_2').select2({
-                dropdownParent: $('#addModal')
-            });
-            $('.edit_category_type_select_2').select2({
-                dropdownParent: $('#editSubCategoryModal')
-            });
-
             // slug generate
             function transliterateCyrillic(text) {
                 const cyrillicToLatinMap = {
@@ -91,38 +84,31 @@
 
             // add sub category
             $(document).on('click','.add_subcategory',function(){
-                let sub_category = $('#sub_category').val();
+                let name = $('#name').val();
                 let short_description = $('#short_description').val();
                 let slug = $('#slug').val();
                 let category = $('#category').val();
-                let categoryType = $('#category_type').val();
-                if(sub_category == '' || short_description == '' || slug== '' || category == '' || categoryType == ''){
+                if(name == '' || short_description == '' || slug== '' || category == ''){
                     toastr_warning_js("{{ __('Please fill all field !') }}");
                     return false;
                 }
             });
 
             // show subcategory in modal
-            $(document).on('click','.edit_sub_category_modal', async function(){
+            $(document).on('click','.edit_sub_category_modal',function(){
                 let id = $(this).data('id');
-                let subcategory = $(this).data('subcategory');
+                let subcategory = $(this).data('name');
                 let short_description = $(this).data('short_description');
                 let slug = $(this).data('slug');
                 let category = $(this).data('category');
-                let categoryType = $(this).data('category-type');
                 let image = $(this).data('img_url');
                 let image_id = $(this).data('img_id');
 
-                $('#edit_sub_category_id').val(id).trigger("change");
-                $('#edit_sub_category').val(subcategory).trigger("change");
+                $('#edit_category_type_id').val(id).trigger("change");
+                $('#edit_name').val(subcategory).trigger("change");
                 $('#edit_short_description').val(short_description).trigger("change");
                 $('#edit_slug').val(slug).trigger("change");
                 $("#edit_category").val(category).trigger("change");
-
-                let html = await getCategoryType(category);
-                $(".edit_category_type").html(html);
-
-                $("#edit_category_type").val(categoryType).trigger("change");
 
                 $('#editSubCategoryModal').find('.media-upload-btn-wrapper .img-wrap').html('');
                 $('#editSubCategoryModal').find('.media-upload-btn-wrapper input').val('');
@@ -136,12 +122,11 @@
 
             // update subcategory
             $(document).on('click','.update_sub_category',function(){
-                let subcategory = $('#edit_sub_category').val();
+                let subcategory = $('#edit_name').val();
                 let short_description = $('#edit_short_description').val();
                 let category = $('#edit_category').val();
-                let categoryType = $('#edit_category_type').val();
                 let slug = $('#edit_slug').val();
-                if(subcategory == '' || short_description == '' || category == '' || slug == ''|| categoryType == '' ){
+                if(subcategory == '' || short_description == '' || category == '' || slug == ''){
                     toastr_warning_js("{{ __('Please fill all fields !') }}");
                     return false;
                 }
@@ -155,7 +140,7 @@
             });
             function categories(page){
                 $.ajax({
-                    url:"{{ route('admin.subcategory.paginate.data').'?page='}}" + page,
+                    url:"{{ route('admin.category-type.paginate.data').'?page='}}" + page,
                     success:function(res){
                         $('.search_result').html(res);
                     }
@@ -166,7 +151,7 @@
             $(document).on('keyup','#string_search',function(){
                 let string_search = $(this).val();
                 $.ajax({
-                    url:"{{ route('admin.subcategory.search') }}",
+                    url:"{{ route('admin.category-type.search') }}",
                     method:'GET',
                     data:{string_search:string_search},
                     success:function(res){
@@ -177,41 +162,6 @@
                         }
                     }
                 });
-            })
-
-            async function getCategoryType(category) {
-                try {
-                    const response = await $.ajax({
-                        method: 'post',
-                        url: "{{ route('au.category-types.all') }}",
-                        data: { category: category }
-                    });
-
-                    if (response.status === 'success') {
-                        let all_options = "<option value=''>{{__('Select Category type')}}</option>";
-                        let all_category_types = response.category_types;
-                        $.each(all_category_types, function(index, value) {
-                            all_options += `<option value="${value.id}">${value.name}</option>`;
-                        });
-                        return all_options;
-                    }
-                    return "<option value=''>{{__('No Category Types Available')}}</option>";
-                } catch (error) {
-                    console.error('Error fetching category types:', error);
-                    return "<option value=''>{{__('Error loading options')}}</option>";
-                }
-            }
-
-            $(document).on('change','#category',async function() {
-                let category = $(this).val();
-                let html = await getCategoryType(category);
-                $(".get_category_type").html(html);
-            })
-            
-            $(document).on('change','#edit_category',async function() {
-                let category = $(this).val();
-                let html = await getCategoryType(category);
-                $(".edit_category_type").html(html);
             })
         });
     }(jQuery));

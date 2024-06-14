@@ -19,10 +19,18 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse" id="xilancer_menu">
-                <ul class="navbar-nav">
+            <div class="collapse navbar-collapse justify-content-center" id="xilancer_menu">
+                {{-- <ul class="navbar-nav">
                     {!! render_frontend_menu($primary_menu) !!}
-                </ul>
+                </ul> --}}
+                <div class="header-global-search-input d-flex align-items-center header-global-search-input_urapp ">
+                    <div class="header-global-search-input-inner">
+                        <input type="text" id="search_your_desired_job" class="form-control"
+                               placeholder="{{ __('Search') }}" autocomplete="off">
+                               <input type="hidden" id="Select_project_or_job_for_search" value="project">
+                    </div>
+                </div>
+                <div class="display_search_result display_search_result_urapp" style="display: none"></div>
             </div>
 
             <x-frontend.user-menu />

@@ -8,12 +8,12 @@
         --bg-gradient: {{ 'linear-gradient(90deg, #fef0db 0%, #fefbf6 50%, #ecf8f0 100%)' }};
         --section-bg-base: {{ '#6176f6' }};
         --section-bg-1: {{ '#E6E6FA' }};
-        --section-bg-2: {{ '#E6E6FA' }};
+        --section-bg-2: {{ '#FFFFFF' }};
         --footer-bg-1: {{ '#020418' }};
         --footer-bg-2: {{ '#1E84FE' }};
         --copyright-bg-1: {{ '#323336' }};
-        --border-color: {{ '#EAECF0' }};
-        --border-color-2: {{ '#ddd' }};
+        --border-color: {{ '#101018' }};
+        --border-color-2: {{ '#10324A33' }};
         --heading-color: {{get_static_option('heading_color','#1D2635')}};
         --paragraph-color: {{get_static_option('paragraph_color','#1D2635')}};
         --body-color: {{get_static_option('body_color','#999')}};

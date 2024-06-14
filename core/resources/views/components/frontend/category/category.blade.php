@@ -5,12 +5,12 @@
     if($contains == $root_url.'/jobs') {
         //if project disable show job categories as default
         if(get_static_option('project_enable_disable') != 'disable'){
-            $jobs_categories = \Modules\Service\Entities\Category::with('sub_categories')->where('status', '1')->whereHas('jobs')->get();
+            $jobs_categories = \Modules\Service\Entities\Category::with('category_types.sub_categories')->where('status', '1')->whereHas('jobs')->get();
         }
         //if project disable show job categories as default end
     }
     else{
-        $all_categories = \Modules\Service\Entities\Category::with('sub_categories')->where('status','1')->whereHas('projects')->get();
+        $all_categories = \Modules\Service\Entities\Category::with('category_types.sub_categories')->where('status','1')->whereHas('projects')->get();
    }
 ?>
 
@@ -83,7 +83,7 @@
         {{--if project disable show job categories as default end --}}
     @else
         @if(!empty($all_categories))
-            <div class="categorySub-area categorySub-padding border-top bg-white">
+            <div class="categorySub-area categorySub-padding bg-white">
                 <div class="container custom-container-one">
                     <div class="row">
                         <div class="col-lg-12">
@@ -94,9 +94,14 @@
                                         @foreach($all_categories as $category)
                                             <li class="categorySub-list-slide-list">
                                                 <a href="{{ route('category.projects',$category->slug) }}" class="categorySub-list-slide-link">{{ $category->category }}<span class="mobileIcon"></span></a>
-                                                <ul class="categorySub-slide-submenu">
-                                                    @foreach($category->sub_categories as $sub_category)
-                                                        <li><a href="{{ route('subcategory.projects',$sub_category->slug) }}">{{ $sub_category->sub_category }}</a></li>
+                                                <ul class="sub-panel" >
+                                                    @foreach($category->category_types as $category_type)
+                                                        <ul class="sub-panel-bucket">
+                                                            <li class="sub-panel-bucket-title"> {{ $category_type->name }} </li>
+                                                            @foreach($category_type->sub_categories as $sub_category)
+                                                                <li><a href="{{ route('subcategory.projects',$sub_category->slug) }}">{{ $sub_category->sub_category }}</a></li>
+                                                            @endforeach
+                                                        </ul>
                                                     @endforeach
                                                 </ul>
                                             </li>

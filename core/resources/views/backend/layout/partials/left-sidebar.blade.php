@@ -211,6 +211,11 @@
                                 <a href="{{ route('admin.category.all') }}"> {{ __('Category') }} </a>
                             </li>
                         @endcan
+                        @can('category-type-list')
+                            <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.category-type.all'])) selected @endif">
+                                <a href="{{ route('admin.category-type.all') }}"> {{ __('Category Type') }} </a>
+                            </li>
+                        @endcan
                         @can('subcategory-list')
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.subcategory.all'])) selected @endif">
                                 <a href="{{ route('admin.subcategory.all') }}"> {{ __('Sub Category') }} </a>

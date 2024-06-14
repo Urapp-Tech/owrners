@@ -17,8 +17,8 @@ class SubcategoryProjectController extends Controller
 
     public function sub_category_projects($slug)
     {
-        $is_pro = 0;
-        $subcategory = SubCategory::select('id','sub_category')->where('slug',$slug)->first();
+        $is_pro = 1;
+        $subcategory = SubCategory::where('slug',$slug)->first();
         if(!empty($subcategory)){
             $projects = $subcategory->projects()
                 ->with('project_creator')

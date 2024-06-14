@@ -1,5 +1,5 @@
 
-<div class="breadcrumb-area border-top">
+{{-- <div class="breadcrumb-area border-top">
     <div class="container custom-container-one">
         <div class="row">
             <div class="col-lg-12">
@@ -13,4 +13,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
