@@ -10,7 +10,8 @@
         //if project disable show job categories as default end
     }
     else{
-        $all_categories = \Modules\Service\Entities\Category::with('category_types.sub_categories')->where('status','1')->whereHas('projects')->get();
+        $all_categories = \Modules\Service\Entities\Category::with('category_types.sub_categories')->where('status','1')->get();
+        // $all_categories = \Modules\Service\Entities\Category::with('category_types.sub_categories')->where('status','1')->whereHas('projects')->get();
    }
 ?>
 

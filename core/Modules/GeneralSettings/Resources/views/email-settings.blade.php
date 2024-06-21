@@ -31,7 +31,8 @@
                                 </div>
                                 <p class="info-text">{{__('facebook callback url for your app')}}
                                     <code>{{url('/')}}/facebook/callback</code>
-                                    <a href="https:xilancer.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                    {{-- <a href="https:xilancer.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a> --}}
+                                    <a href="https:owrners.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                                 </p>
 
                                 <div class="single-input mb-3">
@@ -47,7 +48,8 @@
                                 </div>
                                 <p class="info-text">{{__('google callback url for your app')}}
                                     <code>{{url('/')}}/google/callback</code>
-                                    <a href="https:xilancer.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                                    {{-- <a href="https:xilancer.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a> --}}
+                                    <a href="https:owrners.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                                 </p>
 
                                 <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>

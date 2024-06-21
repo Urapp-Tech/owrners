@@ -19,6 +19,7 @@ class FrontendController extends Controller
         if (empty($page_details)){
             // show any notice or
         }
+        // dd($page_details);
         return view('frontend.pages.frontend-home',compact('page_details'));
 
     }

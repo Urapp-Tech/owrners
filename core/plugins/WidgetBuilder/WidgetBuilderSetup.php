@@ -13,6 +13,7 @@ class WidgetBuilderSetup
             'ContactUsTwoWidget',
             'NewsLetterWidget',
             'CopyrightWidget',
+            'AboutAreaWidget',
         ];
     }
     private static function registerd_sidebars(){

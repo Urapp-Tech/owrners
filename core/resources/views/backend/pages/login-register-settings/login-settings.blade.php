@@ -22,7 +22,7 @@
                                 <br>
                                 <x-form.text :title="__('Sidebar Title')" :type="__('text')" :name="'login_page_sidebar_title'" :value="get_static_option('login_page_sidebar_title') ?? '' " :placeholder="__('Login and start discover.')"/>
                                 <br>
-                                <x-form.textarea :title="__('Sidebar Description')" :name="'login_page_sidebar_description'" :value="get_static_option('login_page_sidebar_description') ?? '' " :placeholder="__('Once login you will see the magic of xilancer marketplace.')"/>
+                                <x-form.textarea :title="__('Sidebar Description')" :name="'login_page_sidebar_description'" :value="get_static_option('login_page_sidebar_description') ?? '' " :placeholder="__('Once login you will see the magic of owrners marketplace.')"/>
                                 <br>
                                 <div class="switch">
                                     <label class="label-title mb-3"><strong>{{__('Social Login Enable/Disable')}}</strong></label>

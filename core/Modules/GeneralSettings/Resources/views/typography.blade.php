@@ -53,6 +53,7 @@
                                 <h4 class="mt-5">{{__("Heading Typography Settings")}}</h4>
                                 <div class="switch">
                                     <label class="label-title mb-3" for="heading_font">{{__('Heading Font')}}</label>
+                                    <input class="custom-switch" type="checkbox" id="heading_font" name="heading_font" @if(!empty(get_static_option('heading_font'))) checked @endif>
                                     <label class="switch-label" for="heading_font">{{__('Heading Font')}}</label>
                                     <small>{{__('Use different font family for heading tags ( h1,h2,h3,h4,h5,h6)')}}</small>
                                 </div>

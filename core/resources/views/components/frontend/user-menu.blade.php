@@ -745,12 +745,12 @@
                 </div>
                 <div class="navbar-right-btn">
                     <a href="{{ route('user.login') }}"
-                       class="cmn-btn btn-outline-1 color-one btn-small radius-10">{{ __('Log In') }}
+                       class="header-login-btn">{{ __('Log In') }}
                     </a>
                 </div>
                 <div class="btn-wrapper">
                     <a href="{{ route('user.register') }}"
-                       class="cmn-btn btn-bg-1 btn-small radius-10">{{ __('Sign Up') }}
+                       class=" submit-btn">{{ __('Sign Up') }}
                     </a>
                 </div>
             </div>

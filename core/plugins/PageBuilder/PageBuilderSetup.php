@@ -11,6 +11,7 @@ class PageBuilderSetup
         $addons = [
             \plugins\PageBuilder\Addons\Header\HeaderStyleOne::class,
             \plugins\PageBuilder\Addons\Header\HeaderStyleTwo::class,
+            \plugins\PageBuilder\Addons\Header\HeaderStyleThree::class,
             \plugins\PageBuilder\Addons\WhyOurMarketplace\WhyOurMarketplace::class,
             \plugins\PageBuilder\Addons\WhyChooseUs\WhyChooseUs::class,
             \plugins\PageBuilder\Addons\Job\PopularJobOne::class,
@@ -30,6 +31,7 @@ class PageBuilderSetup
             \plugins\PageBuilder\Addons\About\Team::class,
             \plugins\PageBuilder\Addons\About\Credit::class,
             \plugins\PageBuilder\Addons\Category\CategoryProjectOne::class,
+            \plugins\PageBuilder\Addons\Category\CategoryProjectTwo::class,
             \plugins\PageBuilder\Addons\Category\CategoryJobOne::class,
             \plugins\PageBuilder\Addons\Mobilica\Mobilica::class,
             \plugins\PageBuilder\Addons\Project\ExploreCategoryProject::class,

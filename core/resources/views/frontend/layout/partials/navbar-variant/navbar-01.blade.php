@@ -26,7 +26,7 @@
                 <div class="header-global-search-input d-flex align-items-center header-global-search-input_urapp ">
                     <div class="header-global-search-input-inner">
                         <input type="text" id="search_your_desired_job" class="form-control"
-                               placeholder="{{ __('Search') }}" autocomplete="off">
+                               placeholder="{{ __('Search for the service you are looking for!') }}" autocomplete="off">
                                <input type="hidden" id="Select_project_or_job_for_search" value="project">
                     </div>
                 </div>

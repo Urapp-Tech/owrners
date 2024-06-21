@@ -74,7 +74,7 @@
             {{--    finalSlug = slug.replace(/\s/g, '-').toLowerCase().replace(/[^\w-]+/g, '-');--}}
             {{--    return finalSlug;--}}
             {{--}--}}
-            $(document).on('keyup', '#sub_category', function (e) {
+            $(document).on('keyup', '#name', function (e) {
                 let slug = convertToSlug($(this).val());
                 $('#slug').val(slug);
 
