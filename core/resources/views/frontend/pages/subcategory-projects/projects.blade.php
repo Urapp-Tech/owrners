@@ -37,6 +37,34 @@
     <main>
         <x-frontend.category.category/>
         <x-breadcrumb.user-profile-breadcrumb :title="$subcategory->sub_category ?? __('Project Category')" :innerTitle="$subcategory->sub_category ?? '' "/>
+        {{-- Sub Category Banner Starts --}}
+        <div class="pat-50">
+            <div class="container">
+                <div class="col-12">
+                    <div class="w-100 sub-category-title-container" >
+                        <div class="d-flex h-100">
+    
+                            <div class="col-6 align-content-center h-100 gap-4  py-5">
+                                <div class="sub-category-title-heading-container">
+                                    <h1 class="fw-bold py-2">{{ $subcategory->sub_category  }}</h1>
+                                </div>
+                                <div class="sub-category-content">
+                                    {{$subcategory->short_description}}
+                                </div>
+                            </div>
+                            @php $sub_cat_img = get_attachment_image_by_id($subcategory->image,null,true); @endphp
+    
+                            <div class="col-6 p-0" >
+                                <div class="h-100 w-100 cat-image" @if (!empty($sub_cat_img)) style="background: url('{{  $sub_cat_img['img_url'] }}')" @endif >
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Sub Category Banner Ends --}}
         <!-- Project preview area Starts -->
         <div class="preview-area section-bg-2 pat-100 pab-100">
             <div class="container">

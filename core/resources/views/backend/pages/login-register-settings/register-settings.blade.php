@@ -36,7 +36,7 @@
                                 <br>
                                 <x-form.text :title="__('Sidebar Title')" :type="__('text')" :name="'register_page_sidebar_title'" :value="get_static_option('register_page_sidebar_title') ?? '' " :placeholder="__('Register and start discover.')"/>
                                 <br>
-                                <x-form.textarea :title="__('Sidebar Description')" :name="'register_page_sidebar_description'" :value="get_static_option('register_page_sidebar_description') ?? '' " :placeholder="__('Once register you will see the magic of xilancer marketplace.')"/>
+                                <x-form.textarea :title="__('Sidebar Description')" :name="'register_page_sidebar_description'" :value="get_static_option('register_page_sidebar_description') ?? '' " :placeholder="__('Once register you will see the magic of owrners marketplace.')"/>
 {{--                                <br>--}}
 {{--                                <div class="switch">--}}
 {{--                                    <label class="label-title mb-3"><strong>{{__('Social Login Enable/Disable')}}</strong></label>--}}

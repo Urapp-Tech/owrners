@@ -1,10 +1,29 @@
-@extends('frontend.layout.master')
+@extends('frontend.layout.auth')
 @section('site_title', __('User Login'))
 @section('content')
     <!-- login Area Starts -->
-    <section class="login-area pat-100 pab-100">
+    <section class="login-area ">
         <div class="container">
             <div class="row gy-5 align-items-center justify-content-between">
+                <div class="col-lg-6">
+                    <div class="login-right">
+                        <div class="login-right-item">
+                            <div class="login-right-shapes">
+                                <div class="login-right-thumb">
+                                    @if(empty(get_static_option('login_page_sidebar_image')))
+                                    <img src="{{ asset('assets/static/single-page/login_page.png') }}" alt="loginImg">
+                                    @else
+                                        {!! render_image_markup_by_attachment_id(get_static_option('login_page_sidebar_image')) !!}
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="login-right-contents text-white">
+                                <h4 class="login-right-contents-title"> {{ get_static_option('login_page_sidebar_title') ?? __('Login and start discover') }} </h4>
+                                <p class="login-right-contents-para">{{ get_static_option('login_page_sidebar_description') ?? __('Once login you will see the magic of xilancer marketplace.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-5">
                     <div class="login-wrapper">
                         <div class="login-wrapper-contents">
@@ -63,25 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="login-right">
-                        <div class="login-right-item">
-                            <div class="login-right-shapes">
-                                <div class="login-right-thumb">
-                                    @if(empty(get_static_option('login_page_sidebar_image')))
-                                    <img src="{{ asset('assets/static/single-page/login_page.png') }}" alt="loginImg">
-                                    @else
-                                        {!! render_image_markup_by_attachment_id(get_static_option('login_page_sidebar_image')) !!}
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="login-right-contents text-white">
-                                <h4 class="login-right-contents-title"> {{ get_static_option('login_page_sidebar_title') ?? __('Login and start discover') }} </h4>
-                                <p class="login-right-contents-para">{{ get_static_option('login_page_sidebar_description') ?? __('Once login you will see the magic of xilancer marketplace.') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>

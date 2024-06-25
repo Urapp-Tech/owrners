@@ -17,6 +17,7 @@ class SubCategoryController extends Controller
             $request->validate([
                 'sub_category'=> 'required|unique:sub_categories|max:191',
                 'short_description'=> 'required|max:191',
+                'category_type'=> 'required',
                 'slug' => 'nullable|unique:sub_categories|max:191',
 
             ]);
@@ -25,6 +26,7 @@ class SubCategoryController extends Controller
             SubCategory::create([
                 'sub_category' => $request->sub_category,
                 'short_description' => $request->short_description,
+                'category_type_id' => $request->category_type,
                 'slug' => Str::slug(purify_html($slug),'-',null),
                 'category_id' => $request->category,
                 'status' => $request->status,
@@ -32,7 +34,7 @@ class SubCategoryController extends Controller
             ]);
             toastr_success(__('New Sub Category Successfully Added'));
         }
-        $all_subcategories = SubCategory::with('category')->latest()->paginate(10);
+        $all_subcategories = SubCategory::with(['category', 'category_type'])->latest()->paginate(10);
         return view('service::subcategory.all-subcategory',compact('all_subcategories'));
     }
 
@@ -42,6 +44,7 @@ class SubCategoryController extends Controller
         $request->validate([
             'edit_sub_category'=> 'required|max:191|unique:sub_categories,sub_category,'.$request->edit_sub_category_id,
             'edit_short_description'=> 'required|max:191',
+            'edit_category_type'=> 'required',
             'edit_slug'=> 'required|max:191|unique:sub_categories,slug,'.$request->edit_sub_category_id,
         ]);
 
@@ -51,6 +54,7 @@ class SubCategoryController extends Controller
             'short_description'=>$request->edit_short_description,
             'slug' => Str::slug(purify_html($slug),'-',null),
             'category_id'=>$request->edit_category,
+            'category_type_id'=>$request->edit_category_type,
             'image' => $request->image,
         ]);
         return redirect()->back()->with(toastr_success(__('Subcategory Successfully Updated')));

@@ -29,4 +29,17 @@ Route::group(['as'=>'admin.','prefix'=>'admin/service','middleware' => ['auth:ad
         });
     });
 
+    // category type
+    Route::group(['prefix'=>'category-type'],function(){
+        Route::controller(\Modules\Service\Http\Controllers\Backend\CategoryTypeController::class)->group(function () {
+            Route::match(['get','post'],'all-category-type','all_category_type')->name('category-type.all')->permission('category-type-list');
+            Route::post('edit-category-type/{id?}','edit_category_type')->name('category-type.edit')->permission('category-type-edit');
+            Route::post('change-status/{id}','change_status')->name('category-type.status')->permission('category-type-status-change');
+            Route::post('delete/{id}','delete_category_type')->name('category-type.delete')->permission('category-type-delete');
+            Route::post('bulk-action', 'bulk_action_category_type')->name('category-type.delete.bulk.action')->permission('category-type-bulk-delete');
+            Route::get('paginate/data', 'pagination')->name('category-type.paginate.data');
+            Route::get('search-category-type', 'search_category_type')->name('category-type.search');
+        });
+    });
+
 });

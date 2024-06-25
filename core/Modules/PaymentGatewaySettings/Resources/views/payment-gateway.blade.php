@@ -257,7 +257,7 @@
                                                     <p class="margin-bottom-30 margin-top-20 info-paragraph">
                                                         {{__('Don\'t forget to put below url to "Settings > API Key & Webhook > Callback URL" in your paystack admin panel')}}
                                                         <br>
-                                                        <span class="bg-gray mt-3 p-3">https://xilancer.com/frontend/payments/paystack-ipn</span>
+                                                        {{-- <span class="bg-gray mt-3 p-3">https://xilancer.com/frontend/payments/paystack-ipn</span> --}}
                                                     </p>
                                                     <div class="switch">
                                                         <label class="label-title mt-3"><strong>{{__('Enable/Disable PayStack')}}</strong></label>

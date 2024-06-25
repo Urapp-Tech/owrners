@@ -31,9 +31,14 @@ class Category extends Model
         return $this->hasMany(Skill::class,'category_id');
     }
 
+    public function category_types()
+    {
+        return $this->hasMany(CategoryType::class,'category_id','id')->select(['id','category_id','name','slug'])->where('status','1');
+    }
+
     public function sub_categories()
     {
-        return $this->hasMany(SubCategory::class,'category_id','id')->select(['id','category_id','sub_category','slug'])->where('status','1');
+        return $this->hasMany(SubCategory::class,'category_id','id')->select(['id','category_id', 'category_type_id','sub_category','slug'])->where('status','1');
     }
 
     public function projects()

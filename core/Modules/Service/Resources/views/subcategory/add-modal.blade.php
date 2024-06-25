@@ -14,6 +14,13 @@
                     <x-form.slug :name="'slug'" :id="'slug'"/>
                     <x-form.textarea :title="__('Short Description')" :name="'short_description'" :id="'short_description'" :value="old('short_description', '')" :placeholder="__('Max 190 character')"/>
                     <x-form.category-dropdown :title="__('Select Category')" :name="'category'" :id="'category'" :class="'form-control category_select2'" />
+                    {{-- Select Category Type --}}
+                    <div class="single-input mt-3">
+                        <label class="label-title">Category Type</label>
+                        <select name="category_type" id="category_type" class="category_type get_category_type category_type_select_2">
+                        </select>
+                    </div>
+                    
                     <x-form.active-inactive :title="__('Select Status')" :info="__('If you select inactive the services will off for the category')" />
                     <x-backend.image :title="__('')" :name="'image'" :dimentions="__('3000x300(optional)')"/>
                 </div>

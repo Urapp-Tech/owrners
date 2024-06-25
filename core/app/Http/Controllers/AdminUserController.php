@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\CountryManage\Entities\City;
 use Modules\CountryManage\Entities\State;
+use Modules\Service\Entities\CategoryType;
 use Modules\Service\Entities\SubCategory;
 
 class AdminUserController extends Controller
@@ -37,6 +38,15 @@ class AdminUserController extends Controller
         return response()->json([
             'status' => 'success',
             'subcategories' => $subcategories,
+        ]);
+    }
+
+    public function get_category_type(Request $request)
+    {
+        $category_types = CategoryType::where('category_id', $request->category)->where('status', 1)->get();
+        return response()->json([
+            'status' => 'success',
+            'category_types' => $category_types,
         ]);
     }
 

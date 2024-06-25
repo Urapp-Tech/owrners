@@ -18,17 +18,10 @@ class CategoryProjectController extends Controller
     public function category_projects($slug)
     {
         $is_pro = 0;
-        $category = Category::select('id','category')->where('slug',$slug)->first();
+        $category = Category::with(['category_types.sub_categories'])->where('slug',$slug)->first();
         if(!empty($category)){
-            $projects = Project::with('project_creator')
-                ->select(['id','title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image'])
-                ->whereHas('project_creator')
-                ->where('category_id',$category->id)
-                ->where('project_on_off','1')
-                ->where('status','1')
-                ->latest()
-                ->paginate(10);
-            return view('frontend.pages.category-projects.projects',compact(['category','projects','is_pro']));
+
+            return view('frontend.pages.category-projects.category-details',compact(['category','is_pro']));
         }
         return back();
     }

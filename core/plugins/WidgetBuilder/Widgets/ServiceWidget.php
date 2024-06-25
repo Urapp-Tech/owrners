@@ -67,7 +67,8 @@ class ServiceWidget extends WidgetBase
         $order_by = purify_html($settings['order_by'] ?? 'id');
         $IDorDate = purify_html($settings['order'] ?? 'asc');
         $items = purify_html($settings['items'] ?? '');
-        $categories = Category::whereHas('projects')->where('status',1)->select('id','category','slug')->orderBy($order_by,$IDorDate)->take($items)->get();
+        $categories = Category::where('status',1)->select('id','category','slug')->orderBy($order_by,$IDorDate)->take($items)->get();
+        // $categories = Category::whereHas('projects')->where('status',1)->select('id','category','slug')->orderBy($order_by,$IDorDate)->take($items)->get();
         $category_markup = '';
 
         foreach ($categories as $cat){
@@ -82,11 +83,11 @@ CATEGORY;
         }
 
         return <<<HTML
-            <div class="col-lg-3 col-sm-6 mt-4">
+            <div class="col-lg-6 col-sm-6 mt-4">
                     <div class="footer-widget widget">
                         <h4 class="footer-widget-title">{$title}</h4>
                         <div class="footer-widget-inner mt-4">
-                            <ul class="footer-widget-link-list">
+                            <ul class="footer-widget-link-list" style="column-count: 2">
                                 {$category_markup}
                             </ul>
                         </div>

@@ -11,6 +11,7 @@
         <th>{{__('Sub Category')}}</th>
         <th>{{__('Short Description')}}</th>
         <th>{{__('Category')}}</th>
+        <th>{{__('Category Type')}}</th>
         <th>{{__('Status')}}</th>
         <th>{{__('Image')}}</th>
         <th>{{__('Action')}}</th>
@@ -24,6 +25,7 @@
             <td>{{ $sub_cat->sub_category }}</td>
             <td>{{ $sub_cat->short_description }}</td>
             <td>{{ optional($sub_cat->category)->category }}</td>
+            <td>{{ optional($sub_cat->category_type)->name }}</td>
             <td><x-status.table.active-inactive :status="$sub_cat->status"/></td>
             <td>
                 <span class="img_100">
@@ -49,7 +51,8 @@
                             data-subcategory="{{ $sub_cat->sub_category }}"
                             data-short_description="{{ $sub_cat->short_description }}"
                             data-slug="{{ $sub_cat->slug }}"
-                            data-category="{{ $sub_cat->category_id }}">
+                            data-category="{{ $sub_cat->category_id }}"
+                            data-category-type="{{ $sub_cat->category_type_id }}">
                             {{ __('Edit Subcategory') }}
                         </a>
                     </li>

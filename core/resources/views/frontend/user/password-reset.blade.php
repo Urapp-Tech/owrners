@@ -1,4 +1,4 @@
-@extends('frontend.layout.master')
+@extends('frontend.layout.auth')
 @section('site_title',__('Password Reset'))
 @section('style')
     <style>

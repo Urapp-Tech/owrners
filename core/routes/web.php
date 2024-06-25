@@ -37,6 +37,7 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
         Route::post('get-state','get_country_state')->name('au.state.all');
         Route::post('get-city','get_state_city')->name('au.city.all');
         Route::post('get-subcategory','get_subcategory')->name('au.subcategory.all');
+        Route::post('get-category-types','get_category_type')->name('au.category-types.all');
     });
 
     // user registration

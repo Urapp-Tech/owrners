@@ -3,7 +3,7 @@
     <div class="container">
         <div class="footer-area-wrapper">
 
-            <div class="row gx-xxl-5 footer-area-top">
+            <div class="row gx-xxl-5 footer-area-top px-0">
                 {!! render_frontend_sidebar('footer_two') !!}
             </div>
 
