@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BasicMail;
+use App\Models\UserSkill;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Modules\Subscription\Entities\Subscription;
 use Modules\Subscription\Entities\UserSubscription;
 use Modules\Wallet\Entities\Wallet;
-
+use Intervention\Image\Facades\Image;
+use Modules\CountryManage\Entities\Country;
 
 class RegisterController extends Controller
 {
@@ -130,6 +134,7 @@ class RegisterController extends Controller
                 'password' => 'required|min:6|max:191',
                 'confirm_password' => 'required|same:password',
                 'terms_condition' => 'required',
+                'country_id' => 'required',
             ]);
 
             $email_verify_tokn = sprintf("%d", random_int(123456, 999999));
@@ -139,6 +144,7 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'username' => $request->username,
                 'phone' => $request->phone,
+                'country_id' => $request->country_id,
                 'password' => Hash::make($request->password),
                 'user_type' => $request->user_type,
                 'terms_condition' =>1,
@@ -218,7 +224,9 @@ class RegisterController extends Controller
                 }
             }
         }
-        return view('frontend.user.user-register');
+
+        $countries = Country::all();
+        return view('frontend.user.user-register', compact('countries') );
     }
 
 
@@ -302,5 +310,59 @@ class RegisterController extends Controller
         }
 
         return redirect()->back()->with(['msg' => __('Resend Email Verify Code, Please check your inbox of spam.') ,'type' => 'success' ]);
+    }
+
+    public function completeProfile(Request $request) {
+        if($request->isMethod('post')){
+            $request->validate([
+                ['image'=>'required|mimes:jpg,jpeg,png,gif,svg|max:1024'],
+                ['image.required'=>'Profile Image is required'],
+                ['skills'=>'required|max:1000'],
+            ]);
+
+            DB::beginTransaction();
+            try {
+                //code...
+                $user_id = Auth::user()->id;
+                UserSkill::updateOrCreate(['user_id'=>$user_id],
+                    [
+                        'user_id'=>$user_id,
+                        'skill'=>$request->skills,
+                    ]);
+
+                $user_id = Auth::guard('web')->user()->id;
+                $user_image = User::where('id',$user_id)->first();
+                $delete_old_img =  'assets/uploads/profile/'.$user_image->image;
+
+                if ($image = $request->file('image')) {
+                    $request->validate(
+                        ['image'=>'required|mimes:jpg,jpeg,png,gif,svg|max:1024'],
+                        ['image.required'=>'Image is required']
+                    );
+                    if(file_exists($delete_old_img)){
+                        File::delete($delete_old_img);
+                    }
+                    $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+        
+                    $resize_full_image = Image::make($request->image)
+                        ->resize(80, 80);
+                    $resize_full_image->save('assets/uploads/profile' .'/'. $imageName);
+        
+                }
+                else{
+                    $imageName = $user_image->image;
+                }
+                User::where('id',$user_id)->update(['image'=>$imageName]);
+
+                DB::commit();
+            } catch (\Throwable $th) {
+                DB::rollback();
+                return response()->json(['status'=>'failed', 'errors' => [$th->getMessage() ]], 400);
+            }
+
+            return response()->json(['status'=>'ok']);
+        }
+
+        return view('frontend.user.complete-profile');
     }
 }

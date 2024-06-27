@@ -8,7 +8,7 @@
             <form action="#">
                 <input type="hidden" name="edit_id" id="edit_id">
                 <x-form.text :title="__('Title')" :type="__('text')" :name="'edit_experience_title'" :id="'edit_experience_title'" :placeholder="__('Front-End Developer')" :value="''"/>
-                <x-form.text :title="__('Organization')" :type="__('text')" :name="'edit_organization'" :id="'edit_organization'" :placeholder="__('Xgenious')" :value="''"/>
+                <x-form.text :title="__('Organization')" :type="__('text')" :name="'edit_organization'" :id="'edit_organization'" :placeholder="__('Owrners')" :value="''"/>
                 <x-form.text :title="__('Address')" :type="__('text')" :name="'edit_address'" :id="'edit_address'" :placeholder="__('8502 Preston Rd. Ingle')" :value="''"/>
                 <x-form.textarea :title="__('Short Description')" :name="'edit_short_description'" :id="'edit_short_description'" :cols="'30'" :rows="'3'" :placeholder="__('I am a professional develop...')"/>
                 <div class="single-flex-input">

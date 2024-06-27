@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="login-right-contents text-white">
-        <h4 class="login-right-contents-title"> {{ get_static_option('register_page_sidebar_title') ?? __('Register and start discover') }} </h4>
+        <h4 class="login-right-contents-title signup-role-selection-title"> {{ get_static_option('register_page_sidebar_title') ?? __('Register and start discover') }} </h4>
         <p class="login-right-contents-para">{{ get_static_option('register_page_sidebar_description') ?? __('Once register you will see the magic of owrners marketplace.') }}</p>
     </div>
 </div>

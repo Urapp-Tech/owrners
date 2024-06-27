@@ -22,34 +22,68 @@
             border-radius: 5px;
             font-size: 16px;
         }
+
+        body {
+            background-image: url('{{'assets/static/img/landescape.png'}}');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        body::before {
+            content: '';
+            background: linear-gradient(#fff,#fff,#ffffff, #ffffffab, #ffffff59);
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: block;
+            z-index: -1;
+        }
+        .signup-title-main {
+            color: var(--main-color-one)
+        }
+
+        .signup-title-main, .signup-title {
+            font-size: 96px;
+            font-weight: 700
+        }
+
+        .verify-account-wrapper {
+            background: rgb(230 230 250 / 50%);
+            box-shadow: 10px 20px 30px;
+        }
     </style>
 @endsection
 @section('content')
     <div class="signup-area pat-100 pab-100">
         <div class="container">
-            <div class="signup-wrapper verify-account-wrapper">
+            <div class="col-lg-8 col-md-8 col-12 mx-auto text-center">
+                <h3 class="signup-title"> {{ __('Welcome, Client!') }} </h3>
+                <h3 class="signup-title-main"> {{ __('Let’s help build your business.') }} </h3>
+            </div>
+            <div class="signup-wrapper verify-account-wrapper border-0">
                 <div class="signup-contents">
-                    <h3 class="signup-title"> {{ __('Verify Your Account') }} </h3>
                     <x-validation.error />
-                    <div class="alert alert-info alert-bs-dismissible fade show mt-5 mb-1" role="alert">
+                    <h6>
                         {{ __('Please check email inbox/spam for verification code') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                    </h6>
                     <form class="verify-form" method="post" action="{{ route('email.verify') }}">
                         @csrf
                         <div class="single-input mt-4">
-                            <label class="label-title mb-3">{{ __('Enter verification code*') }}</label>
                             <input class="form--control" type="text" name="email_verify_token"
-                                placeholder="{{ __('Enter code') }}">
+                                placeholder="{{ __('Enter verification code') }}">
                         </div>
-                        <button class="submit-btn mt-4 verify-account" type="submit">{{ __('Verify Account') }}</button>
+                        <div class="d-flex justify-content-between align-items-center">
+
+                            <button class="submit-btn mt-4 verify-account" type="submit">{{ __('Verify Account') }}</button>
+                            <div class="resend-verify-code-wrap mt-3">
+                                <a class="text-center"
+                                    href="{{ route('resend.verify.code') }}"><strong>{{ __('Resend Code') }}</strong></a>
+                            </div>
+                        </div>
                     </form>
-                    <div class="resend-verify-code-wrap mt-3">
-                        <a class="text-center"
-                            href="{{ route('resend.verify.code') }}"><strong>{{ __('Resend Code') }}</strong></a>
-                    </div>
                 </div>
                 <br>
 

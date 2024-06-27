@@ -10430,10 +10430,16 @@ span.choose-account-single-contents-icon svg path {
 
 .login-right-thumb img {
   border-radius: 20px;
+  height: 200px;
+}
+
+.login-right-thumb-2 img {
+  height: 542px;
+  width: 758px;
 }
 
 .login-right-contents {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .login-right-contents.text-white .login-right-contents-title {
@@ -10446,7 +10452,7 @@ span.choose-account-single-contents-icon svg path {
 
 .login-right-contents-title {
   font-size: 32px;
-  line-height: 36px;
+  /* line-height: 36px; */
 }
 
 @media only screen and (max-width: 767.98px) {
@@ -10458,7 +10464,7 @@ span.choose-account-single-contents-icon svg path {
 @media only screen and (max-width: 575.98px) {
   .login-right-contents-title {
     font-size: 24px;
-    line-height: 32px;
+    /* line-height: 32px; */
   }
 }
 
@@ -10586,7 +10592,9 @@ span.choose-account-single-contents-icon svg path {
 }
 
 .login-others-single-btn {
-  padding: 13px 10px;
+  /* padding: 13px 10px; */
+  min-height: 50px;
+  align-content: center;
   display: inline-block;
   border: 1px solid rgba(221, 221, 221, 0.4);
   color: var(--heading-color);
@@ -23914,7 +23922,7 @@ span.single-project-thumb-price {
 
 .signup-role-selection-title {
   font-weight: 700;
-  font-size: 96px;
+  font-size: 64px;
   color: var(--heading-color);
 }
 
@@ -23943,4 +23951,89 @@ span.single-project-thumb-price {
   font-weight: 500;
   color: rgba(16 16 24 / 60%);
   padding-bottom: 10px;
+}
+
+a.login-others-single-btn {
+  border-radius:25px;
+  border: 2px solid var(--border-color);
+  font-size:16px;
+  font-weight:700;
+  background-color:#E6E6FA;
+}
+
+a.login-others-single-btn:hover {
+  background-color: var(--border-color);
+  color:white;
+  border: 2px solid var(--border-color);
+}
+
+.complete-profile-upload-image {
+  height: 200px;
+  width: 200px;
+  border-radius: 40px;
+  background-color: #E6E6FA;
+  object-fit: cover;
+}
+
+.complete-profile-searchbar-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: left;
+}
+
+.complete-profile-searchbar-input {
+  border: 2px solid #1010181A;
+  padding-left: 50px !important;
+}
+
+.complete-profile-searchbar-input::placeholder {
+  text-align: center;
+}
+
+.complete-profile-searchbar-icon {
+  position:absolute;
+  top:10px;
+  left:20px
+}
+
+.skill-badge {
+  /* height: 40px; */
+  padding: 10px 15px 10px 15px;
+  border-radius: 25px ;
+  display: inline-block;
+  border: 2px solid ;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.skill-badge-main {
+  color: var(--main-color-one);
+  border-color: var(--main-color-one);
+}
+
+.skill-badge-secondary {
+  color: var(--border-color);
+  background-color: var(--section-bg-1);
+  border-color: var(--border-color);
+}
+
+.skill-badge.skill-badge-muted {
+  border-color:rgba(16 16 24 / 30%);
+  color: rgba(16 16 24 / 40%);
+  background:transparent;
+  font-weight:600;
+  
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.fw-light-bold {  
+  font-weight: 600;
 }

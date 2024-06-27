@@ -8,7 +8,7 @@
         <div class="row gy-5 align-items-center justify-content-between">
             <div class="col-lg-6">
                 <div class="px-5">
-                    <h1 class="signup-role-selection-title">{{ get_static_option('register_page_choose_role_title') ?? __('Choose a Role') }}</h1>
+                    <h1 class="signup-role-selection-title" style="font-size: 96px">{{ get_static_option('register_page_choose_role_title') ?? __('Choose a Role') }}</h1>
                     <div class="btn-wrapper mt-4">
                         <span class="btn-profile btn-bg-1 w-100 continue_to_info submit-btn d-inline">{{ get_static_option('register_page_continue_button_title') ?? __('Continue') }}</span>
                     </div>
@@ -68,14 +68,50 @@
             <div class="col-lg-6">
                 <div class="login-right py-0">
                     <div class="global-slick-init login-slider nav-style-one dot-style-one white-dot slider-inner-margin" data-appendArrows=".append-jobs" data-dots="true" data-infinite="true" data-slidesToShow="1" data-swipeToSlide="true" data-autoplay="true" data-autoplaySpeed="2500" data-prevArrow='<div class="prev-icon"><i class="fa-solid fa-arrow-left"></i></div>' data-nextArrow='<div class="next-icon"><i class="fa-solid fa-arrow-right"></i></div>'>
-                        <x-frontend.register.user-register-slider />
+                        <div class="login-right-item">
+                            <div class="login-right-shapes">
+                                <div class="login-right-thumb">
+                                    @if(empty(get_static_option('register_page_sidebar_image')))
+                                        <img src="{{ asset('assets/static/single-page/fr_1.png') }}" alt="loginImg">
+                                    @else
+                                        {!! render_image_markup_by_attachment_id(get_static_option('register_page_sidebar_image')) !!}
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="login-right-contents text-white">
+                                <h4 class="login-right-contents-title signup-role-selection-title"> {{ get_static_option('register_page_sidebar_title') ?? __('Register and start discover') }} </h4>
+                                <p class="login-right-contents-para">{{ get_static_option('register_page_sidebar_description') ?? '' }}</p>
+                            </div>
+                            @if(get_static_option('login_page_social_login_enable_disable') == 'on')
+                                <div class="login-bottom-contents">
+                                    <div class="or-contents mb-3">
+                                        <span class="or-contents-para"> {{ __('Or') }} </span>
+                                    </div>
+                                    <div class="login-others">
+                                        <div class="login-others-single">
+                                            <a href="{{ route('login.google.redirect') }}" class="login-others-single-btn w-100">
+                                                <i class="fa-brands fa-google"></i>
+                                                <span class="login-para"> {{ __('Sign In With Google') }} </span>
+                                            </a>
+                                        </div>
+                                        <div class="login-others-single">
+                                            <a href="{{ route('login.facebook.redirect') }}" class="login-others-single-btn w-100">
+                                                <i class="fa-brands fa-facebook"></i>
+                                                <span class="login-para"> {{ __('Sign In With Facebook') }} </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="login-wrapper">
                     <div class="login-wrapper-contents">
-                        <h3 class="login-wrapper-contents-title">{{ __('Sign Up') }}</h3>
+                        {{-- <h3 class="login-wrapper-contents-title">{{ __('Sign Up') }}</h3> --}}
 
                         <div class="error-message"></div>
 
@@ -83,34 +119,31 @@
                             @csrf
                             <input type="hidden" name="user_type" id="user_type" value="2">
                             <div class="input-flex-item">
-                                <div class="single-input mt-4">
-                                    <label class="label-title mb-2"> {{ __('First Name') }} </label>
+                                <div class="single-input mt-3">
+                                    {{-- <label class="label-title mb-2"> {{ __('First Name') }} </label> --}}
                                     <input class="form--control" type="text" name="first_name" id="first_name" placeholder="{{ __('Type First Name') }}">
                                 </div>
-                                <div class="single-input mt-4">
-                                    <label class="label-title mb-2"> {{ __('Last Name') }} </label>
+                                <div class="single-input mt-3">
                                     <input class="form--control" type="text" name="last_name" id="last_name" placeholder="{{ __('Type Last Name') }}">
                                 </div>
                             </div>
-                            <div class="single-input mt-4">
-                                <label class="label-title mb-2"> {{ __('User Name') }} </label>
+                            <div class="single-input mt-3">
                                 <input class="form--control" type="text" name="username" id="username" placeholder="{{ __('Type User Name') }}">
                                 <span id="user_name_availability"></span>
                             </div>
-                            <div class="single-input mt-0">
-                                <label class="label-title mb-2"> {{ __('Email Address') }} </label>
-                                <input class="form--control" type="text" name="email" id="email" placeholder="{{ __('Type Email') }}">
-                                <span id="email_availability"></span>
-                            </div>
-                            <div class="single-input mt-0">
-                                <label class="label-title mb-2"> {{ __('Phone Number') }} </label>
-                                <input class="form--control" type="tel" id="phones" name="phone">
-                                <span id="phone_availability"></span>
+                            <div class="input-flex-item">
+                                <div class="single-input mt-0">
+                                    <input class="form--control" type="text" name="email" id="email" placeholder="{{ __('Type Email') }}">
+                                    <span id="email_availability"></span>
+                                </div>
+                                <div class="single-input mt-0">
+                                    <input class="form--control" type="tel" id="phones" name="phone"  placeholder="{{ __('Phone No.') }}">
+                                    <span id="phone_availability"></span>
+                                </div>
                             </div>
 
                             <div class="input-flex-item">
                                 <div class="single-input mt-0">
-                                    <label class="label-title mb-2"> {{ __('Create Password') }} </label>
                                     <div class="single-input-inner">
                                         <input class="form--control" type="password" name="password" id="password" placeholder="{{ __('Type Password') }}">
                                         <div class="icon toggle-password">
@@ -120,7 +153,6 @@
                                     </div>
                                 </div>
                                 <div class="single-input mt-0">
-                                    <label class="label-title mb-2"> {{ __('Confirm Password') }} </label>
                                     <div class="single-input-inner">
                                         <input class="form--control" type="password" name="confirm_password" id="confirm_password" placeholder="{{ __('Confirm Password') }}">
                                         <div class="icon toggle-password">
@@ -131,6 +163,15 @@
                                 </div>
                             </div>
                             <span id="check_password_match"></span>
+                            
+                            <div class="single-input mb-3 mt-0">
+                                <select class="form--control text-center"  id="country_id" name="country_id"  placeholder="{{ __('Country') }}">
+                                    <option value="" selected disabled>Country</option>
+                                    @foreach ($countries as $item)
+                                        <option value="{{ $item->id }}">{{ $item->country }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <br>
                             <input type="checkbox" class="form-check-input" id="terms_condition" name="terms_condition">
                             <label class="form-check-label" for="toc_and_privacy">
@@ -140,7 +181,7 @@
                             </label>
 
                             <button class="submit-btn w-100 mt-4 sign_up_now_button" type="submit"> {{ __('Sign Up Now') }} <span id="user_register_load_spinner"></span></button>
-                            <span class="account color-light mt-3"> {{ __('Already have an account?') }} <a class="color-one" href="{{ route('user.login') }}"> {{ __('Login') }} </a>
+                            <span class="account color-light mt-3 text-center w-100"> {{ __('Already have an account?') }} <a class="color-one" href="{{ route('user.login') }}"> {{ __('Login') }} </a>
                             </span>
                         </form>
                     </div>
@@ -306,6 +347,7 @@
                     let confirm_password = $('#confirm_password').val();
                     let user_type = $('#user_type').val();
                     let terms_condition = $('#terms_condition:checked').val();
+                    let country_id = $('#country_id').val();
 
                     let erContainer = $(".error-message");
                     erContainer.html('');
@@ -313,7 +355,7 @@
                      $.ajax({
                             url: "{{ route('user.register') }}",
                             type: 'post',
-                            data: {user_type:user_type,first_name: first_name,last_name:last_name,username:username,email:email,phone:phone,password:password,confirm_password:confirm_password,terms_condition:terms_condition},
+                            data: {user_type:user_type,first_name: first_name,last_name:last_name,username:username,email:email,phone:phone,password:password,confirm_password:confirm_password,terms_condition:terms_condition, country_id: country_id},
                              error:function(res){
                                  let errors = res.responseJSON;
                                  erContainer.html('<div class="alert alert-danger"></div>');
@@ -327,7 +369,7 @@
                                     window.location.href = "{{ route('client.profile') }}";
                                 }
                                 if (res.status == 'freelancer') {
-                                    window.location.href = "{{ route('freelancer.profile') }}";
+                                    window.location.href = "{{ route('user.complete-profile') }}";
                                 }
                              }
                      });

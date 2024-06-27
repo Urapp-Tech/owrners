@@ -38,6 +38,8 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
         Route::post('get-city','get_state_city')->name('au.city.all');
         Route::post('get-subcategory','get_subcategory')->name('au.subcategory.all');
         Route::post('get-category-types','get_category_type')->name('au.category-types.all');
+        Route::post('get-skill','get_skills')->name('au.skill.all');
+        Route::post('get-suggested-skill','get_suggested_skills')->name('au.skill.suggested');
     });
 
     // user registration
@@ -46,6 +48,7 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
         Route::post('email-availability','emailAvailability')->name('user.email.availability');
         Route::post('phone-number-availability','phoneNumberAvailability')->name('user.phone.number.availability');
         Route::match(['get','post'],'user-register','userRegister')->name('user.register');
+        Route::match(['get','post'],'complete-profile','completeProfile')->name('user.complete-profile')->middleware('auth:web');
         Route::match(['get', 'post'], 'email-verify', 'emailVerify')->name('email.verify')->middleware('auth:web');
         Route::get('resend-verify-code-again', 'resendCode')->name('resend.verify.code')->middleware('auth:web');
     });

@@ -9,7 +9,7 @@
                     <div class="login-right">
                         <div class="login-right-item">
                             <div class="login-right-shapes">
-                                <div class="login-right-thumb">
+                                <div class="login-right-thumb-2">
                                     @if(empty(get_static_option('login_page_sidebar_image')))
                                     <img src="{{ asset('assets/static/single-page/login_page.png') }}" alt="loginImg">
                                     @else
@@ -17,10 +17,10 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="login-right-contents text-white">
+                            {{-- <div class="login-right-contents text-white">
                                 <h4 class="login-right-contents-title"> {{ get_static_option('login_page_sidebar_title') ?? __('Login and start discover') }} </h4>
                                 <p class="login-right-contents-para">{{ get_static_option('login_page_sidebar_description') ?? __('Once login you will see the magic of xilancer marketplace.') }}</p>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -32,12 +32,10 @@
                             <div class="error-message"></div>
                             <form class="login-wrapper-contents-form custom-form" method="post" action="{{ route('user.login') }}">
                                 @csrf
-                                <div class="single-input mt-4">
-                                    <label class="label-title mb-3">{{ __('Email Or User Name') }}</label>
+                                <div class="single-input mt-3">
                                     <input class="form--control" type="text" name="username" id="username" placeholder="{{ __('Email Or User Name') }}">
                                 </div>
-                                <div class="single-input mt-4">
-                                    <label class="label-title mb-3"> {{ __('Password') }} </label>
+                                <div class="single-input mt-3">
                                     <div class="single-input-inner">
                                         <input class="form--control" type="password" name="password" id="password" placeholder="{{ __('Type Password') }}">
                                         <div class="icon toggle-password">
@@ -46,20 +44,20 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="single-checkbox mt-3">
+                                    <div class="checkbox-inline">
+                                        <input class="check-input" name="remember"  type="checkbox" id="check15">
+                                        <label class="checkbox-label fw-light-bold" for="check15"> {{ __('Keep me logged in') }} </label>
+                                    </div>
+                                    <div class="forgot-password">
+                                        <a href="{{ route('user.forgot.password') }}" class="forgot-btn color-one fw-bold">{{ __('Forgot Password') }} </a>
+                                    </div>
+                                </div>
                                 <button id="signin_form" class="submit-btn w-100 mt-4" type="submit"> {{ get_static_option('login_page_button_title') ?? __('Sign In Now') }} </button>
-                                <span class="account color-light mt-3">{{ __("Don't have an account?") }} <a class="color-one" href="{{ route('user.register') }}"> {{ __('SignUp Now') }}</a> </span>
                             </form>
-                            <div class="single-checkbox mt-3">
-                                <div class="checkbox-inline">
-                                    <input class="check-input" name="remember"  type="checkbox" id="check15">
-                                    <label class="checkbox-label" for="check15"> {{ __('Remember Me') }} </label>
-                                </div>
-                                <div class="forgot-password">
-                                    <a href="{{ route('user.forgot.password') }}" class="forgot-btn color-one">{{ __('Forgot Password') }} </a>
-                                </div>
-                            </div>
+                            
                             @if(get_static_option('login_page_social_login_enable_disable') == 'on')
-                                <div class="login-bottom-contents">
+                                <div class="login-bottom-contents mt-3">
                                     <div class="or-contents mb-3">
                                         <span class="or-contents-para"> {{ __('Or') }} </span>
                                     </div>
@@ -79,6 +77,7 @@
                                     </div>
                                 </div>
                             @endif
+                            <span class="account color-light fw-bold mt-3 text-center w-100">{{ __("Don't have an Owrners account?") }} <a class="color-one" href="{{ route('user.register') }}"> {{ __('Register') }}</a> </span>
                         </div>
                     </div>
                 </div>

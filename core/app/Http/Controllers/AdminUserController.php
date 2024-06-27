@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use Modules\CountryManage\Entities\City;
 use Modules\CountryManage\Entities\State;
@@ -47,6 +48,44 @@ class AdminUserController extends Controller
         return response()->json([
             'status' => 'success',
             'category_types' => $category_types,
+        ]);
+    }
+
+    public function get_skills(Request $request) {
+        $search =  $request->skill;
+        $skills = Skill::where('skill','LIKE',"%$search%")->where('status', 1)->take(10)->get();
+        return response()->json([
+           'status' =>'success',
+           'skills' => $skills,
+        ]);
+    }
+
+    public function get_suggested_skills(Request $request) {
+        $search = $request->skill_ids;
+    
+        $skills = Skill::whereIn('id', $search)->where('status', 1)->inRandomOrder()->take(10)->get();
+        
+        if ($skills->isEmpty()) {
+            return response()->json([
+                'status' => 'success',
+                'suggested' => []
+            ]);
+        }
+        
+        // $grouped = $skills->groupBy('category_id');
+        
+        // $maxGroup = $grouped->inRandomOrder(function($group) {
+        //     return $group->count();
+        // })->first();
+        
+        // $categoryId = $maxGroup->first()->category_id;
+        $categoryId = $skills->first()->category_id;
+        
+        $suggested = Skill::where('category_id', $categoryId)->where('status', 1)->inRandomOrder()->take(5)->get();
+        
+        return response()->json([
+            'status' => 'success',
+            'suggested' => $suggested
         ]);
     }
 
