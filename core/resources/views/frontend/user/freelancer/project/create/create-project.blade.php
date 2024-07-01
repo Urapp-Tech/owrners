@@ -1,12 +1,22 @@
 @extends('frontend.layout.master')
 @section('site_title',__('Create Project'))
 @section('style')
-    <x-summernote.summernote-css />
-    <x-select2.select2-css/>
+<x-summernote.summernote-css />
+<x-select2.select2-css />
+
+<style>
+    .project-extra {
+        border-radius: 25px;
+        border: 1px solid var(--body-color);
+        padding: 20px;
+        background-color: var(--section-bg-1);
+        margin-top: 20px;
+    }
+</style>
 @endsection
 @section('content')
 <main>
-   <x-breadcrumb.user-profile-breadcrumb :title="__('Create Project')" :innerTitle="__('Create Project')"/>
+    <x-breadcrumb.user-profile-breadcrumb :title="__('Create Project')" :innerTitle="__('Create Project')" />
     <!-- Account Setup area Starts -->
     <div class="account-area section-bg-2 pat-100 pab-100">
         <div class="container">
@@ -15,15 +25,16 @@
                     @include('frontend.user.freelancer.project.create.project-sidebar')
                     <div class="create-project-wrapper">
                         <x-validation.error />
-                         <form action="{{ route('freelancer.project.create') }}" id="submit_create_project_form" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('freelancer.project.create') }}" id="submit_create_project_form" method="post" enctype="multipart/form-data">
                             @csrf
-                             <input type="hidden" name="basic_title" id="set_basic_title">
-                             <input type="hidden" name="standard_title" id="set_standard_title">
-                             <input type="hidden" name="premium_title" id="set_premium_title">
+                            <input type="hidden" name="basic_title" id="set_basic_title">
+                            <input type="hidden" name="standard_title" id="set_standard_title">
+                            <input type="hidden" name="premium_title" id="set_premium_title">
 
                             @include('frontend.user.freelancer.project.create.project-introduction')
                             @include('frontend.user.freelancer.project.create.project-image')
                             @include('frontend.user.freelancer.project.create.project-package-charge')
+                            @include('frontend.user.freelancer.project.create.project-extras')
                             @include('frontend.user.freelancer.project.create.project-footer')
                         </form>
                     </div>
@@ -36,10 +47,59 @@
 @endsection
 
 @section('script')
-   @include('frontend.user.freelancer.project.create.project-js')
-   <x-summernote.summernote-js-function />
-   <script>
-       initializeSummernote($('.description'), {
+@include('frontend.user.freelancer.project.create.project-js')
+<x-summernote.summernote-js-function />
+
+<script type="text/html" id="project-extra-template">
+    <div class="col-lg-6 col-md-12 col-12 project-extra-parent">
+        <div class="project-extra">
+            <div class="row align-items-center">
+                <div class="col-6 col-lg-4">
+                    <div class="single-input mb-0">
+                        <label for="extras_title" class="label-title"></label>
+                        <input type="text" name="extras_title[]" id="extras_title" value="" step="" placeholder="Name" class="form--control">
+                    </div>
+                </div>
+                <div class="col-6 col-lg-4">
+                    <div class="single-input mb-0">
+                        <label class="label-title" for="is_basic_standard_premium"></label>
+                        <select class="form--control" name="is_basic_standard_premium[]" id="">
+                            <option value="Basic">Basic</option>
+                            <option value="Standard">Standard</option>
+                            <option value="Premium">Premium</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-12 col-lg-4 d-flex align-items-center">
+                    <div class="col-8">
+                        <div class="single-input mb-0">
+                            <label for="extras_price" class="label-title"></label>
+                            <input type="number" name="extras_price[]" id="extras_price" value="" step="" placeholder="Price" class="form--control">
+                        </div>
+                    </div>
+                    <div class="col-4 justify-content-end d-flex">
+                        <button class="btn btn-outline-danger rounded-circle delete-project-extra">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <hr class="mt-3">
+                <div class="col-12">
+                    <div class="single-input mt-1">
+                        <label class="label-title" for="extras_description">Description</label>
+                        <textarea class="form--control" id="extras_description" name="extras_description[]"> </textarea>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script>
+    initializeSummernote($('.description'), {
            onKeyup: function(e) {
                setTimeout(function(){
                    let description_min_length = 10;
@@ -53,7 +113,7 @@
                },200);
            }
        })
-   </script>
+</script>
 
-   <x-select2.select2-js />
+<x-select2.select2-js />
 @endsection

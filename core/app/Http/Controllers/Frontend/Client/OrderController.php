@@ -306,7 +306,7 @@ class OrderController extends Controller
     public function order_details($id)
     {
         $client_id = Auth::guard('web')->user()->id;
-        $order_details = Order::with(['freelancer:id,first_name,last_name,email,phone,country_id,state_id,city_id,image,username,user_verified_status','order_submit_history'])->where('id',$id)->where('user_id',$client_id)->first();
+        $order_details = Order::with(['freelancer:id,first_name,last_name,email,phone,country_id,state_id,city_id,image,username,user_verified_status','order_submit_history', 'extras'])->where('id',$id)->where('user_id',$client_id)->first();
         return !empty($order_details) ? view('frontend.user.client.order.order-details',compact('order_details')) : back();
     }
 

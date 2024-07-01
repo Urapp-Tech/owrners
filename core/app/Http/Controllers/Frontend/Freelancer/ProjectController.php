@@ -6,6 +6,7 @@ use App\Helper\LogActivity;
 use App\Http\Controllers\Controller;
 use App\Mail\BasicMail;
 use App\Models\AdminNotification;
+use App\Models\Extra;
 use App\Models\Project;
 use App\Models\ProjectAttribute;
 use App\Models\ProjectSubCategory;
@@ -39,6 +40,7 @@ class ProjectController extends Controller
                 'basic_title'=>'required|max:191',
                 'basic_regular_charge'=>'required|numeric|integer',
                 'checkbox_or_numeric_title'=>'required|array|max:191',
+                'extras_title'=>'required|array|max:101',
             ]);
 
             if(get_static_option('project_auto_approval') == 'yes'){
@@ -132,6 +134,15 @@ class ProjectController extends Controller
 
                 ProjectAttribute::insert($arr);
 
+                foreach($request->extras_title as $key => $extra) {
+                    $project->extras()->create([
+                        'name' => $extra,
+                        'description' => $request->extras_description[$key],
+                        'price' => $request->extras_price[$key],
+                        'is_basic_standard_premium' => $request->is_basic_standard_premium[$key]
+                    ]);
+                }
+
                 //security manage
                 if(moduleExists('SecurityManage')){
                     LogActivity::addToLog('Project create','Freelancer');
@@ -177,7 +188,7 @@ class ProjectController extends Controller
     // project edit
     public function edit_project(Request $request, $id)
     {
-        $project_details = Project::with('project_attributes')
+        $project_details = Project::with(['project_attributes','extras'])
             ->where('user_id',Auth::guard('web')->user()->id)
             ->where('id',$id)->first();
         $get_sub_categories_from_project_category = SubCategory::where('category_id',$project_details->category_id)->get() ?? '';
@@ -285,6 +296,17 @@ class ProjectController extends Controller
 
                 $data = Validator::make($arr,["*.basic_check_numeric" => "nullable"]);
                 $data->validated();
+
+                Extra::where('project_id',$id)->delete();
+
+                foreach($request->extras_title as $key => $extra) {
+                    $project->extras()->create([
+                        'name' => $extra,
+                        'description' => $request->extras_description[$key],
+                        'price' => $request->extras_price[$key],
+                        'is_basic_standard_premium' => $request->is_basic_standard_premium[$key]
+                    ]);
+                }
 
                 ProjectAttribute::insert($arr);
 

@@ -30,7 +30,7 @@ class ProjectDetailsController extends Controller
         }
 
         if($slug != 'admin'){
-            $project = Project::where('slug',$slug)->first();
+            $project = Project::where('slug',$slug)->with('extras')->first();
             if(!empty($project)){
                 $user = User::with('user_introduction','user_country','user_state','user_city')->where('id',$project->user_id)->first();
                 if(!$user){ abort(404);}

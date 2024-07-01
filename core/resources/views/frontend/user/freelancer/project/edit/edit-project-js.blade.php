@@ -404,60 +404,52 @@
                 });
             });
 
-            function titleShouldBeUnique(){
-                toastr_warning_js("{{ __("All package title is required and title must be unique.") }}");
-            }
+
 
             // create project
             $(document).on('click','#confirm_create_project',async function(e){
-               let basic_title = $('#basic_title').text();
-               let standard_title = $('#standard_title').text();
-               let premium_title = $('#premium_title').text();
-               let checkbox_or_numeric_title = $('.checkbox_or_numeric_title').val();
-
-                $('#set_basic_title').val(basic_title)
-                $('#set_standard_title').val(standard_title)
-                $('#set_premium_title').val(premium_title)
-
-                let selfError = {error: false};
-                let arrVal = [];
-                let validation = false;
-
-                await $(`.checkbox_or_numeric_title`).each(function (){
-                    if(arrVal.includes($(this).val())) {
-                        validation = true;
-                    }else{
-                        if($(this).val().length < 1){
-                            validation = true;
-                            $(this).parent().find('.validation-error').text("{{ __("This field is required.") }}");
-                        }
-                        arrVal.push($(this).val());
-                    }
-                });
-
-                if(validation){
-                    titleShouldBeUnique();
-                    e.preventDefault();
-                    return false;
-                }else{
-                    check_package_titles.status = true;
+                var hasError = false;
+              $('#project-extras-container input').each(function(i, e) {
+                if($(e).val().length == 0) {
+                    hasError = true;
                 }
-
-                if(selfError.error){
-                    titleShouldBeUnique();
-                    return false;
+              })
+              $('#project-extras-container select').each(function(i, e) {
+                if($(e).val().length == 0) {
+                    hasError = true;
                 }
-
-                if(check_package_titles.status){
-                    $('#project_edit_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>')
-                }else{
-                    return false;
+              })
+              $('#project-extras-container textarea').each(function(i, e) {
+                if($(e).val().length == 0) {
+                    hasError = true;
                 }
+              })
 
+              if(hasError) {
+                e.preventDefault();
+                toastr_warning_js("{{ __('Please fill all fields !') }}");
+              }
+
+                $('#project_create_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>')
+
+            })
+
+             // ADD PROJECT EXTRA FROM SCRIPT TEMPLATE
+             $(document).on('click','#add-extra-btn', function() {
+                $('#project-extras-container').append($('#project-extra-template').html());
+            })
+
+            // REMOVE PROJECT EXTRA
+            $(document).on('click', '.delete-project-extra', function () {
+                $(this).closest('.project-extra-parent').remove();
             })
 
         });
     }(jQuery));
+
+    function titleShouldBeUnique(){
+        toastr_warning_js("{{ __("All package title is required and title must be unique.") }}");
+    }
 
     function pre_next()
     {
@@ -483,7 +475,7 @@
             sections[current].classList.add("active");
         }
 
-        $(document).on("click", "#next", function (e){
+        $(document).on("click", "#next",async function (e){
             e.preventDefault();
 
             if (current <= Listings.length) {
@@ -514,15 +506,74 @@
                 }
                 else if(current == 2){
                     let image = $('#upload_project_photo').val();
-                    @if(moduleExists('SecurityManage'))
-                        @if(Auth::guard('web')->user()->freeze_project == 'freeze')
-                            $('.setup-footer-right').html('<a href="#" class="btn-profile btn-bg-1 @if(Auth::guard('web')->user()->freeze_project == 'freeze') disabled-link @endif">{{ __('Update Project') }}</a>');
+
+                }else if(current == 3){
+                    let basic_title = $('#basic_title').text();
+                    let standard_title = $('#standard_title').text();
+                    let premium_title = $('#premium_title').text();
+                    let checkbox_or_numeric_title = $('.checkbox_or_numeric_title').val();
+
+                    let check_package_titles = {
+                        "status":false
+                    };
+
+                    $('#set_basic_title').val(basic_title)
+                    $('#set_standard_title').val(standard_title)
+                    $('#set_premium_title').val(premium_title)
+
+                    let basic_regular_charge = $('#basic_regular_charge').val();
+                    if(basic_regular_charge == '' || basic_regular_charge <= 0) {
+                        toastr_warning_js("{{ __('Basic regular price is required!') }}");
+                        return false;
+                    }
+
+                    // check any validation are have or not if error exist then stop execution
+                    let selfError = {error: false};
+                    let arrVal = [];
+                    let validation = false;
+
+                    await $(`.checkbox_or_numeric_title`).each(function (){
+                        if(arrVal.includes($(this).val())) {
+                            validation = true;
+                        }else{
+                            if($(this).val().length < 1){
+                                validation = true;
+                                $(this).parent().find('.validation-error').text("{{ __("This field is required.") }}");
+                            }
+                            arrVal.push($(this).val());
+                        }
+                    });
+
+                    if(validation){
+                        titleShouldBeUnique();
+                        e.preventDefault();
+                        current= 2;
+                        return false;
+                    }else{
+                        check_package_titles.status = true;
+                    }
+
+                    if(selfError.error){
+                        titleShouldBeUnique();
+                        current= 2;
+                        return false;
+                    }
+
+                    if(check_package_titles.status){
+                        // $('#project_create_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>')
+                        @if(moduleExists('SecurityManage'))
+                            @if(Auth::guard('web')->user()->freeze_project == 'freeze')
+                                $('.setup-footer-right').html('<a href="#" class="btn-profile btn-bg-1 @if(Auth::guard('web')->user()->freeze_project == 'freeze') disabled-link @endif">{{ __('Update Project') }}</a>');
+                            @else
+                                $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Project') }}<span id="project_edit_load_spinner"></span></button>');
+                            @endif
                         @else
-                            $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Project') }}<span id="project_edit_load_spinner"></span></button>');
+                                $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Project') }}<span id="project_edit_load_spinner"></span></button>');
                         @endif
-                    @else
-                        $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Project') }}<span id="project_edit_load_spinner"></span></button>');
-                    @endif
+                    }else{
+                        return false;
+                        current= 2;
+                    }
                 }else{
                     $('.setup-footer-right').html('<a href="javascript:void(0)" class="setup-footer-next next" id="next"> <i class="fas fa-arrow-right"></i> </a>');
                 }

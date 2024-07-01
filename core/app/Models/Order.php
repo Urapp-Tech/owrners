@@ -73,4 +73,8 @@ class Order extends Model
     {
         return $this->hasMany(Rating::class,'order_id','id');
     }
+
+    public function extras() {
+        return $this->hasMany(OrderExtra::class,'order_id','id');
+    }
 }

@@ -74,7 +74,13 @@
                 let new_price = price.substring(1);
                 let remove_comma_fron_new_price = new_price.replace(/\,/g,'')
                 let float_price = parseFloat(remove_comma_fron_new_price);
-
+                let extras_price = parseFloat($('#order_extras_price').val())
+                if( extras_price &&  extras_price > 0) {
+                    float_price+= extras_price ;
+                }
+                $('.show_hide_total_amount_section').show();
+                $('.show_hide_total_amount_section .total_amount').text(float_price);
+                
                 <?php
                     $transaction_type = get_static_option('transaction_fee_type') ?? '';
                     $transaction_charge = get_static_option('transaction_fee_charge') ?? 0;
@@ -93,6 +99,10 @@
                 if(float_price > wallet_balance){
                     $('.display_balance').html('<span class="text-danger">{{__('Wallet Balance Shortage:')}}'+ site_default_currency_symbol + (float_price-wallet_balance) +'</span>');
                     $('.deposit_link').html('<a href="{{ $user_type }}" target="_blank">{{ __('Deposit')}}</a>');
+                }
+                else {
+                    $('.display_balance').html('');
+                    $('.deposit_link').html('');
                 }
 
             });
