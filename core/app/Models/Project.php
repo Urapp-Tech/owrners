@@ -81,4 +81,9 @@ class Project extends Model
         return $this->hasManyThrough(Rating::class,Order::class,"identity","order_id","id","id")
             ->where("is_project_job","project")->where('sender_type',1);
     }
+
+    public function extras()
+    {
+        return $this->hasMany(Extra::class);
+    }
 }

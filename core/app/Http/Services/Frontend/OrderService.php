@@ -4,9 +4,11 @@ namespace App\Http\Services\Frontend;
 
 use App\Helper\PaymentGatewayRequestHelper;
 use App\Mail\OrderMail;
+use App\Models\Extra;
 use App\Models\IndividualCommissionSetting;
 use App\Models\JobProposal;
 use App\Models\Order;
+use App\Models\OrderExtra;
 use App\Models\OrderMilestone;
 use App\Models\Project;
 use App\Models\User;
@@ -172,6 +174,7 @@ class OrderService
         notificationToAdmin($last_order_id, $client_id, $type_, $msg);
         freelancer_notification($last_order_id, $freelancer_id, $type_, $msg);
 
+        self::createOrderExtras($request, $order->id);
 
         //check and create milestone
         if (!empty($pay_by_milestone) && $pay_by_milestone === 'pay-by-milestone') {
@@ -257,6 +260,8 @@ class OrderService
         ]);
 
         $last_order_id = $order->id;
+
+        self::createOrderExtras($request, $order->id);
 
         //check and create milestone
         if (!empty($pay_by_milestone) && $pay_by_milestone === 'pay-by-milestone') {
@@ -534,5 +539,21 @@ class OrderService
             'name' => $name,
             'payment_type' => $source,
         ];
+    }
+
+    private function createOrderExtras($request, $order_id) {
+        if($request->has('order_extras')) {
+            $extras_id = explode(',', $request->order_extras);
+            $extras =  Extra::whereIn('id', $extras_id)->get();
+            foreach ($extras as $key => $value) {
+                OrderExtra::create([
+                    'name' => $value->name,
+                    'description'=> $value->description,
+                    'order_id' => $order_id,
+                    'price' => $value->price,
+                    'is_basic_standard_premium' => $value->is_basic_standard_premium
+                ]);  
+            }
+        }
     }
 }

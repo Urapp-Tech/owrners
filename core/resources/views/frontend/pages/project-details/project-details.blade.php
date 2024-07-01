@@ -260,6 +260,44 @@
         [data-star^="5"]::after {
             width: 100%
         }
+
+        @media screen and (min-width: 1400px) {
+            .custom-modal-dialog {
+                margin-right: 0 !important;
+                margin-top: 30px !important;
+            }
+        }
+
+        .custom-modal-dialog .modal-content{
+            border-radius: 20px;
+        }
+
+        .orderOptionsModalLabel {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .oo-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .oo-sub {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgb(16 16 24 / 50%) !important;
+        }
+
+        .order-options-extra {
+            border: 2px solid rgba(201, 201, 201, 1);
+            border-radius: 10px;
+            margin-top:10px;
+            padding: 20px 15px !important;
+        }
+
+        .order-options-extra:hover {
+            border: 2px solid rgba(16, 16, 24, 1);
+        }
     </style>
 @endsection
 @section('content')
@@ -572,11 +610,11 @@
                             <div class="project-preview">
                                 <div class="project-preview-tab">
                                     <ul class="tabs">
-                                        <li data-tab="basic" class="active">{{ $project->basic_title }}</li>
-                                        <li data-tab="standard" class="@if(empty($project->standard_title)) pe-none @endif">{{ $project->standard_title }}</li>
-                                        <li data-tab="premium" class="@if(empty($project->premium_title)) pe-none @endif">{{ $project->premium_title }}</li>
+                                        <li data-tab="basic" class="active">{{ $project->basic_title }} <span class="curve-right"></span> </li>
+                                        <li data-tab="standard" class="@if(empty($project->standard_title)) pe-none @endif"> <span class="curve-left"></span>{{ $project->standard_title }} <span class="curve-right"></span></li>
+                                        <li data-tab="premium" class="@if(empty($project->premium_title)) pe-none @endif"><span class="curve-left"></span> {{ $project->premium_title }}</li>
                                     </ul>
-                                    <div class="project-preview-tab-contents mt-4">
+                                    <div class="project-preview-tab-contents">
 
                                         <div class="tab-content-item active" id="basic">
                                             <div class="project-preview-tab-header">
@@ -723,17 +761,30 @@
                                                                 {{ __('Continue to Order') }}
                                                             </a>
                                                         @else
-                                                            <a href="javascript:void(0)"
+                                                        {{-- <a href="javascript:void(0)"
                                                                class="btn-profile btn-bg-1 basic_standard_premium"
                                                                data-project_id="{{ $project->id }}" data-bs-toggle="modal"
                                                                data-bs-target="#paymentGatewayModal">{{ __('Continue to Order') }}
+                                                            </a> --}}
+                                                            {{-- Order Options modal --}}
+                                                            <a href="javascript:void(0)"
+                                                               class="btn-gradient order_options_modal_btn"
+                                                               data-project_id="{{ $project->id }}" data-bs-toggle="modal"
+                                                               data-bs-target="#orderOptionsModal"> <span>  {{ __('Continue to Order') }} </span>
                                                             </a>
                                                         @endif
                                                     @else
-                                                        <a href="javascript:void(0)"
+                                                        {{-- <a href="javascript:void(0)"
                                                            class="btn-profile btn-bg-1 basic_standard_premium"
                                                            data-project_id="{{ $project->id }}" data-bs-toggle="modal"
                                                            data-bs-target="#paymentGatewayModal">{{ __('Continue to Order') }}
+                                                        </a> --}} 
+
+                                                        {{-- Order Options modal --}}
+                                                        <a href="javascript:void(0)"
+                                                           class="btn-gradient order_options_modal_btn"
+                                                           data-project_id="{{ $project->id }}" data-bs-toggle="modal"
+                                                           data-bs-target="#orderOptionsModal"> <span>{{ __('Continue to Order') }}</span> 
                                                         </a>
                                                     @endif
                                                 @endif
@@ -767,6 +818,7 @@
 
     @include('frontend.pages.order.login-markup')
     @include('frontend.pages.order.gateway-markup')
+    @include('frontend.pages.project-details.project-extras')
 
 @endsection
 
@@ -774,4 +826,5 @@
     <x-frontend.payment-gateway.gateway-select-js />
     @include('frontend.pages.project-details.load-more-js')
     @include('frontend.pages.order.order-js')
+    @include('frontend.pages.project-details.project-details-js')
 @endsection

@@ -4,6 +4,8 @@
         <form action="{{ route('order.user.confirm') }}" method="post" enctype="multipart/form-data" id="prevent_multiple_order_submit">
             <input type="hidden" name="project_id" id="project_id_for_order">
             <input type="hidden" name="basic_standard_premium_type" id="basic_standard_premium_type">
+            <input type="hidden" name="order_extras" id="order_extras">
+            <input type="hidden" name="order_extras_price" id="order_extras_price">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -27,6 +29,11 @@
                                         <br>
                                         <span class="deposit_link"></span>
                                     @endif
+                                    <p class="show_hide_total_amount_section" style="display: none">
+                                        <strong>{{ __('Amount') }}</strong>
+                                        <span class="currency_symbol">{{ site_currency_symbol() }}</span>
+                                        <span class="total_amount"></span>
+                                    </p>
                                     <p class="d-none show_hide_transaction_section">
                                         <strong>{{ __('Transaction Fee') }}</strong>
                                         <span class="currency_symbol"></span>

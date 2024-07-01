@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Frontend\OrderService;
+use App\Models\Extra;
 use App\Models\IndividualCommissionSetting;
 use App\Models\JobPost;
 use App\Models\JobProposal;
@@ -43,24 +44,29 @@ class OrderController extends Controller
         $job = JobPost::where('id',$request->job_id_for_order)->first();
         $offer = Offer::with('milestones')->where('id',$request->offer_id_for_order)->first();
 
+         # PRICE CALCULATION FOR EXTRAS 
+         $extras_id = $request->has('order_extras') ?  explode(',', $request->order_extras): [];
+         $extras =  Extra::whereIn('id', $extras_id)->get();
+         $extra_price = $extras->sum('price') ?? 0;
+
         if($project) {
             if ($request->basic_standard_premium_type === $project->basic_title) {
                 $type = $project->basic_title;
                 $revision = $project->basic_revision;
                 $delivery = $project->basic_delivery;
-                $price = $project->basic_discount_charge ?? $project->basic_regular_charge;
+                $price = ($project->basic_discount_charge ?? $project->basic_regular_charge) + $extra_price;
             }
             if ($request->basic_standard_premium_type === $project->standard_title) {
                 $type = $project->standard_title;
                 $revision = $project->standard_revision;
                 $delivery = $project->standard_delivery;
-                $price = $project->standard_discount_charge ?? $project->standard_regular_charge;
+                $price = ($project->standard_discount_charge ?? $project->standard_regular_charge) + $extra_price;
             }
             if ($request->basic_standard_premium_type === $project->premium_title) {
                 $type = $project->premium_title;
                 $revision = $project->premium_revision;
                 $delivery = $project->premium_delivery;
-                $price = $project->premium_discount_charge ?? $project->premium_regular_charge;
+                $price = ($project->premium_discount_charge ?? $project->premium_regular_charge) + $extra_price;
             }
 
             $project_or_job = 'project';
