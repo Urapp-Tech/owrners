@@ -31,7 +31,7 @@
                                 :description="__('Notice: All admins created by super admin.')"
                             />
                             <!-- Table Start -->
-                            <div class="custom_table style-04 search_result">
+                            <div class="custom_table style-06 search_result">
                                 <x-validation.error />
                                 <table class="table_activation">
                                     <thead>

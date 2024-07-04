@@ -117,6 +117,10 @@ class SubcategoryProjectController extends Controller
                 $projects = $projects->where('basic_delivery', $request->delivery_day);
             }
 
+            if (isset($request->search) && !empty($request->search)) {
+                $projects = $projects->where('title', 'LIKE','%' . $request->search . '%');
+            }
+
             if(!empty($request->rating)){
                 $projects = $projects->withAvg(['ratings' => function ($query){
                     $query->where('sender_type', 1);

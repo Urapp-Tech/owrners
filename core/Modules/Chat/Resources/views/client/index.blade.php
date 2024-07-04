@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
 @section('site_title',__('Live Chat'))
 @section('style')
-    <link rel="stylesheet" href="{{ asset("assets/css/vendor-chat.css") }}" />
+    {{-- <link rel="stylesheet" href="{{ asset("assets/css/vendor-chat.css") }}" /> --}}
     <style>
         .disabled-link {
             background-color: #ccc !important;

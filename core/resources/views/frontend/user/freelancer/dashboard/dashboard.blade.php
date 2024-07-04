@@ -2,7 +2,14 @@
 @section('site_title',__('Dashboard'))
 @section('style')
     <style>
-     .total_balance{background-color: #e3e1ff !important;}
+     .total_balance{background-color:var(--section-bg-1) !important;}
+     .greeting-sun {
+     height: 100px;
+     width: 100px;
+     display: block;
+     background-image:   linear-gradient(rgba(254, 198, 50, 1), rgb(255, 223, 135));
+     border-radius: 50%;
+    }
     </style>
 @endsection
 
@@ -16,9 +23,20 @@
                 <div class="row g-4">
                     @include('frontend.user.layout.partials.sidebar')
                     <div class="col-xl-9 col-lg-8">
-                        <div class="profile-settings-wrapper">
+                        <div class="profile-settings-wrapper row">
+                            <div class="col-12 col-xxl-12 ">
+                                <div class="d-flex">
+                                    <div class="p-3">
+                                        <div class="greeting-sun"></div>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <h4 class="fw-bold">  <span id="greetings-heading"></span></h4>
+                                        <h3 class="fw-bold">{{auth()->guard('web')->user()->first_name}} {{auth()->guard('web')->user()->last_name}}</h3>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div class="single-profile-settings">
+                            <div class="single-profile-settings col-12">
                                 <div class="single-profile-settings-header">
                                     <div class="single-profile-settings-header-flex">
                                         <x-form.form-title :title="__('Dashboard Info')" :class="'single-profile-settings-header-title'" />
@@ -87,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div class="single-profile-settings-inner profile-border-top">
-                                        <div class="custom_table style-04">
+                                        <div class="custom_table style-06">
                                             <table>
                                                 <thead>
                                                 <tr>
@@ -120,7 +138,7 @@
                                     </div>
                                 </div>
                                 <div class="single-profile-settings-inner profile-border-top">
-                                    <div class="custom_table style-04">
+                                    <div class="custom_table style-06">
                                         <table>
                                             <thead>
                                             <tr>
@@ -154,4 +172,27 @@
         </div>
         <!-- Profile Settings area end -->
     </main>
+@endsection
+
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            
+            var today = new Date()
+            var curHr = today.getHours()
+            var  msg =" "; 
+            if (curHr < 12) {
+                msg=  "Good Morning";
+            } else if (curHr >= 12 && curHr <= 17) {
+                msg=  "Good Afternoon";
+            } else if (curHr >= 17 && curHr <= 24) {
+                msg=  "Good Evening";
+            }
+            else {
+                msg=  "Good Night";  // this block will run if the current hour is between 24:00 and 00:00 (midnight)
+            }
+            $('#greetings-heading').text(msg);
+        });
+    </script>
 @endsection

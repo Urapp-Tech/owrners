@@ -2,12 +2,21 @@
 @section('site_title',__('Dashboard'))
 @section('style')
     <style>
-     .total_balance{background-color: #e3e1ff !important;}
+     .total_balance{background-color:var(--section-bg-1) !important;}
+
+     .greeting-sun {
+     height: 100px;
+     width: 100px;
+     display: block;
+     background-image:   linear-gradient(rgba(254, 198, 50, 1), rgb(255, 223, 135));
+     border-radius: 50%;
+    }
     </style>
 @endsection
 
 @section('content')
     <main>
+        <x-frontend.category.category />
         <x-breadcrumb.user-profile-breadcrumb :title="__('Dashboard')" :innerTitle="__('Dashboard')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
@@ -16,54 +25,63 @@
                 <div class="row g-4">
                     @include('frontend.user.layout.partials.sidebar')
                     <div class="col-xl-9 col-lg-8">
-                        <div class="profile-settings-wrapper">
-
-                            <div class="single-profile-settings">
-                                <div class="single-profile-settings-header">
-                                    <div class="single-profile-settings-header-flex">
-                                        <x-form.form-title :title="__('Dashboard Info')" :class="'single-profile-settings-header-title'" />
+                        <div class="profile-settings-wrapper row">
+                            <div class="col-12 col-xxl-12 ">
+                                <div class="d-flex">
+                                    <div class="p-3">
+                                        <div class="greeting-sun"></div>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <h4 class="fw-bold">  <span id="greetings-heading"></span></h4>
+                                        <h3 class="fw-bold">{{auth()->guard('web')->user()->first_name}} {{auth()->guard('web')->user()->last_name}}</h3>
                                     </div>
                                 </div>
-                                <div class="single-profile-settings-inner profile-border-top">
+                            </div>
+
+                            <div class="single-profile-settings col-12 col-xxl-12">
+                              
+                                <div class="single-profile-settings-inner ">
                                     <div class="row">
 
                                         <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-4">
                                             <div class="myJob-wrapper-single-balance total_balance">
                                                 <div class="myJob-wrapper-single-balance-contents">
+                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Wallet Balance') }}</p>
                                                     <div class="myJob-wrapper-single-balance-price d-flex gap-2 justify-content-between">
                                                         <h4 class="contract_single__balance-price">{{ float_amount_with_currency_symbol($total_wallet_balance) ?? 0.0 }}</h4>
                                                     </div>
-                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Wallet Balance') }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-4">
                                             <div class="myJob-wrapper-single-balance">
                                                 <div class="myJob-wrapper-single-balance-contents">
+                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Total Orders') }}</p>
+
                                                     <div class="myJob-wrapper-single-balance-price d-flex gap-2 justify-content-between">
-                                                        <h4 class="contract_single__balance-price">{{ $total_jobs ?? 0 }}</h4>
+                                                        <h4 class="contract_single__balance-price">{{ $total_orders ?? 0 }}</h4>
                                                     </div>
-                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Total Jobs') }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-4">
                                             <div class="myJob-wrapper-single-balance">
                                                 <div class="myJob-wrapper-single-balance-contents">
+                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Complete Order') }}</p>
                                                     <div class="myJob-wrapper-single-balance-price d-flex gap-2 justify-content-between">
                                                         <h4 class="contract_single__balance-price">{{ $complete_order ?? 0 }}</h4>
                                                     </div>
-                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Complete Order') }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-4">
                                             <div class="myJob-wrapper-single-balance">
                                                 <div class="myJob-wrapper-single-balance-contents">
+                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Active Order') }}</p>
+
                                                     <div class="myJob-wrapper-single-balance-price d-flex gap-2 justify-content-between">
                                                         <h4 class="contract_single__balance-price">{{ $active_order ?? 0 }}</h4>
                                                     </div>
-                                                    <p class="myJob-wrapper-single-balance-para">{{ __('Active Order') }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +100,7 @@
                                     <x-notice.general-notice :description="__('Notice: The admin has the ability to update the payment status for transactions that are pending.')" />
                                 </div>
                                 <div class="single-profile-settings-inner profile-border-top">
-                                    <div class="custom_table style-04">
+                                    <div class="custom_table style-06">
                                         <table>
                                             <thead>
                                             <tr>
@@ -127,7 +145,7 @@
                                         </div>
                                     </div>
                                     <div class="single-profile-settings-inner profile-border-top">
-                                        <div class="custom_table style-04">
+                                        <div class="custom_table style-06">
                                             <table>
                                                 <thead>
                                                 <tr>
@@ -158,4 +176,27 @@
         </div>
         <!-- Profile Settings area end -->
     </main>
+@endsection
+
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            
+            var today = new Date()
+            var curHr = today.getHours()
+            var  msg =" "; 
+            if (curHr < 12) {
+                msg=  "Good Morning";
+            } else if (curHr >= 12 && curHr <= 17) {
+                msg=  "Good Afternoon";
+            } else if (curHr >= 17 && curHr <= 24) {
+                msg=  "Good Evening";
+            }
+            else {
+                msg=  "Good Night";  // this block will run if the current hour is between 24:00 and 00:00 (midnight)
+            }
+            $('#greetings-heading').text(msg);
+        });
+    </script>
 @endsection

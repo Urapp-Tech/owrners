@@ -586,7 +586,7 @@
         $(document).on("click", "#previous", function (){
             if (current > 0) {
                 current--
-                if(current == 2){
+                if(current == 3){
                     $('.setup-footer-right').html('<input type="submit" class="btn-profile btn-bg-1" value="{{ __('Update Project') }}">');
                 }else{
                     $('.setup-footer-right').html('<a href="javascript:void(0)" class="setup-footer-next next" id="next"> <i class="fas fa-arrow-right"></i> </a>');

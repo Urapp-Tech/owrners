@@ -17,7 +17,7 @@
                                     :class="'mb-5'"
                                     :description="__('Notice: Permanently deleting a user results in the irreversible removal of all their associated information from the system, making these data non-recoverable.')"/>
                             <!-- Table Start -->
-                            <div class="custom_table style-04 search_result">
+                            <div class="custom_table style-06 search_result">
                                 @include('backend.pages.user.trash-user.search-result-for-delete-users')
                             </div>
                             <!-- Table End -->

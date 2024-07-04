@@ -19,7 +19,7 @@
                         </div>
                         <x-validation.error />
                         <div class="customMarkup__single__inner mt-4">
-                            <div class="custom_table style-04 search_result">
+                            <div class="custom_table style-06 search_result">
                                 @include('wallet::admin.withdraw.search-result')
                             </div>
                             <!-- Table End -->

@@ -12,7 +12,7 @@
                         <h4 class="customMarkup__single__title">{{ __('All Menus') }}</h4>
                         <div class="customMarkup__single__inner mt-4">
                             <!-- Table Start -->
-                            <div class="custom_table style-04">
+                            <div class="custom_table style-06">
                                 <table class="DataTable_activation">
                                     <thead>
                                         <tr>

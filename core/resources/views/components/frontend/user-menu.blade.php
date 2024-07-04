@@ -419,7 +419,7 @@
                                         </svg>
                                         {{ __('My Orders') }}
                                     </a>
-                                    <a href="{{ route('client.job.all') }}" class="navbar-author-wrapper-list-item">
+                                    {{-- <a href="{{ route('client.job.all') }}" class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -439,8 +439,8 @@
                                                     fill="#667085" />
                                         </svg>
                                         {{ __('My Jobs') }}
-                                    </a>
-                                    <a href="{{ route('client.offers') }}" class="navbar-author-wrapper-list-item">
+                                    </a> --}}
+                                    {{-- <a href="{{ route('client.offers') }}" class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -457,8 +457,8 @@
                                                     fill="#667085" />
                                         </svg>
                                         {{ __('My Offers') }}
-                                    </a>
-                                    @if(moduleExists('SecurityManage'))
+                                    </a> --}}
+                                    {{-- @if(moduleExists('SecurityManage'))
                                         @if(Auth::guard('web')->user()->freeze_job != 'freeze')
                                             <a href="{{ route('client.job.create') }}"
                                                class="navbar-author-wrapper-list-item">
@@ -500,7 +500,7 @@
                                             </svg>
                                             {{ __('Post a Job') }}
                                         </a>
-                                    @endif
+                                    @endif --}}
                                     <a href="{{ route('client.profile') }}" class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -573,7 +573,7 @@
                                         </svg>
                                         {{ __('My Orders') }}
                                     </a>
-                                    <a href="{{ route('freelancer.offers') }}"
+                                    {{-- <a href="{{ route('freelancer.offers') }}"
                                        class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -591,8 +591,8 @@
                                                     fill="#667085" />
                                         </svg>
                                         {{ __('My Offers') }}
-                                    </a>
-                                    <a href="{{ route('freelancer.proposal') }}"
+                                    </a> --}}
+                                    {{-- <a href="{{ route('freelancer.proposal') }}"
                                        class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M17.6201 9.62012H12.3701C11.9601 9.62012 11.6201 9.28012 11.6201 8.87012C11.6201 8.46012 11.9601 8.12012 12.3701 8.12012H17.6201C18.0301 8.12012 18.3701 8.46012 18.3701 8.87012C18.3701 9.28012 18.0401 9.62012 17.6201 9.62012Z" fill="#667085"/>
@@ -602,7 +602,7 @@
                                             <path d="M15 22.75H9C3.57 22.75 1.25 20.43 1.25 15V9C1.25 3.57 3.57 1.25 9 1.25H15C20.43 1.25 22.75 3.57 22.75 9V15C22.75 20.43 20.43 22.75 15 22.75ZM9 2.75C4.39 2.75 2.75 4.39 2.75 9V15C2.75 19.61 4.39 21.25 9 21.25H15C19.61 21.25 21.25 19.61 21.25 15V9C21.25 4.39 19.61 2.75 15 2.75H9Z" fill="#667085"/>
                                         </svg>
                                         {{ __('My proposals') }}
-                                    </a>
+                                    </a> --}}
                                     @if(get_static_option('project_enable_disable') != 'disable')
                                         @if(moduleExists('SecurityManage'))
                                             @if(Auth::guard('web')->user()->freeze_project != 'freeze')

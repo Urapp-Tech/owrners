@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $user_id = Auth::guard('web')->user()->id;
         $wallet_balance = Wallet::where('user_id',$user_id)->first();
         $total_wallet_balance = $wallet_balance->balance ?? 0;
-        $total_jobs = JobPost::where('user_id',$user_id)->count();
+        $total_orders = Order::where('user_id',$user_id)->where('payment_status', 'complete')->count();
         $complete_order = Order::where('status',3)->whereHas('freelancer')->where('user_id',$user_id)->count();
         $active_order = Order::where('status',1)->whereHas('freelancer')->where('user_id',$user_id)->count();
 
@@ -53,6 +53,6 @@ class DashboardController extends Controller
         }
         $my_jobs = JobPost::select('id','title','slug')->where('user_id',$user_id)->latest()->take(5)->get();
 
-        return view('frontend.user.client.dashboard.dashboard',compact(['total_wallet_balance','total_jobs','complete_order','active_order','latest_orders','my_jobs']));
+        return view('frontend.user.client.dashboard.dashboard',compact(['total_wallet_balance','total_orders','complete_order','active_order','latest_orders','my_jobs']));
     }
 }

@@ -19,9 +19,9 @@
     </div>
     <div class="chat-wrapper-details-header-right">
         <div class="flex-btn gap-2">
-            <button class="btn-profile btn-outline-1 color-one get_client_id" data-client-id="{{ $data->client?->id }}"
+            {{-- <button class="btn-profile btn-outline-1 color-one get_client_id" data-client-id="{{ $data->client?->id }}"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">{{ __('Send Offer') }}
-            </button>
+            </button> --}}
         </div>
     </div>
 </div>
