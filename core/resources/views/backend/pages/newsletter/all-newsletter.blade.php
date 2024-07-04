@@ -19,7 +19,7 @@
                             <h4 class="customMarkup__single__title">{{ __('All Newsletter Subscriber') }}</h4>
                         </div>
                         <div class="customMarkup__single__inner mt-4">
-                            <div class="custom_table style-04 search_result">
+                            <div class="custom_table style-06 search_result">
                                 @include('backend.pages.newsletter.search-result')
                             </div>
                             <!-- Table End -->
@@ -35,7 +35,7 @@
                         </div>
                         <x-validation.error />
                         <div class="customMarkup__single__inner mt-4">
-                            <div class="custom_table style-04">
+                            <div class="custom_table style-06">
                                 <form action="{{ route('admin.newsletter.email.add') }}" method="post">
                                     @csrf
                                     <div class="form-group">

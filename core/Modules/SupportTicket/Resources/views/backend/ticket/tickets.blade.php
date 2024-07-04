@@ -32,7 +32,7 @@
                                 :description1="__('Notice: Admin can search by ticket id, ticket status, ticket priority.')"
                             />
                             <!-- Table Start -->
-                            <div class="custom_table style-04 search_result">
+                            <div class="custom_table style-06 search_result">
                                 @include('supportticket::backend.ticket.search-result')
                             </div>
                             <!-- Table End -->

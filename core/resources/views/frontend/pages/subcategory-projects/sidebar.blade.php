@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="single-shop-left bg-white radius-10 mt-4">
+        {{-- <div class="single-shop-left bg-white radius-10 mt-4">
             <div class="single-shop-left-title open">
                 <h5 class="title">{{ __('Budget') }}</h5>
                 <div class="single-shop-left-inner margin-top-15">
@@ -53,9 +53,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="single-shop-left bg-white radius-10 mt-4">
+        {{-- <div class="single-shop-left bg-white radius-10 mt-4">
             <div class="single-shop-left-title open">
                 <h5 class="title">{{ __('Project Lengths') }}</h5>
                 <div class="single-shop-left-inner margin-top-15">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="single-shop-left bg-white radius-10 mt-4">
             <div class="single-shop-left-title open">
                 <h5 class="title">{{ __('Choose Rating') }}</h5>

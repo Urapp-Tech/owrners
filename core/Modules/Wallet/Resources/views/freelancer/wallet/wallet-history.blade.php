@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="single-profile-settings-inner profile-border-top">
-                                    <div class="custom_table style-04 search_result">
+                                    <div class="custom_table style-06 search_result">
                                           @include('wallet::freelancer.wallet.search-result')
                                     </div>
                                 </div>

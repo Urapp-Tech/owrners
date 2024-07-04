@@ -120,7 +120,7 @@
                                 {{ __('My Orders') }}
                             </a>
                         </li>
-                        <li class="profile-settings-menu-item">
+                        {{-- <li class="profile-settings-menu-item">
                             <a href="{{ route('freelancer.offers') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -139,8 +139,8 @@
                                 </svg>
                                 {{ __('My Offers') }}
                             </a>
-                        </li>
-                        <li class="profile-settings-menu-item">
+                        </li> --}}
+                        {{-- <li class="profile-settings-menu-item">
                             <a href="{{ route('freelancer.proposal') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M17.6201 9.62012H12.3701C11.9601 9.62012 11.6201 9.28012 11.6201 8.87012C11.6201 8.46012 11.9601 8.12012 12.3701 8.12012H17.6201C18.0301 8.12012 18.3701 8.46012 18.3701 8.87012C18.3701 9.28012 18.0401 9.62012 17.6201 9.62012Z" fill="#667085"/>
@@ -151,7 +151,7 @@
                                 </svg>
                                 {{ __('My Proposals') }}
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="profile-settings-menu-item @if (request()->routeIs('freelancer.ticket')) active @endif">
                             <a href="{{ route('freelancer.ticket') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -398,7 +398,7 @@
                                 {{ __('Dashboard') }}
                             </a>
                         </li>
-                        @if(moduleExists('SecurityManage'))
+                        {{-- @if(moduleExists('SecurityManage'))
                             @if(Auth::guard('web')->user()->freeze_job == 'freeze')
                                 <li class="profile-settings-menu-item @if(Auth::guard('web')->user()->freeze_job == 'freeze') disabled-link @endif">
                                     <a href="#" class="profile-settings-menu-item-link">
@@ -463,9 +463,9 @@
                                     {{ __('Post a Job') }}
                                 </a>
                             </li>
-                        @endif
+                        @endif --}}
 
-                        <li class="profile-settings-menu-item">
+                        {{-- <li class="profile-settings-menu-item">
                             <a href="{{ route('client.job.all') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -487,7 +487,7 @@
                                 </svg>
                                 {{ __('My Jobs') }}
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="profile-settings-menu-item">
                             <a href="{{ route('client.order.all') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -508,7 +508,7 @@
                                 {{ __('My Orders') }}
                             </a>
                         </li>
-                        <li class="profile-settings-menu-item">
+                        {{-- <li class="profile-settings-menu-item">
                             <a href="{{ route('client.offers') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -527,7 +527,7 @@
                                 </svg>
                                 {{ __('My Offers') }}
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="profile-settings-menu-item @if (request()->routeIs('client.wallet.history')) active @endif">
                             <a href="{{ route('client.wallet.history') }}" class="profile-settings-menu-item-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

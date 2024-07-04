@@ -314,15 +314,7 @@
                                 <img src="{{ asset('assets/uploads/project/' . $project->image) }}"
                                     alt="{{ $project->title }}">
                             </div>
-                            <div class="project-preview-contents mt-4">
-                                <div class="single-project-content-top align-items-center flex-between">
-                                    {!! project_rating($project->id) !!}
-                                </div>
-                                <h4 class="project-preview-contents-title mt-3"> {{ $project->title }} </h4>
-                                <p class="project-preview-contents-para"> {!! $project->description !!} </p>
-                            </div>
-                        </div>
-                        <div class="project-preview">
+                            <div class="project-preview">
                             <div class="myJob-wrapper-single-flex flex-between align-items-center">
                                 <div class="myJob-wrapper-single-contents">
                                     <div class="jobFilter-proposal-author-flex">
@@ -353,7 +345,7 @@
                                                 @endif
                                             @endif
                                         </div>
-                                        <div class="jobFilter-proposal-author-contents">
+                                        <div class="jobFilter-proposal-author-contents align-self-center">
                                             <h4 class="single-freelancer-author-name">
                                                 <a
                                                     href="{{ route('freelancer.profile.details', $user->username) }}">{{ $user->first_name }}
@@ -377,30 +369,26 @@
                                                 </span>
                                                 @if($user->user_verified_status == 1) <i class="fas fa-circle-check"></i>@endif
                                             </p>
-                                            <div class="jobFilter-proposal-author-contents-review mt-2">
-                                                {!! freelancer_rating($user->id) !!}
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                @if (Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 1)
-                                    <div class="btn-wrapper">
-                                        <form action="{{ route('client.message.send') }}" method="post"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="hidden" name="freelancer_id" id="freelancer_id"
-                                                value="{{ $project->user_id }}">
-                                            <input type="hidden" name="from_user" id="from_user"
-                                                value="{{ Auth::guard('web')->user()->id }}">
-                                            <input type="hidden" name="project_id" id="project_id"
-                                                value="{{ $project->id }}">
-                                            <button type="submit" class="btn-profile btn-bg-1">
-                                                <i class="fa-regular fa-comments"></i>  {{ __('Contact Me') }}</button>
-                                        </form>
+                                <div>
+                                    <div class="jobFilter-proposal-author-contents-review mt-2">
+                                        {!! freelancer_rating($user->id) !!}
                                     </div>
-                                @endif
+                                </div>
+                              
                             </div>
                         </div>
+                            <div class="project-preview-contents mt-4">
+                                {{-- <div class="single-project-content-top align-items-center flex-between">
+                                    {!! project_rating($project->id) !!}
+                                </div> --}}
+                                <h4 class="project-preview-contents-title mt-3"> {{ $project->title }} </h4>
+                                <p class="project-preview-contents-para"> {!! $project->description !!} </p>
+                            </div>
+                        </div>
+                       
 
                         @if (!empty($project->standard_title) && !empty($project->premium_title))
                             <div class="project-preview" id="comparePackage">
@@ -739,7 +727,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="btn-wrapper flex-btn justify-content-between mt-4">
+                                        <div class="btn-wrapper flex-btn justify-content-between mt-4 px-3">
                                             @if (Auth::guard('web')->check())
                                                 @if (Auth::guard('web')->user()->user_type == 1)
                                                     <form action="{{ route('client.message.send') }}" method="post"
@@ -799,7 +787,7 @@
                                             @endif
                                         </div>
                                         @if (!empty($project->standard_title) && !empty($project->premium_title))
-                                            <div class="btn-wrapper text-left mt-4">
+                                            <div class="btn-wrapper text-left mt-4 px-3 pb-4">
                                                 <a href="#comparePackage" class="compareBtn">
                                                     {{ __('Compare Package') }}
                                                 </a>

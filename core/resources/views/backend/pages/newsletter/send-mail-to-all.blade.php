@@ -19,7 +19,7 @@
                             <h4 class="customMarkup__single__title">{{ __('Email to All Subscriber') }}</h4>
                         </div>
                         <div class="customMarkup__single__inner mt-4">
-                            <div class="custom_table style-04">
+                            <div class="custom_table style-06">
                                 <x-validation.error />
                                 <form class="" method="POST" action="{{ route('admin.newsletter.email.send.to.all') }}" enctype="multipart/form-data">
                                     @csrf

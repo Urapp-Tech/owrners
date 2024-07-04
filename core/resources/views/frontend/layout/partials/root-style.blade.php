@@ -2,7 +2,7 @@
     :root {
         --main-color-one: {{ get_static_option('main_color_one') ?? '#6176f6' }};
         --main-color-two: {{ get_static_option('main_color_two') ?? '#2bdfff' }};
-        --main-color-one-rgb: {{ '97, 118, 246' }};
+        --main-color-one-rgb: {{ '175, 122, 213' }};
         --secondary-color: {{get_static_option('secondary_color')}};
         --secondary-color-rgb: {{ '255, 165, 0'}};
         --bg-gradient: {{ 'linear-gradient(90deg, #fef0db 0%, #fefbf6 50%, #ecf8f0 100%)' }};

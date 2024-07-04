@@ -525,7 +525,7 @@
                                             </span>
                                         </div>
                                         <div class="btn-wrapper mt-4">
-                                            <button type="submit" class="btn-profile btn-bg-1 w-100 submit_rating">{{ __('Submit') }}</button>
+                                            <button type="submit" class="btn-gradient w-100 submit_rating"><span> {{ __('Submit') }} </span></button>
                                         </div>
                                     </div>
                                 </div>

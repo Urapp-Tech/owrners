@@ -59,7 +59,7 @@
                                     <x-notice.general-notice :class="'mt-5'" :description="__('Notice: If your monthly free limit ends, Each time ') .' '.(get_static_option('limit_settings') ?? 1) .' '. __('limit will be reduce from your total limit while you create a job post.')" />
                                 </div>
                                 <div class="single-profile-settings-inner profile-border-top">
-                                    <div class="custom_table style-04 search_result">
+                                    <div class="custom_table style-06 search_result">
                                           @include('subscription::frontend.client.subscription.search-result')
                                     </div>
                                 </div>

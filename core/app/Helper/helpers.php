@@ -2544,6 +2544,43 @@ function project_rating($project_id)
         if($project_complete_order_count >= 1 && $avg_rating >=1 ){
             $string = '<div class="single-project-content-review">
                         <span class="single-project-content-review-icon"> <i class="fa-solid fa-star"></i> </span>
+                        <span class="single-project-content-review-rating"><span class="single-project-content-review-avg-rating">'.round($avg_rating,1).'</span>('.$rating_count.') </span>
+                   </div>';
+        }else if($project_complete_order_count >= 1){
+            $string = '<div class="single-project-content-review">
+                        <span class="single-project-content-review-rating">'.__("No Review").'</span>
+                   </div>';
+        }
+        else if($project_complete_order_count < 1 && $avg_rating <1) {
+            $string = '<div class="single-project-content-review">
+                        <span class="single-project-content-review-rating">'.__("No Review").'</span>
+                   </div>';
+        }
+    return $string;
+}
+function old_project_rating($project_id)
+{
+    $project_complete_orders = Order::select('id','identity','status')->where('identity',$project_id)->where('status',3)->get();
+    $project_complete_order_count = $project_complete_orders->count();
+
+    $count = 0;
+    $rating_count = 0;
+    $total_rating = 0;
+    foreach($project_complete_orders as $order){
+        $rating = Rating::where('order_id',$order->id)->where('sender_type',1)->first();
+        if($rating){
+            $total_rating = $total_rating+$rating->rating;
+            $count = $count+1;
+            $rating_count = $rating_count+1;
+        }
+    }
+
+
+    $avg_rating = $count > 0 ? $total_rating/$count : 0;
+
+        if($project_complete_order_count >= 1 && $avg_rating >=1 ){
+            $string = '<div class="single-project-content-review">
+                        <span class="single-project-content-review-icon"> <i class="fa-solid fa-star"></i> </span>
                         <span class="single-project-content-review-rating">'.round($avg_rating,1).'('.$rating_count.') </span>
                    </div>
                      <a href="javascript:void(0)" class="single-project-orderCompleted"> '.$project_complete_order_count.' '.__("Orders Completed").' </a>';

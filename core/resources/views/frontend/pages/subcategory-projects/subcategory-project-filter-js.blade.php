@@ -17,7 +17,11 @@
             });
 
             //search by country
-            $(document).on('change', '#country , #level , #delivery_day', function() {
+            $(document).on('keyup', '#search', function() {
+                projects();
+            });
+
+            $(document).on('change', '#country , #level , #delivery_day, #ratings', function() {
                 projects();
             });
             $(document).on('click', '#set_price_range', function() {
@@ -38,8 +42,10 @@
                 let min_price = $('#min_price').val();
                 let max_price = $('#max_price').val();
                 let delivery_day = $('#delivery_day').val();
+                let search = $('#search').val();
                 let get_pro_projects;
-                let rating = $('.filter-lists .list.active').attr('data-rating');
+                let rating = $('#ratings').val();
+                // let rating = $('.filter-lists .list.active').attr('data-rating');
 
                 if($('#get_pro_projects').prop('checked')){
                     $('#get_pro_projects').val('1')
@@ -52,7 +58,7 @@
                 $.ajax({
                     url:"{{ route('subcategory.project.pagination').'?page='}}" + page,
                     method:'GET',
-                    data:{subcategory_id:subcategory_id,country:country,level:level,min_price:min_price,max_price:max_price,delivery_day:delivery_day,rating:rating,get_pro_projects:get_pro_projects},
+                    data:{subcategory_id:subcategory_id,country:country,level:level,min_price:min_price,max_price:max_price,delivery_day:delivery_day,rating:rating,get_pro_projects:get_pro_projects,search:search},
                     success:function(res){
                         if(res.status=='nothing'){
                             $('.search_subcategory_result').html(
@@ -83,8 +89,9 @@
                 $('#level').val('');
                 $('#min_price').val('');
                 $('#max_price').val('');
-                $('#delivery_day').val('');
+                $('#search').val('');
                 $('.active-list .list').removeClass('active');
+                $('#ratings').val('');
                 projects();
             });
 
@@ -95,4 +102,14 @@
             });
         });
     }(jQuery));
+
+    
+    function changeLevel(selector) {
+        $('#level').val(selector).trigger('change');
+    }
+
+    function changeRating(selector) {
+        $('#ratings').val(selector).trigger('change');
+    }
+
 </script>

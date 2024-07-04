@@ -133,14 +133,15 @@ class ProjectController extends Controller
                 $data->validated();
 
                 ProjectAttribute::insert($arr);
-
-                foreach($request->extras_title as $key => $extra) {
-                    $project->extras()->create([
-                        'name' => $extra,
-                        'description' => $request->extras_description[$key],
-                        'price' => $request->extras_price[$key],
-                        'is_basic_standard_premium' => $request->is_basic_standard_premium[$key]
-                    ]);
+                if ($request->has('extras_title')) {
+                    foreach($request->extras_title as $key => $extra) {
+                        $project->extras()->create([
+                            'name' => $extra,
+                            'description' => $request->extras_description[$key],
+                            'price' => $request->extras_price[$key],
+                            'is_basic_standard_premium' => $request->is_basic_standard_premium[$key]
+                        ]);
+                    }
                 }
 
                 //security manage
@@ -299,13 +300,15 @@ class ProjectController extends Controller
 
                 Extra::where('project_id',$id)->delete();
 
-                foreach($request->extras_title as $key => $extra) {
-                    $project->extras()->create([
-                        'name' => $extra,
-                        'description' => $request->extras_description[$key],
-                        'price' => $request->extras_price[$key],
-                        'is_basic_standard_premium' => $request->is_basic_standard_premium[$key]
-                    ]);
+                if ($request->has('extras_title')) {
+                    foreach($request->extras_title as $key => $extra) {
+                        $project->extras()->create([
+                            'name' => $extra,
+                            'description' => $request->extras_description[$key],
+                            'price' => $request->extras_price[$key],
+                            'is_basic_standard_premium' => $request->is_basic_standard_premium[$key]
+                        ]);
+                    }
                 }
 
                 ProjectAttribute::insert($arr);

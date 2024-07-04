@@ -95,7 +95,7 @@
                                         @foreach($all_categories as $category)
                                             <li class="categorySub-list-slide-list">
                                                 <a href="{{ route('category.projects',$category->slug) }}" class="categorySub-list-slide-link">{{ $category->category }}<span class="mobileIcon"></span></a>
-                                                <ul class="sub-panel" >
+                                                <ul class="sub-panel container" >
                                                     @foreach($category->category_types as $category_type)
                                                         <ul class="sub-panel-bucket">
                                                             <li class="sub-panel-bucket-title"> {{ $category_type->name }} </li>
@@ -105,6 +105,20 @@
                                                         </ul>
                                                     @endforeach
                                                 </ul>
+                                                <div class="position-relative">
+                                                    <span></span>
+                                                    <span class="join-border"></span>
+                                                    @if($loop->first)
+                                                        <span class="category-border-left"></span>
+                                                    @else
+                                                        <span class="category-curve-left"></span>
+                                                    @endif
+                                                    @if(!$loop->last)
+                                                        <span class="category-curve-right"></span> 
+                                                    @else
+                                                        <span class="category-border-right"></span>
+                                                    @endif
+                                                </div>
                                             </li>
                                         @endforeach
                                     </ul>

@@ -33,7 +33,7 @@
                 let extras_price = 0;
                 $('.orders-extras-check-input:checked').each(function (i, e) {
                     extras.push($(e).val());
-                    extras_price += $(e).attr('data-extra-price');
+                    extras_price += isNaN( parseFloat( $(e).attr('data-extra-price') )) ? 0 :  parseFloat( $(e).attr('data-extra-price') ); 
                 })
                 $('#order_extras').val(extras.join(','));
                 $('#order_extras_price').val(extras_price);

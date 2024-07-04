@@ -59,7 +59,7 @@
                                     <x-notice.general-notice :class="'mt-5'" :description="__('Notice: If your free connect ends or expired, Each time') .' '.(get_static_option('limit_settings') ?? 1) .' '. __('connect will be reduce from your total connect while you bid or send job proposal.')" />
                                 </div>
                                 <div class="single-profile-settings-inner profile-border-top">
-                                    <div class="custom_table style-04 search_result">
+                                    <div class="custom_table style-06 search_result">
                                           @include('subscription::frontend.freelancer.subscription.search-result')
                                     </div>
                                 </div>

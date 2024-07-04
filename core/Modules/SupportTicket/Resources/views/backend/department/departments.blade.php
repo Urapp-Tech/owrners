@@ -18,7 +18,7 @@
                         <div class="customMarkup__single__inner mt-4">
                             <x-notice.general-notice :description="__('Notice: Department status inactive means the department will not show while create a ticket.')" />
                             <!-- Table Start -->
-                            <div class="custom_table style-04 search_result">
+                            <div class="custom_table style-06 search_result">
                                 @include('supportticket::backend.department.search-result')
                             </div>
                             <!-- Table End -->

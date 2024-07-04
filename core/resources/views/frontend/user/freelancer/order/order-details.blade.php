@@ -195,6 +195,9 @@
                                     <li data-tab="Description" class="active"> {{ __('Description & Requirements') }} </li>
                                 @endif
                                 <li data-tab="Works"> {{ __('Works Submitted') }} </li>
+                                @if($order_details->has('extras'))
+                                <li data-tab="Extras"> {{ __('Extras') }} </li>
+                                @endif
                             </ul>
 
                             @if($mile_stones->count() > 0)
@@ -304,6 +307,21 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @if($order_details->has('extras'))
+                            <div class="tab-content-item mt-4" id="Extras">
+                                <div class="order-extras-container row px-4">
+                                    @foreach ($order_details->extras as $extra)
+                                        <div class="order-extra-single col-12 col-md-3">
+                                            <h2 class="py-3">{{$extra->name }}</h2>
+                                            <p class="oo-sub">{{$extra->description }}</p>
+                                            <br> 
+                                            <p class="oo-sub mt-2">{{ site_currency_symbol() }} {{$extra->price }}</p>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endif
 
                             <div class="myOrder-single-item mt-4">
                                 <div class="myOrder-single-flex flex-between">

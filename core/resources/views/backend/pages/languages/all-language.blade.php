@@ -18,7 +18,7 @@
                         </div>
                         <div class="customMarkup__single__inner mt-4">
                             <!-- Table Start -->
-                            <div class="custom_table style-04">
+                            <div class="custom_table style-06">
                                 <x-validation.error/>
                                 <table class="DataTable_activation">
                                     <thead>
