@@ -3,6 +3,17 @@
     (function ($) {
         "use strict";
         $(document).ready(function () {
+
+
+            $(document).on('click', '.order_sort', function () {
+                var val = $(this).data('val');
+                $(this).parents('.myOrder-wrapper-tabs').find('.myOrder-tab-content').find('.tab-content-item').removeClass('active');
+                $(this).parents('.myOrder-wrapper-tabs').find('.myOrder-tab-content').find('.tab-content-item[data-target="'+ val +'"]').addClass('active');
+
+                $(this).siblings().removeClass('btn-profile btn-bg-1');
+                $(this).addClass('btn-profile btn-bg-1');
+            })
+
             //available for work or not
             $(document).on('click','#check_work_availability',function(e){
                 e.preventDefault();
@@ -440,6 +451,8 @@
                 })
             })
 
+            @if($user && auth()->guard('web')->user() && $user->id == auth()->guard('web')->user()->id)
+
 
             //choose skill
             const myTagInput = new TagsInputs({
@@ -484,6 +497,8 @@
                     }
                 });
             });
+
+            @endif
 
             // todo add education
             $(document).on('click','.add_education',function(){

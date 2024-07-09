@@ -114,13 +114,15 @@
             $(document).on('click','.order_sort',function(e){
                 e.preventDefault();
                 let order_type = $(this).data('val');
+                let sort_by = $('#sort_by_value').val();
+                let search = $('#search-order-input').val();
                 $(this).addClass('btn-profile btn-bg-1');
                 $(this).siblings().removeClass('btn-profile btn-bg-1');
                 $('#set_order_type_value').val(order_type);
 
                 $.ajax({
                     url:"{{ route('freelancer.order.sort.by')}}",
-                    data:{order_type:order_type},
+                    data:{order_type:order_type, sort_by: sort_by, search: search},
                     success:function(res){
                         $('.search_result').html(res);
                     }
@@ -141,6 +143,11 @@
                     }
                 });
             });
+
+            $(document).on('keyup', '#search-order-input', function () {
+                let search = $(this).val();
+                $('.order_sort.btn-profile.btn-bg-1').trigger("click");
+            })
 
         });
     }(jQuery));
@@ -185,6 +192,21 @@
             "hideEasing": "linear",
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
+        }
+    }
+
+    function setSortBy(type) {
+        $('#sort_by_value').val(type);
+        $('.order_sort.btn-profile.btn-bg-1').trigger("click");
+
+        if(type== 'priority'){
+            $('#sorting-heading').text("Priority Orders");
+        }
+        else if(type== 'latest'){
+            $('#sorting-heading').text("Latest Orders");
+        }
+        else if(type== 'budget'){
+            $('#sorting-heading').text(" Highest Budget Order");
         }
     }
 

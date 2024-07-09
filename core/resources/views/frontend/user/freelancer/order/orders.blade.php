@@ -1,10 +1,25 @@
 @extends('frontend.layout.master')
 @section('site_title', __('My Orders'))
+@section('style')
+ <style>
+    .tab-content-item.active, .tab-content-item-two.active, .tab-content-item-three.active, .tab-content-item-four.active {
+        background-color: var(--section-bg-2)
+    }
+
+    #sorting-heading {
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .complete-profile-searchbar-icon {
+        top: 5px !important;
+    }
+ </style>
+@endsection
 @section('content')
     <main>
         <x-frontend.category.category />
         <x-breadcrumb.user-profile-breadcrumb :title="__('My Orders')" :innerTitle="__('My Orders')" />
-        <!-- Profile Details area Starts -->
+        <!-- Profile Details area Starts --> 
         <div class="profile-area pat-100 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
@@ -17,6 +32,25 @@
                                     </div>
                                     <div class="myOrder-tab-content">
                                         <div class="tab-content-item active">
+                                            {{-- FILTERS CONTAINER --}}
+                                            <div class="orders-action-container my-3 d-flex justify-content-between ">
+                                                <div class="align-self-start">
+                                                    <h3 id="sorting-heading"> Priority Orders </h3>
+                                                </div>
+                                                <div class=" filters-select">
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle px-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                          Sort By
+                                                          <i class="fas fa-chevron-down ms-2"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                          <li><a class="dropdown-item" onclick="setSortBy('priority')" href="#">Priority Orders</a></li>
+                                                          <li><a class="dropdown-item" onclick="setSortBy('latest')" href="#">Latest Orders</a></li>
+                                                          <li><a class="dropdown-item" onclick="setSortBy('budget')" href="#">High Budget</a></li>
+                                                        </ul>
+                                                      </div>
+                                                </div>
+                                            </div>
                                             <div class="search_result">
                                                 @include('frontend.user.freelancer.order.search-result')
                                             </div>

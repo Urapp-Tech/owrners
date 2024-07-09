@@ -76,7 +76,7 @@ class ProjectController extends Controller
                 $imageName = '';
                 if ($image = $request->file('image')) {
                     $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
-//                    $image->move('assets/uploads/project', $imageName);
+                //    $image->move('assets/uploads/project', $imageName);
 
                     $resize_full_image = Image::make($request->image)
                         ->resize(590, 320);
@@ -235,7 +235,7 @@ class ProjectController extends Controller
                         File::delete($delete_old_img);
                     }
                     $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
-//                    $image->move('assets/uploads/project', $imageName);
+                //    $image->move('assets/uploads/project', $imageName);
                     $resize_full_image = Image::make($request->image)
                         ->resize(590, 320);
                     $resize_full_image->save('assets/uploads/project' .'/'. $imageName);
@@ -393,6 +393,36 @@ class ProjectController extends Controller
        ProjectHistory::where('project_id',$project->id)->delete();
         $project->delete();
         return response()->json(['status'=>'success']);
+    }
+
+    public function get_projects() {
+        $projects = Project::owned()->with(['project_category'])
+                    ->latest()
+                    ->withCount(['orders' => function ($q) {
+                        $q->where('payment_status', 'complete');
+                    }])
+                    ->paginate(10);
+        return view('frontend.user.freelancer.project.all.all-projects', compact('projects'));
+    }
+
+    public function get_filtered_projects(Request $request) {
+        $query = Project::query(); 
+        $query =  $query->owned()->with(['project_category'])
+                    ->latest()
+                    ->withCount(['orders' => function ($q) {
+                        $q->where('payment_status', 'complete');
+                    }]);
+        if($request->has('type')) {
+            if($request->type == "pending") {
+                $query = $query->where('project_approve_request', 0);
+            }
+            else if($request->type == "declined") { 
+                $query = $query->where('project_approve_request', 2);
+            }
+        }
+
+        $projects =  $query->paginate(10);
+        return view('frontend.user.freelancer.project.all.partials.results', compact('projects'))->render();
     }
 
 }

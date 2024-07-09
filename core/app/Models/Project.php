@@ -86,4 +86,8 @@ class Project extends Model
     {
         return $this->hasMany(Extra::class);
     }
+
+    public function scopeOwned($q) {
+        return $q->where('user_id', auth()->guard('web')->id());
+    }
 }

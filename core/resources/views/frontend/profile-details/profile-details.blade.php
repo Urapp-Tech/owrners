@@ -104,6 +104,9 @@
         {
             white-space: pre-line
         }
+        .profile-details-portfolio-thumb {
+           max-width: unset !important; 
+        }
     </style>
 @endsection
 @section('content')
@@ -115,14 +118,14 @@
         <div class="profile-area pat-100 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
-                    <div class="col-xl-7">
+                    <div class="col-xl-4">
                         <div class="profile-wrapper">
 
                             @include('frontend.profile-details.profile')
 
                             <div class="profile-wrapper-item radius-10">
                                 <div class="profile-wrapper-details">
-                                    <div class="profile-wrapper-details-single">
+                                    <div class="profile-wrapper-details-single w-100 ps-0 border-0">
                                         <div class="profile-wrapper-details-single-flex">
                                             <div class="profile-wrapper-details-single-thumb">
                                                 {{ site_currency_symbol() ?? '' }}
@@ -133,7 +136,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-wrapper-details-single">
+                                    <div class="profile-wrapper-details-single w-100 ps-0 border-0">
                                         <div class="profile-wrapper-details-single-flex">
                                             <div class="profile-wrapper-details-single-thumb"><img
                                                src="{{ asset('assets/static/icons/project_complete.svg') }}" alt="{{ __('complete order') }}"></div>
@@ -143,7 +146,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="profile-wrapper-details-single">
+                                    <div class="profile-wrapper-details-single w-100 ps-0 border-0">
                                         <div class="profile-wrapper-details-single-flex">
                                             <div class="profile-wrapper-details-single-thumb"><img
                                                src="{{ asset('assets/static/icons/active_order.svg') }}" alt="{{ __('active order') }}"></div>
@@ -156,16 +159,43 @@
                                 </div>
                             </div>
 
-                            @if(get_static_option('project_enable_disable') != 'disable')
+                            {{-- @if(get_static_option('project_enable_disable') != 'disable')
                             @include('frontend.profile-details.project')
-                            @endif
+                            @endif --}}
                             @include('frontend.profile-details.experience')
                             @include('frontend.profile-details.education')
                             @include('frontend.profile-details.skill')
                         </div>
                     </div>
-                    <div class="col-xl-5">
+                    <div class="col-xl-8 section-bg-1 py-3 radius-20">
                         <div class="profile-details-widget sticky_top">
+
+                          
+
+                            <div class="myOrder-wrapper-tabs">
+                                <div class="tabs">
+                                    <button class="order_sort btn-profile btn-bg-1" data-val="portfolios">
+                                        {{ __('Portfolio') }} 
+                                    </button>
+                                    @if(get_static_option('project_enable_disable') != 'disable')
+                                        <button class="order_sort" data-val="projects">
+                                            {{ __('Projects') }} 
+                                        </button>
+                                    @endif
+
+                                </div>
+                                <div class="myOrder-tab-content">
+                                    <div class="tab-content-item active" data-target="portfolios">
+                                        @include('frontend.profile-details.all-portfolio')
+                                    </div>
+                                    @if(get_static_option('project_enable_disable') != 'disable')
+                                        <div class="tab-content-item" data-target="projects">
+                                            @include('frontend.profile-details.project')
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
 
                             @if($complete_orders->count() >= 1)
                             <div class="profile-details-widget-single radius-10">
@@ -191,15 +221,15 @@
                                                 @endif
                                             </div>
                                             <div class="profile-wrapper-details profile-border-top">
-                                                <div class="profile-wrapper-details-single">
+                                                <div class="profile-wrapper-details-single w-100 ps-0 border-0">
                                                     <span class="profile-wrapper-details-para"> {{ __('Earned') }} </span>
                                                     <h5 class="profile-wrapper-details-single-title mt-1"> {{ float_amount_with_currency_symbol($rating->order?->payable_amount) }} </h5>
                                                 </div>
-                                                <div class="profile-wrapper-details-single">
+                                                <div class="profile-wrapper-details-single w-100 ps-0 border-0">
                                                     <span class="profile-wrapper-details-para"> {{ __('Reviewed by') }} </span>
                                                     <h5 class="profile-wrapper-details-single-title mt-1"> {{ $rating->order?->user?->fullname }} </h5>
                                                 </div>
-                                                <div class="profile-wrapper-details-single">
+                                                <div class="profile-wrapper-details-single w-100 ps-0 border-0">
                                                     <span class="profile-wrapper-details-para"> {{ __('Reviewed') }} </span>
                                                     <h5 class="profile-wrapper-details-single-title mt-1"> {{ $rating->created_at->toFormattedDateString() }} </h5>
                                                 </div>
@@ -213,7 +243,6 @@
                             </div>
                             @endif
 
-                            @include('frontend.profile-details.all-portfolio')
                         </div>
                     </div>
                 </div>

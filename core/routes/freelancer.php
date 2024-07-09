@@ -2,6 +2,7 @@
 
 // freelancer
 use App\Http\Controllers\Frontend\Freelancer\AccountSetupController;
+use App\Http\Controllers\Frontend\Freelancer\AnalyticsController;
 use App\Http\Controllers\Frontend\Freelancer\BookmarkController;
 use App\Http\Controllers\Frontend\Freelancer\DashboardController;
 use App\Http\Controllers\Frontend\Freelancer\InvoiceController;
@@ -56,6 +57,15 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
             Route::post('account/add-hourly-rate', 'add_hourly_rate')->name('account.hourly.rate.add');
             Route::post('account/upload-profile-photo','upload_profile_photo')->name('account.profile.photo.upload');
             Route::get('account/congrats', 'congrats')->name('account.congrats');
+        });
+        
+
+        // Get projects
+        Route::controller(ProjectController::class)->group(function () {
+            Route::group(['prefix'=>'projects'],function(){
+                Route::get('all','get_projects')->name('projects.all');
+                Route::get('all/filter','get_filtered_projects')->name('projects.filter');
+            });
         });
 
         // Create project
@@ -134,6 +144,13 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
         Route::controller(DashboardController::class)->group(function () {
             Route::group(['prefix'=>'dashboard'],function(){
                 Route::get('info','dashboard')->name('dashboard');
+            });
+        });
+
+        //Analytics
+        Route::controller(AnalyticsController::class)->group(function () {
+            Route::group(['prefix'=>'analytics'],function(){
+                Route::get('overview','index')->name('analytics.overview');
             });
         });
 

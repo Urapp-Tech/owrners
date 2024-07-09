@@ -53,7 +53,26 @@ class OrderController extends Controller
     public function sort_by(Request $request)
     {
         $freelancer_id = Auth::guard('web')->user()->id;
-        $query = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->latest();
+        $query = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete');
+
+        if($request->has('sort_by')) {
+            if($request->sort_by == 'priority'){
+                $query = $query->orderBy('delivery_time') ;
+            }
+            else if($request->sort_by == 'latest') {
+                $query = $query->latest();
+                
+            }
+            else if($request->sort_by == 'budget') {
+                $query = $query->orderByDesc('price') ;
+            }
+        }
+
+        if($request->has('search')) {
+            $query = $query->whereHas('project', function ($q) use ($request) {
+                $q->where('title', 'LIKE', '%'. $request->search. '%');
+            });
+        }
 
         if($request->order_type == 'all')
         {
@@ -83,10 +102,30 @@ class OrderController extends Controller
     {
         if($request->ajax()){
             $freelancer_id = Auth::guard('web')->user()->id;
-            $query = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->latest();
+            $query = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete');
+
+            if($request->has('sort_by')) {
+                if($request->sort_by == 'priority'){
+                    $query = $query->orderBy('delivery_time') ;
+                }
+                else if($request->sort_by == 'latest') {
+                    $query = $query->latest();
+                    
+                }
+                else if($request->sort_by == 'budget') {
+                    $query = $query->orderByDesc('price') ;
+                }
+            }
+            
+            if($request->has('search')) {
+                $query = $query->whereHas('project', function ($q) use ($request) {
+                    $q->where('title', 'LIKE', '%'. $request->search. '%');
+                });
+            }
+
             if($request->order_type == 'all')
             {
-                $orders = $query->latest()->paginate(10);
+                $orders = $query->paginate(10);
             }
             if($request->order_type == 'active')
             {

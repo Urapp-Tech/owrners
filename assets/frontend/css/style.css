@@ -2183,7 +2183,7 @@ span {
   font-weight: 500;
   font-family: var(--body-font);
   display: inline-block;
-  border-radius: 5px;
+  border-radius: 25px;
   text-align: center;
   cursor: pointer;
   line-height: 24px;
@@ -9065,13 +9065,13 @@ div[class*=col]:nth-child(2) .single-pricing .btn-wrapper .cmn-btn {
 }
 
 .profile-wrapper-item .single-project.project-catalogue {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--main-color-one);
   padding: 20px;
   border-radius: 10px;
 }
 
 .project-catalogue-thumb {
-  max-width: 300px;
+  /* max-width: 300px; */
   box-shadow: 10px 0px 10px 0px #f6f6f6;
 }
 
@@ -11530,7 +11530,7 @@ span.choose-account-single-contents-icon svg path {
 
 .tags-input-wrapper .tag {
   display: inline-block;
-  background-color: var(--border-color);
+  background-color: var(--section-bg-1);
   color: var(--heading-color);
   border-radius: 4px;
   padding: 0px 7px;
@@ -16217,8 +16217,8 @@ div[class*=col]:nth-child(4n+4) .myJob-wrapper-single-balance {
 }
 
 .myOrder-wrapper-tabs .tabs button {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   display: inline-block;
   border-radius: 5px;
   text-align: center;
@@ -16228,15 +16228,44 @@ div[class*=col]:nth-child(4n+4) .myJob-wrapper-single-balance {
   white-space: nowrap;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
-  border: 1px solid var(--border-color);
+  border: none;
   color: var(--paragraph-color);
+  background: none;
+  display: flex;
+  justify-content: center;
+
+}
+.myOrder-wrapper-tabs .tabs button:hover {
+  color: var(--main-color-one)
+
 }
 
 .myOrder-wrapper-tabs .tabs button.active,
 .myOrder-wrapper-tabs .tabs button.btn-bg-1 {
-  color: var(--white);
+  color: var(--main-color-one);
+  position: relative;
+  /* border-color: var(--main-color-one); */
+}
+
+.myOrder-wrapper-tabs .tabs button.active:hover,
+.myOrder-wrapper-tabs .tabs button.btn-bg-1:hover {
+  background-color: transparent !important;
+}
+
+.myOrder-wrapper-tabs .tabs button.active::after,
+.myOrder-wrapper-tabs .tabs button.btn-bg-1::after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 4px;
+  border-radius: 2px;
+  bottom: -13px;
   background-color: var(--main-color-one);
-  border-color: var(--main-color-one);
+}
+
+.myOrder-wrapper-tabs .tabs {
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
 }
 
 @media (min-width: 1200px) and (max-width: 1399.98px) {
@@ -16277,9 +16306,9 @@ div[class*=col]:nth-child(4n+4) .myJob-wrapper-single-balance {
 }
 
 .myOrder-single-item:not(:last-child) {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
+  /* border-bottom: 1px solid var(--border-color); */
 }
 
 .myOrder-single-flex {
@@ -24438,4 +24467,62 @@ li.active .curve-left {
     align-self: center;
     
   }
+}
+
+
+.rounded-30 {
+  border-radius: 30px !important;
+}
+
+.order-tab-search-input {
+  border-radius: 20px;
+  border: 1px solid #10101833;
+  padding-left: 50px;
+  padding-right: 20px;
+}
+
+.table-rounded-rows tbody td {
+  background: white !important;
+}
+.table-rounded-rows table {
+  border-spacing: 0px 15px;
+  border-collapse: separate;
+}
+
+.table-rounded-rows tbody td:first-child {
+  border-top-left-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+}
+
+.table-rounded-rows tbody td:last-child {
+  border-top-right-radius: 10px !important;
+  border-bottom-right-radius: 10px !important;
+  
+}
+
+
+.btn-outline-owrners {
+  min-height: 50px;
+  align-content: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 25px;
+  border: 2px solid #101018;
+  font-weight: 600;
+  background-color: white;
+  color: #101018;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+a.btn-outline-owrners {
+  display: inline-block;
+}
+.btn-outline-owrners:hover {
+  background-color: #101018;
+  color: white;
+}
+
+.border-primary {
+  border-color: var(--main-color-one) !important;
 }

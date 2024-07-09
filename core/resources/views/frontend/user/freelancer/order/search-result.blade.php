@@ -8,7 +8,7 @@
     @foreach($orders as $order)
         @php $rating =  \App\Models\Rating::select('id','order_id','rating')->where('order_id',$order->id)->where('sender_type',1)->first(); @endphp
 
-        <div class="myOrder-single bg-white padding-20 radius-10">
+        <div class="myOrder-single padding-20 rounded-30 section-bg-1">
             <div class="myOrder-single-item">
                 <div class="myOrder-single-flex">
                     <div class="myOrder-single-content">

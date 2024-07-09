@@ -4,6 +4,7 @@ namespace Modules\Wallet\Http\Controllers\Freelancer;
 
 use App\Helper\PaymentGatewayRequestHelper;
 use App\Mail\BasicMail;
+use App\Models\Order;
 use App\Models\UserEarning;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Modules\Wallet\Entities\Wallet;
 use Modules\Wallet\Entities\WalletHistory;
 use Modules\Wallet\Entities\WithdrawGateway;
+use Modules\Wallet\Entities\WithdrawRequest;
 
 class WalletController extends Controller
 {
@@ -32,7 +34,17 @@ class WalletController extends Controller
 
         $withdraw_gateways = WithdrawGateway::where('status',1)->get();
 
-        return view('wallet::freelancer.wallet.wallet-history',compact(['all_histories','total_wallet_balance','withdraw_gateways']));
+        $cleared_withdraw =  WithdrawRequest::where('user_id',$user_id)->where('status',2)->get();
+
+        $cleared_withdraw =  $cleared_withdraw->sum('amount') ?? 0;
+
+        $active_orders =  Order::where('freelancer_id',$user_id)->where('status', 1)->sum('payable_amount');
+
+        $year_earnings = Order::where('freelancer_id',$user_id)->where('status', 2)->sum('payable_amount');
+
+        $year_expenses = Order::where('user_id',$user_id)->where('status', 2)->sum('payable_amount');
+
+        return view('wallet::freelancer.wallet.wallet-history',compact(['all_histories','total_wallet_balance','withdraw_gateways' , 'cleared_withdraw', 'active_orders', 'year_earnings', 'year_expenses']));
     }
 
     // pagination
