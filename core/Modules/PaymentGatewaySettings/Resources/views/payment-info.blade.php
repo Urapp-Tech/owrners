@@ -146,7 +146,7 @@
                                 @endif
 
                                 @can('payment-info-settings')
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                                 @endcan
                             </form>
 

@@ -20,7 +20,7 @@
         <tr>
             <td> <x-bulk-action.bulk-delete-checkbox :id="$feedback->id"/> </td>
             <td>
-                <span class="img_100">
+                <span class="img_50">
                     @if($feedback?->user?->image)
                         <img src="{{ asset('assets/uploads/profile/'.$feedback?->user?->image) }}" alt="{{ __('Profile Image') }}">
                     @else

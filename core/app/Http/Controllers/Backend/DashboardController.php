@@ -20,23 +20,51 @@ class DashboardController extends Controller
 
         $orders = Order::whereHas('user')->whereHas('freelancer')->latest()->take(10)->get();
 
-        for($i=11; $i>=0;$i--){
-            $month_list[] = Carbon::now()->subMonth($i)->format('M');
-            $monthly_income[] = Order::where('status',3)
-                ->whereYear('created_at', Carbon::now()->year)
-                ->whereMonth('created_at',Carbon::now()
-                    ->subMonth($i))
-                ->sum('commission_amount');
+        // Get earnings by month for this year
+        $earnings_by_month = Order::selectRaw('MONTH(created_at) as month, SUM(commission_amount) as total')
+           ->where('status', 3)
+           ->whereYear('created_at', Carbon::now()->year)
+           ->groupBy('month')
+           ->pluck('total', 'month');
+  
+          // Initialize the earnings array with 0s for all months
+          $earnings_by_month_data = array_fill(1, 12, 0);
+  
+          // Populate the earnings array with actual totals
+          foreach ($earnings_by_month as $month => $total) {
+              $earnings_by_month_data[$month] = $total;
+          }
+  
+          // Convert to array values to ensure zero-indexed array for JavaScript
+          $monthly_income = array_values($earnings_by_month_data);
+  
+  
+        // Get earnings by month for this year
+        $last_earnings_by_month = Order::selectRaw('MONTH(created_at) as month, SUM(commission_amount) as total')
+           ->where('status', 3)
+           ->whereYear('created_at', Carbon::now()->subYear()->year)
+           ->groupBy('month')
+           ->pluck('total', 'month');
+  
+          // Initialize the earnings array with 0s for all months
+          $last_earnings_by_month_data = array_fill(1, 12, 0);
+  
+          // Populate the earnings array with actual totals
+          foreach ($last_earnings_by_month as $month => $total) {
+              $last_earnings_by_month_data[$month] = $total;
+          }
+  
+          // Convert to array values to ensure zero-indexed array for JavaScript
+          $last_year_monthly_income = array_values($last_earnings_by_month_data);
 
-        }
         return view('backend.pages.dashboard.dashboard',compact([
             'total_job',
             'total_client',
             'total_freelancer',
             'total_revenue',
             'orders',
-            'month_list',
             'monthly_income',
+            'last_year_monthly_income',
         ]));
     }
 }

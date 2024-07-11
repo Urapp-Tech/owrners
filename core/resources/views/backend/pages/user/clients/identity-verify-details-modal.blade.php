@@ -16,7 +16,7 @@
                     <x-btn.submit :title="__('Decline Verify Identity')" :class="'btn btn-danger mt-4 pr-4 pl-4 user_identity_decline'" />
                     @endcan
                     @can('user-identity-status-update')
-                    <x-btn.submit :title="__('Update Verify Identity Status')" :class="'btn btn-primary mt-4 pr-4 pl-4 user_verify_status'" />
+                    <x-btn.submit :title="__('Update Verify Identity Status')" :class="'btn-gradient mt-4  user_verify_status'" />
                     @endcan
                 </div>
             </form>

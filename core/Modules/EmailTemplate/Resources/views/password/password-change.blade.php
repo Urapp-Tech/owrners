@@ -35,7 +35,7 @@
                                 />
                                 <small class="form-text text-muted text-danger margin-top-20"><code>@name</code> {{__('will be replaced by dynamically with  name.')}}</small><br>
                                 <small class="form-text text-muted text-danger"><code>@password</code> {{__('will be replaced by dynamically with password.')}}</small><br>
-                                <x-btn.submit :title="__('Save')" :class="'btn-profile btn-bg-1 mt-4 pr-4 pl-4 update_info'" />
+                                <x-btn.submit :title="__('Save')" :class="'btn-gradient update_info'" />
                             </form>
                         </div>
                     </div>

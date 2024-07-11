@@ -24526,3 +24526,15 @@ a.btn-outline-owrners {
 .border-primary {
   border-color: var(--main-color-one) !important;
 }
+
+.heading-color {
+  color: var(--heading-color);
+}
+
+.outline-selection {
+  min-height: 50px;
+  border-radius: 50px;
+  border: 1px solid var(--heading-color);
+  padding-left: 20px;
+  padding-right: 20px;
+}

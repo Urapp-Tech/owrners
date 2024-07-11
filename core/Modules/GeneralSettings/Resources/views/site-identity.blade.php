@@ -18,7 +18,7 @@
                                 <small>{{ __('This logo will be use for admin dashboard') }}</small>
                                 <x-backend.image :title="__('Site White Logo')" :name="'site_white_logo'" :dimentions="'180x56'"/>
                                 <x-backend.image :title="__('Favicon')" :name="'site_favicon'" :dimentions="'40x40'"/>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
                         </div>
                     </div>

@@ -26,7 +26,7 @@
                                 <x-form.text :title="__('Edit Modal Title')" :type="__('text')" :name="'experience_edit_modal_title'" :value="get_static_option('experience_edit_modal_title') ?? '' " :placeholder="__('Enter edit modal title')"/>
                                 <br>
                                 @can('experience-page-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4 add_skill'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4  add_skill'" />
                                 @endcan
                             </form>
                         </div>

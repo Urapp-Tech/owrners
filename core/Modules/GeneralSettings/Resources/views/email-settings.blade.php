@@ -52,7 +52,7 @@
                                     <a href="https:owrners.com/facebook-login/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                                 </p>
 
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
 
                         </div>

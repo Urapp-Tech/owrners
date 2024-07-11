@@ -24,7 +24,7 @@
                                 <input type="text" name="client"  class="form-control" value="" id="client">
                             </div>
 
-                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Submit Information')}}</button>
+                            <button type="submit" class="btn-gradient mt-4 ">{{__('Submit Information')}}</button>
                         </form>
 
                     </div>

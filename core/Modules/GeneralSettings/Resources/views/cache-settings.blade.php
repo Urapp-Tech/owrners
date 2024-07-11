@@ -16,7 +16,7 @@
                                 @csrf
                                 <div class="single-input mb-3">
                                     <input type="hidden" name="cache_type" id="cache_type" class="form-control">
-                                    <button class="btn btn-primary mt-4 pr-4 pl-4 clear-cache-submit-btn" id="view" data-value="view">{{__('Clear View Cache')}}</button><br>
+                                    <button class="btn-gradient mt-4  clear-cache-submit-btn" id="view" data-value="view">{{__('Clear View Cache')}}</button><br>
                                     <button class="btn btn-info mt-4 pr-4 pl-4 clear-cache-submit-btn" id="route" data-value="route">{{__('Clear Route Cache')}}</button><br>
                                     <button class="btn btn-dark mt-4 pr-4 pl-4 clear-cache-submit-btn" id="config" data-value="config">{{__('Clear Configure Cache')}}</button><br>
                                     <button class="btn btn-success mt-4 pr-4 pl-4 clear-cache-submit-btn" id="clear" data-value="cache">{{__('Clear Cache')}}</button>

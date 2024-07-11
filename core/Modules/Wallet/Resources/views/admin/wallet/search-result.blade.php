@@ -45,7 +45,7 @@
             </td>
             <td>{{ float_amount_with_currency_symbol($history->amount) }}</td>
             <td>
-                <span class="img_100">
+                <span class="img_50">
                     @if(empty($history->manual_payment_image))
                         <img src="{{ asset('assets/static/img/no_image.png') }}" alt="">
                     @else

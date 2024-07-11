@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend\Freelancer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Project;
+use App\Models\ProjectClick;
 use App\Models\UserEarning;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -88,7 +90,9 @@ class AnalyticsController extends Controller
             ->sum('payable_amount');
 
         $earning_from_repeat_buyers_percentage = $total_earning > 0 ? ($earning_from_repeat_buyers / $total_earning) * 100 : 0;
-
+        
+        // User Projects;
+        $projects = $user->projects()->where('status', 1)->where('project_approve_request',1)->get();
         
         return view('frontend.user.freelancer.analytic.overview', compact(
             'total_earning', 
@@ -100,8 +104,51 @@ class AnalyticsController extends Controller
             'repeat_buyers_count',
             'repeat_buyers_percentage',
             'earning_from_repeat_buyers',
-            'earning_from_repeat_buyers_percentage'
+            'earning_from_repeat_buyers_percentage',
+            'projects'
         ));
+    }
+
+    public function performance(Request $request) {
+        $project_id = $request->project_id;
+        $date = (integer) $request->date;
+        
+        $project = Project::findOrFail($project_id);
+
+        // Calculate the date range based on the selected date filter
+        $endDate = Carbon::now();
+        $startDate = match ($date) {
+            30 => $endDate->copy()->subDays(30),
+            60 => $endDate->copy()->subDays(60),
+            365 => $endDate->copy()->startOfYear(),
+            default => $endDate->copy()->subDays(30) // Default to last 30 days if no match
+        };
+
+        // Query for project clicks in the specified date range
+        $project_categories_clicks = ProjectClick::whereHas('project', function ($q) use ($project) {
+            return $q->where('category_id', $project->category_id);
+        })
+        ->whereBetween('created_at', [$startDate, $endDate])
+        ->count();
+
+        // Query for the project's clicks in the specified date range
+        $project_click = $project->clicks()
+        ->whereBetween('created_at', [$startDate, $endDate])
+        ->count();
+
+        // Query for the project's orders in the specified date range
+        $project_orders = Order::where('identity', $project->id)
+        ->where('status', 3)
+        ->whereBetween('created_at', [$startDate, $endDate])
+        ->count();
+
+        $click_percentage = divnum($project_click, $project_categories_clicks) * 100;
+
+        return response()->json([
+            'click_count' => $project_click,
+            'click_percentage' => round($click_percentage, 2),
+            'orders' => $project_orders
+        ]);
     }
 
 }

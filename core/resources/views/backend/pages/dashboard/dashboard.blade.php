@@ -40,7 +40,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="dashboard__charts padding-20 radius-10 bg-white mt-4">
+                <div class="dashboard__charts padding-20 radius-30 bg-white mt-4">
                     <div class="dashboard__charts__header flex-between align-items-center">
                         <h4 class="dashboard__charts__title">{{ __('Revenue') }}</h4>
                         <div class="dashboard__select">
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="col-xxl-4 col-lg-8">
-                <div class="dashboard__maps bg-white padding-20 radius-10">
+                <div class="dashboard__maps bg-white padding-20 radius-30">
                     <div class="dashboard__maps__flex flex-between align-items-center">
                         <h4 class="dashboard__maps__title">{{ __('Quick Access') }}</h4>
                     </div>
@@ -101,13 +101,13 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="activities">
-                    <div class="activities-single radius-10 padding-20">
+                    <div class="activities-single radius-30 padding-20">
                         <div class="activities-single-header profile-border-bottom flex-between align-items-center">
                             <h4 class="activities-single-header-title">{{ __('Recent Orders') }}</h4>
                         </div>
                         <div class="dashboard-tab-content-item active" id="Transactions">
-                            <div class="activities-single-table mt-4">
-                                <table class="table table-responsive">
+                            <div class=" mt-4 custom_table style-06" style="overflow-x: auto;">
+                                <table class=" table-responsive">
                                     <thead>
                                         <tr>
                                             <th col="scope">{{ __('User ID') }}</th>
@@ -163,20 +163,41 @@
             "use strict";
             $(document).ready(function(){
                 //monthly income
-                new Chart(document.getElementById("bar-chart-grouped"), {
-                    type: 'bar',
+
+                const ctx = document.getElementById('bar-chart-grouped').getContext('2d');
+
+                const gradient1 = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient1.addColorStop(0, 'rgba(85, 201, 210, 0.4)');
+                gradient1.addColorStop(1, 'rgba(85, 201, 210, 0)');
+
+                // Create gradient for Dataset 2
+                const gradient2 = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient2.addColorStop(0, 'rgba(100, 87, 255, 0.4)');
+                gradient2.addColorStop(1, 'rgba(100, 87, 255, 0)');
+
+                new Chart(ctx, {
+                    type: 'line',
                     data: {
-                        labels: [@foreach($month_list as $list) "{{ $list }}", @endforeach],
-                        datasets: [{
-                            label: "{{ __('Revenue') }}",
-                            backgroundColor: "#6176F6",
-                            data: [@foreach($monthly_income as $income) "{{ $income  }}", @endforeach],
-                            barThickness: 15,
-                            hoverBackgroundColor: '#fff',
-                            hoverBorderColor: '#6176F6',
-                            borderColor: '#fff',
-                            borderWidth: 2,
-                        }],
+                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                        datasets: [
+                            {
+                                label: "{{ __('Revenue') }}",
+                                backgroundColor: gradient1,
+                                data: [@foreach($monthly_income as $income) "{{ $income  }}", @endforeach],
+                                // barThickness: 15,
+                                borderColor: '#fff',
+                                tension: 0.4,
+                                fill: true
+                            },
+                            {
+                                label: "{{ __('Last Year Revenue') }}",
+                                backgroundColor: gradient2,
+                                data: [@foreach($last_year_monthly_income as $income) "{{ $income  }}", @endforeach],
+                                // barThickness: 15,
+                                tension: 0.4,
+                                fill: true
+                            }
+                        ],
                     },
                     options: {
                         scales: {

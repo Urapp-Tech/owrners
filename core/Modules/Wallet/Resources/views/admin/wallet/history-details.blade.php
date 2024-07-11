@@ -71,7 +71,7 @@
                                         <tr>
                                             <th>{{ __('Manual Payment Image') }}</th>
                                             <td>
-                                                <span class="img_100">
+                                                <span class="img_50">
                                                     @if(empty($history_details->manual_payment_image))
                                                         <img src="{{ asset('assets/static/img/no_image.png') }}" alt="">
                                                     @else

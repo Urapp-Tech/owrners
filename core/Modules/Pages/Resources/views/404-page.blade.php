@@ -37,7 +37,7 @@
                                     <x-backend.image :title="__('Error Image')" :name="'error_image'" :dimentions="'172x290'"/>
                                 </div>
                                 @can('update-404-page')
-                                <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                                 @endcan
                             </form>
 

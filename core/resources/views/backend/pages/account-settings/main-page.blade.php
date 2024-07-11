@@ -19,7 +19,7 @@
                                 <br>
                                 <x-form.text :title="__('Account Page Back Button Title')" :type="__('text')" :name="'account_page_back_button_title'" :value="get_static_option('account_page_back_button_title') ?? '' " :placeholder="__('Enter back button title')"/>
                                 @can('account-page-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

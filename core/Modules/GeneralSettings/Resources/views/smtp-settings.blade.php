@@ -48,7 +48,7 @@
                                         <option value="tls" @if(get_static_option('site_smtp_mail_encryption') == 'tls') selected @endif>{{__('TLS')}}</option>
                                     </select>
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
 
                         </div>
@@ -86,7 +86,7 @@
                                     <label for="message" class="label-title">{{__('Message')}}</label>
                                     <textarea name="message" class="form-control" cols="30" rows="7">{{ __('Test Email Message') }}</textarea>
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Send Mail')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Send Mail')}}</button>
                             </form>
 
                         </div>

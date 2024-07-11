@@ -19,7 +19,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Change Password')" :class="'btn btn-primary mt-4 pr-4 pl-4 change_user_password'" />
+                    <x-btn.submit :title="__('Change Password')" :class="'btn-gradient mt-4  change_user_password'" />
                 </div>
             </form>
         </div>

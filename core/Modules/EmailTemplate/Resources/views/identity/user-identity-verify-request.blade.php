@@ -34,7 +34,7 @@
                                     :value="get_static_option('user_identity_verify_message') ??
                                             '<p>Hello,</p></p>You have a new request for user identity verification</p>'"
                                 />
-                                <x-btn.submit :title="__('Save')" :class="'btn-profile btn-bg-1 mt-4 pr-4 pl-4 update_info'" />
+                                <x-btn.submit :title="__('Save')" :class="'btn-gradient update_info'" />
                             </form>
                         </div>
                     </div>

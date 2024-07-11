@@ -27,7 +27,7 @@
                                 </div>
                                 <x-form.number :title="__('Transaction Charge')" :min="'0.0'" :max="'500.0'" :step="'0.01'" :name="'transaction_fee_charge'" :value="get_static_option('transaction_fee_charge') ?? 0 " :placeholder="__('Transaction Charge')"/>
                                 @can('transaction-fee-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

@@ -68,7 +68,7 @@
                                     </div>
                                     <x-status.form.active-inactive :title="'Status'" :status="''" />
                                     <x-backend.image :title="__('')" :name="'image'" :dimentions="__('590x320 pixels')"/>
-                                    <x-btn.submit class="btn btn-primary mt-4" :title="'Submit'" />
+                                    <x-btn.submit class="btn-gradient" :title="'Submit'" />
                                 </div>
                             </div>
                         </div>

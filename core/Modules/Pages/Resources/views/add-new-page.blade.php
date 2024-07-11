@@ -159,7 +159,7 @@
 
                                     <x-status.form.active-inactive :title="'Status'" :status="''" />
                                     @can('page-add')
-                                        <x-btn.submit class="btn btn-primary mt-4" :title="'Submit'" />
+                                        <x-btn.submit class="btn-gradient mt-4 " :title="'Submit'" />
                                     @endcan
                                 </div>
                             </div>

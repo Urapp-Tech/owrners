@@ -63,7 +63,7 @@
                                     <input class="custom-switch" type="checkbox" id="site_loader_animation" name="site_loader_animation" @if(!empty(get_static_option('site_loader_animation'))) checked @endif id="site_loader_animation">
                                     <label class="switch-label" for="site_loader_animation">{{__('Site Preloader Animation')}}</label>
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
 
                         </div>

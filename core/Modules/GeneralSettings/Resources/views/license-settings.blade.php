@@ -32,7 +32,7 @@
                                     <input type="text" class="form-control"  name="envato_username" value="{{get_static_option("license_username")}}">
                                 </div>
                                 @can('withdraw-fee-settings-update')
-                                    <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                    <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

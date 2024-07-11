@@ -74,7 +74,7 @@
                                 </div>
                                 <button class="btn-profile btn-bg-1 add_new_row_for_edit mt-3" type="button"><i class="fas fa-plus"></i>{{ __('Add Features') }}</button>
                                 <br>
-                                <x-btn.submit :title="__('Update')" :class="'btn-profile btn-bg-1 mt-4 pr-4 pl-4 validate_subscription_type'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 validate_subscription_type'" />
                             </form>
                         </div>
                     </div>

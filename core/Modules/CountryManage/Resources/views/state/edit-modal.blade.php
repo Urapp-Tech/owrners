@@ -22,8 +22,8 @@
                     <x-form.timezone :title="__('Select Timezone')" :name="'edit_timezone'" :id="'edit_timezone'" :class="'form-control timezone_select2_edit'"  />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4 edit_state'" />
+                    <button type="button" class="btn-outline-owrners" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <x-btn.submit :title="__('Update')" :class="'btn-gradient  edit_state'" />
                 </div>
             </form>
         </div>

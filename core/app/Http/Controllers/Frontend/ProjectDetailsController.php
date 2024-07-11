@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Modules\PromoteFreelancer\Entities\PromotionProjectList;
 use Modules\Subscription\Http\Controllers\Frontend\FrontendSubscriptionController;
@@ -51,6 +52,7 @@ class ProjectDetailsController extends Controller
             }else{
                 return back();
             }
+            $this->log_click($project);
             return  view('frontend.pages.project-details.project-details',compact('project','user'));
         }else{
             return view('backend.pages.auth.login');
@@ -63,5 +65,17 @@ class ProjectDetailsController extends Controller
         $pagination_limit = 10;
         $project_id = request()->project_id;
         return view('frontend.pages.project-details.reviews', compact("pagination_limit","project_id"))->render();
+    }
+
+    public function log_click($project) {
+        $user  =  Auth::guard('web')->user();
+        if($user && $project && $project->user_id == $user->id) {
+            return;
+        }
+        $project->clicks()->create([
+            'user_id' => $user ? $user?->id : null ,
+            'ip_address' => request()->ip(),
+            'user_agent' => request()->userAgent(),
+        ]);
     }
 }

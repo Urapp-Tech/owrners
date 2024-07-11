@@ -148,7 +148,7 @@
                                     </div>
                                     <x-status.form.active-inactive :title="'Status'" :status="$page_details->status" />
                                     @can('page-update')
-                                        <x-btn.submit :title="'Update'" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                        <x-btn.submit :title="'Update'" :class="'btn-gradient mt-4 '" />
                                     @endcan
                                 </div>
                             </div>

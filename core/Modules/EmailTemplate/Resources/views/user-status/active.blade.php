@@ -34,7 +34,7 @@
                                     :value="get_static_option('user_status_active_message') ?? '' "
                                 />
                                 <small class="form-text text-muted text-danger margin-top-20"><code>@name</code> {{__('will be replaced by dynamically with  name.')}}</small><br>
-                                <x-btn.submit :title="__('Save')" :class="'btn-profile btn-bg-1 mt-4 pr-4 pl-4 update_info'" />
+                                <x-btn.submit :title="__('Save')" :class="'btn-gradient mt-4 update_info'" />
                             </form>
                         </div>
                     </div>

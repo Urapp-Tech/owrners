@@ -17,7 +17,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Save')" :class="'btn btn-primary mt-4 pr-4 pl-4 add_category'" />
+                    <x-btn.submit :title="__('Save')" :class="'btn-gradient mt-4  add_category'" />
                 </div>
             </form>
         </div>

@@ -47,7 +47,7 @@
                                 <br>
                                 <x-backend.image :title="__('Sidebar Image')" :name="'register_page_sidebar_image'" :dimentions="'850x650'"/>
                                 @can('register-page-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

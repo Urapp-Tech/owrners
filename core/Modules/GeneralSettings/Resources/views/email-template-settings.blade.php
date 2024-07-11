@@ -37,7 +37,7 @@
                                  </div>
                                     <small class="form-text text-muted">{{__('@username Will replace by username of user and @company will be replaced by site title also @message will be replaced by dynamically with message.')}}</small>
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
 
                         </div>

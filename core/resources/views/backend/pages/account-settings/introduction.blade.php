@@ -21,7 +21,7 @@
                                 <br>
                                 <x-form.text :title="__('Intro Title')" :type="__('text')" :name="'intro_title'" :value="get_static_option('intro_title') ?? '' " :placeholder="__('Enter intro title')"/>
                                 @can('introduction-page-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4 add_skill'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4  add_skill'" />
                                 @endcan
                             </form>
                         </div>

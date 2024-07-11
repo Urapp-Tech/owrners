@@ -19,7 +19,7 @@
                                 <br>
                                 <x-form.text :title="__('Skill Title')" :type="__('text')" :name="'skill_title'" :value="get_static_option('skill_title') ?? '' " :placeholder="__('Enter skill title')"/>
                                 @can('skill-page-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

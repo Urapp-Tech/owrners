@@ -12,8 +12,8 @@
                     <x-form.password :title="__('Enter new password')" :name="'password'" :id="'password'" :class="'form-control'" :placeholder="__('Enter New password')"/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Change Password')" :class="'btn btn-primary mt-4 pr-4 pl-4 update_admin_password'" />
+                    <button type="button" class="btn-outline-owrners" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <x-btn.submit :title="__('Change Password')" :class="'btn-gradient mt-4  update_admin_password'" />
                 </div>
             </form>
         </div>

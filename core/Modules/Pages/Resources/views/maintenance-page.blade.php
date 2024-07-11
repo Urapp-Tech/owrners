@@ -26,7 +26,7 @@
                                     <x-backend.image :title="__('Maintenance Image')" :name="'maintain_page_logo'" :dimentions="'540x345'"/>
                                 </div>
                                 @can('update-maintenance-page')
-                                <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                                 @endcan
                             </form>
                         </div>

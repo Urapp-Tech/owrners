@@ -26,7 +26,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                             </form>
                         </div>
                     </div>

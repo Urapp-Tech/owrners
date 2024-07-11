@@ -21,7 +21,7 @@
                                     <label for="message" class="label-title">{{__('Message')}}</label>
                                     <textarea class="form-control" name="custom_css_area" id="custom_css_area" cols="30" rows="10">{{$custom_css}}</textarea>
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
 
                         </div>

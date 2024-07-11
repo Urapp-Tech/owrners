@@ -18,7 +18,7 @@
                                     <label for="site_gdpr_cookie_title" class="label-title">{{__('Purchase Key')}}</label>
                                     <input type="text" name="item_purchase_key"  class="form-control" value="{{get_static_option('item_purchase_key')}}" id="item_purchase_key">
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
 
                         </div>

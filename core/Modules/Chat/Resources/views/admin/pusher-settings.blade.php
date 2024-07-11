@@ -21,7 +21,7 @@
                                 <x-form.text :title="__('Pusher App Key')" :name="'PUSHER_APP_KEY'" :value="env('PUSHER_APP_KEY') ?? '' " :placeholder="__('Pusher App Key')"/>
                                 <x-form.text :title="__('Pusher App Secret')" :name="'PUSHER_APP_SECRET'" :value="env('PUSHER_APP_SECRET') ?? '' " :placeholder="__('Pusher App Secret')"/>
                                 <x-form.text :title="__('Pusher App Cluster')" :name="'PUSHER_APP_CLUSTER'" :value="env('PUSHER_APP_CLUSTER') ?? '' " :placeholder="__('Pusher App Cluster')"/>
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient'" />
                             </form>
                         </div>
                     </div>

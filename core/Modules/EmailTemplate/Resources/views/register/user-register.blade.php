@@ -37,7 +37,7 @@
                                 <small class="form-text text-muted text-danger"><code>@username</code> {{__('will be replaced by dynamically with username.')}}</small><br>
                                 <small class="form-text text-muted text-danger"><code>@email</code> {{__('will be replaced by dynamically with email.')}}</small><br>
                                 <small class="form-text text-muted text-danger"><code>@userType</code> {{__('will be replaced by dynamically with user type.')}}</small><br>
-                                <x-btn.submit :title="__('Save')" :class="'btn-profile btn-bg-1 mt-4 pr-4 pl-4 update_info'" />
+                                <x-btn.submit :title="__('Save')" :class="'btn-gradient update_info'" />
                             </form>
                         </div>
                     </div>

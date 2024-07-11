@@ -151,6 +151,7 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
         Route::controller(AnalyticsController::class)->group(function () {
             Route::group(['prefix'=>'analytics'],function(){
                 Route::get('overview','index')->name('analytics.overview');
+                Route::get('performance','performance')->name('analytics.performance');
             });
         });
 

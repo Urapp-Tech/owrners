@@ -90,4 +90,8 @@ class Project extends Model
     public function scopeOwned($q) {
         return $q->where('user_id', auth()->guard('web')->id());
     }
+
+    public function clicks() {
+        return $this->hasMany(ProjectClick::class, 'project_id', 'id');
+    }
 }

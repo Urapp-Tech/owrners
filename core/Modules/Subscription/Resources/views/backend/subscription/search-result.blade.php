@@ -24,7 +24,7 @@
             <td>{{ $subs->subscription_type?->type }}</td>
             <td>{{ $subs->title }}</td>
             <td>
-                <span class="img_100">
+                <span class="img_50">
                     {!! render_image_markup_by_attachment_id($subs->logo); !!}
                 </span>
                 @php $subscription_logo = get_attachment_image_by_id($subs->logo,null,true); @endphp

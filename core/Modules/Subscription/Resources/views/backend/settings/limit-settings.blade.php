@@ -19,7 +19,7 @@
                                 @csrf
                                 <x-form.number :title="__('Connect Settings')" :min="'1'" :max="'10'" :name="'limit_settings'" :value="get_static_option('limit_settings') ?? '' " :placeholder="__('Limit Settings')"/>
                                 @can('subscription-connect-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient'" />
                                 @endcan
                             </form>
                         </div>

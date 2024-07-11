@@ -18,7 +18,7 @@
                             <form action="{{route('admin.notification.settings')}}" method="post">
                                 @csrf
                                 <x-form.text :title="__('Firebase Server Key')" :name="'firebase_server_key'" :value="get_static_option('firebase_server_key') ?? '' " :placeholder="__('Firebase server key')"/>
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                             </form>
                         </div>
                     </div>

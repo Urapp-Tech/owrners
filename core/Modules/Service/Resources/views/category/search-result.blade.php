@@ -24,7 +24,7 @@
             <td>{{ $cat->short_description }}</td>
             <td><x-status.table.active-inactive :status="$cat->status"/></td>
             <td>
-                <span class="img_100">
+                <span class="img_50">
                     {!! render_image_markup_by_attachment_id($cat->image); !!}
                 </span>
                 @php $cat_img = get_attachment_image_by_id($cat->image,null,true); @endphp

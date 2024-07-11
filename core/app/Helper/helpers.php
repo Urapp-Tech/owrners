@@ -2869,4 +2869,7 @@ function payment_gateway_list_for_api()
     return $all_gateways;
 }
 
-
+function divnum($numerator, $denominator)
+{
+    return $denominator == 0 ? 0 : ($numerator / $denominator);
+}

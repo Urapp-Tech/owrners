@@ -55,10 +55,7 @@
                                         {{ __('Repeat Business') }} </span>
                                     </button>
                                     <button class="order_sort" data-val="performance">
-                                        {{ __('Gig Performance') }} </span>
-                                    </button>
-                                    <button class="order_sort" data-val="breakdown">
-                                        {{ __('Order Breakdown') }} </span>
+                                        {{ __('Project Performance') }} </span>
                                     </button>
                                 </div>
                                 <div class="myOrder-tab-content">
@@ -174,9 +171,61 @@
                                         </div>
                                     </div>
                                     {{-- Performance --}}
-                                    <div class="tab-content-item" data-target="performance"></div>
-                                    {{-- Breakdown --}}
-                                    <div class="tab-content-item" data-target="breakdown"></div>
+                                    <div class="tab-content-item" data-target="performance">
+                                        <div class="form-group">
+                                            <h6 for="project_id" class="fw-bold py-3"> Choose your project</h6>
+                                            <div class="row">
+                                                <div class="col-xl-6">
+    
+                                                    <select name="project_id" id="project_id" class="form-control outline-selection">
+                                                        <option value=""> Select Project</option>
+                                                        @foreach ($projects as $project)
+                                                            <option value="{{ $project->id }}">{{ $project->title }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <div class="col-xl-3">
+                                                    <select name="date" id="date" class="form-control outline-selection">
+                                                        
+                                                        <option value="30">Last 30 days</option>
+                                                        <option value="60">Last 60 days</option>
+                                                        <option value="365">This year</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="border border-primary p-4 radius-10 mt-4">
+                                            <div class="py-3 mb-4">
+                                                <h6 class="fw-bold">Gig performance</h6>
+                                                <small class="heading-color fw-light">See how your buyers go from views to orders and how you compare with sellers in your category</small>
+                                            </div>
+    
+                                            <div class="col-12">
+                                                <div class="row">
+                                                    <div class="col-xl-4">
+                                                        <small class="heading-color fw-light">Click through rate</small>
+                                                        <h5 id="click_percentage">0.0%</h5>
+                                                        
+                                                        <div class="mt-4">
+                                                            <small class="heading-color fw-light">Clicks</small>
+                                                            <h5 id="click_count">0.0</h5>
+
+                                                        </div>
+                                                        
+                                                        <div class="mt-4">
+                                                            <small class="heading-color fw-light">Orders</small>
+                                                            <h5 id="order_count">0.0</h5>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-8">
+                                                        <canvas id="performance-chart"></canvas>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -268,6 +317,78 @@
                 }
             }
         });
+
+        // Perfomance Chart
+        
+        var p_ctx = document.getElementById('performance-chart').getContext('2d');
+        var performanceChart = new Chart(p_ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Clicks', 'Orders'],
+                datasets: [
+                    {
+                        label: '',
+                        data: [0, 0],
+                        backgroundColor: [
+                            'rgba(0, 210, 162, 0.5)',
+                            'rgba(100, 87, 255, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(0, 210, 162, 1)',
+                            'rgba(100, 87, 255, 1)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 10
+                    }
+                ]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false // Hide the legend
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        function updateChart(clickCount, orders) {
+            performanceChart.data.datasets[0].data = [clickCount, orders];
+            performanceChart.update();
+        }
+        // Project Seleection
+
+        $(document).on('change','#project_id, #date', function () {
+            var project_id = $("#project_id").val();
+            var date = $('#date').val();
+            $.ajax({
+                url: "{{ route('freelancer.analytics.performance') }}",
+                type: "GET",
+                data: {project_id: project_id, date: date},
+                success: function (response) {
+                    $('#click_percentage').text(response.click_percentage + '%');
+                    $('#click_count').text(response.click_count );
+                    let orders = response.orders;
+                    $('#order_count').text(orders);
+
+                     // Update the chart
+                    updateChart(response.click_count, orders);
+                }
+            });
+        })
+
     })
 
     // todo toastr warning

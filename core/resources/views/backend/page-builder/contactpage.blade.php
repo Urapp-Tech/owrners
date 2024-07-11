@@ -49,7 +49,7 @@
                                 </label>
                             </div>
                             <button type="submit"
-                                    class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Settings')}}</button>
+                                    class="btn-gradient mt-4 ">{{__('Update Settings')}}</button>
                         </form>
                     </div>
                 </div>

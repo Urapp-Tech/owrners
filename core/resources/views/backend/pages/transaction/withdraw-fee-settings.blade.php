@@ -29,7 +29,7 @@
                                 </div>
                                 <x-form.number :title="__('Withdraw Fee')" :min="'0.0'" :name="'withdraw_fee'" :value="get_static_option('withdraw_fee') ?? 0 " :placeholder="__('Withdraw Fee')"/>
                                 @can('withdraw-fee-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

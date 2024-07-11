@@ -15,7 +15,7 @@
     @foreach($all_blogs as $blog)
         <tr>
             <td>#000{{ $blog->id }}</td>
-            <td><span class="img_100">{!! render_image_markup_by_attachment_id($blog->image) !!}</span></td>
+            <td><span class="img_50">{!! render_image_markup_by_attachment_id($blog->image) !!}</span></td>
             <td>{{ $blog->title }}</td>
             <td>{{ $blog?->category->category }}</td>
             <td>

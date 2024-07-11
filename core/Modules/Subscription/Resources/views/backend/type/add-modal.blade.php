@@ -13,8 +13,8 @@
                     <p class="text-info">{{__('Validity must be a number between 7 to 365 days')}}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Save')" :class="'btn btn-primary mt-4 pr-4 pl-4 add_type'" />
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <x-btn.submit :title="__('Save')" :class="'btn-gradient mt-4 add_type'" />
                 </div>
             </form>
         </div>

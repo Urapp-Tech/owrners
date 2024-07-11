@@ -27,7 +27,7 @@
                                 </div>
                                 <x-form.number :title="__('Commission Charge')" :min="'1'" :max="'500'" :step="'0.01'" :name="'admin_commission_charge'" :value="get_static_option('admin_commission_charge') ?? 25 " :placeholder="__('Commission Charge')"/>
                                 @can('admin-commission-settings-update')
-                                <x-btn.submit :title="__('Update')" :class="'btn btn-primary mt-4 pr-4 pl-4'" />
+                                <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4 '" />
                                 @endcan
                             </form>
                         </div>

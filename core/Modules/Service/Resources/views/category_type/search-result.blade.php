@@ -26,7 +26,7 @@
             <td>{{ optional($sub_cat->category)->category }}</td>
             <td><x-status.table.active-inactive :status="$sub_cat->status"/></td>
             <td>
-                <span class="img_100">
+                <span class="img_50">
                     {!! render_image_markup_by_attachment_id($sub_cat->image); !!}
                 </span>
                 @php $sub_cat_img = get_attachment_image_by_id($sub_cat->image,null,true); @endphp

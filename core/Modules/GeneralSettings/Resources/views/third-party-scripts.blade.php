@@ -22,7 +22,7 @@
                                     <textarea name="site_third_party_tracking_code" id="site_third_party_tracking_code" cols="30" rows="5" class="form-control">{{get_static_option('site_third_party_tracking_code')}}</textarea>
                                     <p>{{__('this code will be load before </head> tag')}}</p>
                                 </div>
-                                <button type="submit" id="update" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
+                                <button type="submit" id="update" class="btn-gradient mt-4 ">{{__('Update Changes')}}</button>
                             </form>
                         </div>
                     </div>

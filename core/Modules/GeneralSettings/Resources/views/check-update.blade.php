@@ -18,7 +18,7 @@
                                 {!! purify_html(session('msg')) !!}
                             </div>
                         @endif
-                        <button type="button" class="btn btn-primary mt-4 pr-4 pl-4" id="click_for_check_update">
+                        <button type="button" class="btn-gradient mt-4 " id="click_for_check_update">
                             <i class="las la-spinner la-spin d-none"></i>
                             {{__('Click to check For Update')}}
                         </button>

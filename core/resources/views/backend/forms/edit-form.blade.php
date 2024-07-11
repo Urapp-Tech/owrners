@@ -58,7 +58,7 @@
                                             <input type="text" class="form-control" name="success_message" value="{{$form->success_message}}">
                                         </div>
                                         {!! plugins\FormBuilder\FormBuilderHelpers::render_drag_drop_form_builder($form->fields) !!}
-                                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4 margin-bottom-40">{{__('Save Change')}}</button>
+                                        <button type="submit" class="btn-gradient mt-4  margin-bottom-40">{{__('Save Change')}}</button>
                                     </form>
                                 </div>
                             </div>
