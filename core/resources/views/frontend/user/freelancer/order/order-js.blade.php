@@ -15,7 +15,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{__('Yes, Accept it!')}}"
+                    confirmButtonText: "<span>{{__('Yes, Accept it!')}}</span>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(this).next().find('.swal_form_submit_btn').trigger('click');
@@ -32,7 +32,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{__('Yes, Decline it!')}}"
+                    confirmButtonText: "<span>{{__('Yes, Decline it!')}}</span>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(this).next().find('.swal_form_submit_btn').trigger('click');
@@ -49,7 +49,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{__('Yes, Cancel it!')}}"
+                    confirmButtonText: "<span>{{__('Yes, Cancel it!')}}</span>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(this).next().find('.swal_form_submit_btn').trigger('click');

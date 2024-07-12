@@ -28,9 +28,14 @@ class RolePermissionController extends Controller
     public function edit_role(Request $request)
     {
         $request->validate(['role_name'=>'required|unique:roles,name,'.$request->role_id]);
-        Role::create([
-            'name' => $request->role_name,
-        ]);
+        Role::updateOrCreate(
+            [
+                'id' => $request->role_id,
+            ],
+            [
+                'name' => $request->role_name,
+            ]
+        );
         return back()->with(toastr_success(__('Role Successfully Updated')));
     }
 

@@ -31,7 +31,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-outline-owrners" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Save')" :class="'btn-gradient mt-4 add_city'" />
+                    <x-btn.submit :title="__('Save')" :class="'btn-gradient add_city'" />
                 </div>
             </form>
         </div>

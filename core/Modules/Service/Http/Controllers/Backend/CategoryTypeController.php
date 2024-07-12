@@ -40,7 +40,7 @@ class CategoryTypeController extends Controller
     public function edit_category_type(Request $request)
     {
         $request->validate([
-            'edit_name'=> 'required|max:191|unique:category_types,sub_category,'.$request->edit_category_type_id,
+            'edit_name'=> 'required|max:191|unique:category_types,name,'.$request->edit_category_type_id,
             'edit_short_description'=> 'required|max:191',
             'edit_slug'=> 'required|max:191|unique:category_types,slug,'.$request->edit_category_type_id,
         ]);

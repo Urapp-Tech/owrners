@@ -255,7 +255,7 @@
                     </ul>
                 </li>
 
-                <li
+                {{-- <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/job*')) active open show @endif">
                     <a href="javascript:void(0)"> <i class="fa-solid fa-file-word"></i>{{ __('Jobs') }} </a>
                     <ul class="submenu">
@@ -276,7 +276,7 @@
                             </li>
                         @endcan
                     </ul>
-                </li>
+                </li> --}}
 
                 <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/wallet*')) active open show @endif">
