@@ -13,7 +13,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{__('Yes, Pay it!')}}"
+                    confirmButtonText: "<span>{{__('Yes, Pay it!')}}</span>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(this).next().find('.swal_form_submit_btn').trigger('click');

@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-outline-owrners" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Update Role')" :class="'btn-gradient mt-4 '" />
+                    <x-btn.submit :title="__('Update Role')" :class="'btn-gradient '" />
                 </div>
             </form>
         </div>

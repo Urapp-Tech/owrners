@@ -76,14 +76,14 @@
                                 <span class="dashboard__maps__footer__list__country">{{ __('Transaction Fee Charge') }}</span>
                                 <span class="dashboard__maps__footer__list__count">{{ get_static_option('transaction_fee_charge') ?? '' }}</span>
                             </li>
-                            <li class="dashboard__maps__footer__list_item">
+                            {{-- <li class="dashboard__maps__footer__list_item">
                                 <span class="dashboard__maps__footer__list__country">{{ __('Connect Reduce Per Proposal') }}</span>
                                 <span class="dashboard__maps__footer__list__count">{{ get_static_option('limit_settings') ?? 1 }}</span>
-                            </li>
-                            <li class="dashboard__maps__footer__list_item">
+                            </li> --}}
+                            {{-- <li class="dashboard__maps__footer__list_item">
                                 <span class="dashboard__maps__footer__list__country">{{ __('Job Auto Approval') }}</span>
                                 <span class="dashboard__maps__footer__list__count">{{ ucfirst(get_static_option('job_auto_approval')) }}</span>
-                            </li>
+                            </li> --}}
                             <li class="dashboard__maps__footer__list_item">
                                 <span class="dashboard__maps__footer__list__country">{{ __('Withdraw Fee') }}</span>
                                 <span class="dashboard__maps__footer__list__count">{{ float_amount_with_currency_symbol(get_static_option('withdraw_fee')) ?? 0 }}</span>
@@ -134,11 +134,11 @@
                                         </td>
                                         <td>
                                             @if($order->payment_gateway != 'manual_payment' && $order->payment_status == 'pending')
-                                                <span class="btn btn-danger btn-sm">{{ __('Payment Failed') }}</span>
+                                                <span class="cancel-order ">{{ __('Payment Failed') }}</span>
                                             @elseif($order->payment_status == 'pending')
-                                                <span class="btn btn-warning btn-sm">{{ ucfirst(__($order->payment_status)) }}</span>
+                                                <span class="queue-order ">{{ ucfirst(__($order->payment_status)) }}</span>
                                             @else
-                                                <span class="btn btn-success btn-sm">{{ ucfirst(__($order->payment_status)) }}</span>
+                                                <span class="active-order ">{{ ucfirst(__($order->payment_status)) }}</span>
                                             @endif
                                         </td>
                                         <td> <x-status.table.order-status :status="$order->status"/> </td>

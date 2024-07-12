@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-outline-owrners" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Change Password')" :class="'btn-gradient mt-4  update_admin_password'" />
+                    <x-btn.submit :title="__('Change Password')" :class="'btn-gradient update_admin_password'" />
                 </div>
             </form>
         </div>

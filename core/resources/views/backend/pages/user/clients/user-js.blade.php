@@ -401,7 +401,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{__('Yes, suspend user!')}}"
+                    confirmButtonText: "<span>{{__('Yes, suspend user!')}}</span>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(this).next().find('.swal_form_submit_btn').trigger('click');
@@ -419,7 +419,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: "{{__('Yes, unsuspend user!')}}"
+                    confirmButtonText: "<span>{{__('Yes, unsuspend user!')}}</span>"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $(this).next().find('.swal_form_submit_btn').trigger('click');

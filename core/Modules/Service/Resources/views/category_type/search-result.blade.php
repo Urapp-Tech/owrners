@@ -50,12 +50,12 @@
                             data-short_description="{{ $sub_cat->short_description }}"
                             data-slug="{{ $sub_cat->slug }}"
                             data-category="{{ $sub_cat->category_id }}">
-                            {{ __('Edit Subcategory') }}
+                            {{ __('Edit Category Type') }}
                         </a>
                     </li>
                     @endcan
                     @can('category-type-delete')
-                    <li class="status_dropdown__item"><x-popup.delete-popup :title="__('Delete Subcategory')" :url="route('admin.category-type.delete',$sub_cat->id)"/></li>
+                    <li class="status_dropdown__item"><x-popup.delete-popup :title="__('Delete Category Type')" :url="route('admin.category-type.delete',$sub_cat->id)"/></li>
                     @endcan
                     @can('category-type-status-change')
                     <li class="status_dropdown__item"><x-status.table.status-change :title="__('Change Status')" :url="route('admin.category-type.status',$sub_cat->id)"/></li>
