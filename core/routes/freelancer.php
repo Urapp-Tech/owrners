@@ -34,6 +34,8 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
             Route::post('profile/check-password','check_password')->name('password.check');
             Route::match(['get','post'],'profile/change-password','change_password')->name('password');
             Route::match(['get','post'],'account/delete','account_delete')->name('account.delete');
+
+            Route::match(['get'],'switch/buyer','switch_to_buyer')->name('account.switch.buyer');
         });
 
         Route::controller(Google2FA::class)->group(function () {

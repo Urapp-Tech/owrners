@@ -38,9 +38,9 @@
 
             //filter
             $(document).on('click','.order_sort_by_status',function(){
-                $(this).siblings().removeClass('btn-success');
+                $(this).siblings().removeClass('active');
                 $(this).siblings().val('');
-                $(this).addClass('btn-success');
+                $(this).addClass('active');
                 $('#string_search').val('');
                 let status = $(this).attr('data-val');
                 $('#get_selected_status_value').val(status);

@@ -28,6 +28,8 @@ Route::group(['prefix'=>'client','as'=>'client.'],function() {
             Route::match(['get','post'],'profile/identity-verification','identity_verification')->name('identity.verification');
             Route::post('profile/check-password','check_password')->name('password.check');
             Route::match(['get','post'],'profile/change-password','change_password')->name('password');
+
+            Route::match(['get'],'switch/seller','switch_to_seller')->name('account.switch.seller');
         });
 
         //2fa

@@ -18,7 +18,7 @@
                     <x-form.text :title="__('Rating')" :type="__('number')" :name="'rating'" :id="'rating'" :value="''" :placeholder="__('Enter rating')"/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4  update_rating'" />
                 </div>
             </form>

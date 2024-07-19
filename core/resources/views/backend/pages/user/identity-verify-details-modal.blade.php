@@ -11,7 +11,7 @@
                 <div class="modal-body" id="user_identity_details">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
                     @can('user-identity-decline')
                     <x-btn.submit :title="__('Decline Verify Identity')" :class="'btn btn-danger mt-4 pr-4 pl-4 user_identity_decline'" />
                     @endcan

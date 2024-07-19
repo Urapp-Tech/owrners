@@ -266,4 +266,11 @@ class FreelancerController extends Controller
         (new Authenticator(request()))->logout();
         return redirect()->route('homepage');
     }
+
+    public function switch_to_buyer() {
+        $user = Auth::guard('web')->user();
+        $user->user_type = 1;
+        $user->save();
+        return redirect()->route('homepage');
+    }
 }

@@ -309,7 +309,7 @@ span {
   width: 100%;
   padding: 15px 20px;
   border: 1px solid var(--border-color);
-  border-radius: 7px;
+  border-radius: 25px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
   color: var(--paragraph-color);
@@ -3498,6 +3498,9 @@ span {
   display: block;
   -webkit-animation: 1s fade-effects;
   animation: 1s fade-effects;
+  padding: 20px;
+  /* background-color: var(--section-bg-1); */
+  border-radius: 17px;
 }
 
 @-webkit-keyframes fade-effects {
@@ -7518,9 +7521,9 @@ div[class*=col]:nth-child(4n+4) .contract_single__balance {
 
 .label-title {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 24px;
-  color: var(--heading-color);
+  color: rgba(16 16 24/ 60%);
   margin-bottom: 8px;
   display: block;
 }
@@ -8045,7 +8048,7 @@ textarea {
 .project-preview {
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .project-preview:not(:first-child) {
@@ -8061,6 +8064,7 @@ textarea {
 
 .project-preview-thumb img {
   border-radius: 10px;
+  width: 100%;;
 }
 
 .project-preview-contents-title {
@@ -8078,15 +8082,17 @@ textarea {
 }
 
  .project-preview-tab .tabs {
-   background-color: var(--border-color);
-   padding: 10px;
+    background-color: var(--section-bg-2);
+   /* padding: 10px; */
    display: flex;
    -webkit-box-pack: justify;
    -ms-flex-pack: justify;
    justify-content: space-between;
    border-radius: 10px;
-   box-shadow: 0px 0px 10px #f1f1f1;
+   /* box-shadow: 0px 0px 10px #f1f1f1; */
    list-style: none;
+   margin: 0;
+   padding: 0;
  }
 
 @media only screen and (max-width: 375px) {
@@ -8100,11 +8106,12 @@ textarea {
    -ms-flex-positive: 1;
    flex-grow: 1;
    text-align: center;
-   padding: 5px;
+   padding: 15px;
    border-radius: 10px;
    color: var(--body-color);
    font-weight: 600;
    cursor: pointer;
+   transition: none !important;
  }
 
 @media only screen and (max-width: 375px) {
@@ -8118,7 +8125,78 @@ textarea {
 }
 
 .project-preview-tab .tabs li.active {
-  background-color: #fff;
+  background-color: var(--section-bg-1);
+}
+
+
+
+.project-preview-tab ul li.active:before {
+  content: '';
+  height:30px;
+  z-index: 3;
+  background: var(--section-bg-1);
+  position: absolute;
+  display:block;
+  bottom:-20px;
+  width: 100%;
+  left: 0;
+}
+
+.project-preview-tab ul li.active {
+  border-radius: 17.5px 17.5px 0px 0px !important;
+  font-size: 20px;
+  color: var(--border-color);
+  position: relative;
+}
+
+.project-preview-tab ul li {
+  font-size: 20px;
+  color: rgb(16 16 24 / 50%)
+}
+.project-preview-tab ul li.active:before {
+  content: '';
+  height: 30px;
+  z-index: 2;
+  background: var(--section-bg-1);
+  position: absolute;
+  display: block;
+  bottom: -20px;
+}
+
+li.active .curve-right {
+  height: 22px;
+  width: 29px;
+  z-index: 2;
+  background: var(--section-bg-2);
+  position: absolute;
+  display: block;
+  bottom: -2px;
+  right: -22px;
+  border-radius: 50%;
+  border-left: 10px solid var(--section-bg-1);
+  border-top: 0;
+  transform: rotate(-40deg);
+}
+
+li.active .curve-left {
+  height: 22px;
+  width: 29px;
+  z-index: 2;
+  background: var(--section-bg-2);
+  position: absolute;
+  display: block;
+  bottom: -2px;
+  left: -22px;
+  border-radius: 50%;
+  border-right: 10px solid var(--section-bg-1);
+  border-top: 0;
+  transform: rotate(40deg);
+
+}
+
+.project-preview-tab-contents {
+  background-color: rgba(230 230 250 / 50%);
+  border-radius: 17px;
 }
 
  .project-preview-tab-header {
@@ -8130,7 +8208,7 @@ textarea {
    align-items: flex-start;
    -ms-flex-wrap: wrap;
    flex-wrap: wrap;
-   background-color: var(--border-color);
+   background-color: var(--section-bg-1);
    padding: 10px;
    border-radius: 5px;
  }
@@ -8749,7 +8827,7 @@ textarea {
 }
 
 .project--rejected--wrapper {
-  background: var(--border-color);
+  /* background: var(--border-color); */
   padding: 10px;
   border-radius: 10px;
 }
@@ -9021,6 +9099,8 @@ textarea {
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 24px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
 }
 
 .allOrders__list__item,
@@ -9033,10 +9113,23 @@ textarea {
   font-weight: 400;
   line-height: 20px;
   background-color: unset;
-  border: 1px solid var(--border-color);
-  color: var(--paragraph-color);
+  border: none;
+  color: var(--main-color-one);
   padding: 7px 15px;
   transition: all .3s;
+  position: relative;
+  justify-content: center;
+}
+.allOrders__list__item.active::after,
+.allOrders__list___item.active::after,
+.userSubscription__list__item.active::after {
+  content: "";
+  position: absolute;
+  width: 46px;
+  height: 4px;
+  border-radius: 2px;
+  bottom: -13px;
+  background-color: var(--main-color-one);
 }
 
 .allOrders__list__item:focus,
@@ -9044,14 +9137,14 @@ textarea {
   box-shadow: none;
 }
 
-.allOrders__list__item:hover,
+/* .allOrders__list__item:hover,
 .allOrders__list__item.btn-success,
 .userSubscription__list__item:hover,
 .userSubscription__list__item.btn-success {
   background-color: var(--main-color-one);
   color: #fff;
   border-color: var(--main-color-one);
-}
+} */
 
 
 /* solve summernote content issue */
@@ -9552,4 +9645,27 @@ textarea {
 .swal2-actions button{
   border-radius: 25px !important;
   padding: 10px 15px !important;
+}
+
+
+.select2-container--default .select2-selection--single {
+  border-radius: 50px !important;
+  border: 1px solid var(--border-color) !important;
+  align-content: center;
+  min-height: 50px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-left: 16px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  right: 20px !important;
+}
+
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+  border-bottom-right-radius: inherit !important;
+  border-bottom-left-radius: inherit !important;
+  border-top-right-radius: 20px !important;
+  border-top-left-radius: 20px !important;
 }

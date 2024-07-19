@@ -34,7 +34,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4  edit_skill'" />
                 </div>
             </form>

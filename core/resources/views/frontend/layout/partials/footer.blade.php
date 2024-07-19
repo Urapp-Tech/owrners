@@ -228,6 +228,29 @@
 
             })
 
+            //job search from home page
+            $(document).on('keyup', '#search_popular_searches',function(){
+                let job_search_string = $('#search_popular_searches').val();
+                $('.display_search_result').hide()
+
+                if(job_search_string.length >= 1){
+                    $('.display_search_result').show()
+                    $('#header_search_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>');
+                    $.ajax({
+                        url:"{{route('home.project.keyword.search')}}",
+                        method:"GET",
+                        data:{search_string:job_search_string},
+                        success:function(res){
+                            $('.display_search_result').html(res);
+                            $('#header_search_load_spinner').html('<i class="fas fa-search"></i>');
+                        }
+                    })
+                }else{
+                    $('.display_search_result').html('');
+                }
+
+            })
+
             $('.video_play').magnificPopup({
                 type:'iframe',
             });

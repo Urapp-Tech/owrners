@@ -235,11 +235,21 @@
                             <div class="project-preview">
                                 <div class="project-preview-tab">
                                     <ul class="tabs dashboard-tabs">
-                                        <li data-tab="basic" class="active">{{ $project->basic_title }}</li>
-                                        <li data-tab="standard">{{ $project->standard_title }}</li>
-                                        <li data-tab="premium">{{ $project->premium_title }}</li>
+                                        <li data-tab="basic" class="active">
+                                            {{ $project->basic_title }}
+                                            <span class="curve-right"></span>
+                                        </li>
+                                        <li data-tab="standard">
+                                            <span class="curve-left"></span>
+                                            {{ $project->standard_title }}
+                                            <span class="curve-right"></span>
+                                        </li>
+                                        <li data-tab="premium">
+                                            <span class="curve-left"></span>
+                                            {{ $project->premium_title }}
+                                        </li>
                                     </ul>
-                                    <div class="project-preview-tab-contents mt-4">
+                                    <div class="project-preview-tab-contents">
 
                                         <div class="tab-content-item dashboard-tab-content-item active" id="basic">
                                             <div class="project-preview-tab-header">
@@ -357,7 +367,7 @@
                                         </div>
 
                                         <hr class="mt-5">
-                                        <div class="btn-wrapper flex-btn justify-content-between">
+                                        <div class="btn-wrapper flex-btn justify-content-between " style="padding: 20px;">
                                             @can('project-reject')
                                                 <a href="#" class="btn-profile btn-outline-gray btn-hover-danger" data-bs-target="#rejectProjectModal" data-bs-toggle="modal">{{ __('Click to Reject') }}</a>
                                             @endcan

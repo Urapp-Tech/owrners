@@ -21,7 +21,7 @@
                     <x-form.number :title="__('Commission Charge')" :min="'1'" :max="'500'" :name="'admin_commission_charge'" :id="'admin_commission_charge'" :placeholder="__('Commission Charge')"/>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <x-btn.submit :title="__('Update')" :class="'btn-gradient mt-4  admin_individual_settings_for_user'" />
                 </div>
             </form>
