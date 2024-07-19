@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse justify-content-center" id="xilancer_menu">
+            <div class="collapse navbar-collapse justify-content-left ps-md-4 p-0" id="xilancer_menu">
 
                 <div class="navbar-03-menus">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">

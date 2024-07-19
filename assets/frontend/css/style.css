@@ -24562,3 +24562,7 @@ a.btn-outline-owrners {
       border-radius: 20px;
   }
 }
+
+.dropdown-item {
+  padding: .05rem 1rem !important;
+}
