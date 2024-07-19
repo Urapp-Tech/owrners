@@ -6488,7 +6488,7 @@ span {
   .navbar-area .nav-container .navbar-collapse .navbar-nav {
     display: block;
     margin-top: 30px;
-    background: var(--border-color);
+    /* background: var(--border-color); */
     -webkit-box-shadow: 0 0 30px rgba(221, 221, 221, 0.3);
     box-shadow: 0 0 30px rgba(221, 221, 221, 0.3);
     border-radius: 10px;
@@ -20428,7 +20428,7 @@ div[class*=col]:nth-child(4n+4) .myJob-wrapper-single-balance {
 
 .select2-container {
   display: grid !important;
-  z-index: 9992;
+  z-index: 9;
   display: grid;
   width: 100% !important;
 }
@@ -23643,7 +23643,7 @@ button #project_create_load_spinner i {
   background-color: #fffffffa;
   margin-top: 10px;
   border-color: var(--border-color-2);
-  z-index: 10000;
+  z-index: 10;
 }
 
 
@@ -23684,7 +23684,7 @@ button #project_create_load_spinner i {
   width: 80%;
 }
 
-.header-global-search-input_urapp #search_your_desired_job {
+.header-global-search-input_urapp #search_your_desired_job,  #search_popular_searches {
   height: 60px;
   background-color: #E6E6FA;
   border-radius: 30px;
@@ -24537,4 +24537,28 @@ a.btn-outline-owrners {
   border: 1px solid var(--heading-color);
   padding-left: 20px;
   padding-right: 20px;
+}
+
+
+.services-suggestions ul {
+  list-style: none;
+  padding:5px 5px
+}
+
+.services-suggestions li {
+  padding: 3px 5px;
+}
+
+.services-suggestions h6 {
+  font-size: 16px;
+  font-weight:500;
+  padding: 10px;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+      position: absolute;
+      padding: 10px;
+      border-radius: 20px;
+  }
 }

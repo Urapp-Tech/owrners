@@ -15,7 +15,7 @@
                     <textarea name="reject_reason" rows="5" class="form-control mt-3">{{ $project?->project_history?->reject_reason ?? '' }}</textarea>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <x-btn.submit :title="__('Reject Project')" :class="'btn btn-danger mt-4 pr-4 pl-4'" />
                 </div>
             </form>

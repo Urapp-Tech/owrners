@@ -25,12 +25,12 @@
                 </ul> --}}
                 <div class="header-global-search-input d-flex align-items-center header-global-search-input_urapp ">
                     <div class="header-global-search-input-inner">
-                        <input type="text" id="search_your_desired_job" class="form-control"
-                               placeholder="{{ __('Search for the service you are looking for!') }}" autocomplete="off">
+                        <input type="text" id="search_popular_searches" class="form-control"
+                               placeholder="{{ __('Search for the service you are looking for!') }}" value="{{$search_query?? ''}}" autocomplete="off">
                                <input type="hidden" id="Select_project_or_job_for_search" value="project">
                     </div>
+                    <div class="display_search_result display_search_result_urapp w-100" style="display: none"></div>
                 </div>
-                <div class="display_search_result display_search_result_urapp" style="display: none"></div>
             </div>
 
             <x-frontend.user-menu />

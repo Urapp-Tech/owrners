@@ -225,4 +225,11 @@ class ClientController extends Controller
         (new Authenticator(request()))->logout();
         return redirect('/');
     }
+
+    public function switch_to_seller() {
+        $user = Auth::guard('web')->user();
+        $user->user_type = 2;
+        $user->save();
+        return redirect()->route('freelancer.dashboard');
+    }
 }

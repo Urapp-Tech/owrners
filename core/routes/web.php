@@ -142,6 +142,9 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
     // home job search
     Route::controller(FrontendHomeController::class)->group(function(){
         Route::get('job/project/search/from/home/page', 'project_or_job_search')->name('home.job.project.search');
+        Route::get('keyword/search/from/home/page', 'search_by_keyword')->name('home.project.keyword.search');
+        Route::get('/search/projects','query_keywords_project')->name('home.search.projects');
+        Route::get('/search/projects/filter','query_keywords_project_filter')->name('home.search.projects.filter');
     });
 
 
@@ -158,7 +161,7 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
         Route::controller(OrderIPNController::class)->group(function () {
             Route::get('paypal-ipn','paypal_ipn_for_order')->name('paypal.ipn.order');
             Route::post('paytm-ipn','paytm_ipn_for_order')->name('paytm.ipn.order');
-//            Route::get('paystack-ipn','paystack_ipn_for_order')->name('paystack.ipn.order');
+        //    Route::get('paystack-ipn','paystack_ipn_for_order')->name('paystack.ipn.order');
             Route::get('mollie/ipn','mollie_ipn_for_order')->name('mollie.ipn.order');
             Route::get('stripe/ipn','stripe_ipn_for_order')->name('stripe.ipn.order');
             Route::post('razorpay-ipn','razorpay_ipn_for_order')->name('razorpay.ipn.order');

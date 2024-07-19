@@ -14,7 +14,7 @@
                         <div class="allOrders__list">
                             <input type="hidden" id="get_selected_status_value" value="">
                             @can('order-queue')
-                                <button class="order_sort_by_status allOrders__list__item" data-val="qutem">
+                                <button class="order_sort_by_status allOrders__list__item active" data-val="qutem">
                                     {{ __('Queue') }} ({{ $pending_orders->total() }})</button>
                             @endcan
                             @can('order-active')

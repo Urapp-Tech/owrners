@@ -26,8 +26,8 @@
         <div class="profile-settings-area pat-100 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
-                    @include('frontend.user.layout.partials.sidebar')
-                    <div class="col-xl-9 col-lg-8">
+                    {{-- @include('frontend.user.layout.partials.sidebar') --}}
+                    <div class="col-xl-12 col-lg-12">
                         <div class="profile-settings-wrapper">
                             @include('frontend.user.freelancer.profile.profile-photo')
                             @include('frontend.user.freelancer.profile.profile-info')

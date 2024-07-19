@@ -14,7 +14,7 @@
                     <x-form.active-inactive :title="__('Select Status')" />
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
+                    <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
                     <x-btn.submit :title="__('Save')" :class="'btn-gradient mt-4  add_department'" />
                 </div>
             </form>
