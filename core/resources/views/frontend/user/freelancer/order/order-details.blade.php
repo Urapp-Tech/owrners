@@ -434,7 +434,7 @@
                                             </h6>
                                         </div>
                                     </div>
-                                    <div class="jobFilter-about-clients">
+                                    {{-- <div class="jobFilter-about-clients">
                                         <div class="jobFilter-about-clients-single flex-between">
                                             <div class="jobFilter-about-clients-flex">
                                     <span class="jobFilter-about-clients-icon">
@@ -444,9 +444,9 @@
                                             </div>
                                             <h6 class="jobFilter-wrapper-item-completed">{{ $order_details?->user?->user_jobs?->count() }}</h6>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                    @php
+                                    {{-- @php
                                         $total_job = App\Models\JobPost::where('user_id', $order_details?->user->id)->count();
                                         $total_order = App\Models\Order::where('user_id', $order_details?->user->id)
                                             ->where('status', 3)
@@ -471,7 +471,7 @@
                                                 </h6>
                                             </div>
                                         </div>
-                                    @endif
+                                    @endif --}}
 
                                 </div>
                             </div>

@@ -3499,7 +3499,7 @@ span {
   -webkit-animation: 1s fade-effects;
   animation: 1s fade-effects;
   padding: 20px;
-  /* background-color: var(--section-bg-1); */
+  background-color: var(--section-bg-1) !important;
   border-radius: 17px;
 }
 
@@ -8079,6 +8079,10 @@ textarea {
   line-height: 24px;
   margin-top: 10px;
   color: var(--paragraph-color);
+}
+
+.project-preview-contents p {
+  word-wrap: break-word;
 }
 
  .project-preview-tab .tabs {

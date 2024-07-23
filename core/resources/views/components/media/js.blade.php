@@ -243,7 +243,9 @@
 
                     });
                     hidePreloader();
-                    $('.media_upload_modal_submit_btn').show();
+                    if(!$('#upload_media_image').hasClass('active')) {
+                        $('.media_upload_modal_submit_btn').show();
+                    }
                     selectOldImage();
                     $('#loadmorewrap button').show();
                 },
