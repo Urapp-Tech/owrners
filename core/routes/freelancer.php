@@ -145,7 +145,10 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
         //dashboard
         Route::controller(DashboardController::class)->group(function () {
             Route::group(['prefix'=>'dashboard'],function(){
-                Route::get('info','dashboard')->name('dashboard');
+                Route::get('info','seller_dashboard')->name('dashboard');
+                // Route::get('info','dashboard')->name('dashboard');
+                Route::get('seller','seller_dashboard')->name('dashboard.seller');
+                Route::get('order','order_pagination')->name('dashboard.order');
             });
         });
 
