@@ -1,20 +1,20 @@
 @extends('frontend.layout.master')
-@section('site_title',__('Project Preview'))
+@section('site_title',__('Gig Preview'))
 @section('style')
     <x-summernote.summernote-css />
 @endsection
 @section('content')
     <main>
-        <x-breadcrumb.user-profile-breadcrumb :title="__('Project Preview')" :innerTitle="__('Project Preview')"/>
+        <x-breadcrumb.user-profile-breadcrumb :title="__('Gig Preview')" :innerTitle="__('Gig Preview')"/>
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
                     @foreach($all_projects as $project)
                         <div class="col-lg-4 col-md-6">
                             <div class="project-preview new_style">
                                 <div class="project-preview-head profile-border-bottom">
-                                    <h4 class="project-preview-head-title">{{ __('Project Catalogues') }}</h4>
+                                    <h4 class="project-preview-head-title">{{ __('Gig Catalogues') }}</h4>
                                 </div>
                                 <div class="project-preview-thumb">
                                     <img src="{{ asset('assets/uploads/project/'.$project->image) }}" alt="projectPreview">
@@ -51,7 +51,7 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="projectDescriptionViewLabel">{{ __('Project Description') }}</h1>
+                    <h1 class="modal-title fs-5" id="projectDescriptionViewLabel">{{ __('Gig Description') }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

@@ -3,7 +3,7 @@
 <section class="project-area pat-50 pab-50" data-padding-top="{{$padding_top ?? ''}}" data-padding-bottom="{{$padding_bottom ?? ''}}" style="background-color:{{$section_bg ?? ''}}">
     <div class="container">
         <div class="section-title text-left append-flex">
-            <h2 class="title"> {{ $title ?? __('Top Projects') }} </h2>
+            <h2 class="title"> {{ $title ?? __('Top Gigs') }} </h2>
             <div class="append-project"></div>
         </div>
         <div class="row mt-5">

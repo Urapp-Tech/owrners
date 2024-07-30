@@ -155,7 +155,7 @@
         <tr>
             <td><strong>13</strong></td>
             <td>
-                {{ __('Project Create Email') }}
+                {{ __('Gig Create Email') }}
                 <p><small class="text-info">{{__('This email will send to admin when the user create a new project and request to admin publish it.')}}</small></p>
             </td>
             <td>
@@ -167,7 +167,7 @@
         <tr>
             <td><strong>14</strong></td>
             <td>
-                {{ __('Project Activate Email') }}
+                {{ __('Gig Activate Email') }}
                 <p><small class="text-info">{{__('This email will send when the admin activate the project.')}}</small></p>
             </td>
             <td>
@@ -179,7 +179,7 @@
         <tr>
             <td><strong>15</strong></td>
             <td>
-                {{ __('Project Inactivate Email') }}
+                {{ __('Gig Inactivate Email') }}
                 <p><small class="text-info">{{__('This email will send when the admin Inactivate the project.')}}</small></p>
             </td>
             <td>
@@ -191,7 +191,7 @@
         <tr>
             <td><strong>16</strong></td>
             <td>
-                {{ __('Project Reject Email') }}
+                {{ __('Gig Reject Email') }}
                 <p><small class="text-info">{{__('This email will send when the admin reject the project.')}}</small></p>
             </td>
             <td>
@@ -203,7 +203,7 @@
         <tr>
             <td><strong>17</strong></td>
             <td>
-                {{ __('Project Edit Email') }}
+                {{ __('Gig Edit Email') }}
                 <p><small class="text-info">{{__('This email will send to admin when the user edit a project.')}}</small></p>
             </td>
             <td>

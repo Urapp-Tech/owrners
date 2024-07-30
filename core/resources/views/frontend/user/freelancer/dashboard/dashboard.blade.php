@@ -39,7 +39,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Dashboard')" :innerTitle="__('Dashboard')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-100 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
@@ -93,7 +93,7 @@
                                                         <div class="myJob-wrapper-single-balance-price d-flex gap-2 justify-content-between">
                                                             <h4 class="contract_single__balance-price">{{ $total_project ?? 0 }}</h4>
                                                         </div>
-                                                        <p class="myJob-wrapper-single-balance-para">{{ __('Total Projects') }}</p>
+                                                        <p class="myJob-wrapper-single-balance-para">{{ __('Total Gigs') }}</p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -130,8 +130,8 @@
                                     <div class="section-bg-1 rounded-30 pt-3">
                                         <div class="single-profile-settings-header px-3 mt-2">
                                             <div class="single-profile-settings-header-flex">
-                                                <x-form.form-title :title="__('Latest Projects')" :class="'single-profile-settings-header-title'" />
-                                                <a href="{{ route('freelancer.profile.details', Auth::guard('web')->user()->username) }}" class="btn-profile btn-bg-1"> {{ __('All Projects') }} </a>
+                                                <x-form.form-title :title="__('Latest Gigs')" :class="'single-profile-settings-header-title'" />
+                                                <a href="{{ route('freelancer.profile.details', Auth::guard('web')->user()->username) }}" class="btn-profile btn-bg-1"> {{ __('All Gigs') }} </a>
                                             </div>
                                         </div>
                                         <div class="single-profile-settings-inner ">
@@ -148,7 +148,7 @@
                                                         <tr>
                                                             <td>{{ $project->title }}</td>
                                                             <td>
-                                                                <a href="{{ route('freelancer.project.edit',$project->id) }}" class="btn-profile btn-bg-1 edit_info_show_hide"> {{ __('Edit Project') }} </a>
+                                                                <a href="{{ route('freelancer.project.edit',$project->id) }}" class="btn-profile btn-bg-1 edit_info_show_hide"> {{ __('Edit Gig') }} </a>
                                                             </td>
                                                         </tr>
                                                     @endforeach

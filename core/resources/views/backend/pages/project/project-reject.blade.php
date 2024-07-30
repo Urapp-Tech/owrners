@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Reject Project') }}</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ __('Reject Gig') }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('admin.project.reject') }}" id="rejectProjectForm" method="post">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn-outline-owrners mt-4" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                    <x-btn.submit :title="__('Reject Project')" :class="'btn btn-danger mt-4 pr-4 pl-4'" />
+                    <x-btn.submit :title="__('Reject Gig')" :class="'btn btn-danger mt-4 pr-4 pl-4'" />
                 </div>
             </form>
         </div>

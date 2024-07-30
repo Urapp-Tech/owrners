@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Modules\Service\Entities\Category;
 use Modules\Wallet\Entities\Wallet;
 
 class DashboardController extends Controller
@@ -54,5 +56,35 @@ class DashboardController extends Controller
         $my_jobs = JobPost::select('id','title','slug')->where('user_id',$user_id)->latest()->take(5)->get();
 
         return view('frontend.user.client.dashboard.dashboard',compact(['total_wallet_balance','total_orders','complete_order','active_order','latest_orders','my_jobs']));
+    }
+
+    public function buyer_dashboard() {
+
+        $popularCategoriesIds = Order::select('categories.id as category_id', DB::raw('count(*) as total'))
+        ->join('projects', 'orders.identity', '=', 'projects.id')
+        ->join('categories', 'projects.category_id', '=', 'categories.id')
+        ->where('orders.is_project_job', 'project')
+        ->groupBy('categories.id')
+        ->orderBy('total', 'desc')
+        ->take(4)
+        ->get();
+
+        $popularCategoriesIdsOnly  = $popularCategoriesIds->pluck('category_id')->toArray();
+
+        if($popularCategoriesIds->count() < 4) {
+            $remainingCategoriesIds = Category::select('id')
+                ->whereNotIn('id', $popularCategoriesIdsOnly)
+                ->whereHas('projects')
+                ->whereHas('projects.project_creator')
+                ->take(4 - $popularCategoriesIds->count())
+                ->get();
+
+            $popularCategoriesIdsOnly = array_merge($popularCategoriesIdsOnly, $remainingCategoriesIds->pluck('id')->toArray());
+        }
+        $popularCategories = Category::with(['projects', 'projects.project_creator'])->whereIn('id', $popularCategoriesIdsOnly)->get();
+
+        // dd($popularCategories);
+
+        return view('frontend.user.client.dashboard.dashboard-v2', compact('popularCategories'));
     }
 }

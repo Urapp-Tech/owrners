@@ -2,7 +2,7 @@
     @php $current_date = \Carbon\Carbon::now()->toDateTimeString() @endphp
     @if($projects->count() > 0)
         @foreach($projects as $project)
-        <div class=" col-xxl-3 ">
+        <div class=" col-md-3 ">
             <div class="project-category-item radius-10">
                 <div class="single-project project-catalogue">
                     <div class="single-project-thumb">
@@ -91,7 +91,7 @@
                         <img src="{{ asset('assets/static/img/no-jobs-projects/no-project.svg') }}" alt="">
                     </div>
                     <div class="notFound-contents mt-3">
-                        <h4 class="notFoundTitle">{{ __('No Projects') }}</h4>
+                        <h4 class="notFoundTitle">{{ __('No Gigs') }}</h4>
                         <p class="notFoundPara mt-3">{{ __("Sorry, We couldn't find any projects in this category try checking on other categories") }}</p>
                     </div>
                 </div>

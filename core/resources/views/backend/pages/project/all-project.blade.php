@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', __('All Projects'))
+@section('title', __('All Gigs'))
 @section('style')
     <x-select2.select2-css/>
 @endsection
@@ -10,7 +10,7 @@
                 <div class="customMarkup__single">
                     <div class="customMarkup__single__item">
                         <div class="customMarkup__single__item__flex">
-                            <h4 class="customMarkup__single__title">{{ __('All Projects') }}</h4>
+                            <h4 class="customMarkup__single__title">{{ __('All Gigs') }}</h4>
                             <x-search.search-in-table :id="'string_search'" />
                         </div>
                         <div class="customMarkup__single__inner mt-4">

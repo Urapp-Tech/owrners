@@ -3,8 +3,8 @@
     <thead>
     <tr>
         <th>{{__('ID')}}</th>
-        <th>{{__('Project ID')}}</th>
-        <th>{{__('Project Title')}}</th>
+        <th>{{__('Gig ID')}}</th>
+        <th>{{__('Gig Title')}}</th>
         <th>{{__('Status (change by admin)')}}</th>
         <th>{{__('Total Reject')}}</th>
         <th>{{__('Total Edit')}}</th>
@@ -20,7 +20,7 @@
             <td><x-status.table.active-inactive :status="$history->project?->status"/></td>
             <td>{{ $history->reject_count }}</td>
             <td>{{ $history->edit_count }}</td>
-            <td><a target="_blank" href="{{ route('admin.project.details',$history->project_id) }}" class="btn-bg-1 btn-profile">{{ __('Project Details') }}</a></td>
+            <td><a target="_blank" href="{{ route('admin.project.details',$history->project_id) }}" class="btn-bg-1 btn-profile">{{ __('Gig Details') }}</a></td>
         </tr>
     @endforeach
     </tbody>

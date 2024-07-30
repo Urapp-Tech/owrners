@@ -1,5 +1,5 @@
 @extends('frontend.layout.master')
-@section('site_title') {{ $category->category ?? __('Category Projects') }} @endsection
+@section('site_title') {{ $category->category ?? __('Category Gigs') }} @endsection
 @section('style')
     <x-select2.select2-css />
     <style>
@@ -36,14 +36,14 @@
 @section('content')
     <main>
         <x-frontend.category.category/>
-        <x-breadcrumb.user-profile-breadcrumb :title="$category->category ?? __('Project Category')" :innerTitle="$category->category ?? '' "/>
+        <x-breadcrumb.user-profile-breadcrumb :title="$category->category ?? __('Gig Category')" :innerTitle="$category->category ?? '' "/>
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
                     @if(moduleExists('PromoteFreelancer'))
                         <div class="profile-wrapper-right-flex flex-btn text-right">
-                            <span class="profile-wrapper-switch-title">{{ __('Pro Projects') }}</span>
+                            <span class="profile-wrapper-switch-title">{{ __('Pro Gigs') }}</span>
                             <div class="profile-wrapper-switch-custom display_work_availability">
                                 <label class="custom_switch">
                                     <input type="checkbox" id="get_pro_projects" value="0">

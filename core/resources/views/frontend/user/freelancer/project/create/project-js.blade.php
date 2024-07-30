@@ -496,7 +496,7 @@
                         toastr_warning_js("{{ __('Please upload project photo !') }}");
                         return false;
                     }
-                    // $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Create Project') }}<span id="project_create_load_spinner"></span></button>');
+                    // $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Create Gig') }}<span id="project_create_load_spinner"></span></button>');
                 }
                 else if(current == 3){
                     let basic_title = $('#basic_title').text();
@@ -552,7 +552,7 @@
 
                     if(check_package_titles.status){
                         // $('#project_create_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>')
-                        $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Create Project') }}<span id="project_create_load_spinner"></span></button>');
+                        $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Create Gig') }}<span id="project_create_load_spinner"></span></button>');
                     }else{
                         return false;
                         current= 2;
@@ -570,7 +570,7 @@
             if (current > 0) {
                 current--
                 if(current == 3){
-                    $('.setup-footer-right').html('<input type="submit" class="btn-profile btn-bg-1" value="{{ __('Create Project') }}">');
+                    $('.setup-footer-right').html('<input type="submit" class="btn-profile btn-bg-1" value="{{ __('Create Gig') }}">');
                 }else{
                     $('.setup-footer-right').html('<a href="javascript:void(0)" class="setup-footer-next next" id="next"> <i class="fas fa-arrow-right"></i> </a>');
                 }

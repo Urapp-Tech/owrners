@@ -6301,7 +6301,7 @@ span {
   top: 130%;
   right: 0;
   z-index: 9998;
-  max-width: 200px;
+  max-width: 250px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -6317,7 +6317,7 @@ span {
 }
 
 .navbar-author-wrapper-list {
-  max-height: 300px;
+  max-height: 500px;
   overflow-y: auto;
   scrollbar-color: var(--main-color-one) #ddd;
   scrollbar-width: thin;
@@ -24565,4 +24565,21 @@ a.btn-outline-owrners {
 
 .dropdown-item {
   padding: .05rem 1rem !important;
+}
+
+@media (min-width: 768px) {
+  .single-project-thumb-price-container {
+      top:40% !important;
+      min-width: 120px !important;
+      font-size: 9px;
+
+  }
+
+  .single-project-thumb-price {
+    font-size: 15px !important;
+  }
+}
+
+.suggestion-service-item.active {
+  background-color: #ddd !important;
 }

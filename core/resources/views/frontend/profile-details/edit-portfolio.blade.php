@@ -19,9 +19,9 @@
             </div>
 
             <div class="popup-contents-form custom-form mt-4">
-                <x-form.text :title="__('Title')" :type="'text'" :name="'edit_portfolio_title'" :id="'edit_portfolio_title'" :divClass="'mb-0'" :class="'form--control'" :placeholder="__('Write Project Title')" />
+                <x-form.text :title="__('Title')" :type="'text'" :name="'edit_portfolio_title'" :id="'edit_portfolio_title'" :divClass="'mb-0'" :class="'form--control'" :placeholder="__('Write Gig Title')" />
                 <span id="edit_portfolio_title_char_length_check"></span>
-                <x-form.textarea :title="__('Description')" :name="'edit_portfolio_description'" :id="'edit_portfolio_description'" :divClass="'mb-0'" :class="'form-message'" :placeholder="__('Type Project Details')" />
+                <x-form.textarea :title="__('Description')" :name="'edit_portfolio_description'" :id="'edit_portfolio_description'" :divClass="'mb-0'" :class="'form-message'" :placeholder="__('Type Gig Details')" />
                 <span id="edit_portfolio_description_char_length_check"></span>
             </div>
             <div class="popup-contents-btn flex-btn justify-content-end profile-border-top">

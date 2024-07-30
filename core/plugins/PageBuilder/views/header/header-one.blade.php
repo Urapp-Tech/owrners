@@ -13,7 +13,7 @@
                                 <a href="{{ route('jobs.all') ?? '' }}" class="cmn-btn btn-bg-1"> {{$find_work_button_text ?? __('Find Work') }} </a>
                             @endif
                             @if(get_static_option('project_enable_disable') != 'disable')
-                                <a href="{{ route('projects.all') ?? '' }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Project') }} </a>
+                                <a href="{{ route('projects.all') ?? '' }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Gig') }} </a>
                             @endif
                         </div>
                         <div class="banner-single-content-logo mt-5">

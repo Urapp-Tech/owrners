@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', __('Project Reject Email'))
+@section('title', __('Gig Reject Email'))
 @section('style')
     <x-summernote.summernote-css />
 @endsection
@@ -10,7 +10,7 @@
                 <div class="customMarkup__single">
                     <div class="customMarkup__single__item">
                         <div class="customMarkup__single__item__flex">
-                            <h4 class="customMarkup__single__title">{{ __('Project Reject Email') }}</h4>
+                            <h4 class="customMarkup__single__title">{{ __('Gig Reject Email') }}</h4>
                         </div>
                         <div class="search_delete_wrapper">
                             <h4><a class="btn-profile btn-bg-1" href="{{ route('admin.email.template.all') }}">{{ __('All Templates') }}</a></h4>
@@ -25,7 +25,7 @@
                                     :type="__('text')"
                                     :name="'project_decline_email_subject'"
                                     :id="'project_decline_email_subject'"
-                                    :value="get_static_option('project_decline_email_subject') ?? __('Project Decline Email')"
+                                    :value="get_static_option('project_decline_email_subject') ?? __('Gig Decline Email')"
                                 />
                                 <x-form.summernote
                                     :title="__('Email Message')"

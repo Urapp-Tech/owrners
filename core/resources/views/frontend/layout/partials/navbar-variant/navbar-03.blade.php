@@ -40,28 +40,11 @@
                             Business
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('freelancer.order.all') }}">Orders</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.projects.all') }}">Projects</a></li>
+                            <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.order.all') }}">Orders</a></li>
+                            <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.projects.all') }}">Gigs</a></li>
                             <li class="w-100"><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.wallet.history') }}">Wallet</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.wallet.withdraw.history') }}">Widthdraw History</a></li>
-                            <li class="w-100"><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.live.chat') }}">Chat</a></li>
-                          </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Account
-                          </a>
-                          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ route('freelancer.profile') }}">Profile Settings</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.profile.details', Auth::guard('web')->user()->username) }}">Profile Details</a></li>
-                            <li class="w-100"><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.account.setup') }}">Account</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.password') }}">Change Password</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.account.delete') }}">Account Delete</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer.identity.verification') }}">{{ __('Identity Verification') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ route('freelancer._2fa') }}">2 Factor Authecntication</a></li>
+                            <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.wallet.history') }}">Wallet</a></li>
+                            <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.wallet.withdraw.history') }}">Widthdraw History</a></li>
                           </ul>
                         </li>
                         <li class="nav-item">
@@ -69,9 +52,6 @@
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="{{ route('freelancer.ticket') }}" >Support</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="{{ route('freelancer.logout') }}" >{{ __('Log Out') }}</a>
                         </li>
                       </ul>
                 </div>

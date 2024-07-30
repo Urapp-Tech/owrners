@@ -6,7 +6,7 @@
                 <div class="single-shop-left-filter-flex flex-between">
                     <div class="single-shop-left-filter-title">
                         <h5 class="title">
-                            {{ __('Project Filter') }} </h5>
+                            {{ __('Gig Filter') }} </h5>
                     </div>
                     <a href="javascript:void(0)" class="single-shop-left-filter-reset" id="category_project_filter_reset">{{ __('Reset Filter') }}</a>
                 </div>
@@ -57,7 +57,7 @@
 
         <div class="single-shop-left bg-white radius-10 mt-4">
             <div class="single-shop-left-title open">
-                <h5 class="title">{{ __('Project Lengths') }}</h5>
+                <h5 class="title">{{ __('Gig Lengths') }}</h5>
                 <div class="single-shop-left-inner margin-top-15">
                     <div class="single-shop-left-select">
                         <select class="form-control" name="delivery_day" id="delivery_day">

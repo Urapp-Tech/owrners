@@ -563,12 +563,12 @@
                         // $('#project_create_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>')
                         @if(moduleExists('SecurityManage'))
                             @if(Auth::guard('web')->user()->freeze_project == 'freeze')
-                                $('.setup-footer-right').html('<a href="#" class="btn-profile btn-bg-1 @if(Auth::guard('web')->user()->freeze_project == 'freeze') disabled-link @endif">{{ __('Update Project') }}</a>');
+                                $('.setup-footer-right').html('<a href="#" class="btn-profile btn-bg-1 @if(Auth::guard('web')->user()->freeze_project == 'freeze') disabled-link @endif">{{ __('Update Gig') }}</a>');
                             @else
-                                $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Project') }}<span id="project_edit_load_spinner"></span></button>');
+                                $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Gig') }}<span id="project_edit_load_spinner"></span></button>');
                             @endif
                         @else
-                                $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Project') }}<span id="project_edit_load_spinner"></span></button>');
+                                $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Update Gig') }}<span id="project_edit_load_spinner"></span></button>');
                         @endif
                     }else{
                         return false;
@@ -587,7 +587,7 @@
             if (current > 0) {
                 current--
                 if(current == 3){
-                    $('.setup-footer-right').html('<input type="submit" class="btn-profile btn-bg-1" value="{{ __('Update Project') }}">');
+                    $('.setup-footer-right').html('<input type="submit" class="btn-profile btn-bg-1" value="{{ __('Update Gig') }}">');
                 }else{
                     $('.setup-footer-right').html('<a href="javascript:void(0)" class="setup-footer-next next" id="next"> <i class="fas fa-arrow-right"></i> </a>');
                 }

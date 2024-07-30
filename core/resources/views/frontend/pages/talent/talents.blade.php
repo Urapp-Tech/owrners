@@ -45,7 +45,7 @@
         <x-frontend.category.category/>
         <x-breadcrumb.user-profile-breadcrumb :title="__('Talents') ?? __('Talents')" :innerTitle="__('Talents') ?? '' "/>
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
 

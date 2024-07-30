@@ -115,7 +115,7 @@
                                                                 </li>
                                                                 <li>
                                                                     <label class="menu-item-title">
-                                                                        <input type="checkbox" class="menu-item-checkbox" data-title="Projects" data-url="@url/projects/all"> {{ __('Projects') }}
+                                                                        <input type="checkbox" class="menu-item-checkbox" data-title="Gigs" data-url="@url/projects/all"> {{ __('Gigs') }}
                                                                     </label>
                                                                 </li>
                                                                 <li>

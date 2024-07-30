@@ -122,7 +122,7 @@
                         </div>
                         <div class="modal-body">
                             <x-notice.general-notice
-                                :description="__('Notice: Please discuss project requirements and budget with the client before sending an offer to prevent misunderstandings.')"
+                                :description="__('Notice: Please discuss Gig requirements and budget with the client before sending an offer to prevent misunderstandings.')"
                                 :description1="__('Notice: If pay by milestone you can skip description section')"
                             />
                             <div class="offer_total_price mt-5 setup-bank-form-item setup-bank-form-item-icon">

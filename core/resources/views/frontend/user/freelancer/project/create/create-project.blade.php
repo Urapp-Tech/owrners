@@ -1,5 +1,5 @@
 @extends('frontend.layout.master')
-@section('site_title',__('Create Project'))
+@section('site_title',__('Create Gig'))
 @section('style')
 <x-summernote.summernote-css />
 <x-select2.select2-css />
@@ -16,7 +16,7 @@
 @endsection
 @section('content')
 <main>
-    <x-breadcrumb.user-profile-breadcrumb :title="__('Create Project')" :innerTitle="__('Create Project')" />
+    <x-breadcrumb.user-profile-breadcrumb :title="__('Create Gig')" :innerTitle="__('Create Gig')" />
     <!-- Account Setup area Starts -->
     <div class="account-area section-bg-2 pat-100 pab-100">
         <div class="container">

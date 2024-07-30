@@ -7,9 +7,9 @@
         <div class="create-project-wrapper-upload">
             <div class="create-project-wrapper-upload-browse center-text radius-10">
                 @if($project_details->image)
-                    <img src="{{ asset('assets/uploads/project/'.$project_details->image) }}" alt="{{ __('Project Image') }}" class="project_photo_preview">
+                    <img src="{{ asset('assets/uploads/project/'.$project_details->image) }}" alt="{{ __('Gig Image') }}" class="project_photo_preview">
                 @else
-                    <img src="" alt="{{ __('Project Image') }}" class="project_photo_preview">
+                    <img src="" alt="{{ __('Gig Image') }}" class="project_photo_preview">
                 @endif
                 <span class="create-project-wrapper-upload-browse-icon mt-3">
                     <i class="fa-solid fa-image"></i>

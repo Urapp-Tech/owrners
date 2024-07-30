@@ -180,4 +180,28 @@ class PageBuilderSetup
         }
         return $output;
     }
+
+    public static function render_header_third($name) {
+        $widget = PageBuilder::where('addon_name', $name)->first();
+        $output = '';
+
+        if(!file_exists(base_path(str_replace(['\\','App'],['/','app'],$widget->addon_namespace).'.php'))){
+            return $output;
+        }
+
+        if( !class_exists($widget->addon_namespace)){
+            return $output;
+        }
+
+        if($widget) {
+            $output .= self::render_widgets_by_name_for_frontend([
+                'name' => $widget->addon_name,
+                'namespace' => $widget->addon_namespace,
+                // 'location' => $location,
+                'id' => $widget->id,
+                'column' => $args['column'] ?? false
+            ]);
+        }
+        return $output;
+    }
 }

@@ -10,7 +10,7 @@
 @section('content')
     <main>
         <x-breadcrumb.user-profile-breadcrumb :title="__('Proposal Details')" :innerTitle="__('Proposal Details')"/>
-        <div class="profile-area pat-100 pab-100 section-bg-2">
+        <div class="profile-area pat-25 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="col-lg-12">

@@ -1,4 +1,4 @@
-<!-- Project Introduction Start -->
+<!-- Gig Introduction Start -->
 <div class="setup-wrapper-contents">
     <div class="create-project-wrapper-item">
         <div class="create-project-wrapper-item-top profile-border-bottom">
@@ -63,4 +63,4 @@
         </div>
     </div>
 </div>
-<!-- Project Introduction Ends -->
+<!-- Gig Introduction Ends -->

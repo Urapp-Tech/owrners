@@ -1,6 +1,6 @@
 @extends('frontend.layout.master')
 @section('site_title')
-    {{ $project->title ?? __('Project Preview') }}
+    {{ $project->title ?? __('Gig Preview') }}
 @endsection
 @section('style')
     <x-summernote.summernote-css />
@@ -302,10 +302,9 @@
 @endsection
 @section('content')
     <main>
-        <x-frontend.category.category />
-        <x-breadcrumb.user-profile-breadcrumb :title="__('Project Details')" :innerTitle="__('Project Details')" />
+        <x-breadcrumb.user-profile-breadcrumb :title="__('Gig Details')" :innerTitle="__('Gig Details')" />
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <div class="preview-area section-bg-2 pab-100">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-xl-7 col-lg-7">

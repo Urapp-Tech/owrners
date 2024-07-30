@@ -89,9 +89,9 @@ class HeaderStyleThree extends PageBuilderBase
 
         $title = $settings['title'] ?? null;
         $subtitle = $settings['subtitle'] ?? null;
-        $padding_top = $settings['padding_top'];
-        $padding_bottom = $settings['padding_bottom'];
-        $section_bg = $settings['section_bg'];
+        $padding_top = $settings['padding_top'] ?? null;
+        $padding_bottom = $settings['padding_bottom'] ?? null;
+        $section_bg = $settings['section_bg'] ?? null;
         // $slider_image = $settings['slider_image'] ?? '';
 
      

@@ -443,7 +443,7 @@
                             success:function(res){
                                 if(res.status == 'success'){
                                     $('.project_wrapper_area').load(location.href + ' .project_wrapper_area');
-                                    toastr_delete_js("{{ __('Project Successfully Deleted') }}")
+                                    toastr_delete_js("{{ __('Gig Successfully Deleted') }}")
                                 }
                             }
                         })
@@ -893,7 +893,7 @@
                     $('.heading_title_for_promotion_modal').text("{{ __('Promote Profile') }}")
                     $('.warning_for_promotion_modal').text("{{ __("Notice: Days refers to the number of days a freelancer profile will be displayed in the talent page promotional area after he buy a package.") }}")
                 }else{
-                    $('.heading_title_for_promotion_modal').text("{{ __('Promote Project') }}")
+                    $('.heading_title_for_promotion_modal').text("{{ __('Promote Gig') }}")
                     $('.warning_for_promotion_modal').text("{{ __("Notice: Days refers to the number of days a freelancer project will be displayed in the project promotional area after he buy a package.") }}")
 
                 }

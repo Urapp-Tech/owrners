@@ -8,7 +8,7 @@
         <x-frontend.category.category/>
         <x-breadcrumb.user-profile-breadcrumb :title="__('Skill Jobs') ?? __('Skill')" :innerTitle=" $skill->skill ?? '' "/>
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-12">

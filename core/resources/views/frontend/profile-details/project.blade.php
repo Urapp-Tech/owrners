@@ -1,6 +1,6 @@
 <div class="profile-wrapper-item add-project-parent radius-10 project_wrapper_area">
     <div class="profile-wrapper-item-flex flex-between align-items-center profile-border-bottom">
-        <h4 class="profile-wrapper-item-title"> {{ __('Project Catalogues') }} </h4>
+        <h4 class="profile-wrapper-item-title"> {{ __('Gig Catalogues') }} </h4>
         @if(Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 2  && Auth::guard('web')->user()->username==$username)
             <div class="profile-wrapper-item-plus create_project_show_hide">
                <a href="{{route('freelancer.project.create')}}"><i class="fas fa-plus"></i></a>
@@ -77,12 +77,12 @@
                                     @endif
                                     @if(moduleExists('SecurityManage'))
                                         @if(Auth::guard('web')->user()->freeze_project == 'freeze')
-                                            <a href="#" class="btn-profile btn-bg-1 @if(Auth::guard('web')->user()->freeze_project == 'freeze') disabled-link @endif"> {{ __('Edit Project') }} </a>
+                                            <a href="#" class="btn-profile btn-bg-1 @if(Auth::guard('web')->user()->freeze_project == 'freeze') disabled-link @endif"> {{ __('Edit Gig') }} </a>
                                         @else
-                                            <a href="{{ route('freelancer.project.edit',$project->id) }}" class="btn-profile btn-bg-1 edit_info_show_hide"> {{ __('Edit Project') }} </a>
+                                            <a href="{{ route('freelancer.project.edit',$project->id) }}" class="btn-profile btn-bg-1 edit_info_show_hide"> {{ __('Edit Gig') }} </a>
                                         @endif
                                     @else
-                                    <a href="{{ route('freelancer.project.edit',$project->id) }}" class="btn-profile btn-bg-1 edit_info_show_hide"> {{ __('Edit Project') }} </a>
+                                    <a href="{{ route('freelancer.project.edit',$project->id) }}" class="btn-profile btn-bg-1 edit_info_show_hide"> {{ __('Edit Gig') }} </a>
                                     @endif
         
                                     @if(moduleExists('PromoteFreelancer'))
@@ -99,7 +99,7 @@
                                             data-bs-target="#openProjectPromoteModal"
                                             data-bs-toggle="modal"
                                             data-project-id="{{ $project->id }}">
-                                                {{ __('Promote Project') }}
+                                                {{ __('Promote Gig') }}
                                             </a>
                                         @endif
                                 @endif

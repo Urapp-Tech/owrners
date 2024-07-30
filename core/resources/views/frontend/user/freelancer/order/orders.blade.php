@@ -17,10 +17,10 @@
 @endsection
 @section('content')
     <main>
-        <x-frontend.category.category />
+        {{-- <x-frontend.category.category /> --}}
         <x-breadcrumb.user-profile-breadcrumb :title="__('My Orders')" :innerTitle="__('My Orders')" />
         <!-- Profile Details area Starts --> 
-        <div class="profile-area pat-100 pab-100 section-bg-2">
+        <div class="profile-area pat-50 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="@if(get_static_option('job_enable_disable') != 'disable') col-xl-8 col-lg-8 @else col-12 @endif">

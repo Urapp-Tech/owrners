@@ -4,13 +4,13 @@
         <div class="row">
 
             <div class="col-md-6">
-                <div class="col-md-8 col-12 position-relative">
+                {{-- <div class="col-md-8 col-12 position-relative">
                     <input type="text" id="search" class="form-control searchbar-input search-in-subcategories" placeholder="Search">
                     <div class="searchbar-icon-subcategories">
                         <img src="{{ asset('assets/static/icons/search-magnifying.svg') }}" alt="">
                     </div>
 
-                </div>
+                </div> --}}
             </div>
             <div class="col-md-6 row">
 

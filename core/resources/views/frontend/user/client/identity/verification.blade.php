@@ -8,11 +8,11 @@
             <x-breadcrumb.user-profile-breadcrumb :title="__('Identity Verification')" :innerTitle="__('Identity Verification')"/>
             <!-- Profile Settings area Starts -->
             <div class="responsive-overlay"></div>
-            <div class="profile-settings-area pat-100 pab-100 section-bg-2">
+            <div class="profile-settings-area pat-25 pab-100 section-bg-2">
                 <div class="container">
                     <div class="row g-4">
-                        @include('frontend.user.layout.partials.sidebar')
-                        <div class="col-xl-9 col-lg-8">
+                        {{-- @include('frontend.user.layout.partials.sidebar') --}}
+                        <div class="col-xl-12 col-lg-12">
                         @if(Auth::guard('web')->user()->user_verified_status == 1 && Auth::guard('web')->user()->user_type == 1)
                             <div class="single-profile-settings">
                                 <div class="identity-verification verify">

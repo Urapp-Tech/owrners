@@ -34,7 +34,7 @@
     <x-breadcrumb.user-profile-breadcrumb :title="__('Analytics Overview')" :innerTitle="__('Analytics Overview')" />
     <!-- Profile Settings area Starts -->
     <div class="responsive-overlay"></div>
-    <div class="profile-settings-area pat-100 pab-100 section-bg-2">
+    <div class="profile-settings-area pat-25 pab-100 section-bg-2">
         <div class="container">
             <div class="row g-4">
                 <div class="col-xl-12 col-lg-12">
@@ -54,7 +54,7 @@
                                         {{ __('Repeat Business') }} </span>
                                     </button>
                                     <button class="order_sort" data-val="performance">
-                                        {{ __('Project Performance') }} </span>
+                                        {{ __('Gig Performance') }} </span>
                                     </button>
                                 </div>
                                 <div class="myOrder-tab-content">
@@ -177,7 +177,7 @@
                                                 <div class="col-xl-6">
     
                                                     <select name="project_id" id="project_id" class="form-control outline-selection">
-                                                        <option value=""> Select Project</option>
+                                                        <option value=""> Select Gig</option>
                                                         @foreach ($projects as $project)
                                                             <option value="{{ $project->id }}">{{ $project->title }}</option>
                                                         @endforeach
@@ -367,7 +367,7 @@
             performanceChart.data.datasets[0].data = [clickCount, orders];
             performanceChart.update();
         }
-        // Project Seleection
+        // Gig Seleection
 
         $(document).on('change','#project_id, #date', function () {
             var project_id = $("#project_id").val();

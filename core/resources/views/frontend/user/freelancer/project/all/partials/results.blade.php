@@ -2,9 +2,9 @@
     <table>
         <thead>
             <tr>
-                 <th>Project Name</th>
+                 <th>Gig Name</th>
                  <th>Orders</th>
-                 <th>Project Category</th>
+                 <th>Gig Category</th>
                  <th></th>
             </tr>
         </thead>
@@ -15,7 +15,7 @@
                         <div class="d-flex">
                             <div class="project_photo_preview_container">
                                 @if($project->image)
-                                    <img src="{{ asset('assets/uploads/project/'.$project->image) }}" alt="{{ __('Project Image') }}" class="project_photo_preview">
+                                    <img src="{{ asset('assets/uploads/project/'.$project->image) }}" alt="{{ __('Gig Image') }}" class="project_photo_preview">
                                 @endif
                             </div>
                             <div class="align-content-center px-3">

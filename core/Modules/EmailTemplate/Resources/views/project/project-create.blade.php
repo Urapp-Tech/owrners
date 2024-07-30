@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', __('Project Create Email'))
+@section('title', __('Gig Create Email'))
 @section('style')
     <x-summernote.summernote-css />
 @endsection
@@ -10,7 +10,7 @@
                 <div class="customMarkup__single">
                     <div class="customMarkup__single__item">
                         <div class="customMarkup__single__item__flex">
-                            <h4 class="customMarkup__single__title">{{ __('Project Create Email') }}</h4>
+                            <h4 class="customMarkup__single__title">{{ __('Gig Create Email') }}</h4>
                         </div>
                         <div class="search_delete_wrapper">
                             <h4><a class="btn-profile btn-bg-1" href="{{ route('admin.email.template.all') }}">{{ __('All Templates') }}</a></h4>
@@ -25,7 +25,7 @@
                                     :type="__('text')"
                                     :name="'project_create_email_subject'"
                                     :id="'project_create_email_subject'"
-                                    :value="get_static_option('project_create_email_subject') ?? __('Project Create Email')"
+                                    :value="get_static_option('project_create_email_subject') ?? __('Gig Create Email')"
                                 />
                                 <x-form.summernote
                                     :title="__('Email Message')"
@@ -33,7 +33,7 @@
                                     :id="'project_create_email_message'"
                                     :value="get_static_option('project_create_email_message') ?? '' "
                                 />
-                                <small class="form-text text-muted text-danger margin-top-20"><code>@project_id</code> {{__('will be replaced by dynamically with project id.')}}</small><br>
+                                <small class="form-text text-muted text-danger margin-top-20"><code>@project_id</code> {{__('will be replaced by dynamically with Gig id.')}}</small><br>
                                 <x-btn.submit :title="__('Save')" :class="'btn-gradient update_info'" />
                             </form>
                         </div>

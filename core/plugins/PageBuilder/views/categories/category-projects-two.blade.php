@@ -3,7 +3,7 @@
 <section class="category-area pat-50 pab-50" data-padding-top="{{$padding_top ?? ''}}" data-padding-bottom="{{$padding_bottom ?? ''}}" style="background-color:{{$section_bg ?? ''}}">
     <div class="container">
         <div class="section-title-category-two ">
-            <h2 class="title"> {{ $title ?? __('Browse Projects By Categories') }} </h2>
+            <h2 class="title"> {{ $title ?? __('Browse Gigs By Categories') }} </h2>
         </div>
         <div class="row gy-4 mt-4">
             <div class="col-lg-12">
@@ -32,7 +32,7 @@
                                                 </div>
                                                 <div class="single-category-contents">
                                                     <h5 class="single-category-contents-title"> {{ $category->category ?? '' }} </h5>
-                                                    <span class="single-category-contents-subtitle"> {{ $category->projects_count ?? '' }} {{ __('Projects') }} </span>
+                                                    <span class="single-category-contents-subtitle"> {{ $category->projects_count ?? '' }} {{ __('Gigs') }} </span>
                                                 </div>
                                             </div> --}}
                                         </a>
@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="single-category-contents">
                                             <h5 class="single-category-contents-title"> {{ $category->category ?? '' }} </h5>
-                                            <span class="single-category-contents-subtitle"> {{ $category->projects_count ?? '' }} {{ __('Projects') }} </span>
+                                            <span class="single-category-contents-subtitle"> {{ $category->projects_count ?? '' }} {{ __('Gigs') }} </span>
                                         </div>
                                     </div> --}}
                                 </a>

@@ -1,5 +1,5 @@
 @extends('frontend.layout.master')
-@section('site_title') {{ __('Search Project') }} @endsection
+@section('site_title') {{ __('Search Gig') }} @endsection
 @section('style')
     <x-select2.select2-css />
     <style>
@@ -45,7 +45,7 @@
                 <div class="row g-4">
                     @if(moduleExists('PromoteFreelancer'))
                         <div class="profile-wrapper-right-flex flex-btn text-right">
-                            <span class="profile-wrapper-switch-title">{{ __('Pro Projects') }}</span>
+                            <span class="profile-wrapper-switch-title">{{ __('Pro Gigs') }}</span>
                             <div class="profile-wrapper-switch-custom display_work_availability">
                                 <label class="custom_switch">
                                     <input type="checkbox" id="get_pro_projects" value="0">

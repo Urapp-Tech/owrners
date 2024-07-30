@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', __('Project Details'))
+@section('title', __('Gig Details'))
 @section('style')
     <x-select2.select2-css />
 @endsection

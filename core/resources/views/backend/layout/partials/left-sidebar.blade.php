@@ -237,16 +237,16 @@
 
                 <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/project*')) active open show @endif">
-                    <a href="javascript:void(0)"> <i class="fa-solid fa-file-word"></i>{{ __('Projects') }} </a>
+                    <a href="javascript:void(0)"> <i class="fa-solid fa-file-word"></i>{{ __('Gigs') }} </a>
                     <ul class="submenu">
                         @can('project-list')
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.project'])) selected @endif">
-                                <a href="{{ route('admin.project') }}"> {{ __('All Projects') }} </a>
+                                <a href="{{ route('admin.project') }}"> {{ __('All Gigs') }} </a>
                             </li>
                         @endcan
                         @can('project-history-list')
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.project.history'])) selected @endif">
-                                <a href="{{ route('admin.project.history') }}"> {{ __('Project History') }} </a>
+                                <a href="{{ route('admin.project.history') }}"> {{ __('Gig History') }} </a>
                             </li>
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.project.approval.settings'])) selected @endif">
                                 <a href="{{ route('admin.project.approval.settings') }}"> {{ __('Auto Approval Settings') }} </a>
@@ -726,7 +726,7 @@
                         </li>
                         <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.project.enable.disable.settings'])) selected @endif">
                             <a href="{{ route('admin.project.enable.disable.settings') }}">
-                                {{ __('Project Enable Disable') }} </a>
+                                {{ __('Gig Enable Disable') }} </a>
                         </li>
                         <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.job.enable.disable.settings'])) selected @endif">
                             <a href="{{ route('admin.job.enable.disable.settings') }}">

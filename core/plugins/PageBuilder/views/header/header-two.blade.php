@@ -15,7 +15,7 @@
                                 <a href="{{ route('jobs.all') ?? '' }}" class="cmn-btn btn-bg-secondary"> {{$find_work_button_text ?? __('Find Work') }} </a>
                             @endif
                             @if(get_static_option('project_enable_disable') != 'disable')
-                                <a href="{{ route('projects.all') ?? '' }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Project') }} </a>
+                                <a href="{{ route('projects.all') ?? '' }}" class="cmn-btn btn-outline-1 color-one"> {{$find_project_button_text ?? __('Find Gig') }} </a>
                             @endif
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                                 <div class="banner-wrapper-project-content">
                                     @if($freelancer_order_count > 0)
                                         <span class="banner-wrapper-project-content-title"> {{ __('Completed') }}
-                                            <strong>{{ $freelancer_order_count }}</strong> {{ __('Projects') }}
+                                            <strong>{{ $freelancer_order_count }}</strong> {{ __('Gigs') }}
                                         </span>
                                     @endif
                                 </div>

@@ -46,7 +46,7 @@
         }
 
         .wallet-summary-title {
-            padding-bottom: 15px;
+            padding: 15px;
         }
     </style>
 @endsection
@@ -56,7 +56,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Wallet History')" :innerTitle="__('Wallet History')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-100 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
@@ -65,7 +65,7 @@
 
                             <div class="" id="display_client_profile_photo">
                                 <div class="row">
-                                    <div class="col-xxl-4">
+                                    <div class="col-md-4 h-100">
                                         <h5 class="wallet-summary-title">Available Funds</h5>
                                         <div class="wallet-summary-container">
                                             <h6 class="wallet-summary-subtitle"> Balance available for use</h6>
@@ -115,7 +115,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-xxl-4">
+                                    <div class="col-md-4 h-100">
                                         <h5 class="wallet-summary-title">Future Payments</h5>
                                         <div class="wallet-summary-container">
                                             <h6 class="wallet-summary-subtitle"> Payments being cleared</h6>
@@ -126,7 +126,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-xxl-4">
+                                    <div class="col-md-4 h-100">
                                         <h5 class="wallet-summary-title">Earnings & Expenses</h5>
                                         <div class="wallet-summary-container">
                                             <h6 class="wallet-summary-subtitle">Earnings this year</h6>

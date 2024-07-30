@@ -2,7 +2,7 @@
 <div class="setup-wrapper-contents">
     <div class="create-project-wrapper-item">
         <div class="create-project-wrapper-item-top profile-border-bottom">
-            <h4 class="create-project-wrapper-title">{{ __('Upload Project Image') }} </h4>
+            <h4 class="create-project-wrapper-title">{{ __('Upload Gig Image') }} </h4>
         </div>
         <div class="create-project-wrapper-upload">
             <div class="create-project-wrapper-upload-browse center-text radius-10">

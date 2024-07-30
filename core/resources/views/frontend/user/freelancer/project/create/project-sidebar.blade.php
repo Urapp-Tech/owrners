@@ -5,7 +5,7 @@
                 <li class="single-setup-request-list-item running">
                     <span class="single-setup-request-list-item-number"> 1 </span>
                     <div class="single-setup-request-list-item-contents">
-                        <h5 class="single-setup-request-list-item-contents-title">{{ __('Project Intro') }}</h5>
+                        <h5 class="single-setup-request-list-item-contents-title">{{ __('Gig Intro') }}</h5>
                         <p class="single-setup-request-list-item-contents-para">{{ __('Add title & description to your project') }}</p>
                     </div>
                 </li>

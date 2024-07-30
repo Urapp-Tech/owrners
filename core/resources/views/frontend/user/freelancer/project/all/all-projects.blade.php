@@ -1,5 +1,5 @@
 @extends('frontend.layout.master')
-@section('site_title',__('All Projects'))
+@section('site_title',__('All Gigs'))
 @section('style')
     <style>
         .project_photo_preview {
@@ -12,10 +12,10 @@
 @endsection
 @section('content')
     <main>
-        <x-breadcrumb.user-profile-breadcrumb :title="__('All Projects')" :innerTitle="__('All Projects')"/>
+        <x-breadcrumb.user-profile-breadcrumb :title="__('All Gigs')" :innerTitle="__('All Gigs')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-100 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
@@ -23,7 +23,7 @@
                         <div class="profile-settings-wrapper section-bg-1 p-3 rounded-30">
                             <div class="d-flex justify-content-between">
                                 <div>
-                                    <h3 class="p-4"> Project </h3>
+                                    <h3 class="p-4"> Gig </h3>
                                 </div>
                                 <div class="justify-content-end align-content-center">
                                     <a href="{{ route('freelancer.project.create') }}" class="btn-outline-owrners">
@@ -55,9 +55,9 @@
                                             <table>
                                                 <thead>
                                                     <tr>
-                                                         <th>Project Name</th>
+                                                         <th>Gig Name</th>
                                                          <th>Orders</th>
-                                                         <th>Project Category</th>
+                                                         <th>Gig Category</th>
                                                          <th></th>
                                                     </tr>
                                                 </thead>
@@ -68,7 +68,7 @@
                                                                 <div class="d-flex">
                                                                     <div class="project_photo_preview_container">
                                                                         @if($project->image)
-                                                                            <img src="{{ asset('assets/uploads/project/'.$project->image) }}" alt="{{ __('Project Image') }}" class="project_photo_preview">
+                                                                            <img src="{{ asset('assets/uploads/project/'.$project->image) }}" alt="{{ __('Gig Image') }}" class="project_photo_preview">
                                                                         @endif
                                                                     </div>
                                                                     <div class="align-content-center px-3">
@@ -137,7 +137,7 @@
                                 if(res.status == 'success'){
                                     $(button).parents('tr').remove();
                                     $('.project_wrapper_area').load(location.href + ' .project_wrapper_area');
-                                    toastr_delete_js("{{ __('Project Successfully Deleted') }}")
+                                    toastr_delete_js("{{ __('Gig Successfully Deleted') }}")
                                 }
                             }
                         })

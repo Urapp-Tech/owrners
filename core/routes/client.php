@@ -103,7 +103,8 @@ Route::group(['prefix'=>'client','as'=>'client.'],function() {
         //dashboard
         Route::controller(DashboardController::class)->group(function () {
             Route::group(['prefix'=>'dashboard'],function(){
-                Route::get('info','dashboard')->name('dashboard');
+                Route::get('info','buyer_dashboard')->name('dashboard');
+                Route::get('buyer','buyer_dashboard')->name('dashboard.buyer');
             });
         });
 

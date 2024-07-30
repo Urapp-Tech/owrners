@@ -1,20 +1,20 @@
 @extends('frontend.layout.master')
-@section('site_title',__('Project Preview'))
+@section('site_title',__('Gig Preview'))
 @section('style')
     <x-summernote.summernote-css />
 @endsection
 @section('content')
     <main>
-        <x-breadcrumb.user-profile-breadcrumb :title="__('Project Preview')" :innerTitle="__('Project Preview')"/>
-        <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <x-breadcrumb.user-profile-breadcrumb :title="__('Gig Preview')" :innerTitle="__('Gig Preview')"/>
+        <!-- Gig preview area Starts -->
+        <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
                     @foreach($all_projects as $project)
                     <div class="col-lg-6">
                         <div class="project-preview">
                             <div class="project-preview-head profile-border-bottom">
-                                <h4 class="project-preview-head-title">{{ __('Project Catalogues') }}</h4>
+                                <h4 class="project-preview-head-title">{{ __('Gig Catalogues') }}</h4>
                             </div>
                             <div class="project-preview-thumb">
                                 <img src="{{ asset('assets/uploads/project/'.$project->image) }}" alt="projectPreview">
@@ -30,10 +30,10 @@
                                        data-bs-target="#projectDescriptionView"
                                        data-project_id="{{ $project->id }}">
                                         <i class="fa-solid fa-eye"></i>
-                                        {{ __('Project Description') }}
+                                        {{ __('Gig Description') }}
                                     </a>
-                                    <a href="javascript:void(0)" class="btn-profile btn-outline-gray btn-hover-danger"> <i class="fa-solid fa-trash-can"></i>{{ __('Delete Project') }}</a>
-                                    <a href="javascript:void(0)" class="btn-profile btn-bg-1">{{ __('Edit Project') }}</a>
+                                    <a href="javascript:void(0)" class="btn-profile btn-outline-gray btn-hover-danger"> <i class="fa-solid fa-trash-can"></i>{{ __('Delete Gig') }}</a>
+                                    <a href="javascript:void(0)" class="btn-profile btn-bg-1">{{ __('Edit Gig') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                 </div>
             </div>
         </div>
-        <!-- Project preview area end -->
+        <!-- Gig preview area end -->
     </main>
 
     <!-- Modal -->
@@ -161,7 +161,7 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="projectDescriptionViewLabel">{{ __('Project Description') }}</h1>
+                    <h1 class="modal-title fs-5" id="projectDescriptionViewLabel">{{ __('Gig Description') }}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

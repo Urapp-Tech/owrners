@@ -1,8 +1,8 @@
-<!-- Project Introduction Start -->
+<!-- Gig Introduction Start -->
 <div class="setup-wrapper-contents active">
     <div class="create-project-wrapper-item">
         <div class="create-project-wrapper-item-top profile-border-bottom">
-            <h4 class="create-project-wrapper-title">{{ __('Project Intro') }}</h4>
+            <h4 class="create-project-wrapper-title">{{ __('Gig Intro') }}</h4>
         </div>
         <div class="create-project-intro-contents">
             <div class="create-project-intro-contents-form custom-form">
@@ -40,4 +40,4 @@
         </div>
     </div>
 </div>
-<!-- Project Introduction Ends -->
+<!-- Gig Introduction Ends -->

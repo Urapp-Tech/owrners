@@ -124,7 +124,7 @@
                         {{--security manage code--}}
                         @if(moduleExists('SecurityManage'))
                             @php $user->freeze_withdraw == 'freeze' ? $is_withdrawal_freeze = 'Withdrawal Unfreeze' : $is_withdrawal_freeze = 'Withdrawal Freeze'; @endphp
-                            @php $user->freeze_project == 'freeze' ? $is_project_freeze = 'Project Create Edit Unfreeze' : $is_project_freeze = 'Project Create Edit Freeze'; @endphp
+                            @php $user->freeze_project == 'freeze' ? $is_project_freeze = 'Gig Create Edit Unfreeze' : $is_project_freeze = 'Gig Create Edit Freeze'; @endphp
                             @php $user->freeze_chat == 'freeze' ? $is_chat_freeze = 'Chat Unfreeze' : $is_chat_freeze = 'Chat Freeze'; @endphp
 
                             <x-status.table.status-change :title="__($is_withdrawal_freeze)" :url="route('admin.freelancer.withdrawal.freeze',$user->id)"/>

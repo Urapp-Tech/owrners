@@ -43,7 +43,7 @@ class Category extends Model
 
     public function projects()
     {
-        return $this->hasMany(Project::class,'category_id','id')->select(['id','category_id','slug'])->where(['project_on_off'=>'1','project_approve_request'=>1,'status'=>'1']);
+        return $this->hasMany(Project::class,'category_id','id')->where(['project_on_off'=>'1','project_approve_request'=>1,'status'=>'1']);
     }
 
     public function jobs()

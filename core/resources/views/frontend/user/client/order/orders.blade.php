@@ -5,11 +5,11 @@
 @endsection
 @section('content')
     <main>
-        <x-frontend.category.category />
+        {{-- <x-frontend.category.category /> --}}
         <x-breadcrumb.user-profile-breadcrumb :title="__('My Orders')" :innerTitle="__('My Orders')" />
 
         <!-- Profile Details area Starts -->
-        <div class="profile-area pat-100 pab-100 section-bg-2">
+        <div class="profile-area pat-25 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="@if(get_static_option('project_enable_disable') != 'disable') col-xl-8 col-lg-9 @else col-12 @endif">
@@ -35,7 +35,7 @@
                     <div class="col-xl-4 col-lg-7">
                         <div class="profile-details-widget sticky_top_lg">
                             <div class="file-wrapper-item-flex flex-between align-items-center profile-border-bottom">
-                                <h4 class="profile-wrapper-item-title"> {{ __('Project Catalogues') }} </h4>
+                                <h4 class="profile-wrapper-item-title"> {{ __('Gig Catalogues') }} </h4>
                                 <a href="{{ route('projects.all') }}" class="profile-wrapper-item-browse-btn"> {{ __('Browse All') }}</a>
                             </div>
                             @if($top_projects->count() > 0)

@@ -23,14 +23,14 @@
 
 @section('content')
     <main>
-        <x-breadcrumb.user-profile-breadcrumb :title="__('Wallet History')" :innerTitle="__('Wallet History')"/>
+        {{-- <x-breadcrumb.user-profile-breadcrumb :title="__('Wallet History')" :innerTitle="__('Wallet History')"/> --}}
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-100 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
-                    @include('frontend.user.layout.partials.sidebar')
-                    <div class="col-xl-9 col-lg-8">
+                    {{-- @include('frontend.user.layout.partials.sidebar') --}}
+                    <div class="col-xl-12 col-lg-12">
                         <div class="profile-settings-wrapper">
                             <div class="single-profile-settings">
                                 <div class="single-profile-settings-header">
