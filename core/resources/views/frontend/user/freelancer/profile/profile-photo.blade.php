@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="btn-wrapper">
-        @php $feedback = \App\Models\Feedback::where('user_id',Auth::guard('web')->user()->id)->first() @endphp
+        {{-- @php $feedback = \App\Models\Feedback::where('user_id',Auth::guard('web')->user()->id)->first() @endphp
         <a href="javascript:void(0)" class="btn-profile btn-outline-1 open_freelancer_feedback_modal" data-bs-target="#feedbackModal"
             data-bs-toggle="modal"
            data-feedback-title="{{ $feedback->title ?? '' }}"
@@ -38,6 +38,6 @@
            data-feedback-rating="{{ $feedback->rating ?? '' }}"
         >
             {{ __('Feedback') }}
-        </a>
+        </a> --}}
     </div>
 </div>

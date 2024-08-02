@@ -7,7 +7,7 @@
 
         <ul class="setup-wrapper-work-list freelancer_skill_list">
             @php
-                $array_skill = explode(", ",$skills);
+                $array_skill = $skills && $skills !== "" ? explode(", ",$skills) : [];
                 $array_length =  count($array_skill);
             @endphp
             @for($i = 0; $i<=($array_length-1); $i ++ )

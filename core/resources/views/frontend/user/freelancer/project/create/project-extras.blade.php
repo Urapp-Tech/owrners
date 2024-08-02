@@ -14,10 +14,10 @@
                 </div>
 
                 <div id="project-extras-container" class="row">
-                    <div class="col-lg-6 col-md-12 col-12 project-extra-parent">
+                    <div class="col-lg-12 col-xxl-6 col-md-12 col-12 project-extra-parent">
                         <div class="project-extra">
                             <div class="row align-items-center">
-                                <div class="col-6 col-lg-4">
+                                <div class="col-12 col-lg-4">
                                     <x-form.text :type="'text'" :id="'extras_title'" :name="'extras_title[]'" :divClass="'mb-0'" :class="'form--control'" :value="old('extras_title[]')" :placeholder="__('Name')" />
                                 </div>
                                 <div class="col-6 col-lg-4">

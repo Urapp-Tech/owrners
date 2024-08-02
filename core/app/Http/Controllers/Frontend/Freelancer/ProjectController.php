@@ -397,6 +397,7 @@ class ProjectController extends Controller
 
     public function get_projects() {
         $projects = Project::owned()->with(['project_category'])
+                    ->withCount('clicks')
                     ->latest()
                     ->withCount(['orders' => function ($q) {
                         $q->where('payment_status', 'complete');
@@ -408,6 +409,7 @@ class ProjectController extends Controller
     public function get_filtered_projects(Request $request) {
         $query = Project::query(); 
         $query =  $query->owned()->with(['project_category'])
+                    ->withCount('clicks')
                     ->latest()
                     ->withCount(['orders' => function ($q) {
                         $q->where('payment_status', 'complete');

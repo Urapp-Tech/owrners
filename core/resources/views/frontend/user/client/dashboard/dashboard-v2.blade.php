@@ -109,7 +109,7 @@
 
                                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                     @foreach ($popularCategories as $cat)
-                                        <button class="nav-link text-start {{ $loop->first ? " active": "" }} " id=" v-pills-{{$cat->id}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{$cat->id}}" type="button" role="tab" aria-controls="v-pills-{{$cat->id}}" aria-selected="true">{{$cat->category}}</button>
+                                        <button class="nav-link popularCatTabBtn text-start {{ $loop->first ? " active": "" }} " id=" v-pills-{{$cat->id}}-tab" data-bs-toggle="pill" data-bs-target="#v-pills-{{$cat->id}}" type="button" role="tab" aria-controls="v-pills-{{$cat->id}}" aria-selected="true">{{$cat->category}}</button>
                                     @endforeach
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                 <div class="tab-content" id="v-pills-tabContent">
 
                                     @foreach ($popularCategories as $cat)
-                                    <div class="tab-pane fade active {{ $loop->first ? " show ": "" }}" id="v-pills-{{$cat->id}}" role="tabpanel" aria-labelledby="v-pills-{{$cat->id}}-tab">
+                                    <div class="tab-pane fade {{ $loop->first ? "active show ": "" }}" id="v-pills-{{$cat->id}}" role="tabpanel" aria-labelledby="v-pills-{{$cat->id}}-tab">
                                         <div class="col-12 d-flex justify-content-end my-3">
                                             <div class="append-project-{{$cat->id}} append-project"></div>
                                         </div>
@@ -149,7 +149,12 @@
 @section('script')
 <script>
     $(document).ready(function(){
-            
+            $(document).on('click','.popularCatTabBtn', function() {
+                setTimeout(() => {
+                    
+                    $($(this).attr('data-bs-target')).find('.global-slick-init').slick('refresh');
+                });
+            })
         
         });
 </script>

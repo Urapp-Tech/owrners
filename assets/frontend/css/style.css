@@ -12156,7 +12156,7 @@ span.choose-account-single-contents-icon svg path {
   border-radius: 50%;
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .profile-wrapper-switch-title {
@@ -23794,7 +23794,7 @@ button #project_create_load_spinner i {
 
 .single-project-thumb-price-container {
   position: absolute;
-  top: 60%;
+  top: 55%;
   left: 15px;
   /* color:var(--main-color-one); */
   color: var(--heading-color);
@@ -23817,7 +23817,7 @@ button #project_create_load_spinner i {
 span.single-project-thumb-price {
   /* color:var(--main-color-one); */
   color: var(--heading-color);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -24567,7 +24567,7 @@ a.btn-outline-owrners {
   padding: .05rem 1rem !important;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1399.98px) {
   .single-project-thumb-price-container {
       top:40% !important;
       min-width: 120px !important;

@@ -65,9 +65,9 @@
                                 </div>
 
                                 <div class="single-input mb-3">
-                                    <label for="navbar_variant" class="label-title mt-5">{{__('Navbar Variant')}}</label>
+                                    {{-- <label for="navbar_variant" class="label-title mt-5">{{__('Navbar Variant')}}</label> --}}
                                     <input type="hidden" class="form-control" id="navbar_variant" value="{{$page_details->navbar_variant}}" name="navbar_variant">
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         @for($i = 1; $i <=1; $i++)
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="img-select img-select-navbar @if($page_details->navbar_variant == $i ) selected @endif">
@@ -77,12 +77,12 @@
                                                 </div>
                                             </div>
                                         @endfor
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="single-input mb-3">
-                                    <label for="footer_variant" class="label-title mt-5">{{__('Footer Variant')}}</label>
+                                    {{-- <label for="footer_variant" class="label-title mt-5">{{__('Footer Variant')}}</label> --}}
                                     <input type="hidden" class="form-control" id="footer_variant" value="{{$page_details->footer_variant}}" name="footer_variant">
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         @for($i = 1; $i <=2; $i++)
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="img-select img-select-footer @if($page_details->footer_variant == $i ) selected @endif">
@@ -92,7 +92,7 @@
                                                 </div>
                                             </div>
                                         @endfor
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

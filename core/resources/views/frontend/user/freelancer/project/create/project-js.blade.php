@@ -48,7 +48,7 @@
             $('#project_title_char_length_check').hide();
             $('#project_title').on('keydown keyup change', function(){
                 $('#project_title_char_length_check').show();
-                let title_min_length = 5;
+                let title_min_length = 20;
                 let title_max_length = 100;
                 let project_title_length = $('#project_title').val().length;
 
@@ -478,14 +478,14 @@
                         toastr_warning_js("{{ __('Please fill all fields !') }}");
                         return false;
                     }
-                    if(title.length < 5){
+                    if(title.length < 20){
                         current = 0;
-                        toastr_warning_js("{{ __('Title must be at least 5 characters') }}");
+                        toastr_warning_js("{{ __('Title must be at least 20 characters') }}");
                         return false;
                     }
-                    if(description.length < 10){
+                    if(description.length < 50){
                         current = 0;
-                        toastr_warning_js("{{ __('Description must be at least 10 characters') }}");
+                        toastr_warning_js("{{ __('Description must be at least 50 characters') }}");
                         return false;
                     }
                 }

@@ -6,7 +6,22 @@
         <div class="single-project-thumb">
             <a href="{{ route('project.details', ['username' => $project->project_creator?->username, 'slug' => $project->slug]) }}">
                 <img src="{{ asset('assets/uploads/project/'.$project->image) ?? '' }}" alt="{{ $project->title ?? '' }}">
+                <div class="single-project-thumb-price-container">
+                    From <br>
+                    <span class="single-project-thumb-price">
+
+                        @if($project->basic_discount_charge)
+                            {{ float_amount_with_currency_symbol($project->basic_discount_charge) }}
+                            <s>{{ float_amount_with_currency_symbol($project->basic_regular_charge) }}</s>
+                        @else
+                            {{ float_amount_with_currency_symbol($project->basic_regular_charge) }}
+                        @endif
+                    </span>
+                </div>
             </a>
+            <div class="single-project-thumb-bookmark-container">
+                <x-frontend.bookmark :identity="$project->id" :type="'project'" />
+            </div>
         </div>
         <div class="single-project-content">
             <div class="single-project-content-top align-items-center flex-between">
@@ -24,41 +39,41 @@
                         @endif
                     @endif
                 @endif
-                {!! project_rating($project->id) !!}
             </div>
-            <h4 class="single-project-content-title">
+            <div>
+                <div>
+                    @php
+                        $img =$project->project_creator->image;
+                        if(file_exists('assets/uploads/profile/'.$img)) {
+                            $img = asset('assets/uploads/profile/'.$img);
+                        }
+                        else {
+                            $img = asset('assets/uploads/no-image.png');;
+                        }
+                    @endphp
+                    <a href="{{ route('freelancer.profile.details', $project->project_creator->username) }}">
+                        <img src="{{  $img  }}"
+                             alt="{{ $project->project_creator->first_name }}" class="gig-user-profile">
+                    </a>
+                    <span class="project-category-item-bottom-name gig-user-profile-name">
+                        {{ $project->project_creator->first_name }} {{ $project->project_creator->last_name }}
+                    </span>
+                    <span class="project-category-item-bottom-location">
+                        @if($project->project_creator->location)
+                            {{ $project->project_creator->location }}
+                        @endif
+                    </span>
+                </div>
+            </div>
+            <h5 class="single-project-content-title">
                 <a href="{{ route('project.details', ['username' => $project->project_creator?->username, 'slug' => $project->slug]) }}"> {{ $project->title }} </a>
-            </h4>
+            </h5>
         </div>
-        <div class="single-project-bottom flex-between">
-            <span class="single-project-content-price">
-                @if($project->basic_discount_charge)
-                    {{ float_amount_with_currency_symbol($project->basic_discount_charge) }}
-                    <s>{{ float_amount_with_currency_symbol($project->basic_regular_charge) }}</s>
-                @else
-                    {{ float_amount_with_currency_symbol($project->basic_regular_charge) }}
-                @endif
-            </span>
-            <div class="single-project-delivery">
-                <span class="single-project-delivery-icon"> <i class="fa-regular fa-clock"></i>{{ __('Delivery') }}</span>
-                <span class="single-project-delivery-days"> {{ $project->basic_delivery }} </span>
-            </div>
-        </div>
-        <div class="project-category-item-bottom profile-border-top">
+       
+        <div class="project-category-item-bottom mt-2 w-100">
             <div class="project-category-item-bottom-flex flex-between align-items-center">
                 <div class="project-category-right-flex flex-btn">
-                    <x-frontend.bookmark :identity="$project->id" :type="'project'" />
-                </div>
-                <div class="project-category-item-btn flex-btn">
-                    @if(moduleExists('SecurityManage'))
-                        @if(Auth::guard('web')->check() && Auth::guard('web')->user()->freeze_order_create == 'freeze')
-                            <a href="#" class="btn-profile btn-outline-1 @if(Auth::guard('web')->user()->freeze_order_create == 'freeze') disabled-link @endif"> {{ __('Order Now') }} </a>
-                        @else
-                            <a href="{{ route('project.details', ['username' => $project->project_creator?->username, 'slug' => $project->slug]) }}" class="btn-profile btn-outline-1"> {{ __('Order Now') }} </a>
-                        @endif
-                    @else
-                    <a href="{{ route('project.details', ['username' => $project->project_creator?->username, 'slug' => $project->slug]) }}" class="btn-profile btn-outline-1"> {{ __('Order Now') }} </a>
-                    @endif
+                    {!! project_rating($project->id) !!}
                 </div>
             </div>
         </div>

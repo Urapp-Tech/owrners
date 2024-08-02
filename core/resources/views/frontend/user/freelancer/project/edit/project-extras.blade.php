@@ -15,7 +15,7 @@
 
                 <div id="project-extras-container" class="row">
                     @foreach($project_details->extras as $extra)
-                    <div class="col-lg-6 col-md-12 col-12 project-extra-parent">
+                    <div class="col-lg-12  col-xxl-6 col-md-12 col-12 project-extra-parent">
                         <div class="project-extra">
                             <div class="row align-items-center">
                                 <div class="col-6 col-lg-4">

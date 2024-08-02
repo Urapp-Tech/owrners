@@ -51,7 +51,7 @@
 <x-summernote.summernote-js-function />
 
 <script type="text/html" id="project-extra-template">
-    <div class="col-lg-6 col-md-12 col-12 project-extra-parent">
+    <div class="col-lg-12 col-xxl-6 col-md-12 col-12 project-extra-parent">
         <div class="project-extra">
             <div class="row align-items-center">
                 <div class="col-6 col-lg-4">
@@ -102,7 +102,7 @@
     initializeSummernote($('.description'), {
            onKeyup: function(e) {
                setTimeout(function(){
-                   let description_min_length = 10;
+                   let description_min_length = 50;
                    let project_description_length = $('#project_description').val().length;
 
                    if(project_description_length < description_min_length){

@@ -65,11 +65,11 @@
                                     <x-backend.page-meta-data-create :sidebarHeading="'Page Meta'" />
                                 </div>
                                 <div class="single-input mb-3">
-                                    <label for="navbar_variant" class="label-title mt-5">{{ __('Navbar Variant') }}</label>
+                                    {{-- <label for="navbar_variant" class="label-title mt-5">{{ __('Navbar Variant') }}</label> --}}
                                     <input type="hidden" class="form-control" id="navbar_variant"
                                            value="{{ get_static_option('navbar_variant') }}" name="navbar_variant">
                                     <div class="row">
-                                        @for ($i = 1; $i < 4; $i++)
+                                        {{-- @for ($i = 1; $i < 4; $i++)
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="img-select img-select-navbar selected">
                                                     <div class="img-wrap">
@@ -78,15 +78,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endfor
+                                        @endfor --}}
                                     </div>
                                 </div>
                                 <div class="single-input mb-3">
-                                    <label for="footer_variant" class="label-title mt-5">{{ __('Footer Variant') }}</label>
+                                    {{-- <label for="footer_variant" class="label-title mt-5">{{ __('Footer Variant') }}</label> --}}
                                     <input type="hidden" class="form-control" id="footer_variant" value="01"
                                            name="footer_variant">
                                     <div class="row">
-                                        @for ($i = 1; $i < 3; $i++)
+                                        {{-- @for ($i = 1; $i < 3; $i++)
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="img-select img-select-footer selected">
                                                     <div class="img-wrap">
@@ -95,7 +95,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endfor
+                                        @endfor --}}
                                     </div>
                                 </div>
                             </div>

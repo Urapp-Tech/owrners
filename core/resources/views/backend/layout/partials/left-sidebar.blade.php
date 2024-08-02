@@ -555,7 +555,7 @@
                                 <a href="{{ route('admin.general.settings.reading') }}"> {{ __('Reading') }} </a>
                             </li>
                         @endcan
-                        @can('navbar-global-variant')
+                        {{-- @can('navbar-global-variant')
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.general.settings.navbar.global.variant'])) selected @endif">
                                 <a href="{{ route('admin.general.settings.navbar.global.variant') }}">
                                     {{ __('Navbar Global Variant') }} </a>
@@ -566,7 +566,7 @@
                                 <a href="{{ route('admin.general.settings.footer.global.variant') }}">
                                     {{ __('Footer Global Variant') }} </a>
                             </li>
-                        @endcan
+                        @endcan --}}
                         @can('site-identity')
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.general.settings.site.identity'])) selected @endif">
                                 <a href="{{ route('admin.general.settings.site.identity') }}">
@@ -637,13 +637,13 @@
                                 <a href="{{ route('admin.general.settings.cache') }}"> {{ __('Cache Settings') }} </a>
                             </li>
                         @endcan
-                        @can('database-upgrade')
+                        {{-- @can('database-upgrade')
                             <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.general.settings.database.upgrade'])) selected @endif">
                                 <a href="{{ route('admin.general.settings.database.upgrade') }}">
                                     {{ __('Database Upgrade') }} </a>
                             </li>
-                        @endcan
-                        @can('generate-license-key')
+                        @endcan --}}
+                        {{-- @can('generate-license-key')
                         <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.license.settings'])) selected @endif">
                             <a href="{{ route('admin.license.settings') }}">
                                 {{ __('License Settings') }} </a>
@@ -652,7 +652,7 @@
                             <a href="{{ route('admin.software.update.settings') }}">
                                 {{ __('Check Update') }} </a>
                         </li>
-                        @endcan
+                        @endcan --}}
                     </ul>
                 </li>
 
@@ -728,10 +728,10 @@
                             <a href="{{ route('admin.project.enable.disable.settings') }}">
                                 {{ __('Gig Enable Disable') }} </a>
                         </li>
-                        <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.job.enable.disable.settings'])) selected @endif">
+                        {{-- <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.job.enable.disable.settings'])) selected @endif">
                             <a href="{{ route('admin.job.enable.disable.settings') }}">
                                 {{ __('Job Enable Disable') }} </a>
-                        </li>
+                        </li> --}}
                         <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.chat.email.settings'])) selected @endif">
                             <a href="{{ route('admin.chat.email.settings') }}">
                                 {{ __('Chat Email Enable Disable') }} </a>
@@ -751,7 +751,7 @@
                     </ul>
                 </li>
 
-                <li
+                {{-- <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/dynamic-pages*')) active open show @endif">
                     <a href="javascript:void(0)"> <i class="fa-solid fa-file-circle-plus"></i> {{ __('Pages') }}
                     </a>
@@ -778,7 +778,7 @@
                             </li>
                         @endcan
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="dashboard__bottom__list__item @if (request()->is(['admin/faq*'])) active @endif">
                     <a href="{{ route('admin.faq.all') }}"> <i

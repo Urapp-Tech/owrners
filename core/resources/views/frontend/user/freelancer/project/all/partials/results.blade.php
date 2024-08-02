@@ -3,6 +3,7 @@
         <thead>
             <tr>
                  <th>Gig Name</th>
+                 <th>Clicks</th>
                  <th>Orders</th>
                  <th>Gig Category</th>
                  <th></th>
@@ -23,6 +24,7 @@
                             </div>
                         </div>
                     </td>
+                    <td>{{ $project->clicks_count }}</td>
                     <td>{{ $project->orders_count }}</td>
                     <td>{{ $project->project_category->category }}</td>
                     <td>
