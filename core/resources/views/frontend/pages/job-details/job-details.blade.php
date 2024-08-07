@@ -19,7 +19,7 @@
                     <div class="col-lg-8">
                         <div class="jobFilter-wrapper sticky_top">
                             <div class="jobFilter-wrapper-item jobDetails-padding">
-                                <div class="jobFilter-wrapper-item-inner">
+                                <div class="jobFilter-wrapper-item-inner section-bg-1">
                                     <div class="jobFilter-wrapper-item-top">
                                         <div class="jobFilter-wrapper-item-top-left">
                                             <h4 class="jobFilter-wrapper-item-title">{{ $job_details->title }}</h4>

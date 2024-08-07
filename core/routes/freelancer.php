@@ -73,6 +73,12 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
         // Create project
         Route::controller(ProjectController::class)->group(function () {
             Route::group(['prefix'=>'project'],function(){
+                // Create Validating Project
+                Route::post('validate-intro','validate_intro')->name('project.validate.intro');
+                Route::post('validate-gallery','validate_gallery')->name('project.validate.gallery');
+                Route::post('validate-packages','validate_packages')->name('project.validate.packages');
+                // Update Validating Project
+                Route::post('edit-validate-intro','edit_validate_intro')->name('project.edit.validate.intro');
                 Route::match(['get','post'],'create-project','create_project')->name('project.create');
                 Route::match(['get','post'],'edit-project/{id}','edit_project')->name('project.edit');
                 Route::post('delete-project','delete_project')->name('project.delete');

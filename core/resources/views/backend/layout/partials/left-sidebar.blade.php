@@ -255,7 +255,7 @@
                     </ul>
                 </li>
 
-                {{-- <li
+                <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/job*')) active open show @endif">
                     <a href="javascript:void(0)"> <i class="fa-solid fa-file-word"></i>{{ __('Jobs') }} </a>
                     <ul class="submenu">
@@ -276,7 +276,7 @@
                             </li>
                         @endcan
                     </ul>
-                </li> --}}
+                </li>
 
                 <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/wallet*')) active open show @endif">
@@ -728,10 +728,10 @@
                             <a href="{{ route('admin.project.enable.disable.settings') }}">
                                 {{ __('Gig Enable Disable') }} </a>
                         </li>
-                        {{-- <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.job.enable.disable.settings'])) selected @endif">
+                        <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.job.enable.disable.settings'])) selected @endif">
                             <a href="{{ route('admin.job.enable.disable.settings') }}">
                                 {{ __('Job Enable Disable') }} </a>
-                        </li> --}}
+                        </li>
                         <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.chat.email.settings'])) selected @endif">
                             <a href="{{ route('admin.chat.email.settings') }}">
                                 {{ __('Chat Email Enable Disable') }} </a>

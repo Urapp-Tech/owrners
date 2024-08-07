@@ -9673,3 +9673,7 @@ li.active .curve-left {
   border-top-right-radius: 20px !important;
   border-top-left-radius: 20px !important;
 }
+
+.user-details-manage-list .item {
+   word-break: break-all;
+}

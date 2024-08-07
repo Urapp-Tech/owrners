@@ -30,7 +30,12 @@
                     </select>
                     <span id="subcategory_info"></span>
                 </div>
-               <x-form.text :title="__('What are you offering to clients?')" :type="'text'" :id="'project_title'" :name="'project_title'" :divClass="'mb-0'" :class="'form--control'" :value="$project_details->title ?? old('project_title')" :placeholder="__('You’ll get a Mobile application designed')" />
+                <div class="single-input mb-0">
+                    <label for="project_title" class="label-title">What are you offering to clients?</label>
+                    <span class="project-title-prefix" >You will</span>
+                    <input type="text" name="project_title" id="project_title" value="{{ str_replace("You will ", "", $project_details->title)  ?? old('project_title')}}" step="" placeholder="{{ __('You’ll get a Mobile application designed') }}" class="form--control">
+                </div>
+               {{-- <x-form.text :title="__('What are you offering to clients?')" :type="'text'" :id="'project_title'" :name="'project_title'" :divClass="'mb-0'" :class="'form--control'" :value="$project_details->title ?? old('project_title')" :placeholder="__('You’ll get a Mobile application designed')" /> --}}
                 <span id="project_title_char_length_check"></span>
                 <x-form.text :title="__('Slug')" :type="'text'" :id="'slug'" :name="'slug'" :divClass="'mb-0'" :class="'form--control d-none'" :labelClass="'d-none display_label_title'" :value="$project_details->slug ?? old('slug')" :placeholder="__('Slug')" />
 

@@ -109,8 +109,12 @@ class FrontendHomeController extends Controller
         $projects = Project::with('project_creator')
                     ->whereHas('project_creator')
                     ->where('project_on_off','1')
+                    ->withCount('complete_orders')
                     ->where('status','1')
                     ->where('title' , 'LIKE','%'. $search_query . '%')
+                    ->withAvg(['ratings' => function ($query){
+                        $query->where('sender_type', 1);
+                    }],'rating')
                     ->orWhereIn('category_id',$category_ids);
 
         if (isset($request->country) && !empty($request->country)) {
@@ -130,14 +134,16 @@ class FrontendHomeController extends Controller
         }
 
         if(!empty($request->rating)){
-            $projects = $projects->withAvg(['ratings' => function ($query){
-                $query->where('sender_type', 1);
-            }],'rating')
+            $projects = $projects
                 ->having('ratings_avg_rating',">", $request->rating -1)
                 ->having('ratings_avg_rating',"<=", $request->rating);
         }
 
-        $projects = $projects->paginate(10);
+        $projects = $projects
+                    ->orderBy('complete_orders_count','Desc')
+                    ->orderBy('ratings_avg_rating','Desc')
+                    ->paginate(10);
+
                     
         return view('frontend.pages.search-projects.projects',compact('projects', 'search_query'));
     }
@@ -166,6 +172,10 @@ class FrontendHomeController extends Controller
                     ->whereHas('project_creator')
                     ->where('project_on_off','1')
                     ->where('status','1')
+                    ->withCount('complete_orders')
+                    ->withAvg(['ratings' => function ($query){
+                        $query->where('sender_type', 1);
+                    }],'rating')
                     ->where('title' , 'LIKE','%'. $search_query . '%')
                     ->orWhereIn('category_id',$category_ids);
 
@@ -186,14 +196,15 @@ class FrontendHomeController extends Controller
         }
 
         if(!empty($request->rating)){
-            $projects = $projects->withAvg(['ratings' => function ($query){
-                $query->where('sender_type', 1);
-            }],'rating')
+            $projects = $projects
                 ->having('ratings_avg_rating',">", $request->rating -1)
                 ->having('ratings_avg_rating',"<=", $request->rating);
         }
 
-        $projects = $projects->paginate(10);
+        $projects = $projects
+                    ->orderBy('complete_orders_count','Desc')
+                    ->orderBy('ratings_avg_rating','Desc')
+                    ->paginate(10);
                     
         return $projects->total() >= 1 ? view('frontend.pages.search-projects.search-keywords-result',compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
     }

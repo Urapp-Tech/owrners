@@ -131,7 +131,7 @@
             $('.full-slug-show').hide();
             $(document).on('keyup', '#project_title , #slug', function (e) {
                 $('.full-slug-show').show();
-                let slug = convertToSlug($(this).val());
+                let slug = convertToSlug( "You will " + $(this).val());
                 $('#slug').val(slug);
 
                 let url = `{{url('/')}}/` + slug;
@@ -473,20 +473,47 @@
                     let subcategory = $('#subcategory').val();
                     let title = $('#project_title').val();
                     let description = $('#project_description').val();
-                    if(category == '' || subcategory == '' || title == '' || description == ''){
+                    // if(category == '' || subcategory == '' || title == '' || description == ''){
+                    //     current = 0;
+                    //     toastr_warning_js("{{ __('Please fill all fields !') }}");
+                    //     return false;
+                    // }
+                    // if(title.length < 20){
+                    //     current = 0;
+                    //     toastr_warning_js("{{ __('Title must be at least 20 characters') }}");
+                    //     return false;
+                    // }
+                    // if(description.length < 50){
+                    //     current = 0;
+                    //     toastr_warning_js("{{ __('Description must be at least 50 characters') }}");
+                    //     return false;
+                    // }
+
+                    $('#next').html(`<i class="fas fa-spinner"></i>`)
+
+                    var resp = await $.ajax({
+                        url: "{{ route('freelancer.project.validate.intro') }}",
+                        type: 'POST',
+                        accept: 'application/json',
+                        data: {project_title: title, project_description: description,slug: $('#slug').val() , category: category, subcategory: subcategory},
+                        success: function (response) {
+                            if (!response.success) {
+                                return false
+                            }
+                            return true;
+                        }
+                    })
+
+                    $('#next').html(`<i class="fas fa-arrow-right"></i>`)
+
+                    
+                    if (!resp.success) {
                         current = 0;
-                        toastr_warning_js("{{ __('Please fill all fields !') }}");
-                        return false;
+                        showErrosAlert(resp.errors)
+                        return resp;
                     }
-                    if(title.length < 20){
-                        current = 0;
-                        toastr_warning_js("{{ __('Title must be at least 20 characters') }}");
-                        return false;
-                    }
-                    if(description.length < 50){
-                        current = 0;
-                        toastr_warning_js("{{ __('Description must be at least 50 characters') }}");
-                        return false;
+                    else {
+                        $('.create-project-wrapper .alert').remove();
                     }
                 }
                 else if(current == 2){
@@ -495,6 +522,41 @@
                         current = 1;
                         toastr_warning_js("{{ __('Please upload project photo !') }}");
                         return false;
+                    }
+
+                    $('#next').html(`<i class="fas fa-spinner"></i>`)
+
+                    const file = $('#upload_project_photo')[0].files[0];
+
+                    var fd = new FormData();
+                    fd.append('image',file);
+
+                    var resp = await $.ajax({
+                        url: "{{ route('freelancer.project.validate.gallery') }}",
+                        type: 'POST',
+                        accept: 'application/json',
+                        data: fd,
+                        cache:false,
+                        contentType: false,
+                        processData: false,
+                        success: function (response) {
+                            if (!response.success) {
+                                return false
+                            }
+                            return true;
+                        }
+                    })
+
+                    $('#next').html(`<i class="fas fa-arrow-right"></i>`)
+
+
+                    if (!resp.success) {
+                        current = 1;
+                        showErrosAlert(resp.errors)
+                        return resp;
+                    }
+                    else {
+                        $('.create-project-wrapper .alert').remove();
                     }
                     // $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Create Gig') }}<span id="project_create_load_spinner"></span></button>');
                 }
@@ -550,12 +612,44 @@
                         return false;
                     }
 
+                    $('#next').html(`<i class="fas fa-spinner"></i>`)
+
+                    var resp = await $.ajax({
+                        url: "{{ route('freelancer.project.validate.packages') }}",
+                        type: 'POST',
+                        accept: 'application/json',
+                        data: {
+                                basic_title: basic_title, 
+                                basic_regular_charge: basic_regular_charge, 
+                                checkbox_or_numeric_title: checkbox_or_numeric_title
+                            },
+                        success: function (response) {
+                            if (!response.success) {
+                                return false
+                            }
+                            return true;
+                        }
+                    })
+
+                    $('#next').html(`<i class="fas fa-arrow-right"></i>`)
+
+
+                    if (!resp.success) {
+                        current = 2;
+                        showErrosAlert(resp.errors)
+                        return resp;
+                    }
+                    else {
+                        $('.create-project-wrapper .alert').remove();
+                    }
+
+
                     if(check_package_titles.status){
                         // $('#project_create_load_spinner').html('<i class="fas fa-spinner fa-pulse"></i>')
                         $('.setup-footer-right').html('<button type="submit" class="btn-profile btn-bg-1" id="confirm_create_project">{{ __('Create Gig') }}<span id="project_create_load_spinner"></span></button>');
                     }else{
-                        return false;
                         current= 2;
+                        return false;
                     }
                 }else{
                     $('.setup-footer-right').html('<a href="javascript:void(0)" class="setup-footer-next next" id="next"> <i class="fas fa-arrow-right"></i> </a>');
@@ -621,6 +715,26 @@
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+    }
+
+    function showErrosAlert(errors) {
+        var alertHtml = `<div class="alert alert-danger mt-3">
+                            <ul class="list-none">
+                                <button type="button btn-sm" class="close" data-bs-dismiss="alert">×</button>
+                                    @@list
+                            </ul>
+                        </div>`;
+        let lists = "";
+        for (const property in errors) {
+            lists += `<li>${errors[property]}</li>`;
+        }
+
+        $('.create-project-wrapper .alert').remove();
+
+        alertHtml = alertHtml.replaceAll('@@list', lists)
+        $(alertHtml).insertBefore('.create-project-wrapper form')
+
+        window.scrollTo(0, 0)
     }
 
 </script>

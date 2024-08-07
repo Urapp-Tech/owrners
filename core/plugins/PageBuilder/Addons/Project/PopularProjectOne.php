@@ -88,9 +88,13 @@ class PopularProjectOne extends PageBuilderBase
             ->where('project_on_off','1')
             ->where('status','1')
             ->whereHas('project_creator')
+            ->withAvg(['ratings' => function ($query){
+                $query->where('sender_type', 1);
+            }],'rating')
             ->withCount(['orders' => function ($query) {
-            $query->where('status',3)->where('is_project_job','project');
-        }])->orderBy('orders_count', 'DESC')
+                $query->where('status',3)->where('is_project_job','project');
+            }])->orderBy('orders_count', 'DESC')
+            ->orderBy('ratings_avg_rating','Desc')
             ->take($items)->get();
 
         return  $this->renderBlade('projects.popular-projects-one',compact(['title','items','padding_top','padding_bottom','section_bg','top_projects']));

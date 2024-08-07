@@ -25,6 +25,56 @@ use Modules\Service\Entities\SubCategory;
 
 class ProjectController extends Controller
 {
+
+    public function validate_intro(Request $request){
+
+        try {
+            //code...
+            $request->validate([
+                'category'=>'required',
+                'project_title'=>'required|min:20|max:100',
+                'project_description'=>'required|min:50',
+                'slug'=>'required|max:191|unique:projects,slug',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $th) {
+            return response()->json(['success'=>false, 'errors' => $th->errors()]);
+        }
+
+
+        return response()->json(['success'=>true , 'errors' => []]);
+    }
+
+    public function validate_gallery(Request $request){
+
+        try {
+            //code...
+            $request->validate([
+                'image'=>'required|mimes:jpg,jpeg,png,bmp,tiff,svg|max:5120',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $th) {
+            return response()->json(['success'=>false, 'errors' => $th->errors()]);
+        }
+
+
+        return response()->json(['success'=>true , 'errors' => []]);
+    }
+
+    public function validate_packages(Request $request){
+
+        try {
+            //code...
+            $request->validate([
+                'basic_title'=>'required|max:191',
+                'basic_regular_charge'=>'required|numeric|integer',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $th) {
+            return response()->json(['success'=>false, 'errors' => $th->errors()]);
+        }
+
+
+        return response()->json(['success'=>true , 'errors' => []]);
+    }
+
     // project create
     public function create_project(Request $request)
     {
@@ -40,7 +90,7 @@ class ProjectController extends Controller
                 'basic_title'=>'required|max:191',
                 'basic_regular_charge'=>'required|numeric|integer',
                 'checkbox_or_numeric_title'=>'required|array|max:191',
-                'extras_title'=>'required|array|max:101',
+                // 'extras_title'=>'required|array|max:101',
             ]);
 
             if(get_static_option('project_auto_approval') == 'yes'){
@@ -86,7 +136,7 @@ class ProjectController extends Controller
                 $project = Project::create([
                     'user_id'=>$user_id,
                     'category_id'=>$request->category,
-                    'title'=>$request->project_title,
+                    'title'=> "You will " . $request->project_title,
                     'slug' => Str::slug(purify_html($slug),'-',null),
                     'description'=>$request->project_description,
                     'image'=>$imageName,
@@ -185,7 +235,23 @@ class ProjectController extends Controller
 
         return view('frontend.user.freelancer.project.create.create-project');
     }
+    
+    public function edit_validate_intro(Request $request){
 
+        try {
+            //code...
+            $request->validate([
+                'project_title'=>'required|min:20|max:100|unique:projects,title,'.$request->id,
+                'project_description'=>'required|min:50',
+                'slug'=>'required|max:191|unique:projects,slug,'.$request->id,
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $th) {
+            return response()->json(['success'=>false, 'errors' => $th->errors()]);
+        }
+
+
+        return response()->json(['success'=>true , 'errors' => []]);
+    }
     // project edit
     public function edit_project(Request $request, $id)
     {
@@ -246,7 +312,7 @@ class ProjectController extends Controller
                 Project::where('id',$id)->update([
                     'user_id'=>$user_id,
                     'category_id'=>$request->category,
-                    'title'=>$request->project_title,
+                    'title'=> "You will " . $request->project_title,
                     'slug' => Str::slug(purify_html($slug),'-',null),
                     'description'=>$request->project_description,
                     'image'=>$imageName,

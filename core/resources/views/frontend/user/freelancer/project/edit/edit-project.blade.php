@@ -16,6 +16,23 @@
             background-color: var(--section-bg-1);
             margin-top: 20px;
         }
+        .project-title-prefix {
+            font-weight: 600;
+            color: var(--heading-color);
+            position: absolute;
+            top: 47px;
+            left: 20px;
+            font-size: 16px;
+        }
+
+        #project_title {
+            padding-left: 90px;
+            font-weight: 600;
+        }
+
+        #project_title::placeholder {
+            text-align: start !important;
+        }
     </style>
 @endsection
 @section('content')

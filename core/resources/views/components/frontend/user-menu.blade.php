@@ -538,7 +538,7 @@
                                 </svg>
                                      {{ __('Change Password') }}
                                  </a>
-                                    {{-- <a href="{{ route('client.job.all') }}" class="navbar-author-wrapper-list-item">
+                                    <a href="{{ route('client.job.all') }}" class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -558,7 +558,7 @@
                                                     fill="#667085" />
                                         </svg>
                                         {{ __('My Jobs') }}
-                                    </a> --}}
+                                    </a>
                                     {{-- <a href="{{ route('client.offers') }}" class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -577,7 +577,7 @@
                                         </svg>
                                         {{ __('My Offers') }}
                                     </a> --}}
-                                    {{-- @if(moduleExists('SecurityManage'))
+                                    @if(moduleExists('SecurityManage'))
                                         @if(Auth::guard('web')->user()->freeze_job != 'freeze')
                                             <a href="{{ route('client.job.create') }}"
                                                class="navbar-author-wrapper-list-item">
@@ -619,7 +619,7 @@
                                             </svg>
                                             {{ __('Post a Job') }}
                                         </a>
-                                    @endif --}}
+                                    @endif
                                     <a href="{{ route('client.profile') }}" class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -719,7 +719,7 @@
                                         {{ __('My proposals') }}
                                     </a> --}}
                                     
-                                    <a href="{{ route('freelancer.account.setup') }}"
+                                    {{-- <a href="{{ route('freelancer.account.setup') }}"
                                        class="navbar-author-wrapper-list-item">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -737,7 +737,7 @@
                                                     fill="#667085" />
                                         </svg>
                                         {{ __('Account Setup') }}
-                                    </a>
+                                    </a> --}}
                                     <a href="{{ route('freelancer.identity.verification') }}"
                                        class="navbar-author-wrapper-list-item">
                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

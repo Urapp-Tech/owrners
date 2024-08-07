@@ -43,6 +43,9 @@
                             <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.order.all') }}">Orders</a></li>
                             <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.projects.all') }}">Gigs</a></li>
                             <li class="w-100"><hr class="dropdown-divider"></li>
+                            <li class="w-100"><a class="dropdown-item" href="{{ route('jobs.all') }}">Jobs</a></li>
+                            <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.proposal') }}">My Proposals</a></li>
+                            <li class="w-100"><hr class="dropdown-divider"></li>
                             <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.wallet.history') }}">Wallet</a></li>
                             <li class="w-100"><a class="dropdown-item" href="{{ route('freelancer.wallet.withdraw.history') }}">Widthdraw History</a></li>
                           </ul>

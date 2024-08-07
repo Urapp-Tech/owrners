@@ -3,7 +3,7 @@
         @foreach ($jobs as $job)
             <div class="col-lg-12">
                 <div class="categoryWrap-wrapper-item jobDetails-padding">
-                    <div class="categoryWrap-wrapper-item-inner">
+                    <div class="categoryWrap-wrapper-item-inner section-bg-1">
                         <div class="categoryWrap-wrapper-item-top">
                             <div class="categoryWrap-wrapper-item-top-left">
                                 <a

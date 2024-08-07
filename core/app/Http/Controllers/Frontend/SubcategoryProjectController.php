@@ -25,8 +25,15 @@ class SubcategoryProjectController extends Controller
                 ->whereHas('project_creator')
                 ->where('project_on_off','1')
                 ->where('status','1')
-                ->latest()
+                ->withCount('complete_orders')
+                ->withAvg(['ratings' => function ($query){
+                    $query->where('sender_type', 1);
+                }],'rating')
+                ->orderBy('complete_orders_count','Desc')
+                ->orderBy('ratings_avg_rating','Desc')
                 ->paginate(10);
+
+
             return view('frontend.pages.subcategory-projects.projects',compact('subcategory','projects','is_pro'));
         }
         return back();
@@ -39,7 +46,10 @@ class SubcategoryProjectController extends Controller
             $projects = $subcategory->projects()
                 ->with('project_creator')
                 ->where('project_on_off','1')
-                ->latest()
+                ->withCount('complete_orders')
+                ->withAvg(['ratings' => function ($query){
+                    $query->where('sender_type', 1);
+                }],'rating')
                 ->where('status','1');
 
             if(!empty($request->country)){
@@ -63,14 +73,17 @@ class SubcategoryProjectController extends Controller
             }
 
             if(!empty($request->rating)){
-                $projects = $projects->withAvg(['ratings' => function ($query){
-                    $query->where('sender_id', 1);
-                }],'rating')
+                $projects = $projects
                     ->having('ratings_avg_rating',">", $request->rating -1)
                     ->having('ratings_avg_rating',"<=", $request->rating);
             }
 
-            $projects = $projects->paginate(10);
+            $projects = $projects
+                        ->orderBy('complete_orders_count','Desc')
+                        ->orderBy('ratings_avg_rating','Desc')
+                        ->paginate(10);
+
+
             return $projects->total() >= 1 ? view('frontend.pages.subcategory-projects.search-subcategory-result', compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
         }
     }
@@ -88,13 +101,19 @@ class SubcategoryProjectController extends Controller
                     ->where('status','1')
                     ->where('pro_expire_date','>',$this->current_date)
                     ->where('is_pro','yes')
-                    ->inRandomOrder();
+                    ->withCount('complete_orders')
+                    ->withAvg(['ratings' => function ($query){
+                        $query->where('sender_type', 1);
+                    }],'rating');
             }else{
                 $projects = $subcategory->projects()
                     ->with('project_creator')
                     ->where('project_on_off','1')
                     ->where('status','1')
-                    ->latest();
+                    ->withCount('complete_orders')
+                    ->withAvg(['ratings' => function ($query){
+                        $query->where('sender_type', 1);
+                    }],'rating');
             }
 
             if (isset($request->country) && !empty($request->country)) {
@@ -122,14 +141,15 @@ class SubcategoryProjectController extends Controller
             }
 
             if(!empty($request->rating)){
-                $projects = $projects->withAvg(['ratings' => function ($query){
-                    $query->where('sender_type', 1);
-                }],'rating')
+                $projects = $projects
                     ->having('ratings_avg_rating',">", $request->rating -1)
                     ->having('ratings_avg_rating',"<=", $request->rating);
             }
 
-            $projects = $projects->paginate(10);
+            $projects = $projects
+                        ->orderBy('complete_orders_count','Desc')
+                        ->orderBy('ratings_avg_rating','Desc')
+                        ->paginate(10);
 
             //pro project impression count
             if(moduleExists('PromoteFreelancer')){
