@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Contracts\ProjectServiceContract;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class SubcategoryProjectController extends Controller
         return back();
     }
 
-    public function sub_category_project_filter(Request $request)
+    public function sub_category_project_filter(Request $request, ProjectServiceContract $projectService)
     {
         if($request->ajax()){
             $subcategory = SubCategory::select('id','sub_category')->where('id',$request->subcategory_id)->first();
@@ -83,12 +84,13 @@ class SubcategoryProjectController extends Controller
                         ->orderBy('ratings_avg_rating','Desc')
                         ->paginate(10);
 
+            $projectService->logProjectImpression($projects->pluck('id')->toArray());
 
             return $projects->total() >= 1 ? view('frontend.pages.subcategory-projects.search-subcategory-result', compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
         }
     }
 
-    public function pagination(Request $request)
+    public function pagination(Request $request, ProjectServiceContract $projectService)
     {
         if($request->ajax()){
             $is_pro = $request->get_pro_projects ?? 0;
@@ -150,6 +152,10 @@ class SubcategoryProjectController extends Controller
                         ->orderBy('complete_orders_count','Desc')
                         ->orderBy('ratings_avg_rating','Desc')
                         ->paginate(10);
+
+            //project impression count
+            $projectService->logProjectImpression($projects->pluck('id')->toArray());
+
 
             //pro project impression count
             if(moduleExists('PromoteFreelancer')){

@@ -13,7 +13,7 @@ use App\Http\Controllers\Frontend\Freelancer\OrderController;
 use App\Http\Controllers\Frontend\Freelancer\NotificationController;
 use App\Http\Controllers\Frontend\Freelancer\ProposalController;
 use App\Http\Controllers\Frontend\Google2FA;
-
+use App\Http\Controllers\Frontend\ProjectDetailsController;
 
 Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
 
@@ -87,6 +87,14 @@ Route::group(['prefix'=>'freelancer','as'=>'freelancer.'],function() {
                 Route::get('project-description','project_description')->name('project.description');
             });
         });
+
+        Route::group(['middleware'=>'preventprojecturl'],function(){
+            //project details
+            Route::controller(ProjectDetailsController::class)->group(function(){
+                Route::get('projects/{username}/{slug}', 'project_details')->name('project.details');
+            });
+        });
+    
 
         // Create portfolio
         Route::controller(PortfolioController::class)->group(function () {

@@ -186,6 +186,7 @@
                                                 <div class="col-xl-3">
                                                     <select name="date" id="date" class="form-control outline-selection">
                                                         
+                                                        <option value="7">Last 07 days</option>
                                                         <option value="30">Last 30 days</option>
                                                         <option value="60">Last 60 days</option>
                                                         <option value="365">This year</option>
@@ -211,6 +212,11 @@
 
                                                         </div>
                                                         
+                                                        <div class="mt-4">
+                                                            <small class="heading-color fw-light">Impressions</small>
+                                                            <h5 id="impressions_count">0.0</h5>
+
+                                                        </div>
                                                         <div class="mt-4">
                                                             <small class="heading-color fw-light">Orders</small>
                                                             <h5 id="order_count">0.0</h5>
@@ -323,18 +329,20 @@
         var performanceChart = new Chart(p_ctx, {
             type: 'bar',
             data: {
-                labels: ['Clicks', 'Orders'],
+                labels: ['Clicks', 'Orders', 'Impressions'],
                 datasets: [
                     {
                         label: '',
-                        data: [0, 0],
+                        data: [0, 0, 0],
                         backgroundColor: [
                             'rgba(0, 210, 162, 0.5)',
-                            'rgba(100, 87, 255, 0.5)'
+                            'rgba(100, 87, 255, 0.5)',
+                            'rgba(87, 183, 255, 0.5)'
                         ],
                         borderColor: [
                             'rgba(0, 210, 162, 1)',
-                            'rgba(100, 87, 255, 1)'
+                            'rgba(100, 87, 255, 1)',
+                            'rgba(87, 183, 255, 1)'
                         ],
                         borderWidth: 1,
                         borderRadius: 10
@@ -363,8 +371,8 @@
             }
         });
 
-        function updateChart(clickCount, orders) {
-            performanceChart.data.datasets[0].data = [clickCount, orders];
+        function updateChart(clickCount, orders, impressions_count) {
+            performanceChart.data.datasets[0].data = [clickCount, orders, impressions_count];
             performanceChart.update();
         }
         // Gig Seleection
@@ -381,9 +389,10 @@
                     $('#click_count').text(response.click_count );
                     let orders = response.orders;
                     $('#order_count').text(orders);
+                    $('#impressions_count').text(response.impressions_count);
 
                      // Update the chart
-                    updateChart(response.click_count, orders);
+                    updateChart(response.click_count, orders, response.impressions_count);
                 }
             });
         })

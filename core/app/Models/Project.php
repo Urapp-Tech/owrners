@@ -94,4 +94,8 @@ class Project extends Model
     public function clicks() {
         return $this->hasMany(ProjectClick::class, 'project_id', 'id');
     }
+
+    public function impressions() {
+        return $this->hasMany(ProjectImpression::class, 'project_id', 'id');
+    }
 }

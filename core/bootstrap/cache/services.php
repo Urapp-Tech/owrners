@@ -63,6 +63,7 @@
     59 => 'plugins\\WidgetBuilder\\Providers\\WidgetBuilderServiceProvider',
     60 => 'Riskihajar\\Terbilang\\TerbilangServiceProvider',
     61 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
+    62 => 'App\\Providers\\RepositoryServiceProvider',
   ),
   'eager' => 
   array (
@@ -112,6 +113,7 @@
     43 => 'plugins\\WidgetBuilder\\Providers\\WidgetBuilderServiceProvider',
     44 => 'Riskihajar\\Terbilang\\TerbilangServiceProvider',
     45 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
+    46 => 'App\\Providers\\RepositoryServiceProvider',
   ),
   'deferred' => 
   array (

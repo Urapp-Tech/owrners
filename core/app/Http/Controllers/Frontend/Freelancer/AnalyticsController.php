@@ -118,6 +118,7 @@ class AnalyticsController extends Controller
         // Calculate the date range based on the selected date filter
         $endDate = Carbon::now();
         $startDate = match ($date) {
+            7 => $endDate->copy()->subDays(7),
             30 => $endDate->copy()->subDays(30),
             60 => $endDate->copy()->subDays(60),
             365 => $endDate->copy()->startOfYear(),
@@ -136,6 +137,11 @@ class AnalyticsController extends Controller
         ->whereBetween('created_at', [$startDate, $endDate])
         ->count();
 
+        // Query for the project's impression in the specified date range
+        $impressions_count = $project->impressions()
+        ->whereBetween('created_at', [$startDate, $endDate])
+        ->count();
+
         // Query for the project's orders in the specified date range
         $project_orders = Order::where('identity', $project->id)
         ->where('status', 3)
@@ -147,7 +153,8 @@ class AnalyticsController extends Controller
         return response()->json([
             'click_count' => $project_click,
             'click_percentage' => round($click_percentage, 2),
-            'orders' => $project_orders
+            'orders' => $project_orders,
+            'impressions_count' => $impressions_count
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Contracts\ProjectServiceContract;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -38,11 +39,13 @@ class FrontendProjectsController extends Controller
     }
 
     //projects pagination
-    public function pagination(Request $request)
+    public function pagination(Request $request, ProjectServiceContract $projectService)
     {
         if($request->ajax()){
             $is_pro = $request->get_pro_projects ?? 0;
             $projects =  $this->filter_query($request)->paginate(10);
+
+            $projectService->logProjectImpression($projects->pluck('id')->toArray());
 
             //pro project impression count
             if(moduleExists('PromoteFreelancer')){

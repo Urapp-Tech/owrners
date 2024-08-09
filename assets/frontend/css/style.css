@@ -2017,7 +2017,7 @@ span {
 
 .cmn-btn.btn-bg-gray {
   background-color: var(--border-color);
-  color: var(--heading-color);
+  color: var(--section-bg-1);
   border: 2px solid transparent;
 }
 

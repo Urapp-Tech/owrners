@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Contracts\ProjectServiceContract;
 use App\Http\Controllers\Controller;
 use App\Models\JobPost;
 use App\Models\Project;
@@ -73,7 +74,7 @@ class FrontendHomeController extends Controller
     }
 
 
-    public function query_keywords_project (Request $request) {
+    public function query_keywords_project (Request $request, ProjectServiceContract $projectService) {
         $search_query =  strip_tags( $request->input('query') ?? '');
         $user = Auth::guard('web')->user();
 
@@ -144,11 +145,12 @@ class FrontendHomeController extends Controller
                     ->orderBy('ratings_avg_rating','Desc')
                     ->paginate(10);
 
+        $projectService->logProjectImpression($projects->pluck('id')->toArray());
                     
         return view('frontend.pages.search-projects.projects',compact('projects', 'search_query'));
     }
 
-    public function query_keywords_project_filter (Request $request) {
+    public function query_keywords_project_filter (Request $request, ProjectServiceContract $projectService) {
         $search_query =  strip_tags( $request->input('query') ?? '');
         $user = Auth::guard('web')->user();
 
@@ -205,6 +207,8 @@ class FrontendHomeController extends Controller
                     ->orderBy('complete_orders_count','Desc')
                     ->orderBy('ratings_avg_rating','Desc')
                     ->paginate(10);
+
+        $projectService->logProjectImpression($projects->pluck('id')->toArray());
                     
         return $projects->total() >= 1 ? view('frontend.pages.search-projects.search-keywords-result',compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
     }
