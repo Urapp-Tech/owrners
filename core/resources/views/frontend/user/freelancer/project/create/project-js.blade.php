@@ -347,7 +347,9 @@
                     $('.basic_regular_charge').html('');
                 }
                 if(basic_discount_charge != '' && basic_discount_charge > 0){
-                    $('.basic_discount_charge').html('<span class="basic_discount_charge"><s>' + '{{ site_currency_symbol() }}' +basic_discount_charge + '</s></span>');
+                    $('.basic_regular_charge').html('<span class="basic_regular_charge">' + '{{ site_currency_symbol() }}' + basic_discount_charge  + '</span>');
+
+                    $('.basic_discount_charge').html('<span class="basic_discount_charge"><s>' + '{{ site_currency_symbol() }}' + basic_regular_charge + '</s></span>');
                 }else {
                     $('.basic_discount_charge').html('');
                 }
@@ -365,7 +367,8 @@
                     $('.standard_regular_charge').html('');
                 }
                 if(standard_discount_charge != '' && standard_discount_charge > 0){
-                    $('.standard_discount_charge').html('<span class="standard_discount_charge"><s>' + '{{ site_currency_symbol() }}' +standard_discount_charge + '</s></span>');
+                    $('.standard_regular_charge').html('<span class="standard_regular_charge">' + '{{ site_currency_symbol() }}' + standard_discount_charge  + '</span>');
+                    $('.standard_discount_charge').html('<span class="standard_discount_charge"><s>' + '{{ site_currency_symbol() }}' + standard_regular_charge + '</s></span>');
                 }else {
                     $('.standard_discount_charge').html('');
                 }
@@ -384,7 +387,8 @@
                     $('.premium_regular_charge').html('');
                 }
                 if(premium_discount_charge != '' && premium_discount_charge > 0){
-                    $('.premium_discount_charge').html('<span class="premium_discount_charge"><s>' + '{{ site_currency_symbol() }}' +premium_discount_charge + '</s></span>');
+                    $('.premium_regular_charge').html('<span class="premium_regular_charge">' + '{{ site_currency_symbol() }}' +  premium_discount_charge + '</span>');
+                    $('.premium_discount_charge').html('<span class="premium_discount_charge"><s>' + '{{ site_currency_symbol() }}' + premium_regular_charge + '</s></span>');
                 }else {
                     $('.premium_discount_charge').html('');
                 }

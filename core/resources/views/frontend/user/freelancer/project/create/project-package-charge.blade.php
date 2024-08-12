@@ -179,8 +179,8 @@
                                     <div class="package-field-price-flex flex-between">
                                         <div class="package-field-price-main">
                                             <h5 class="package-field-price-main-title">
-                                                <span class="basic_regular_charge">{{ float_amount_with_currency_symbol(50) }}</span>
-                                                <span class="basic_discount_charge"><s>{{ float_amount_with_currency_symbol(40) }}</s></span>
+                                                <span class="basic_regular_charge">{{ float_amount_with_currency_symbol(40) }}</span>
+                                                <span class="basic_discount_charge"><s>{{ float_amount_with_currency_symbol(50) }}</s></span>
                                             </h5>
                                         </div>
                                         <div class="package-field-price-edit click-edit-basic-price">
@@ -196,8 +196,8 @@
                                     <div class="package-field-price-flex flex-between">
                                         <div class="package-field-price-main">
                                             <h5 class="package-field-price-main-title">
-                                                <span class="standard_regular_charge">{{ float_amount_with_currency_symbol(60) }}</span>
-                                                <span class="standard_discount_charge"><s>{{ float_amount_with_currency_symbol(50) }}</s></span>
+                                                <span class="standard_regular_charge">{{ float_amount_with_currency_symbol(50) }}</span>
+                                                <span class="standard_discount_charge"><s>{{ float_amount_with_currency_symbol(60) }}</s></span>
                                             </h5>
                                         </div>
                                         <div class="package-field-price-edit click-edit-standard-price">
@@ -213,8 +213,8 @@
                                     <div class="package-field-price-flex flex-between">
                                         <div class="package-field-price-main">
                                             <h5 class="package-field-price-main-title">
-                                                <span class="premium_regular_charge">{{ float_amount_with_currency_symbol(70) }} </span>
-                                                <span class="premium_discount_charge"><s>{{ float_amount_with_currency_symbol(60) }}</s></span>
+                                                <span class="premium_regular_charge">{{ float_amount_with_currency_symbol(60) }} </span>
+                                                <span class="premium_discount_charge"><s>{{ float_amount_with_currency_symbol(70) }}</s></span>
                                             </h5>
                                         </div>
                                         <div class="package-field-price-edit click-edit-premium-price">

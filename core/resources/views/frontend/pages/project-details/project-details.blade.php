@@ -633,7 +633,7 @@
                                                     @if ($project->basic_discount_charge != null && $project->basic_discount_charge > 0)
                                                         <span class="left price-title">{{ __('Price') }}</span>
                                                         <span class="right price">
-                                                            <s>{{ amount_with_currency_symbol($project->basic_regular_charge ?? '') }}</s><span>{{ amount_with_currency_symbol($project->basic_discount_charge) }}</span></span>
+                                                            <s>{{ amount_with_currency_symbol($project->basic_regular_charge ?? '') }}</s><span class="ms-2">{{ amount_with_currency_symbol($project->basic_discount_charge) }}</span></span>
                                                     @else
                                                         <span class="left price-title">{{ __('Price') }}</span>
                                                         <span
@@ -717,7 +717,7 @@
                                                     @if ($project->premium_discount_charge != null && $project->premium_discount_charge > 0)
                                                         <span class="left price-title">{{ __('Price') }}</span>
                                                         <span class="right price">
-                                                            <s>{{ amount_with_currency_symbol($project->premium_regular_charge ?? '') }}</s><span>{{ amount_with_currency_symbol($project->premium_discount_charge) }}</span></span>
+                                                            <s>{{ amount_with_currency_symbol($project->premium_regular_charge ?? '') }}</s><span class="ms-2">{{ amount_with_currency_symbol($project->premium_discount_charge) }}</span></span>
                                                     @else
                                                         <span class="left price-title">{{ __('Price') }}</span>
                                                         <span
