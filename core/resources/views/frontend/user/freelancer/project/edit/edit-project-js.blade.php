@@ -38,7 +38,7 @@
                     },
                     success: function(res) {
                         if (res.status == 'success') {
-                            let all_options = "<option value=''>{{__('Select Sub Category')}}</option>";
+                            let all_options = "<option value='' disabled>{{__('Select Sub Category')}}</option>";
                             let all_subcategories = res.subcategories;
                             $.each(all_subcategories, function(index, value) {
                                 all_options += "<option value='" + value.id +
