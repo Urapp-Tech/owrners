@@ -18,6 +18,6 @@
   "Blog": true,
   "Integrations": true,
   "PromoteFreelancer": false,
-  "FreelancerLevel": false,
+  "FreelancerLevel": true,
   "SecurityManage": false
 }

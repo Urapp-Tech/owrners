@@ -78,6 +78,13 @@ class ProjectController extends Controller
     // project create
     public function create_project(Request $request)
     {
+        $level = freelancer_level_rule(Auth::guard('web')->user()->id);
+        $max_gigs  =  $level?->max_gigs ?? -1;
+        $gig_count  = Project::owned()->where('status',1)->count();
+        if( $max_gigs > -1  && $gig_count  >= $max_gigs ) {
+            toastr_error(__('You have reached the maximum number of gigs allowed for your level.'));
+            return back();
+        }
         if($request->isMethod('post'))
         {
 

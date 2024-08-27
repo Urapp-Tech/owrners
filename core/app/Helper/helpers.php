@@ -2749,6 +2749,66 @@ function freelancer_skill_match_with_job_skill($freelancer_id = null, $job_id =n
 }
 
 
+function freelancer_level_rule($freelancer_id)
+{
+
+    //get evel with level rules
+    $levels = \Modules\FreelancerLevel\Entities\FreelancerLevel::with('level_rule')
+     ->whereHas('level_rule')
+     ->where('status',1)
+     ->get();
+
+    $current_time = Carbon\Carbon::now();
+    $current_time = $current_time->toDateTimeString();
+    $freelancer_details = \App\Models\User::select('id','created_at')->where('id',$freelancer_id)->first();
+    $diff_in_days = $freelancer_details->created_at->diffInDays($current_time);
+
+    //get freelancer criteria for level
+    $total_order = Order::where('freelancer_id',$freelancer_id)->where('status',3)->count();
+    $total_earnings = Order::where('freelancer_id',$freelancer_id)->where('status',3)->sum('payable_amount');
+    $avg_rating = freelancer_rating_for_level($freelancer_id);
+
+    foreach ($levels as $level){
+        if ($level->level_rule->period >= 1 && $level->level_rule->period < 3){
+            if($diff_in_days >= 30 && $diff_in_days < 90){
+                if($total_order >= $level?->level_rule?->complete_order && $total_earnings >= $level?->level_rule?->earning && $avg_rating >= $level?->level_rule?->avg_rating){
+                    return $level;
+                }
+            }
+        }
+        elseif($level->level_rule->period >= 3 && $level->level_rule->period < 6){
+            if($diff_in_days >= 90 && $diff_in_days < 180){
+                if($total_order >= $level?->level_rule?->complete_order && $total_earnings >= $level?->level_rule?->earning && $avg_rating >= $level?->level_rule?->avg_rating){
+                    return $level;
+                }
+            }
+        }
+        elseif($level->level_rule->period >= 6 && $level->level_rule->period < 9){
+            if($diff_in_days >= 180 && $diff_in_days < 270){
+                if($total_order >= $level?->level_rule?->complete_order && $total_earnings >= $level?->level_rule?->earning && $avg_rating >= $level?->level_rule?->avg_rating){
+                    return $level;
+                }
+            }
+        }
+        elseif($level->level_rule->period >= 9 && $level->level_rule->period < 12){
+            if($diff_in_days >= 270 && $diff_in_days < 360){
+                if($total_order >= $level?->level_rule?->complete_order && $total_earnings >= $level?->level_rule?->earning && $avg_rating >= $level?->level_rule?->avg_rating){
+                    return $level;
+                }
+            }
+        }
+        elseif($level->level_rule->period >= 12){
+            if($diff_in_days>= 360){
+                if($total_order >= $level?->level_rule?->complete_order && $total_earnings >= $level?->level_rule?->earning && $avg_rating >= $level?->level_rule?->avg_rating){
+                    return $level;
+                }
+            }
+        }
+    }
+    return \Modules\FreelancerLevel\Entities\FreelancerLevelRules::orderBy('max_gigs')->first();
+}
+
+
 function freelancer_level($freelancer_id,$call_from_telent_page = null)
 {
 

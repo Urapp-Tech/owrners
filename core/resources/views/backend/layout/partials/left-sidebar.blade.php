@@ -141,7 +141,7 @@
                                         @endphp
                                         <a href="javascript:void(0)">
                                             <i class="{{$icon}}"></i>
-                                            <span class="icon_title">{{ $convert_to_array['label'] }} <span class="badge bg-danger">{{ __('Plugin') }}</span> </span>
+                                            <span class="icon_title">{{ $convert_to_array['label'] }} </span>
                                         </a>
                                         <ul class="submenu" style=" @if(in_array(\Request::route()->getName(), $activeRoutes)) display:block; @endif">
                                     @endif
@@ -156,7 +156,7 @@
                             @endif
                         @else
                             <li class="dashboard__bottom__list__item @if(request()->routeIs($routeName)) active open @endif">
-                                <a href="{{ route($routeName) }}">  <i class="{{$icon}}"></i>  {{ $convert_to_array['label'] }} <span class="badge bg-danger">{{ __('Plugin') }}</span> </a>
+                                <a href="{{ route($routeName) }}">  <i class="{{$icon}}"></i>  {{ $convert_to_array['label'] }}</a>
                             </li>
                         @endif
                     @endforeach
