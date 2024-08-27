@@ -6,7 +6,7 @@
   "Service": true,
   "EmailTemplate": true,
   "Wallet": true,
-  "Subscription": true,
+  "Subscription": false,
   "Chat": true,
   "SupportTicket": true,
   "Controller": true,

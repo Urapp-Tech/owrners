@@ -319,7 +319,7 @@
                         @endcan
                     </ul>
                 </li>
-
+                @if(moduleExists('Subscription'))
                 <li
                     class="dashboard__bottom__list__item has-children @if (request()->is('admin/subscription*')) active open show @endif">
                     <a href="javascript:void(0)"> <i class="fa-solid fa-list"></i>{{ __('Subscription Manage') }}
@@ -352,7 +352,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @endif
                 @if (auth()->guard('admin')->user()->role == 1)
                     <li
                         class="dashboard__bottom__list__item has-children @if (request()->is('admin/transaction*')) active open show @endif">

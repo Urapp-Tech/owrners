@@ -29,7 +29,7 @@ class JobDetailsController extends Controller
     //job proposal
     public function job_proposal_send(Request $request)
     {
-
+        $isOnSubscription = moduleExists('Subscription');
         $request->validate([
             'client_id'=>'required',
             'amount'=>'required|numeric|gt:0',
@@ -41,6 +41,15 @@ class JobDetailsController extends Controller
         $freelancer_id = Auth::guard('web')->user()->id;
         $total_limit = UserSubscription::where('user_id',$freelancer_id)->where('payment_status','complete')->whereDate('expire_date', '>', Carbon::now())->sum('limit');
 
+        // Check if the freelancer has reached the daily limit of 10 proposals
+        $daily_proposals_count = JobProposal::where('freelancer_id', $freelancer_id)
+        ->whereDate('created_at', Carbon::today())
+        ->count();
+
+        if ($daily_proposals_count >= 10 && !$isOnSubscription) {
+            return back()->with(toastr_warning(__('You have reached the daily limit of 10 proposals.')));
+        }
+
         $freelancer_subscription = UserSubscription::select(['id','user_id','limit','expire_date','created_at'])
             ->where('payment_status','complete')
             ->where('status',1)
@@ -49,11 +58,11 @@ class JobDetailsController extends Controller
             ->whereDate('expire_date', '>', Carbon::now())->first();
 
         $check_freelancer_proposal = JobProposal::where('freelancer_id',$freelancer_id)->where('job_id',$request->job_id)->first();
-        if($check_freelancer_proposal){
+        if($check_freelancer_proposal && $isOnSubscription){
             return back()->with(toastr_warning(__('You can not send one more proposal.')));
         }
 
-        if($total_limit >= get_static_option('limit_settings') ?? 2 && !empty($freelancer_subscription)){
+        if(($total_limit >= get_static_option('limit_settings') ?? 2 && !empty($freelancer_subscription) ) || !$isOnSubscription){
             $attachment_name = '';
             if ($attachment = $request->file('attachment')) {
                 $request->validate([
@@ -83,9 +92,12 @@ class JobDetailsController extends Controller
             ]);
             client_notification($proposal->id,$request->client_id,'Proposal', __('You have a new job proposal'));
 
-            UserSubscription::where('id',$freelancer_subscription->id)->update([
-                'limit' => $freelancer_subscription->limit - (get_static_option('limit_settings') ?? 2)
-            ]);
+            if($isOnSubscription) {
+
+                UserSubscription::where('id',$freelancer_subscription->id)->update([
+                    'limit' => $freelancer_subscription->limit - (get_static_option('limit_settings') ?? 2)
+                ]);
+            }
 
             return back()->with(toastr_success(__('Proposal successfully send')));
         }

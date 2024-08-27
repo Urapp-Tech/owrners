@@ -738,6 +738,7 @@
                                         </svg>
                                         {{ __('Account Setup') }}
                                     </a> --}}
+                                    @if(moduleExists('Subscription'))
                                     <a href="{{ route('freelancer.subscriptions.all') }}"
                                        class="navbar-author-wrapper-list-item">
                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -754,6 +755,7 @@
                                         </svg>
                                         {{ __('Subscriptions') }}
                                     </a>
+                                    @endif
                                     <a href="{{ route('freelancer.identity.verification') }}"
                                        class="navbar-author-wrapper-list-item">
                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
