@@ -3,7 +3,7 @@
         "use strict";
         $(document).ready(function(){
 
-            $('.order_sort[data-val=all]').trigger("click");
+            $('.order_sort[data-val=active]').trigger("click");
 
 
             //order sort

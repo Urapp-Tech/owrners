@@ -23702,6 +23702,10 @@ button #project_create_load_spinner i {
 
 }
 
+.project-category-item-urapp div>div:first-child {
+  z-index: 1;
+}
+
 .project-category-item-urapp:hover {
   -webkit-box-shadow: 0 0 15px #ececec;
   box-shadow: 0 0 15px #ececec;
@@ -23741,7 +23745,8 @@ button #project_create_load_spinner i {
 .category-title-container {
   background-color: var(--main-color-one);
   border-radius: 20px;
-  height: 478px;
+  height: 291px;
+  /* height: 478px; */
 }
 
 .category-title-heading-container h1 {

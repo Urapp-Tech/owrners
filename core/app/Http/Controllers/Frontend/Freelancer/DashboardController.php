@@ -60,13 +60,15 @@ class DashboardController extends Controller
             $active_projects_count = Project::where('user_id',$user->id)->where('status', 1)->count();
 
             if(get_static_option('project_enable_disable') != 'disable'){
-                $orders = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->latest()->paginate(10);
+                $orders = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->where('status',1)->latest()->paginate(10);
+                $all_orders = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->count();
                 $queue_orders =  Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->where('status',0)->count();
                 $active_orders =  Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->where('status',1)->count();
                 $complete_orders = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->where('status',3)->count();
                 $cancel_orders = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->where('status',4)->count();
             }else{
-                $orders = Order::where('freelancer_id',$freelancer_id)->where('is_project_job', '!=', 'project')->whereHas('user')->where('payment_status','complete')->latest()->paginate(10);
+                $orders = Order::where('freelancer_id',$freelancer_id)->where('is_project_job', '!=', 'project')->whereHas('user')->where('payment_status','complete')->where('status',1)->latest()->paginate(10);
+                $all_orders = Order::where('freelancer_id',$freelancer_id)->where('is_project_job', '!=', 'project')->whereHas('user')->where('payment_status','complete')->count();
                 $queue_orders =  Order::where('freelancer_id',$freelancer_id)->where('is_project_job', '!=', 'project')->whereHas('user')->where('payment_status','complete')->where('status',0)->count();
                 $active_orders =  Order::where('freelancer_id',$freelancer_id)->where('is_project_job', '!=', 'project')->whereHas('user')->where('payment_status','complete')->where('status',1)->count();
                 $complete_orders = Order::where('freelancer_id',$freelancer_id)->where('is_project_job', '!=', 'project')->whereHas('user')->where('payment_status','complete')->where('status',3)->count();
@@ -93,6 +95,7 @@ class DashboardController extends Controller
                 'active_orders',
                 'complete_orders',
                 'cancel_orders',
+                'all_orders'
             ));
        }
        else {

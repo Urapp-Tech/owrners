@@ -323,7 +323,7 @@ class UserManageController extends Controller
     public function delete_user($id)
     {
         User::find($id)->delete();
-        return redirect()->back()->with(toastr_error(__('User Successfully Deleted')));
+        return redirect()->back()->with(toastr_success(__('User Successfully Deleted')));
     }
 
     //permanent delete user
@@ -414,7 +414,7 @@ class UserManageController extends Controller
             $tickets->each->delete();
         }
         $user->forceDelete();
-        return back()->with(toastr_error(__('User Successfully Deleted Permanently.')));
+        return back()->with(toastr_success(__('User Successfully Deleted Permanently.')));
     }
 
     // restore user (soft delete user restore)

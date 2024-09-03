@@ -107,6 +107,12 @@
                         </div>
                         <div class="myOrder-single bg-white padding-20 radius-10">
                             <div class="row g-4">
+                                @php
+                                    $mile_stones = \App\Models\OrderMilestone::where('order_id',$order_details->id)->get();
+                                    $payable_amount = \App\Models\OrderMilestone::where('order_id',$order_details->id)->where('status','!=',3)->sum('price');
+                                @endphp
+                                @if(get_static_option('commission_disable_client_panel') != 'disable')
+
                                 <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-4">
                                     <div class="myJob-wrapper-single-balance">
                                         <div class="myJob-wrapper-single-balance-contents">
@@ -130,10 +136,7 @@
                                     <div class="myJob-wrapper-single-balance">
                                         <div class="myJob-wrapper-single-balance-contents">
                                             <div class="myJob-wrapper-single-balance-price d-flex gap-2 justify-content-between">
-                                                @php
-                                                    $mile_stones = \App\Models\OrderMilestone::where('order_id',$order_details->id)->get();
-                                                    $payable_amount = \App\Models\OrderMilestone::where('order_id',$order_details->id)->where('status','!=',3)->sum('price');
-                                                @endphp
+                                               
                                                 @if($mile_stones->count() > 0)
                                                     @if($order_details->status !=3)
                                                     <h4 class="contract_single__balance-price">{{ float_amount_with_currency_symbol($payable_amount - $earnings) }} </h4>
@@ -170,6 +173,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="col-xxl-3 col-lg-6 col-sm-6 col-md-4">
                                     <div class="myJob-wrapper-single-balance">
                                         <div class="myJob-wrapper-single-balance-contents">

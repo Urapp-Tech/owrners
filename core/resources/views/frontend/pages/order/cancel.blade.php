@@ -11,7 +11,7 @@
                         <div class="congratulation-contents-icon bg-danger" >
                             <i class="fas fa-times"></i>
                         </div>
-                        <h4 class="congratulation-contents-title"> {{ __('OPPS!') }} </h4>
+                        <h4 class="congratulation-contents-title"> {{ __('OOPS!') }} </h4>
                         <p class="congratulation-contents-para">{{ __('Payment') }} <strong>{{ __('Cancel') }}</strong> </p>
                     </div>
                 </div>

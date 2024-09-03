@@ -64,5 +64,7 @@
 
 @section('script')
     <x-media.js />
-    @include('subscription::backend.subscription.subscription-js')
+    @if(moduleExists('Subscription'))
+        @include('subscription::backend.subscription.subscription-js')
+    @endif
 @endsection
