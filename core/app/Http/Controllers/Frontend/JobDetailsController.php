@@ -30,6 +30,10 @@ class JobDetailsController extends Controller
     public function job_proposal_send(Request $request)
     {
         $isOnSubscription = moduleExists('Subscription');
+        if (Auth::guard('web')->user()->is_suspend) {
+            abort(403, 'You are suspended from the platform.'); 
+        }
+
         $request->validate([
             'client_id'=>'required',
             'amount'=>'required|numeric|gt:0',

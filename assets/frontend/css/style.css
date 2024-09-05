@@ -3896,7 +3896,7 @@ span {
 }
 
 .form--control::placeholder {
-  text-align: center;
+  text-align: left;
 }
 
 .single-input label,

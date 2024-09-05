@@ -39,7 +39,7 @@ class ProfileDetailsController extends Controller
            $portfolios = Portfolio::where('username',$username)->latest()->get();
            $educations = UserEducation::where('user_id',$user->id)->latest()->get();
            $experiences = UserExperience::where('user_id',$user->id)->latest()->get();
-           $projects = Project::with('project_history')->where('user_id',$user->id)->withCount('orders')->latest()->get();
+           $projects = Project::with('project_history')->where('user_id',$user->id)->unsuspendCreator()->withCount('orders')->latest()->get();
 
            //pro profile view count
            if(moduleExists('PromoteFreelancer')) {

@@ -87,6 +87,7 @@ class PopularProjectOne extends PageBuilderBase
         $top_projects = Project::select('id', 'title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image')
             ->where('project_on_off','1')
             ->where('status','1')
+            ->unsuspendCreator()
             ->whereHas('project_creator')
             ->withAvg(['ratings' => function ($query){
                 $query->where('sender_type', 1);

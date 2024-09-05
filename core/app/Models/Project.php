@@ -98,4 +98,10 @@ class Project extends Model
     public function impressions() {
         return $this->hasMany(ProjectImpression::class, 'project_id', 'id');
     }
+
+    public function scopeUnsuspendCreator($q) {
+        return $q->whereHas('project_creator', function ($s) {
+            return $s->where('is_suspend',0);
+        });
+    }
 }

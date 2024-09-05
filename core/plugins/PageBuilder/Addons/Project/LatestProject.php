@@ -86,6 +86,7 @@ class LatestProject extends PageBuilderBase
 
         $top_projects = Project::select('id', 'title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image')
             ->where('project_on_off','1')
+            ->unsuspendCreator()
             ->where('status','1')
             ->whereHas('project_creator')
             ->latest()

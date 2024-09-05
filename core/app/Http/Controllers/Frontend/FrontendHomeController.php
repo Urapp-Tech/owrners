@@ -26,6 +26,7 @@ class FrontendHomeController extends Controller
             $projects_or_jobs = Project::with('project_creator')
                 ->select(['id','title','slug','user_id','basic_regular_charge','image'])
                 ->where('project_on_off','1')
+                ->unsuspendCreator()
                 ->where('status','1')
                 ->latest()
                 ->where('title','LIKE','%'.strip_tags($request->job_search_string).'%')->get();
@@ -33,6 +34,7 @@ class FrontendHomeController extends Controller
             $projects_or_jobs = JobPost::with('job_creator','job_skills')
                 ->select('id','title','slug','user_id','budget')
                 ->where('on_off','1')
+                ->unsuspendCreator()
                 ->where('status','1')
                 ->where('job_approve_request','1')
                 ->latest()
@@ -108,15 +110,22 @@ class FrontendHomeController extends Controller
         }
 
         $projects = Project::with('project_creator')
-                    ->whereHas('project_creator')
-                    ->where('project_on_off','1')
+                    ->where(function ($q) use ($search_query){
+                        $q->unsuspendCreator()
+                        ->where('status','1')
+                        ->where('title' , 'LIKE','%'. $search_query . '%')
+                        ->where('project_on_off','1');
+                    })
                     ->withCount('complete_orders')
-                    ->where('status','1')
-                    ->where('title' , 'LIKE','%'. $search_query . '%')
                     ->withAvg(['ratings' => function ($query){
                         $query->where('sender_type', 1);
                     }],'rating')
-                    ->orWhereIn('category_id',$category_ids);
+                    ->orWhere(function ($q) use($category_ids) {
+                        $q->orWhereIn('category_id',$category_ids)
+                        ->unsuspendCreator()
+                        ->where('status','1')
+                        ->where('project_on_off','1');
+                    });
 
         if (isset($request->country) && !empty($request->country)) {
             $projects = $projects->WhereHas('project_creator', function ($q) use ($request) {
@@ -171,15 +180,23 @@ class FrontendHomeController extends Controller
         }
 
         $projects = Project::with('project_creator')
-                    ->whereHas('project_creator')
-                    ->where('project_on_off','1')
-                    ->where('status','1')
-                    ->withCount('complete_orders')
-                    ->withAvg(['ratings' => function ($query){
-                        $query->where('sender_type', 1);
-                    }],'rating')
-                    ->where('title' , 'LIKE','%'. $search_query . '%')
-                    ->orWhereIn('category_id',$category_ids);
+        ->where(function ($q) use ($search_query){
+            $q->unsuspendCreator()
+            ->where('status','1')
+            ->where('title' , 'LIKE','%'. $search_query . '%')
+            ->where('project_on_off','1');
+        })
+        ->withCount('complete_orders')
+        ->withAvg(['ratings' => function ($query){
+            $query->where('sender_type', 1);
+        }],'rating')
+        ->orWhere(function ($q) use($category_ids) {
+            $q->orWhereIn('category_id',$category_ids)
+            ->unsuspendCreator()
+            ->where('status','1')
+            ->where('project_on_off','1');
+        });
+
 
         if (isset($request->country) && !empty($request->country)) {
             $projects = $projects->WhereHas('project_creator', function ($q) use ($request) {

@@ -116,7 +116,7 @@
             <div class="notfound">
                 <div class="notfound-404">
                     <h1 class="notfound-wrapper-mainTitle">{{__('403')}}</h1>
-                    <h3 class="notfound-wrapper-title">{{__('USER DOES NOT HAVE THE RIGHT PERMISSIONS.')}}</h3>
+                    <h3 class="notfound-wrapper-title">{{ $exception->getMessage() != '' ? $exception->getMessage() : __('USER DOES NOT HAVE THE RIGHT PERMISSIONS.') }}</h3>
                     <a href="{{route('homepage')}}" class="notfound-btn">{{__('Back to home')}}</a>
                 </div>
             </div>

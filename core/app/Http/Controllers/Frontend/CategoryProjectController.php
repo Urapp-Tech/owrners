@@ -35,11 +35,13 @@ class CategoryProjectController extends Controller
                     ->where('category_id',$request->category)
                     ->where('project_on_off','1')
                     ->where('status','1')
+                    ->unsuspendCreator()
                     ->where('pro_expire_date','>',$this->current_date)
                     ->where('is_pro','yes');
             }else{
                 $projects = Project::with('project_creator')
                     ->where('category_id',$request->category)
+                    ->unsuspendCreator()
                     ->where('project_on_off','1')
                     ->latest()
                     ->where('status','1');
@@ -86,6 +88,7 @@ class CategoryProjectController extends Controller
                     ->select(['id','title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image','pro_expire_date','is_pro'])
                     ->where('category_id',$request->category)
                     ->where('project_on_off','1')
+                    ->unsuspendCreator()
                     ->where('status','1')
                     ->where('pro_expire_date','>',$this->current_date)
                     ->where('is_pro','yes')
@@ -94,6 +97,7 @@ class CategoryProjectController extends Controller
                 $projects = Project::with('project_creator')
                     ->select(['id','title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image','pro_expire_date','is_pro'])
                     ->where('category_id',$request->category)
+                    ->unsuspendCreator()
                     ->where('project_on_off','1')
                     ->where('status','1')
                     ->latest();
@@ -155,6 +159,7 @@ class CategoryProjectController extends Controller
             ->select(['title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image'])
             ->where('category_id',$request->category)
             ->where('project_on_off','1')
+            ->unsuspendCreator()
             ->where('status','1')
             ->latest()
             ->paginate(10);

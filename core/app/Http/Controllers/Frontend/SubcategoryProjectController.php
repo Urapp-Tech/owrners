@@ -30,6 +30,7 @@ class SubcategoryProjectController extends Controller
                 ->withAvg(['ratings' => function ($query){
                     $query->where('sender_type', 1);
                 }],'rating')
+                ->unsuspendCreator()
                 ->orderBy('complete_orders_count','Desc')
                 ->orderBy('ratings_avg_rating','Desc')
                 ->paginate(10);
@@ -48,6 +49,7 @@ class SubcategoryProjectController extends Controller
                 ->with('project_creator')
                 ->where('project_on_off','1')
                 ->withCount('complete_orders')
+                ->unsuspendCreator()
                 ->withAvg(['ratings' => function ($query){
                     $query->where('sender_type', 1);
                 }],'rating')
@@ -103,6 +105,7 @@ class SubcategoryProjectController extends Controller
                     ->where('status','1')
                     ->where('pro_expire_date','>',$this->current_date)
                     ->where('is_pro','yes')
+                    ->unsuspendCreator()
                     ->withCount('complete_orders')
                     ->withAvg(['ratings' => function ($query){
                         $query->where('sender_type', 1);
@@ -113,6 +116,7 @@ class SubcategoryProjectController extends Controller
                     ->where('project_on_off','1')
                     ->where('status','1')
                     ->withCount('complete_orders')
+                    ->unsuspendCreator()
                     ->withAvg(['ratings' => function ($query){
                         $query->where('sender_type', 1);
                     }],'rating');
@@ -183,6 +187,7 @@ class SubcategoryProjectController extends Controller
             ->with('project_creator')
             ->where('project_on_off','1')
             ->where('status','1')
+            ->unsuspendCreator()
             ->latest()
             ->paginate(10);
         return $projects->total() >= 1 ? view('frontend.pages.subcategory-projects.search-subcategory-result',compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
