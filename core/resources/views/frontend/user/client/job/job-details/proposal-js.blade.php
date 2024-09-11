@@ -103,6 +103,24 @@
                 $('#job_type_for_order').val('job')
             });
 
+            //accept hourly job
+            $(document).on('click', '.accept_hourly_proposal', function(e){
+                $('#job_type_for_order').val('job')
+                    Swal.fire({
+                        title: '{{__("Are You Sure?")}}',
+                        text: '{{__("To accept this proposal")}}',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#AF7AD5',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: "{{__('Yes, Accept it!')}}"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(this).next().find('.swal_form_submit_btn').trigger('click');
+                        }
+                    });
+            });
+
             // add to short list
             $(document).on('click', '.job_open_close', function(e) {
                 let job_id = $(this).data('job-id');

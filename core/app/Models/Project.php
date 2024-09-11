@@ -38,7 +38,12 @@ class Project extends Model
         'status',
         'offer_packages_available_or_not',
         'is_pro',
-        'pro_expire_date'
+        'pro_expire_date',
+        'meta_title',
+        'meta_description',
+        'meta_tags',
+        'load_from',
+        'is_synced'
     ];
     protected $casts = [
         'status' => 'integer',
@@ -52,7 +57,7 @@ class Project extends Model
 
     public function project_creator()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'user_id','id')->where('is_suspend',0);
     }
 
     public function project_history()

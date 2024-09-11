@@ -6,6 +6,7 @@ use App\Helper\LogActivity;
 use App\Http\Controllers\Controller;
 use App\Mail\BasicMail;
 use App\Models\AdminNotification;
+use App\Models\Bookmark;
 use App\Models\Project;
 use App\Models\ProjectAttribute;
 use App\Models\ProjectHistory;
@@ -148,6 +149,7 @@ class ProjectController extends Controller
     {
         ProjectAttribute::where('create_project_id',$id)->delete();
         ProjectHistory::where('project_id',$id)->delete();
+        Bookmark::where('identity',$id)->where('is_project_job','project')->delete();
         Project::find($id)->delete();
 
         //security manage

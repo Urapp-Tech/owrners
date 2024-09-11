@@ -1,4 +1,4 @@
-@if($notification->type =='Create Gig' || $notification->type =='Edit Gig')
+@if($notification->type =='Create Project' || $notification->type =='Edit Project')
     <a href="{{ route('admin.project.details',$notification->identity) }}" class="dashboard__notification__list__item click-notification">
         <div class="dashboard__notification__list__left">
             <div class="dashboard__notification__list__icon decline">

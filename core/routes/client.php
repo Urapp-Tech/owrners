@@ -53,6 +53,7 @@ Route::group(['prefix'=>'client','as'=>'client.'],function() {
             Route::post('job/open/close','open_close')->name('job.open.close');
             Route::post('job/proposal/filter','job_proposal_filter')->name('job.proposal.filter');
             Route::get('job/paginate/data', 'pagination')->name('job.paginate.data');
+            Route::post('job/update/hourly-rate-hours', 'rate_and_hours')->name('job.hourly.rate');
         });
 
         // orders

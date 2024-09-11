@@ -1,6 +1,7 @@
 <!-- Setup Setting Starts -->
 <div class="setup-wrapper-contents">
-    <div class="setup-wrapper-contents-item d-none">
+    @if(moduleExists('HourlyJob'))
+    <div class="setup-wrapper-contents-item">
         <h3 class="setup-wrapper-contents-title">{{ get_static_option('hourly_rate_title') ?? __('What is your hourly rate?') }}</h3>
         <div class="setup-wrapper-finish">
             <div class="custom-form">
@@ -8,12 +9,13 @@
                     <div class="single-input single-input-icon">
                         <input type="number" name="hourly_rate" id="hourly_rate" class="form--control"
                                @if(Auth::guard('web')->check()) value="{{ Auth::guard('web')->user()->hourly_rate }}" @else value="20" @endif >
-                        <span class="input-icon"><i class="fa-solid fa-dollar-sign"></i></span>
+                        <span class="input-icon">{{ site_currency_symbol() ?? '' }}</span>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    @endif
     <div class="setup-wrapper-contents-item">
         <h3 class="setup-wrapper-contents-title">{{ get_static_option('profile_photo_title') ?? __('Upload profile photo') }}</h3>
         <div class="setup-wrapper-finish">
@@ -21,7 +23,11 @@
                 <div class="setup-wrapper-finish-profile-flex">
                     <div class="setup-wrapper-finish-profile-thumb profile_photo_area">
                         @if(!empty(Auth::user()->image))
-                            <img src="{{ asset('assets/uploads/profile/'.Auth::user()->image) ?? '' }}" alt="profile.img">
+                            @if(cloudStorageExist() && in_array(Storage::getDefaultDriver(), ['s3', 'cloudFlareR2', 'wasabi']))
+                                <img src="{{ render_frontend_cloud_image_if_module_exists( 'profile/'. Auth::user()->image, load_from: Auth::user()->load_from) }}" alt="{{ __('profile img') }}">
+                            @else
+                                <img src="{{ asset('assets/uploads/profile/'.Auth::user()->image) ?? '' }}" alt="{{ __('profile img') }}">
+                            @endif
                         @else
                             <img src="{{ asset('assets/static/single-page/setting_profile.jpg') }}" alt="profileImg">
                         @endif

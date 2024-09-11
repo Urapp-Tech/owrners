@@ -32,14 +32,6 @@ class OrderController extends Controller
     //confirm order
     public function user_order_confirm(Request $request)
     {
-        $all_gateway = ['wallet','paypal','manual_payment','mollie','paytm','stripe','razorpay','flutterwave','paystack','marcadopago','instamojo','cashfree','payfast','midtrans','squareup','cinetpay','paytabs','billplz','zitopay','sitesway','toyyibpay','authorize_dot_net'];
-        if(empty($request->selected_payment_gateway)){
-            return back()->with(toastr_warning(__('Please select a payment gateway before place an order2')));
-        }
-        if (!in_array($request->selected_payment_gateway, $all_gateway)) {
-            return back()->with(toastr_warning(__('Please select a payment gateway before place an order')));
-        }
-
         $project = Project::where('id',$request->project_id)->first();
         $job = JobPost::where('id',$request->job_id_for_order)->first();
         $offer = Offer::with('milestones')->where('id',$request->offer_id_for_order)->first();
@@ -125,7 +117,6 @@ class OrderController extends Controller
                 if($milestone_price > $price || $milestone_price < $price){return back()->with(toastr_warning(__('Milestone price must be equal to original price')));}
             }
 
-
             //prevent multiple order.user can not create multiple order for same project if any order is pending.
             $check_client_order = Order::where('user_id',$client_id)->where('identity',$request->project_id)
                 ->where('is_project_job','project')
@@ -134,6 +125,37 @@ class OrderController extends Controller
                 ->first();
             if($check_client_order){
                 return back()->with(toastr_warning(__('You can not create one more order until your pending or active order complete.')));
+            }
+
+            //this code only related to hourly order
+            if(moduleExists('HourlyJob') && !empty($job)){
+                if($job->type == 'hourly')
+                {
+                    $wallet_amount = Auth::guard('web')->user()->user_wallet?->balance ?? 0;
+                    $price = $job->hourly_rate * $job->estimated_hours;
+                    $commission_amount = commission_amount($price,$individual_commission,$commission_type,$commission_charge);
+                    $payment_status = 'complete';
+
+                    //user payable amount calculate
+                    $payable_amount = $price - $commission_amount;
+                    //shortage amount calculate based on hourly rate and estimated hours
+                    $shortage_amount = $price - $wallet_amount;
+
+                    if($price > $wallet_amount){
+                        return back()->with(toastr_warning(__('Wallet balance shortage ' .float_amount_with_currency_symbol($shortage_amount). ' based on hourly rate and estimated hours. Please deposit first to place the order.')));
+                    }
+                    return (new OrderService())->hourly_order($request, $client_id, $user->id, $project_or_job, $type, $revision, $delivery, $price, $commission_type, $commission_charge, $commission_amount, $transaction_type, $transaction_charge, $payable_amount, $payment_status,$wallet_amount);
+                }
+            }
+            //hourly order end
+
+            //payment gateway validation
+            $all_gateway = ['wallet','paypal','manual_payment','mollie','paytm','stripe','razorpay','flutterwave','paystack','marcadopago','instamojo','cashfree','payfast','midtrans','squareup','cinetpay','paytabs','billplz','zitopay','sitesway','toyyibpay','authorize_dot_net','kineticpay','awdpay','iyzipay','yoomoney','coinpayments'];
+            if(empty($request->selected_payment_gateway)){
+                return back()->with(toastr_warning(__('Please select a payment gateway before place an order')));
+            }
+            if (!in_array($request->selected_payment_gateway, $all_gateway)) {
+                return back()->with(toastr_warning(__('Please select a payment gateway before place an order')));
             }
 
             if($request->selected_payment_gateway == 'manual_payment')

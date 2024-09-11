@@ -23,6 +23,8 @@ class VerifyCsrfToken extends Middleware
         'client/wallet/pagali-ipn',
         'client/wallet/siteways-ipn',
         'client/wallet/iyzipay-ipn',
+        'client/wallet/kineticpay-ipn',
+        'client/wallet/yoomoney-ipn',
 
         //freelancer deposit
         'freelancer/wallet/payfast-ipn',
@@ -32,5 +34,6 @@ class VerifyCsrfToken extends Middleware
         'freelancer/wallet/pagali-ipn',
         'freelancer/wallet/siteways-ipn',
         'freelancer/wallet/iyzipay-ipn',
+        'freelancer/wallet/kineticpay-ipn',
     ];
 }

@@ -67,8 +67,8 @@
                                                 <div class="project-preview-tab-header-item">
                                                     <span class="left"><i class="fa-regular fa-clock"></i>
                                                         {{ __('Budget') }}</span>
-                                                    <strong
-                                                        class="right">{{ amount_with_currency_symbol($job->budget ?? '') }}</strong>
+                                                        <strong
+                                                        class="right">{{ amount_with_currency_symbol($job->type != 'fixed' ? $job->hourly_rate : $job->budget ?? '') }}</strong>
                                                 </div>
                                             </div>
                                             <div class="project-preview-tab-inner mt-4">

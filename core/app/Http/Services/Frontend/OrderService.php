@@ -354,7 +354,6 @@ class OrderService
             }
         }
         elseif($request->selected_payment_gateway === 'cashfree'){
-//            return $total;
             try {
                 return PaymentGatewayRequestHelper::cashfree()->charge_customer($this->buildPaymentArg($total,$title,$description,$last_order_id,$email,$name,route('pro.cashfree.ipn.order')));
             }catch (\Exception $e){
@@ -468,8 +467,111 @@ class OrderService
                 return back();
             }
         }
+        elseif($request->selected_payment_gateway === 'kineticpay'){
+            try {
+                return PaymentGatewayRequestHelper::kineticpay()->charge_customer($this->buildPaymentArg($total,$title,$description,$last_order_id,$email,$name,route('pro.kineticpay.ipn.order')));
+            }catch (\Exception $e){
+                toastr_error($e->getMessage());
+                return back();
+            }
+        }
+
+        elseif($request->selected_payment_gateway === 'awdpay'){
+            try {
+                return PaymentGatewayRequestHelper::awdpay()->charge_customer($this->buildPaymentArg($total,$title,$description,$last_order_id,$email,$name,route('pro.awdpay.ipn.order')));
+            }catch (\Exception $e){
+                toastr_error($e->getMessage());
+                return back();
+            }
+        }
+
+        elseif($request->selected_payment_gateway === 'yoomoney'){
+            try {
+                return PaymentGatewayRequestHelper::yoomoney()->charge_customer($this->buildPaymentArg($total,$title,$description,$last_order_id,$email,$name,route('yoomoney.ipn.all'),'order'));
+            }catch (\Exception $e){
+                toastr_error($e->getMessage());
+                return back();
+            }
+        }
+
+        elseif($request->selected_payment_gateway === 'coinpayments'){
+            try {
+                return PaymentGatewayRequestHelper::coinpayments()->charge_customer($this->buildPaymentArg($total,$title,$description,$last_order_id,$email,$name,route('coinpayment.ipn.all'),'order'));
+            }catch (\Exception $e){
+                toastr_error($e->getMessage());
+                return back();
+            }
+        }
+
     }
 
+    //hourly order
+    public function hourly_order($request, $client_id, $freelancer_id, $project_or_job, $type, $revision, $delivery, $price, $commission_type, $commission_charge, $commission_amount, $transaction_type, $transaction_charge, $payable_amount, $payment_status, $wallet_balance)
+    {
+        if($request->job_id_for_order){ $identity = $request->job_id_for_order; }
+
+        $order = Order::create([
+            'user_id' => $client_id,
+            'freelancer_id' => $freelancer_id,
+            'identity' => $identity,
+            'is_project_job' => $project_or_job,
+            'is_basic_standard_premium_custom' => $type,
+            'revision' => $revision,
+            'revision_left' => $revision,
+            'delivery_time' => $delivery,
+            'description' => $request->order_description ?? NULL,
+            'price' => $price,
+            'commission_type' => $commission_type,
+            'commission_charge' => $commission_charge,
+            'commission_amount' => $commission_amount,
+            'transaction_type' => $transaction_type,
+            'transaction_charge' => $transaction_charge,
+            'transaction_amount' => 0,
+            'payable_amount' => $payable_amount,
+            'payment_gateway' => 'wallet',
+            'payment_status' => $payment_status,
+            'status' => 0,
+            'is_fixed_hourly' => 'hourly',
+        ]);
+
+        $last_order_id = $order->id;
+        $type_ = 'Order';
+        $msg = __('New order placed');
+        notificationToAdmin($last_order_id, $client_id, $type_, $msg);
+        freelancer_notification($last_order_id, $freelancer_id, $type_, $msg);
+
+        if (Auth::guard('web')->check()){
+            $user_type = Auth::user()->user_type == 1 ? 'client' : 'freelancer';
+            $client_email = Auth::user()->email;
+            $user_id = $user_type == 'client' ? $client_id : $freelancer_id;
+        }
+
+        $freelancer = User::select(['id','email'])->where('id',$freelancer_id)->first();
+
+        //email to admin
+        try {
+            Mail::to(get_static_option('site_global_email'))->send(new OrderMail($last_order_id,'admin'));
+        } catch (\Exception $e) {}
+
+        //email to client
+        try {
+            Mail::to($client_email)->send(new OrderMail($last_order_id,'client'));
+        } catch (\Exception $e) {}
+
+        //email to freelancer
+        try {
+            Mail::to($freelancer->email)->send(new OrderMail($last_order_id,'freelancer'));
+        } catch (\Exception $e) {}
+
+        //update job proposal (hired 0 to one) if the order created from job
+        if($project_or_job == 'job'){
+            JobProposal::where('id',$request->proposal_id_for_order)->update(['is_hired'=>1]);
+        }
+
+        toastr_success('Order successfully completed.');
+        $new_order_id = getLastOrderId($last_order_id);
+        return redirect()->route('order.user.success.page',$new_order_id);
+    }
 
     //create project order milestone
     private function createMilestone($last_order_id,$request)

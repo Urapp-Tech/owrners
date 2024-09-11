@@ -21,7 +21,7 @@ class FreelancerListController extends Controller
     //all talents
     public function talents()
     {
-        $talents = User::select('id', 'username','first_name','last_name','image','country_id','state_id','user_verified_status')
+        $talents = User::select('id', 'username','first_name','last_name','image','country_id','state_id','user_verified_status','load_from')
             ->with('user_introduction','freelancer_category')
             ->where('user_type','2')
             ->where('is_email_verified',1)
@@ -71,7 +71,7 @@ class FreelancerListController extends Controller
     private function filter_query($request)
     {
         if($request->get_pro_profiles == 1){
-            $talents = User::query()->select('id', 'username','first_name','last_name','image','country_id','state_id','is_pro','pro_expire_date')
+            $talents = User::query()->select('id', 'username','first_name','last_name','image','country_id','state_id','is_pro','pro_expire_date','load_from')
                 ->with('user_introduction')
                 ->where('user_type','2')
                 ->where('is_email_verified',1)
@@ -91,7 +91,7 @@ class FreelancerListController extends Controller
 //                ->orderBy('freelancer_orders_count', 'DESC');
                 ->inRandomOrder();
         }else{
-            $talents = User::query()->select('id', 'username','first_name','last_name','image','country_id','state_id','is_pro','pro_expire_date')
+            $talents = User::query()->select('id', 'username','first_name','last_name','image','country_id','state_id','is_pro','pro_expire_date','load_from')
                 ->with('user_introduction')
                 ->where('user_type','2')
                 ->where('is_email_verified',1)
@@ -200,7 +200,7 @@ class FreelancerListController extends Controller
     //filter reset
     public function reset()
     {
-        $talents = User::select('id', 'username','first_name','last_name','image','country_id','state_id')
+        $talents = User::select('id', 'username','first_name','last_name','image','country_id','state_id','load_from')
             ->with('user_introduction','freelancer_category')
             ->where('user_type','2')
             ->where('is_email_verified',1)

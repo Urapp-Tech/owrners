@@ -2,6 +2,13 @@
 @section('site_title')
     {{ $project->title ?? __('Gig Preview') }}
 @endsection
+@if(isset($project->meta_title) && !empty($project->meta_title))
+    @section('meta_title', $project->meta_title)
+@endif
+
+@if(isset($project->meta_description) && !empty($project->meta_description))
+    @section('meta_description', $project->meta_description)
+@endif
 @section('style')
     <x-summernote.summernote-css />
     <style>
@@ -25,6 +32,17 @@
             cursor: default;
         }
 
+        .pricing-wrapper-left{
+            .pricing-wrapper-card-bottom-list ul li {
+                max-height: 50px;
+                min-width: 205px;
+                align-items: unset;
+                span{
+                    margin:auto 0;
+                }
+            }
+        }
+
         [data-star] {
             text-align: left;
             font-style: normal;
@@ -40,7 +58,6 @@
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             font-size: 15px;
-            ;
             color: var(--body-color);
         }
 

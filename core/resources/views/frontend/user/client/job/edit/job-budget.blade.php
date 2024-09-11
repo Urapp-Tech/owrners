@@ -6,9 +6,23 @@
                 <label class="label-title">{{ __('Job type') }}</label>
                 <select class="form-control" name="type" id="type">
                     <option value="fixed" {{ $job_details->type == 'fixed' ? 'selected' : ''}}>{{ __('Fixed-Price (Pay a fixed amount for the job)') }}</option>
+                    @if(moduleExists('HourlyJob'))
+                        <option value="hourly" {{ $job_details->type == 'hourly' ? 'selected' : ''}}>{{ __('Hourly Rate (Pay based on total hours worked for the job)') }}</option>
+                    @endif
                 </select>
             </div>
-            <div class="setup-bank-form-item setup-bank-form-item-icon">
+            @if(moduleExists('HourlyJob'))
+                <div class="setup-bank-form-item setup-bank-form-item-icon d-none manage-hourly-jobs">
+                    <label class="label-title">{{ __('Hourly Rate') }}</label>
+                    <input type="number" class="form--control" name="hourly_rate" onkeyup="if(value<1) value=1; if(value>100000) value=1;" value="{{ $job_details->hourly_rate ?? '' }}" id="hourly_rate" placeholder="{{ __('Enter Hourly Rate') }}">
+                    <span class="input-icon">{{ get_static_option('site_global_currency') ?? '' }}</span>
+                </div>
+                <div class="setup-bank-form-item d-none manage-hourly-jobs">
+                    <label class="label-title">{{ __('Estimated Hours') }}</label>
+                    <input type="number" class="form--control" name="estimated_hours" onkeyup="if(value<1) value=1; if(value>100000) value=1;" value="{{ $job_details->estimated_hours ?? '' }}" id="estimated_hours" placeholder="{{ __('Enter Estimated Hours') }}">
+                </div>
+            @endif
+            <div class="setup-bank-form-item setup-bank-form-item-icon manage-fixed-jobs">
                 <label class="label-title">{{ __('Enter Budget') }}</label>
                 <input type="number" class="form--control" name="budget" id="budget" value="{{ $job_details->budget }}" placeholder="{{ __('Enter Your Budget') }}">
                 <span class="input-icon">{{ get_static_option('site_global_currency') ?? '' }}</span>
@@ -28,17 +42,17 @@
             </div>
             <div class="setup-bank-form-item">
                 @php
-                    $extension = [];
-                    $extensions = [];
-                    $path_info = pathinfo('assets/uploads/jobs/'.$job_details->attachment);
-                    if(isset($path_info['extension'])){
-                        $extension = $path_info['extension'];
-                        $extensions = array('png','jpg','jpeg','bmp','gif','tiff','svg');
-                    }
+                    $extension = pathinfo($job_details->attachment,PATHINFO_EXTENSION);
+                    $extensions = array('png','jpg','jpeg','bmp','gif','tiff','svg');
                 @endphp
+
                 @if(in_array($extension, $extensions))
-                    <div class="remove-attachment-wrap mb-4">
-                        <img class="remove_attachment" src="{{ asset('assets/uploads/jobs/'.$job_details->attachment) }}" alt="{{ $job_details->attachment ?? '' }}">
+                    <div class="remove-attachment-wrap mb-4 img_max_width">
+                        @if(cloudStorageExist() && in_array(Storage::getDefaultDriver(), ['s3', 'cloudFlareR2', 'wasabi']))
+                            <img class="remove_attachment w-100" src="{{ render_frontend_cloud_image_if_module_exists('jobs/'.$job_details->attachment, load_from: $job_details->load_from) }}" alt="{{ $job_details->attachment ?? '' }}">
+                        @else
+                            <img class="remove_attachment w-100" src="{{ asset('assets/uploads/jobs/'.$job_details->attachment) }}" alt="{{ $job_details->attachment ?? '' }}">
+                        @endif
                     </div>
                 @else
                     <div class="remove-attachment-wrap mb-4">
@@ -52,7 +66,7 @@
                     </div>
                     <input class="photo-uploaded-file inputTag" type="file" name="attachment" id="attachment">
                 </label>
-                <p class="mt-2">{{ __('Supported: image,csv,txt,xlx,xls,pdf file') }}</p>
+                <p class="mt-2">{{ __('Supported: image,csv,txt,xlx,xls,pdf,docx file') }}</p>
             </div>
         </div>
     </div>

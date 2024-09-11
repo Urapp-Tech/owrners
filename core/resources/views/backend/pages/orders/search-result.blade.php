@@ -2,6 +2,7 @@
     <thead>
     <tr>
         <th>{{ __('User ID') }}</th>
+        <th>{{ __('Order From') }}</th>
         <th>{{ __('Type') }}</th>
         <th>{{ __('Price') }}</th>
         <th>{{ __('Revision') }}</th>
@@ -17,6 +18,7 @@
         <tr>
             <td>{{ $order->user_id ?? '' }}</td>
             <td>{{ ucfirst(__($order->is_project_job)) }}</td>
+            <td>{{ ucfirst(__($order->is_fixed_hourly ?? 'Fixed')) }}</td>
             <td>{{ float_amount_with_currency_symbol($order->price) }}</td>
             <td>{{ $order->revision }}</td>
             <td>

@@ -157,6 +157,25 @@
                 };
             });
 
+            //hourly rate
+
+            let job_type = $('#type').val();
+            if(job_type == 'hourly'){
+                $('.manage-hourly-jobs').removeClass('d-none');
+                $('.manage-fixed-jobs').addClass('d-none');
+            }
+
+            $(document).on('change','#type',function(){
+                let type = $(this).val();
+                if(type == 'hourly') {
+                    $('.manage-hourly-jobs').removeClass('d-none');
+                    $('.manage-fixed-jobs').addClass('d-none');
+                }else{
+                    $('.manage-fixed-jobs').removeClass('d-none');
+                    $('.manage-hourly-jobs').addClass('d-none');
+                }
+            });
+
             //confirm create job
             $(document).on('click','#confirm_edit_job',function(){
                 let type = $('#type').val();

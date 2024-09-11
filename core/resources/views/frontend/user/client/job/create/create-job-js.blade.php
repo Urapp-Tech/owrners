@@ -159,6 +159,18 @@
                 };
             });
 
+            //hourly rate
+            $(document).on('change','#type',function(){
+                let type = $(this).val();
+                if(type == 'hourly') {
+                    $('.manage-hourly-jobs').removeClass('d-none');
+                    $('.manage-fixed-jobs').addClass('d-none');
+                }else{
+                    $('.manage-fixed-jobs').removeClass('d-none');
+                    $('.manage-hourly-jobs').addClass('d-none');
+                }
+            });
+
             //confirm create job
             $(document).on('click','#confirm_create_job',function(){
                 let type = $('#type').val();
@@ -205,7 +217,7 @@
             if (current <= Listings.length) {
                 current++
 
-                // todo add introduction
+                // add introduction
                 if(current == 1){
                     let category = $('#category').val();
                     let subcategory = $('#subcategory').val();

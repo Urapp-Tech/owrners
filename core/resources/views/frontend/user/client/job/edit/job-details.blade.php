@@ -32,10 +32,10 @@
                             @endforeach
                             value="{{ $subcategory->id }}">{{ $subcategory->sub_category }}
                         </option>
-                    @endforeach
+                     @endforeach
                 </select>
                 <span id="subcategory_info"></span>
-            </div>
+             </div>
 
             <div class="single-input">
                 <label class="label-title">{{ __('Job duration') }}</label>
@@ -68,6 +68,14 @@
                 :class="'description '"
             />
             <span id="job_description_char_length_check"></span>
+
+            <x-form.text :title="__('Meta Title - ideal length is 50–60 characters (optional)')" :type="'text'" :id="'meta_title'" :name="'meta_title'" :divClass="'mb-0'" :class="'form--control'" :value="$job_details->meta_title ?? old('meta_title')" :placeholder="__('Enter meta title')" />
+
+            <div class="single-input">
+                <label class="label-title">{{ __('Meta Description - ideal length is 150-160 characters (optional)') }}</label>
+                <textarea name="meta_description" id="meta_description" class="form-message" cols="30" rows="3" placeholder="{{ __('Enter meta description') }}">{{ $job_details->meta_description ?? '' }}</textarea>
+            </div>
+
         </div>
     </div>
 </div>

@@ -15,12 +15,24 @@
                                 <td>#000{{  $order_details->id }}</td>
                             </tr>
                             <tr>
-                                <th>{{ __('Price') }}</th>
-                                <td>{{  float_amount_with_currency_symbol($order_details->price)}}</td>
-                            </tr>
+                                @if($order_details->is_fixed_hourly == 'hourly')
+                                <tr>
+                                    <th>{{ __('Hourly Rate') }}</th>
+                                    <td>{{float_amount_with_currency_symbol($order_details?->job->hourly_rate)}}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ __('Estimated Hours') }}</th>
+                                    <td>{{ $order_details?->job->estimated_hours }}</td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <th>{{ __('Price') }}</th>
+                                    <td>{{  float_amount_with_currency_symbol($order_details->price)}}</td>
+                                </tr>
+                                @endif
                             <tr>
                                 <th>{{ __('Revision') }}</th>
-                                <td>{{  $order_details->revision == 1000 ? 'Unlimited' : $order_details->revision }}</td>
+                                <td>{{  $order_details->revision == 1000 ? __('Unlimited') : $order_details->revision }}</td>
                             </tr>
                             <tr>
                                 <th>{{ __('Delivery') }}</th>

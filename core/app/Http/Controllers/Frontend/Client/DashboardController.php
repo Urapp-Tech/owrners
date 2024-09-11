@@ -81,7 +81,7 @@ class DashboardController extends Controller
 
             $popularCategoriesIdsOnly = array_merge($popularCategoriesIdsOnly, $remainingCategoriesIds->pluck('id')->toArray());
         }
-        $popularCategories = Category::with(['projects', 'projects.project_creator'])->whereIn('id', $popularCategoriesIdsOnly)->get();
+        $popularCategories = Category::with(['projects' =>function ($q)  { return $q->unsuspendCreator(); }, 'projects.project_creator'])->whereIn('id', $popularCategoriesIdsOnly)->get();
 
         // dd($popularCategories);
 

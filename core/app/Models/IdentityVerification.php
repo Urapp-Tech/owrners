@@ -12,7 +12,8 @@ class IdentityVerification extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','verify_by','country_id','state_id','city_id','address','zipcode','national_id_number','front_image','back_image','status','is_read'];
+    protected $fillable = ['user_id','verify_by','country_id','state_id','city_id','address','zipcode','national_id_number','front_image','back_image','status','is_read','load_from',
+        'is_synced'];
     protected $casts = ['status'=>'integer','is_read'=>'integer'];
 
     public function user()

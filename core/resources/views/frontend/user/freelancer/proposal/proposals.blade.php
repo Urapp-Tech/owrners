@@ -7,11 +7,11 @@
 @endsection
 @section('content')
     <main>
-        <x-frontend.category.category />
+        @if(moduleExists('CoinPaymentGateway'))@else<x-frontend.category.category/>@endif
         <x-breadcrumb.user-profile-breadcrumb :title="__('Proposals')" :innerTitle="__('My Proposals')"/>
 
         <!-- Profile Details area Starts -->
-        <div class="profile-area pat-25 pab-100 section-bg-2">
+        <div class="profile-area pat-100 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="@if(get_static_option('job_enable_disable') != 'disable') col-xl-8 col-lg-8 @else col-12 @endif">
@@ -37,28 +37,53 @@
                                 <a href="{{route('jobs.all')}}" class="profile-wrapper-item-browse-btn"> {{__('Browse All')}} </a>
                             </div>
                             @if($jobs->count()>0)
-                                @foreach ($jobs as $job)
-                                    <div class="single-jobs border-0 radius-10 bg-white mt-4">
-                                        <h4 class="single-jobs-title"> <a
-                                                    href="{{ route('job.details', ['username' => $job->job_creator?->username, 'slug' => $job->slug]) }}">
-                                                {{ $job->title }} </a> </h4>
-                                        <p class="single-jobs-date">
-                                            {{ $job->created_at->toFormattedDateString() ?? '' }} -
-                                            <span>{{ ucfirst($job->level) ?? '' }}</span>
-                                        </p>
+                                @if(moduleExists('HourlyJob'))
+                                    @foreach ($jobs as $job)
+                                        <div class="single-jobs border-0 radius-10 bg-white mt-4">
+                                            <h4 class="single-jobs-title">
+                                                <a href="{{ route('job.details', ['username' => $job->job_creator?->username, 'slug' => $job->slug]) }}">{{ $job->title }}</a>
+                                            </h4>
+                                            <p class="single-jobs-date">
+                                                {{ $job->created_at->toFormattedDateString() ?? '' }} -
+                                                <span>{{ ucfirst($job->level) ?? '' }}</span>
+                                            </p>
 
-                                        <h3 class="single-jobs-price">
-                                            {{ float_amount_with_currency_symbol($job->budget) }}
-                                            <span class="single-jobs-price-fixed">{{ ucfirst($job->type) }}</span>
-                                        </h3>
-                                        <div class="single-jobs-tag mt-4">
-                                            @foreach ($job->job_skills as $skill)
-                                                <a href="{{ route('skill.jobs', $skill->skill) }}" class="single-jobs-tag-link">
-                                                    {{ $skill->skill ?? '' }} </a>
-                                            @endforeach
+                                            <h3 class="single-jobs-price">
+                                                {{ $job->type == 'hourly' ? float_amount_with_currency_symbol($job->hourly_rate) : float_amount_with_currency_symbol($job->budget) }}
+                                                <span class="single-jobs-price-fixed">{{ ucfirst($job->type) }}</span>
+                                            </h3>
+                                            <div class="single-jobs-tag mt-4">
+                                                @foreach ($job->job_skills as $skill)
+                                                    <a href="{{ route('skill.jobs', $skill->skill) }}" class="single-jobs-tag-link">
+                                                        {{ $skill->skill ?? '' }} </a>
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @else
+                                    @foreach ($jobs as $job)
+                                        <div class="single-jobs border-0 radius-10 bg-white mt-4">
+                                            <h4 class="single-jobs-title">
+                                                <a href="{{ route('job.details', ['username' => $job->job_creator?->username, 'slug' => $job->slug]) }}">{{ $job->title }}</a>
+                                            </h4>
+                                            <p class="single-jobs-date">
+                                                {{ $job->created_at->toFormattedDateString() ?? '' }} -
+                                                <span>{{ ucfirst($job->level) ?? '' }}</span>
+                                            </p>
+
+                                            <h3 class="single-jobs-price">
+                                                {{ float_amount_with_currency_symbol($job->budget) }}
+                                                <span class="single-jobs-price-fixed">{{ ucfirst($job->type) }}</span>
+                                            </h3>
+                                            <div class="single-jobs-tag mt-4">
+                                                @foreach ($job->job_skills as $skill)
+                                                    <a href="{{ route('skill.jobs', $skill->skill) }}" class="single-jobs-tag-link">
+                                                        {{ $skill->skill ?? '' }} </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             @else
                                 <h6 class="profile-wrapper-item-title">{{__('No Jobs Found')}}</h6>
                             @endif

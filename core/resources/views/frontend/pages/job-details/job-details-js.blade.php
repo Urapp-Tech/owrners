@@ -31,6 +31,9 @@
 
             });
 
+            //tooltip
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+
         });
     }(jQuery));
 </script>

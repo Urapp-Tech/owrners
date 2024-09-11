@@ -11,7 +11,30 @@ class JobPost extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','title','slug','category','duration','level','description','type','budget','tags','attachment','job_approve_request','status','last_seen','last_apply_date'];
+    protected $fillable = [
+        'user_id',
+        'title',
+        'slug',
+        'category',
+        'duration',
+        'level',
+        'description',
+        'type',
+        'hourly_rate',
+        'estimated_hours',
+        'budget',
+        'tags',
+        'attachment',
+        'job_approve_request',
+        'status',
+        'last_seen',
+        'last_apply_date',
+        'meta_title',
+        'meta_description',
+        'meta_tags',
+        'load_from',
+        'is_synced'
+    ];
 
     protected $casts = ['job_approve_request'=>'integer','status'=>'integer','on_off'=>'integer','current_status'=>'integer'];
 
@@ -28,7 +51,7 @@ class JobPost extends Model
     }
 
     public function job_creator(){
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'user_id','id')->where('is_suspend',0);
     }
     public function job_history()
     {

@@ -55,10 +55,19 @@
                     @if($proposal->attachment)
                         <div class="myJob-wrapper-single">
                             <div class="myJob-wrapper-single-contents">
+                                @if(cloudStorageExist() && in_array(Storage::getDefaultDriver(), ['s3', 'cloudFlareR2', 'wasabi']))
+                                    <a href="{{ render_frontend_cloud_image_if_module_exists('jobs/proposal/'.$proposal->attachment, load_from: $proposal->load_from) }}"
+                                       download
+                                       class="single-refundRequest-item-uploads">
+                                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                                        {{ __('Download Attachment') }}
+                                    </a>
+                                @else
                                 <a href="{{ asset('assets/uploads/jobs/proposal/'.$proposal->attachment) }}" download class="single-refundRequest-item-uploads">
                                     <i class="fa-solid fa-cloud-arrow-down"></i>
                                     {{  __('Download Attachment') }}
                                 </a>
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -68,6 +77,24 @@
             </div>
             <div class="myOrder-single-item">
                 <div class="myOrder-single-flex flex-between">
+
+                    @if(moduleExists('HourlyJob'))
+                        @if($proposal?->job->type == 'hourly')
+                            <div class="jobFilter-proposal-offered-single">
+                                <span class="offered">{{ __(ucfirst($proposal?->job->type)) }}
+                                 <span class="offered-price">{{ float_amount_with_currency_symbol($proposal?->job->hourly_rate) }}</span>
+                                </span>
+                            </div>
+                        @endif
+                        @if($proposal?->job->type == 'hourly')
+                            <div class="jobFilter-proposal-offered-single">
+                                <span class="offered">{{ __('Estimated Hour') }}
+                                 <span class="offered-price">{{ $proposal?->job->estimated_hours ?? '' }}</span>
+                                </span>
+                            </div>
+                        @endif
+                    @endif
+
                     <div class="btn-wrapper flex-btn">
                         <button
                            class="btn-profile btn-outline-1 cover_letter_details"
@@ -79,7 +106,7 @@
                         </button>
                     </div>
                     <div class="btn-wrapper flex-btn">
-                        <a href="{{ route('job.details', ['username' => $proposal?->job?->job_creator?->username, 'slug' => $proposal?->job->slug]) }}"
+                        <a href="{{ route('job.details', ['username' => $proposal?->job?->job_creator?->username, 'slug' => $proposal?->job?->slug]) }}"
                            class="btn-profile btn-bg-1"
                            target="_blank">
                             {{ __('Job Details') }}

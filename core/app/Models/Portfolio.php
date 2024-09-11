@@ -9,5 +9,5 @@ class Portfolio extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','username','image','title','description','published_date'];
+    protected $fillable = ['user_id','username','image','title','description','published_date','load_from','is_synced'];
 }

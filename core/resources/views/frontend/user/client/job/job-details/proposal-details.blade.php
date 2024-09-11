@@ -10,7 +10,7 @@
 @section('content')
     <main>
         <x-breadcrumb.user-profile-breadcrumb :title="__('Proposal Details')" :innerTitle="__('Proposal Details')"/>
-        <div class="profile-area pat-25 pab-100 section-bg-2">
+        <div class="profile-area pat-100 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="col-lg-12">
@@ -66,6 +66,20 @@
                                         <div class="jobFilter-proposal-offered-single">
                                             <span class="offered">{{ __('Est. delivery duration') }} <span class="offered-days">{{ $proposal_details->duration }}</span> </span>
                                         </div>
+                                        @if($proposal_details?->job->type == 'hourly')
+                                            <div class="jobFilter-proposal-offered-single">
+                                                <span class="offered">{{ __(ucfirst($proposal_details?->job->type)) }}
+                                                 <span class="offered-price">{{ float_amount_with_currency_symbol($proposal_details?->job->hourly_rate) }}</span>
+                                                </span>
+                                            </div>
+                                        @endif
+                                        @if($proposal_details?->job->type == 'hourly')
+                                            <div class="jobFilter-proposal-offered-single">
+                                                <span class="offered">{{ __('Estimated hour') }}
+                                                 <span class="offered-price">{{ $proposal_details?->job->estimated_hours ?? '' }}</span>
+                                                </span>
+                                            </div>
+                                        @endif
                                     </div>
 
                                     <div class="flex-between profile-border-top">
@@ -78,6 +92,13 @@
                                                     <span class="btn-profile btn-outline-gray remove_from_short_listed">{{ __('Remove from Shortlist') }}</span>
                                                 @endif
                                             </a>
+
+                                            @if($proposal_details?->job->type == 'hourly')
+                                                <a href="javascript:void(0)"
+                                                   data-bs-toggle="modal"
+                                                   data-bs-target="#RateAndHoursModal"
+                                                   class="btn-profile btn-bg-1">{{ __('Update Hourly Rate') }}</a>
+                                            @endif
 
                                             <div class="btn-wrapper rejected_interview_location_{{ $proposal_details->id }}">
                                                 @if($proposal_details->is_rejected == 1)
@@ -95,7 +116,7 @@
                                                     >
                                                         @if ($proposal_details->is_interview_take == 1) {{ __('Interviewed') }} @else {{ __('Take Interview') }} @endif
                                                     </a>
-                                                    @if($proposal_details->is_hired == 0)
+                                                    @if($proposal_details->is_hired == 0 && $proposal_details?->job->type != 'hourly')
                                                         <a href="javascript:void(0)" class="btn-profile btn-outline-gray reject_proposal" data-proposal-id="{{ $proposal_details->id }}">{{ __('Reject') }}</a>
                                                         <a href="javascript:void(0)"
                                                            class="btn-profile btn-outline-gray accept_proposal"
@@ -103,6 +124,21 @@
                                                            data-proposal-id-for-order="{{ $proposal_details->id }}"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#paymentGatewayModal">{{ __('Accept') }}</a>
+                                                    @endif
+                                                    @if(moduleExists('HourlyJob'))
+                                                        @if($proposal_details->is_hired == 0 && $proposal_details?->job->type == 'hourly')
+                                                            <a href="javascript:void(0)" class="btn-profile btn-outline-gray reject_proposal" data-proposal-id="{{ $proposal_details->id }}">{{ __('Reject') }}</a>
+
+                                                            <a href="javascript:void(0)" class="btn-profile btn-outline-gray accept_hourly_proposal swal_status_change_button">{{ __('Accept') }}</a>
+                                                            <form method='post' action='{{ route('order.user.confirm') }}' class="d-none">
+                                                                <input type='hidden' name='_token' value='{{csrf_token()}}'>
+                                                                <input type='hidden' name='job_id_for_order' value="{{  $proposal_details->job_id }}">
+                                                                <input type='hidden' name='proposal_id_for_order' value="{{  $proposal_details->id }}">
+                                                                <input type="hidden" name="offer_id_for_order" id="offer_id_for_order">
+                                                                <input type="hidden" name="job_type_for_order" id="job_type_for_order">
+                                                                <button type="submit" class="swal_form_submit_btn d-none"></button>
+                                                            </form>
+                                                        @endif
                                                     @endif
                                                 @endif
                                             </div>
@@ -127,7 +163,16 @@
                                             <h2 class="myJob-wrapper-single-title">{{ __('Attachments') }}</h2>
                                         </div>
                                         <div class="myJob-wrapper-single-contents">
-                                            <a href="{{ asset('assets/uploads/jobs/proposal/'.$proposal_details->attachment) }}" download class="single-refundRequest-item-uploads"><i class="fa-solid fa-cloud-arrow-down"></i> {{ $proposal_details->attachment ?? '' }}</a>
+                                            @if(cloudStorageExist() && in_array(Storage::getDefaultDriver(), ['s3', 'cloudFlareR2', 'wasabi']))
+                                                <a href="{{ render_frontend_cloud_image_if_module_exists('jobs/proposal/'.$proposal_details->attachment, load_from: $proposal_details->load_from) }}"
+                                                   download
+                                                   class="single-refundRequest-item-uploads">
+                                                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                                                    {{ $proposal_details->attachment ?? '' }}
+                                                </a>
+                                            @else
+                                                <a href="{{ asset('assets/uploads/jobs/proposal/'.$proposal_details->attachment) }}" download class="single-refundRequest-item-uploads"><i class="fa-solid fa-cloud-arrow-down"></i> {{ $proposal_details->attachment ?? '' }}</a>
+                                           @endif
                                         </div>
                                     </div>
                                 @endif
@@ -179,6 +224,37 @@
             </div>
         </div>
         <!-- Send Offer Modal area ends -->
+
+        <!-- update rate and hours -->
+        <div class="modal fade" id="RateAndHoursModal" tabindex="-1" aria-labelledby="RateAndHoursModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form action="{{ route('client.job.hourly.rate') }}" method="post">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="RateAndHoursModalLabel"> {{ __('Hourly Rate & Estimated Hours') }} </h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="job_id" value="{{ $proposal_details?->job?->id }}">
+                            <div class="single-input">
+                                <label class="label-title mb-2">{{ __('Hourly Rate') }}</label>
+                                <input name="hourly_rate" class="form-control" value="{{ $proposal_details?->job?->hourly_rate }}">
+                            </div>
+                            <div class="single-input mt-2">
+                                <label class="label-title mb-2">{{ __('Estimated Hours') }}</label>
+                                <input name="estimated_hour" class="form-control" value="{{ $proposal_details?->job?->estimated_hours }}">
+                            </div>
+                        </div>
+                        <div class="modal-footer flex-column">
+                            <div class="d-flex flex-wrap gap-3">
+                                <button type="submit" class="btn-profile btn-bg-1">{{ __('Update') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         @include('frontend.user.client.job.modal.payment-gateway-modal')
 

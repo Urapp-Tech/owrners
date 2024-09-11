@@ -42,6 +42,7 @@
     },
     "autoload": {
         "files": [
+            "app/Helper/functions.php",
             "app/Helper/helpers.php",
             "app/Helper/module-helper.php"
 

@@ -15,11 +15,11 @@
     <main>
         <x-breadcrumb.user-profile-breadcrumb :title="__('Client Job Details')" :innerTitle="__('Client Job Details')"/>
         <!-- Profile Details area Starts -->
-        <div class="profile-area pat-25 pab-100 section-bg-2">
+        <div class="profile-area pat-100 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="col-xl-8 col-lg-9">
-                        <div class="profile-wrapper">
+                         <div class="profile-wrapper">
                             <div class="myJob-wrapper">
                                 <div class="myJob-wrapper-single">
                                     <div class="myJob-wrapper-single-flex flex-between align-items-center">
@@ -65,7 +65,11 @@
                                                         </g>
                                                     </svg>
                                                 </span>
-                                                <span class="item-para">{{ __("Budget") }}: <strong>{{ float_amount_with_currency_symbol($job_details->budget) }}</strong></span>
+                                                @if($job_details->type == 'hourly')
+                                                    <span class="item-para">{{ __("Hourly Rate") }}: <strong>{{ float_amount_with_currency_symbol($job_details->hourly_rate) }}</strong></span>
+                                                @else
+                                                    <span class="item-para">{{ __("Budget") }}: <strong>{{ float_amount_with_currency_symbol($job_details->budget) }}</strong></span>
+                                                @endif
                                             </li>
                                             <li class="jobFilter-wrapper-item-bottom-list-item">
                                                 <span class="item-icon">
@@ -118,8 +122,13 @@
                                                         <path d="M16 22.75H8C4.35 22.75 2.25 20.65 2.25 17V8.5C2.25 4.85 4.35 2.75 8 2.75H16C19.65 2.75 21.75 4.85 21.75 8.5V17C21.75 20.65 19.65 22.75 16 22.75ZM8 4.25C5.14 4.25 3.75 5.64 3.75 8.5V17C3.75 19.86 5.14 21.25 8 21.25H16C18.86 21.25 20.25 19.86 20.25 17V8.5C20.25 5.64 18.86 4.25 16 4.25H8Z" fill="#667085"/>
                                                     </svg>
                                                 </span>
-                                                <span class="item-para">{{ __('Job created') }} <strong>{{ $job_details->created_at->toFormattedDateString() }}</strong></span>
-                                            </li>
+
+                                                @if($job_details->type == 'hourly')
+                                                     <span class="item-para">{{ __("Estimated Hours") }}: <strong>{{ $job_details->estimated_hours }}</strong></span>
+                                                @else
+                                                    <span class="item-para">{{ __('Job created') }} <strong>{{ $job_details->created_at->toFormattedDateString() }}</strong></span>
+                                               @endif
+                                             </li>
                                         </ul>
                                     </div>
                                     <div class="profile-border-top">
@@ -227,6 +236,7 @@
                 </div>
             </div>
             <!-- Profile Details area end -->
+
             <!-- Send Offer Modal area starts -->
             <div class="popup-overlay"></div>
             <div class="popup-fixed interview-popup">
@@ -260,7 +270,6 @@
                                     <div class="btn-wrapper">
                                         <a href="javascript:void(0)" class="btn-profile btn-outline-gray btn-hover-danger popup-close"> {{ __('Cancel') }} </a>
                                     </div>
-
                                     <button type="submit" class="btn-profile btn-bg-1"><i class="fa-regular fa-comments"></i> {{ __('Send Message') }}</button>
                                 </div>
                             </form>
@@ -270,6 +279,37 @@
                 </div>
             </div>
             <!-- Send Offer Modal area ends -->
+
+            <!-- update rate and hours -->
+            <div class="modal fade" id="RateAndHoursModal" tabindex="-1" aria-labelledby="RateAndHoursModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form action="{{ route('client.job.hourly.rate') }}" method="post">
+                        @csrf
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="RateAndHoursModalLabel"> {{ __('Hourly Rate & Estimated Hours') }} </h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="job_id" value="{{ $job_details->id }}">
+                                <div class="single-input">
+                                    <label class="label-title mb-2">{{ __('Hourly Rate') }}</label>
+                                    <input name="hourly_rate" class="form-control" value="{{ $job_details->hourly_rate }}">
+                                </div>
+                                <div class="single-input mt-2">
+                                    <label class="label-title mb-2">{{ __('Estimated Hours') }}</label>
+                                    <input name="estimated_hour" class="form-control" value="{{ $job_details->estimated_hours }}">
+                                </div>
+                            </div>
+                            <div class="modal-footer flex-column">
+                                <div class="d-flex flex-wrap gap-3">
+                                    <button type="submit" class="btn-profile btn-bg-1">{{ __('Update') }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
     </main>
 @endsection
 

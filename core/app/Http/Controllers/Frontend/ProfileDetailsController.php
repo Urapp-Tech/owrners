@@ -24,13 +24,14 @@ class ProfileDetailsController extends Controller
     public function profile_details($username)
     {
         $user = User::with('user_introduction')
-            ->select(['id','image','hourly_rate','first_name','last_name','country_id','state_id','check_work_availability','user_verified_status'])
+            ->select(['id','image','hourly_rate','first_name','last_name','country_id','state_id','check_work_availability','user_verified_status','load_from'])
             ->where('username',$username)
             ->first();
 
        if($user){
            $user_work =  UserWork::where('user_id',$user->id)->first();
            $total_earning =  UserEarning::where('user_id',$user->id)->first();
+           $complete_orders_in_total = Order::whereHas('user')->where('freelancer_id',$user->id)->where('status',3)->count();
            $complete_orders = Order::select('id','identity','status','freelancer_id')->whereHas('user')->whereHas('rating')->where('freelancer_id',$user->id)->where('status',3)->latest()->get();
            $active_orders_count = Order::where('freelancer_id',$user->id)->whereHas('user')->where('status',1)->count();
            $skills_according_to_category = isset($user_work) ? Skill::select(['id','skill'])->where('category_id',$user_work->category_id)->get() : '';
@@ -68,6 +69,7 @@ class ProfileDetailsController extends Controller
                'user',
                'total_earning',
                'complete_orders',
+               'complete_orders_in_total',
                'active_orders_count',
            ]));
        }else{

@@ -18,6 +18,7 @@ use App\Models\UserNotification;
 use App\Models\UserSkill;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Modules\Pages\Entities\Page;
 
@@ -2731,7 +2732,7 @@ function freelancer_skill_match_with_job_skill($freelancer_id = null, $job_id =n
 
     $job_skill = JobPost::with(['job_skills'])->where('id',$job_id)->first();
     $job_skills_count = $job_skill->job_skills->count();
-    $calculate_percentage = round(100/$job_skills_count,2);
+    $calculate_percentage = $job_skills_count> 0 ?  round(100/$job_skills_count,2): 0;
     $total_match_percentage = 0;
 
     foreach($job_skill->job_skills as $skill){
@@ -2932,4 +2933,38 @@ function payment_gateway_list_for_api()
 function divnum($numerator, $denominator)
 {
     return $denominator == 0 ? 0 : ($numerator / $denominator);
+}
+
+function render_frontend_cloud_image_if_module_exists($path = '', $load_from=0)
+{
+    $ena_dis_front_CDN = get_static_option('front_cdn_enable_disable') ?? '';
+
+    if(Storage::getDefaultDriver() == 's3'){
+        $cloudfrontCDN = get_static_option('aws_url') ?? '';
+        if($ena_dis_front_CDN != 'enable'){
+            return Storage::renderUrl($path, load_from: $load_from);
+        }else{
+            return $cloudfrontCDN.'/'.$path;
+        }
+    }
+    if(Storage::getDefaultDriver() == 'wasabi') {
+        return Storage::renderUrl($path, load_from: $load_from);
+    }
+    if(Storage::getDefaultDriver() == 'cloudFlareR2') {
+        return Storage::renderUrl($path, load_from: $load_from);
+        return Storage::renderUrl($path, load_from: $load_from);
+    }
+}
+
+function add_frontend_cloud_image_if_module_exists($upload_folder='', $image='',$imageName='',$public_or_private='')
+{
+    return Storage::putFileAs($upload_folder, $image, $imageName, $public_or_private);
+}
+
+function delete_frontend_cloud_image_if_module_exists($path='')
+{
+    $driver = get_static_option('storage_driver');
+    if (in_array($driver, ['wasabi', 's3', 'cloudFlareR2'])) {
+        return Storage::disk($driver)->delete($path);
+    }
 }

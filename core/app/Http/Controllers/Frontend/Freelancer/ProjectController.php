@@ -98,6 +98,8 @@ class ProjectController extends Controller
                 'basic_regular_charge'=>'required|numeric|integer',
                 'checkbox_or_numeric_title'=>'required|array|max:191',
                 // 'extras_title'=>'required|array|max:101',
+                'meta_title'=>'nullable|max:255',
+                'meta_description'=>'nullable|max:500',
             ]);
 
             if(get_static_option('project_auto_approval') == 'yes'){
@@ -276,6 +278,8 @@ class ProjectController extends Controller
                 'basic_title'=>'required|max:191',
                 'basic_regular_charge'=>'required|numeric|integer',
                 'checkbox_or_numeric_title'=>'required|array|max:191',
+                'meta_title'=>'nullable|max:255',
+                'meta_description'=>'nullable|max:500',
             ]);
 
             $standard_title = null;
@@ -341,6 +345,8 @@ class ProjectController extends Controller
                     'project_on_off'=>1,
                     'project_approve_request'=> $project_details->project_approve_request == 1 ? 1 : 0,
                     'offer_packages_available_or_not'=> $request->offer_packages_available_or_not ?? 0,
+                    'meta_title'=>$request->meta_title,
+                    'meta_description'=>$request->meta_description,
                 ]);
 
                 //update product pivot table data

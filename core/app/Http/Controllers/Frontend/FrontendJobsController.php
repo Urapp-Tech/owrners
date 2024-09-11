@@ -10,25 +10,37 @@ class FrontendJobsController extends Controller
 {
     public function jobs()
     {
-        $jobs = JobPost::with('job_creator','job_skills')
+        $query = JobPost::with('job_creator','job_skills')
             ->whereHas('job_creator')
             ->where('on_off','1')
             ->withCount('job_proposals')
             ->where('status','1')
             ->where('job_approve_request','1')
-            ->latest()
-            ->paginate(10);
+            ->latest();
+
+        if(moduleExists('HourlyJob')){
+            $jobs = $query->paginate(10);
+        }else{
+            $jobs = $query->where('type','fixed')->paginate(10);
+        }
         return view('frontend.pages.jobs.jobs',compact('jobs'));
     }
 
     public function jobs_filter(Request $request)
     {
         if($request->ajax()){
-            $jobs = JobPost::with('job_creator','job_skills')
+            $query = JobPost::with('job_creator','job_skills')
                 ->whereHas('job_creator')
                 ->where('on_off','1')
                 ->where('status','1')
-                ->where('job_approve_request','1');
+                ->where('job_approve_request','1')
+                ->latest();
+
+            if(moduleExists('HourlyJob')){
+                $jobs = $query;
+            }else{
+                $jobs = $query->where('type','fixed');
+            }
 
             if(isset($request->country) && !empty($request->country)){
                 $jobs = $jobs->WhereHas('job_creator',function($q) use($request){
@@ -61,11 +73,17 @@ class FrontendJobsController extends Controller
     public function pagination(Request $request)
     {
         if($request->ajax()){
-            $jobs = JobPost::with('job_creator','job_skills')
+            $query = JobPost::with('job_creator','job_skills')
                 ->whereHas('job_creator')
                 ->where('on_off','1')
                 ->where('status','1')
                 ->where('job_approve_request','1');
+
+            if(moduleExists('HourlyJob')){
+                $jobs = $query;
+            }else{
+                $jobs = $query->where('type','fixed');
+            }
 
             if($request->country == '' && $request->type == '' && $request->level == '' && $request->min_price == '' && $request->max_price == '' && $request->duration == ''){
                 $jobs = $jobs;

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\IndividualCommissionSetting;
 use App\Models\JobPost;
 use App\Models\Order;
 use App\Models\OrderMilestone;
 use App\Models\OrderRequestRevision;
 use App\Models\OrderSubmitHistory;
+use App\Models\OrderWorkHistory;
 use App\Models\Project;
 use App\Models\Rating;
 use App\Models\RatingDetails;
@@ -410,6 +412,8 @@ class OrderController extends Controller
         }else{
               $order = Order::where('id',$id)->first();
               $total_earning = UserEarning::where('user_id',$order->freelancer_id)->first();
+              $client_wallet = Wallet::where('user_id',Auth::guard('web')->user()->id)->first();
+              $freelancer_wallet = Wallet::where('user_id',$order->freelancer_id)->first();
 
             if($total_earning){
                 //update total earning if freelancer has any earnings
@@ -426,19 +430,61 @@ class OrderController extends Controller
                 ]);
             }
 
-            //update freelancer wallet balance
-            $freelancer_wallet = Wallet::where('user_id',$order->freelancer_id)->first();
-            Wallet::where('user_id',$order->freelancer_id)->update([
-                'balance'=>$freelancer_wallet->balance + $order->payable_amount,
-                'remaining_balance'=> $freelancer_wallet->remaining_balance+$order->payable_amount
-            ]);
+            //this code is only for hourly job module
+            if($order->is_fixed_hourly == 'hourly'){
+
+                $commission_type = get_static_option('admin_commission_type') ?? 'percentage';
+                $commission_charge = get_static_option('admin_commission_charge') ?? 25;
+
+                $order_total_seconds = OrderWorkHistory::where('order_id',$order->id)->where('client_id',Auth::guard('web')->user()->id)
+                    ->sum('seconds');
+                $order_total_amount_calculate = ($order_total_seconds / 3600) * $order?->job->hourly_rate;
+                $amount = number_format($order_total_amount_calculate,2);
+
+                $individual_commission = IndividualCommissionSetting::select(['user_id','admin_commission_type','admin_commission_charge'])->where('user_id',$order->freelancer_id)->first();
+                $commission_amount = commission_amount($amount,$individual_commission,$commission_type,$commission_charge);
+
+                if($client_wallet->balance >= $amount){
+                    //update freelancer wallet balance
+                    Wallet::where('user_id',$order->freelancer_id)->update([
+                        'balance'=>$freelancer_wallet->balance + ($amount - $commission_amount),
+                        'remaining_balance'=> $freelancer_wallet->remaining_balance + ($amount - $commission_amount)
+                    ]);
+
+                    //update client wallet balance
+                    Wallet::where('user_id',Auth::guard('web')->user()->id)->update([
+                        'balance'=>$client_wallet->balance - $amount,
+                        'remaining_balance'=> $client_wallet->remaining_balance - $amount
+                    ]);
+
+                    //update order
+                    Order::where('id',$id)->update([
+                        'price'=>$amount,
+                        'commission_type'=>$commission_type,
+                        'commission_charge'=>$commission_charge,
+                        'commission_amount'=>number_format($commission_amount,2),
+                        'payable_amount'=>$amount - $commission_amount,
+                        'total_hour'=>number_format(($order_total_seconds / 3600),2),
+                    ]);
+                }else{
+                    return back()->with(toastr_warning(__('Your wallet has not enough balance to complete the order. Please deposit first.')));
+                }
+            }else{
+                //update freelancer wallet balance for normal order
+                Wallet::where('user_id',$order->freelancer_id)->update([
+                    'balance'=>$freelancer_wallet->balance + $order->payable_amount,
+                    'remaining_balance'=> $freelancer_wallet->remaining_balance+$order->payable_amount
+                ]);
+            }
 
             //update order status to complete
             Order::where('id',$id)->update(['status'=>3]);
 
             //approve submitted work
             $order_submit_history = OrderSubmitHistory::where('order_id',$id)->OrderBy('id','DESC')->first();
-            OrderSubmitHistory::where('id',$order_submit_history->id)->update(['status'=>1]);
+            if($order_submit_history){
+                OrderSubmitHistory::where('id',$order_submit_history->id)->update(['status'=>1]);
+            }
 
             //freelancer and admin notification
             freelancer_notification($milestone->order_id ?? $order->id, $order->freelancer_id, 'Order',__('Order accepted by client'));
@@ -455,7 +501,6 @@ class OrderController extends Controller
         }
 
     }
-
 
     //add rating after approve full order
     public function order_rating(Request $request,$id)

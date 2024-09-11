@@ -9,9 +9,12 @@ use App\Models\OrderDeclineHistory;
 use App\Models\OrderDeclineWalletHistory;
 use App\Models\OrderMilestone;
 use App\Models\OrderSubmitHistory;
+use App\Models\OrderWorkHistory;
 use App\Models\Rating;
 use App\Models\RatingDetails;
 use App\Models\Report;
+use DateInterval;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Modules\Wallet\Entities\Wallet;
@@ -22,6 +25,7 @@ class OrderController extends Controller
     public function all_orders()
     {
         $freelancer_id = Auth::guard('web')->user()->id;
+
 
         if(get_static_option('project_enable_disable') != 'disable'){
             $orders = Order::where('freelancer_id',$freelancer_id)->whereHas('user')->where('payment_status','complete')->latest()->paginate(10);
@@ -38,13 +42,25 @@ class OrderController extends Controller
         }
 
 
-        $jobs = JobPost::with('job_creator','job_skills')
-            ->whereHas('job_creator')
-            ->where('on_off','1')
-            ->where('status','1')
-            ->where('job_approve_request','1')
-            ->latest()
-            ->take(5)->get();
+        if(moduleExists('HourlyJob')){
+            $jobs = JobPost::with('job_creator','job_skills')
+                ->whereHas('job_creator')
+                ->where('on_off','1')
+                ->where('status','1')
+                ->where('job_approve_request','1')
+                ->latest()
+                ->take(5)->get();
+        }else{
+            $jobs = JobPost::with('job_creator','job_skills')
+                ->whereHas('job_creator')
+                ->where('on_off','1')
+                ->where('status','1')
+                ->where('job_approve_request','1')
+                ->where('type','fixed')
+                ->latest()
+                ->take(5)->get();
+        }
+
 
         return view('frontend.user.freelancer.order.orders',compact(['orders','queue_orders','active_orders','complete_orders','cancel_orders', 'jobs']));
     }
@@ -197,21 +213,21 @@ class OrderController extends Controller
     // cancel & decline
     public function order_decline(Request $request, $id)
     {
-        $order_details = Order::select(['id','freelancer_id','user_id','price','payment_status'])->where('id',$id)->first();
+        $order_details = Order::select(['id','freelancer_id','user_id','price','payment_status','is_fixed_hourly'])->where('id',$id)->first();
         $cancel_or_decline = $request->cancel_or_decline_order;
         $cancel_or_decline == 'decline' ? Order::where('id',$id)->update(['status'=>5]) : Order::where('id',$id)->update(['status'=>4]);
         $msg = $cancel_or_decline == 'decline' ? __('Order decline by freelancer') : __('Order cancel by freelancer');
         $this->createDeclineWalletHistory($order_details->id,$order_details->freelancer_id,$order_details->user_id,$order_details->price,$order_details->payment_status,$cancel_or_decline,$msg);
 
-        //update wallet balance
-        if($order_details->payment_status === 'complete'){
-            $user = Wallet::select('balance')->where('user_id',$order_details->user_id)->first();
-            Wallet::where('user_id',$order_details->user_id)->update([
-                'balance'=> $user->balance + $order_details->price
-            ]);
+        //update wallet balance only for fixed job
+        if($order_details->is_fixed_hourly != 'hourly'){
+            if($order_details->payment_status === 'complete'){
+                $user = Wallet::select('balance')->where('user_id',$order_details->user_id)->first();
+                Wallet::where('user_id',$order_details->user_id)->update([
+                    'balance'=> $user->balance + $order_details->price
+                ]);
+            }
         }
-
-        //order decline and cancel mail to admin and client
 
         return $request->cancel_or_decline_order == 'decline' ? back()->with(toastr_success(__('Order Successfully Decline.'))) : back()->with(toastr_success(__('Order Successfully Cancel.')));
     }
@@ -221,7 +237,7 @@ class OrderController extends Controller
     {
         if($request->hasFile('attachment')) {
             $request->validate([
-                'attachment'=>'required|mimes:png,jpg,jpeg,pdf,zip|max:1002400',
+                'attachment'=>'required|mimes:png,jpg,jpeg,pdf,docx,zip|max:2097152',
                 'description'=>'required|max:300'
             ]);
 
@@ -256,7 +272,6 @@ class OrderController extends Controller
         }
         return back()->with(toastr_success(__('Order Successfully Submitted')));
     }
-
 
     //add rating after approve full order
     public function order_rating(Request $request,$id)
@@ -323,7 +338,6 @@ class OrderController extends Controller
         return back();
     }
 
-
     // order decline wallet history
     private function createDeclineWalletHistory($order_id,$freelancer_id,$client_id,$order_price,$payment_status,$cancel_or_decline,$msg)
     {
@@ -349,6 +363,14 @@ class OrderController extends Controller
 
         notificationToAdmin($order_id,$freelancer_id,ucfirst($cancel_or_decline),$msg);
         client_notification($order_id, $client_id,'Order',__('Order cancel'));
+    }
+
+    function addTimeToTimestamp($start_time, $work_hour) {
+        $date = new DateTime($start_time);
+        list($hours, $minutes, $seconds) = explode(':', $work_hour);
+        $interval = new DateInterval("PT{$hours}H{$minutes}M{$seconds}S");
+        $date->add($interval);
+        return $date->format('Y-m-d H:i:s');
     }
 
 }

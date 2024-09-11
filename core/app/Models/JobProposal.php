@@ -13,7 +13,8 @@ class JobProposal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['job_id','freelancer_id','client_id','amount','duration','revision','cover_letter','attachment','status','is_hired','is_short_listed','is_interview_take'];
+    protected $fillable = ['job_id','freelancer_id','client_id','amount','duration','revision','cover_letter','attachment','status','is_hired','is_short_listed','is_interview_take','load_from',
+        'is_synced'];
 
     protected $casts = ['status'=>'integer','is_hired'=>'integer','is_short_listed'=>'integer','is_interview_take'=>'integer','is_view'=>'integer','is_rejected'=>'integer'];
 

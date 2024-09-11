@@ -290,4 +290,35 @@ class OrderController extends Controller
         return view('backend.pages.orders.order-create-settings');
     }
 
+    public function order_enable_disable_description_settings(Request $request)
+    {
+        if($request->isMethod('post')){
+            $request->validate(['order_enable_disable_description_settings' => 'required']);
+            $all_fields = ['order_enable_disable_description_settings'];
+
+            foreach ($all_fields as $field) {
+                update_static_option($field, $request->$field);
+            }
+            toastr_success(__('Order Enable Disable Description Settings Updated Successfully.'));
+            return back();
+        }
+        return view('backend.pages.orders.order-description-enable-disable-settings');
+    }
+
+    public function order_enable_disable_milestone_settings(Request $request)
+    {
+        if($request->isMethod('post')){
+            $request->validate(['order_enable_disable_milestone_settings' => 'required']);
+            $all_fields = ['order_enable_disable_milestone_settings'];
+
+            foreach ($all_fields as $field) {
+                update_static_option($field, $request->$field);
+            }
+            toastr_success(__('Order Milestone Enable Disable Settings Updated Successfully.'));
+            return back();
+        }
+        return view('backend.pages.orders.order-milestone-enable-disable');
+    }
+
+
 }

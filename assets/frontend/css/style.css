@@ -24588,3 +24588,14 @@ a.btn-outline-owrners {
 .suggestion-service-item.active {
   background-color: #ddd !important;
 }
+
+.swal2-confirm.swal2-styled {
+  border-radius: 25px !important;
+}
+
+.swal2-cancel.swal2-styled {
+  border-radius: 25px !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--paragraph-color) !important;
+  background-color: white !important;
+}

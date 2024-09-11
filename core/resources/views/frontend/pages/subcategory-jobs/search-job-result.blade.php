@@ -25,11 +25,19 @@
                         </div>
                         <div class="categoryWrap-wrapper-item-contents">
                             <div class="obFilter-wrapper-item-contents-flex flex-between">
-                                <h3 class="single-jobs-price">
-                                    {{ float_amount_with_currency_symbol($job->budget) }}
-                                    <span class="single-jobs-price-fixed">
+                                @if($job->type == 'hourly')
+                                    <h3 class="single-jobs-price">
+                                        {{ float_amount_with_currency_symbol($job->hourly_rate) }}
+                                        <span class="single-jobs-price-fixed">
                                         {{ ucfirst(__($job->type)) }}</span>
-                                </h3>
+                                    </h3>
+                                @else
+                                    <h3 class="single-jobs-price">
+                                        {{ float_amount_with_currency_symbol($job->budget) }}
+                                        <span class="single-jobs-price-fixed">
+                                            {{ ucfirst(__($job->type)) }}</span>
+                                    </h3>
+                                @endif
                             </div>
                             <p class="single-jobs-para mt-4">{!! Str::limit(strip_tags($job->description), 150) !!}</p>
                             <div class="single-jobs-tag mt-4">
@@ -80,6 +88,7 @@
                                 </span>
                                 <span class="item-para">{{ __('Proposal:') }} {{ $job->job_proposals_count }}</span>
                             </li>
+                            @if(moduleExists('HourlyJob'))
                             <li class="categoryWrap-wrapper-item-bottom-list-item">
                                 <span class="item-icon">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -104,9 +113,13 @@
                                             fill="#475467" />
                                     </svg>
                                 </span>
-                                <span
-                                    class="item-para">{{ $job->job_creator?->user_verified_status == 1 ? __('Verified') : __('Not Verified') }}</span>
+                                @if($job->job_creator?->user_wallet?->balance >= ($job->hourly_rate * $job->estimated_hours) )
+                                    <span class="item-para">{{  __('Verified') }}</span>
+                                @else
+                                    <span class="item-para">{{ __('Not Verified') }}</span>
+                                @endif
                             </li>
+                            @endif
                             <li class="categoryWrap-wrapper-item-bottom-list-item">
                                 <span class="item-icon">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -121,6 +134,22 @@
                                 </span>
                                 <span class="item-para">{{ ucfirst(__($job->duration)) ?? '' }}</span>
                             </li>
+                            @if($job->type == 'hourly')
+                                <li class="categoryWrap-wrapper-item-bottom-list-item">
+                                <span class="item-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                                d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"
+                                                fill="#667085" />
+                                        <path
+                                                d="M15.7106 15.93C15.5806 15.93 15.4506 15.9 15.3306 15.82L12.2306 13.97C11.4606 13.51 10.8906 12.5 10.8906 11.61V7.50999C10.8906 7.09999 11.2306 6.75999 11.6406 6.75999C12.0506 6.75999 12.3906 7.09999 12.3906 7.50999V11.61C12.3906 11.97 12.6906 12.5 13.0006 12.68L16.1006 14.53C16.4606 14.74 16.5706 15.2 16.3606 15.56C16.2106 15.8 15.9606 15.93 15.7106 15.93Z"
+                                                fill="#667085" />
+                                    </svg>
+                                </span>
+                                    <span class="item-para">{{__('Estimated Hours:')}} {{ $job->estimated_hours ?? '' }}</span>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                 </div>

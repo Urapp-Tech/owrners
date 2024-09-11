@@ -50,11 +50,27 @@
                     </div>
                     <div class="jobFilter-proposal-offered profile-border-top">
                         <div class="jobFilter-proposal-offered-single">
-                            <span class="offered">{{ __('Offered') }} <span class="offered-price">{{ float_amount_with_currency_symbol($proposal->amount) }}</span> </span>
+                            <span class="offered">{{ __('Offered') }}
+                                <span class="offered-price">{{ float_amount_with_currency_symbol($proposal->amount) }}</span>
+                            </span>
                         </div>
                         <div class="jobFilter-proposal-offered-single">
                             <span class="offered">{{ __('Est. delivery duration') }} <span class="offered-days">{{ $proposal->duration }}</span> </span>
                         </div>
+                        @if($job_details->type == 'hourly')
+                        <div class="jobFilter-proposal-offered-single">
+                            <span class="offered">{{ __(ucfirst($job_details->type)) }}
+                             <span class="offered-price">{{ float_amount_with_currency_symbol($job_details->hourly_rate) }}</span>
+                            </span>
+                        </div>
+                        @endif
+                        @if($job_details->type == 'hourly')
+                            <div class="jobFilter-proposal-offered-single">
+                            <span class="offered">{{ __('Estimated hour') }}
+                             <span class="offered-price">{{ $job_details->estimated_hours ?? '' }}</span>
+                            </span>
+                            </div>
+                        @endif
                     </div>
                     <div class="flex-between profile-border-top">
                         <div class="btn-wrapper rejected_interview_location_{{ $proposal->id }}">
@@ -76,6 +92,13 @@
                                         @if ($proposal->is_interview_take == 1) {{ __('Interviewed') }} @else {{ __('Take Interview') }} @endif
                                     </a>
                                 @endif
+
+                                @if($job_details->type == 'hourly')
+                                    <a href="javascript:void(0)"
+                                       data-bs-toggle="modal"
+                                       data-bs-target="#RateAndHoursModal"
+                                       class="btn-profile btn-bg-1">{{ __('Update Hourly Rate') }}</a>
+                                    @endif
                             </div>
                         </div>
                         <div class="btn-wrapper flex-btn gap-2 add_remove_interview_location_{{$proposal->id}}">

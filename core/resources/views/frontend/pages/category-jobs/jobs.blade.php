@@ -1,14 +1,16 @@
 @extends('frontend.layout.master')
 @section('site_title') {{ $category->category ?? __('Jobs') }} @endsection
+@section('meta_title') {{ $category->meta_title ?? '' }} @endsection
+@section('meta_description') {{ $category->meta_description ?? '' }} @endsection
 @section('style')
     <x-select2.select2-css />
 @endsection
 @section('content')
     <main>
-        <x-frontend.category.category/>
+        @if(moduleExists('CoinPaymentGateway'))@else<x-frontend.category.category/>@endif
         <x-breadcrumb.user-profile-breadcrumb :title="__('Category Jobs') ?? __('Jobs')" :innerTitle=" $category->category ?? '' "/>
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-25 pab-100">
+        <div class="preview-area section-bg-2 pat-100 pab-100">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-12">

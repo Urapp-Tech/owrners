@@ -135,7 +135,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
+
+                @if($order_details->is_fixed_hourly == 'hourly' && $order_details->status != 3)
+                    <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
+                        <div class="contract_single__balance hover-question">
+                            <div class="contract_single__balance-flex flex-between">
+                                <div class="contract_single__balance-contents">
+                                    <h4 class="contract_single__balance-price">{{ float_amount_with_currency_symbol($order_details?->job->hourly_rate) }}</h4>
+                                    <p class="contract_single__balance-para">{{ __('Hourly Rate') }}</p>
+                                </div>
+                                <span class="contract_single__balance-icon">
+                                <i class="fa-solid fa-question"></i>
+                                <small class="hover-active-content">{{ __('Hourly rate means how much amount client will pay for each hour after complete the order.') }}</small>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
                     <div class="contract_single__balance hover-question">
                         <div class="contract_single__balance-flex flex-between">
                             <div class="contract_single__balance-contents">
@@ -172,7 +189,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
+                @endif
+
+                @if($order_details->is_fixed_hourly == 'hourly' && $order_details->status != 3)
+                    <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
+                        <div class="contract_single__balance hover-question">
+                            <div class="contract_single__balance-flex flex-between">
+                                <div class="contract_single__balance-contents">
+                                    <h4 class="contract_single__balance-price">{{ $order_details?->job->estimated_hours }}</h4>
+                                    <p class="contract_single__balance-para">{{ __('Estimated Hours') }}</p>
+                                </div>
+                                <span class="contract_single__balance-icon">
+                                <i class="fa-solid fa-question"></i>
+                                <small class="hover-active-content">{{ __('Estimated hours refer to the approximate time a client can set for completing the order. The client can adjust this time before accepting the order.') }}</small>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
                     <div class="contract_single__balance hover-question">
                         <div class="contract_single__balance-flex flex-between">
                             <div class="contract_single__balance-contents">
@@ -186,7 +221,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
+                @endif
+
+                @if($order_details->is_fixed_hourly == 'hourly' && $order_details->status != 3)
+                    <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
+                        <div class="contract_single__balance hover-question">
+                            <div class="contract_single__balance-flex flex-between">
+                                <div class="contract_single__balance-contents">
+                                    <h4 class="contract_single__balance-price">{{ float_amount_with_currency_symbol($order_details->price) }}</h4>
+                                    <p class="contract_single__balance-para">{{ __('Approximate  Budget') }}</p>
+                                </div>
+                                <span class="contract_single__balance-icon">
+                                <i class="fa-solid fa-question"></i>
+                                <small class="hover-active-content">{{ __('The approximate budget indicates the expected payment for this order. This amount may vary depending on the rate and the estimated working hours.') }}</small>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="col-xl-3 col-lg-6 col-sm-6 col-md-4">
                     <div class="contract_single__balance hover-question">
                         <div class="contract_single__balance-flex flex-between">
                             <div class="contract_single__balance-contents">
@@ -200,6 +253,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
         <div class="dashboard__right__flex gap-4">
@@ -354,8 +408,15 @@
                             <div class="myOrder_single__block">
                                 <div class="myOrder_single__block__item">
                                     <div class="myOrder_single__block__item__content">
-                                        <span class="myOrder_single__block__subtitle">{{ __('Order budget') }}</span>
-                                        <h6 class="myOrder_single__block__title mt-2">{{ float_amount_with_currency_symbol($order_details->price) }}
+                                        @if($order_details->is_fixed_hourly == 'hourly')
+                                            <span class="myOrder_single__block__subtitle">{{ __('Type') }}</span>
+                                            <h6 class="myOrder_single__block__title mt-2">{{ ucfirst($order_details->is_fixed_hourly) }}
+                                        @else
+                                            <span class="myOrder_single__block__subtitle">{{ __('Order budget') }}</span>
+                                            <h6 class="myOrder_single__block__title mt-2">{{ float_amount_with_currency_symbol($order_details->price) }}
+                                        @endif
+
+                                        @if($order_details->is_fixed_hourly != 'hourly')
                                             @if($order_details->payment_status == 'complete')
                                                 <span class="order-funded-btn">{{ __('Order Funded') }}</span>
                                             @else
@@ -365,6 +426,7 @@
                                                     <span class="order-funded-btn">{{ __('Not Funded') }}</span>
                                                 @endif
                                             @endif
+                                        @endif
                                         </h6>
                                     </div>
                                 </div>
@@ -406,6 +468,16 @@
                                         <h6 class="myOrder_single__block__title mt-2">{{ $order_details?->user->username }} </h6>
                                     </div>
                                 </div>
+
+                                @if($order_details->status != 3)
+                                    <div class="myOrder_single__block__item">
+                                        <div class="myOrder_single__block__item__content">
+                                            <span class="myOrder_single__block__subtitle">{{ __('Payment') }}</span> <br>
+                                            <x-order.payment-verify :paymentVerifyCheck="$order_details" />
+                                        </div>
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                         <div class="myOrder_single__item">

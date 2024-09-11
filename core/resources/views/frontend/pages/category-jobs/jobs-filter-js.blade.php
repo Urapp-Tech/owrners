@@ -102,6 +102,7 @@
                             $('.search_job_result').html('<h3 class="text-center text-danger">'+"{{ __('Nothing Found') }}"+'</h3>');
                         }else{
                             $('.search_job_result').html(res);
+                            $('html, body').animate({ scrollTop: 0 }, 'smooth');
                         }
                     }
 

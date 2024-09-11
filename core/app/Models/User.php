@@ -39,6 +39,8 @@ class User extends Authenticatable
         'google_id',
         'facebook_id',
         'apple_id',
+        'load_from',
+        'is_synced'
     ];
 
     protected $hidden = [

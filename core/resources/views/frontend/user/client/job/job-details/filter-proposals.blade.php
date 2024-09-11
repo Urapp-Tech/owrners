@@ -53,6 +53,22 @@
                     <div class="jobFilter-proposal-offered-single">
                         <span class="offered">{{ __('Est. delivery duration') }} <span class="offered-days">{{ $proposal->duration }}</span> </span>
                     </div>
+
+                    @if($proposal?->job->type == 'hourly')
+                        <div class="jobFilter-proposal-offered-single">
+                            <span class="offered">{{ __(ucfirst($proposal?->job->type)) }}
+                             <span class="offered-price">{{ float_amount_with_currency_symbol($proposal?->job->hourly_rate) }}</span>
+                            </span>
+                        </div>
+                    @endif
+                    @if($proposal?->job->type == 'hourly')
+                        <div class="jobFilter-proposal-offered-single">
+                            <span class="offered">{{ __('Estimated hour') }}
+                             <span class="offered-price">{{ $proposal?->job->estimated_hours ?? '' }}</span>
+                            </span>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="flex-between profile-border-top">
                     <div class="btn-wrapper rejected_interview_location_{{ $proposal->id }}">
@@ -74,6 +90,12 @@
                             <a href="javascript:void(0)" class="btn-profile btn-outline-gray reject_proposal" data-proposal-id="{{ $proposal->id }}">{{ __('Reject') }}</a>
                         @endif
                     </div>
+                    @if($proposal?->job->type == 'hourly')
+                        <a href="javascript:void(0)"
+                           data-bs-toggle="modal"
+                           data-bs-target="#RateAndHoursModal"
+                           class="btn-profile btn-bg-1">{{ __('Update Hourly Rate') }}</a>
+                    @endif
                     <div class="btn-wrapper flex-btn gap-2 add_remove_interview_location_{{$proposal->id}}">
                         @if($proposal->is_rejected == 0)
                             <a href="javascript:void(0)" class="btn-profile btn-outline-gray loadingRound add_remove_shortlist" data-proposal-id="{{ $proposal->id }}">

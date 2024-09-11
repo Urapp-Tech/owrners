@@ -14,9 +14,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 use Modules\Service\Entities\SubCategory;
+use Modules\Wallet\Entities\Wallet;
 
 class JobController extends Controller
 {
@@ -81,14 +83,30 @@ class JobController extends Controller
                 'level'=>'required|max:191',
                 'description'=>'required|min:10',
                 'type'=>'required|max:191',
-                'budget'=>'required|numeric|gt:0',
                  'skill'=>'required|array',
+                 'meta_title'=>'nullable|max:255',
+                 'meta_description'=>'nullable|max:500',
             ]);
 
+             if($request->type == 'fixed'){
+                 $request->validate([
+                     'budget'=>'required|numeric|gt:0',
+                 ]);
+             }else{
+                 $request->validate([
+                     'hourly_rate'=>'required|numeric|gt:0',
+                     'estimated_hours'=>'required|numeric|gt:0',
+                 ]);
+             }
+
+
             $attachmentName = '';
+            $upload_folder = 'jobs';
+            $storage_driver = Storage::getDefaultDriver();
+
             if ($attachment = $request->file('attachment')) {
                 $request->validate([
-                    'attachment'=>'required|mimes:png,jpg,jpeg,bmp,gif,tiff,svg,csv,txt,xlx,xls,pdf|max:5120',
+                    'attachment'=>'required|mimes:png,jpg,jpeg,bmp,gif,tiff,svg,csv,txt,xlx,xls,pdf,docx|max:5120',
                 ]);
                 $attachmentName = time().'-'.uniqid().'.'.$attachment->getClientOriginalExtension();
                 $extensions = array('png','jpg','jpeg','bmp','gif','tiff','svg');
@@ -113,10 +131,15 @@ class JobController extends Controller
                 'level'=>$request->level,
                 'description'=>$request->description,
                 'type'=>$request->type,
-                'budget'=>$request->budget,
+                'hourly_rate'=>$request->hourly_rate,
+                'estimated_hours'=>$request->estimated_hours,
+                'budget'=>$request->budget ?? 0,
                 'attachment'=>$attachmentName,
                 'status'=> get_static_option('job_auto_approval')  == 'no' ? 0 : 1,
                 'job_approve_request'=>  1,
+                'meta_title'=>$request->meta_title,
+                'meta_description'=>$request->meta_description,
+                'load_from' => in_array($storage_driver,['CustomUploader']) ? 0 : 1, //added for cloud storage 0=local 1=cloud
             ]);
 
             $job->job_sub_categories()->attach($request->subcategory);
@@ -169,30 +192,45 @@ class JobController extends Controller
                 'level'=>'required|max:191',
                 'description'=>'required|min:10',
                 'type'=>'required|max:191',
-                'budget'=>'required|numeric|gt:0',
                 'skill'=>'required|array',
+                'meta_title'=>'nullable|max:255',
+                'meta_description'=>'nullable|max:500',
             ]);
 
-            $attachmentName = '';
-            if ($attachment = $request->file('attachment')) {
+            if($request->type == 'fixed'){
                 $request->validate([
-                    'attachment'=>'required|mimes:png,jpg,jpeg,bmp,gif,tiff,svg,csv,txt,xlx,xls,pdf|max:5120',
+                    'budget'=>'required|numeric|gt:0',
                 ]);
-                if(file_exists($delete_old_attachment)){
-                    File::delete($delete_old_attachment);
-                }
-                $attachmentName = time().'-'.uniqid().'.'.$attachment->getClientOriginalExtension();
-                $extensions = array('png','jpg','jpeg','bmp','gif','tiff','svg');
-                if(in_array($attachment->getClientOriginalExtension(), $extensions)){
-                    $resize_full_image = Image::make($request->attachment)
-                        ->resize(800, 500);
-                    $resize_full_image->save('assets/uploads/jobs' .'/'. $attachmentName);
-                }else{
-                    $attachment->move('assets/uploads/jobs', $attachmentName);
-                }
             }else{
-                $attachmentName = $job_details->attachment;
+                $request->validate([
+                    'hourly_rate'=>'required|numeric|gt:0',
+                    'estimated_hours'=>'required|numeric|gt:0',
+                ]);
             }
+
+            $attachmentName = '';
+            $upload_folder = 'jobs';
+            $extensions = array('png','jpg','jpeg','bmp','gif','tiff','svg');
+
+                if ($attachment = $request->file('attachment')) {
+                    $request->validate([
+                        'attachment'=>'required|mimes:png,jpg,jpeg,bmp,gif,tiff,svg,csv,txt,xlx,xls,pdf,docx|max:5120',
+                    ]);
+                    if(file_exists($delete_old_attachment)){
+                        File::delete($delete_old_attachment);
+                    }
+                    $attachmentName = time().'-'.uniqid().'.'.$attachment->getClientOriginalExtension();
+                    if(in_array($attachment->getClientOriginalExtension(), $extensions)){
+                        $resize_full_image = Image::make($request->attachment)
+                            ->resize(800, 500);
+                        $resize_full_image->save('assets/uploads/jobs' .'/'. $attachmentName);
+                    }else{
+                        $attachment->move('assets/uploads/jobs', $attachmentName);
+                    }
+                }else{
+                    $attachmentName = $job_details->attachment;
+                }
+            
 
             JobPost::where('id',$id)->update([
                 'user_id'=>$user_id,
@@ -203,8 +241,12 @@ class JobController extends Controller
                 'level'=>$request->level,
                 'description'=>$request->description,
                 'type'=>$request->type,
+                'hourly_rate'=>$request->hourly_rate,
+                'estimated_hours'=>$request->estimated_hours,
                 'budget'=>$request->budget,
                 'attachment'=>$attachmentName,
+                'meta_title'=>$request->meta_title,
+                'meta_description'=>$request->meta_description,
             ]);
 
             $job = JobPost::find($id);
@@ -316,7 +358,7 @@ class JobController extends Controller
     //filter job proposal
     public function job_proposal_filter(Request $request)
     {
-        $job_proposals = JobProposal::where('job_id',$request->job_id)->latest();
+        $job_proposals = JobProposal::with('job:id,type,hourly_rate,estimated_hours')->where('job_id',$request->job_id)->latest();
 
         if($request->filter_val == 'all'){
             $job_proposals = $job_proposals->get();
@@ -348,4 +390,20 @@ class JobController extends Controller
         JobPost::where('id',$request->job_id)->update(['on_off'=>$open_or_close]);
         return response()->json(['status'=>$open_or_close]);
     }
+
+    public function rate_and_hours(Request $request)
+    {
+        $user_id = Auth::guard('web')->user()->id;
+        $job = JobPost::where('id',$request->job_id)->where('user_id',$user_id)->first();
+        if(!empty($job)){
+          JobPost::where('id',$request->job_id)->update([
+              'hourly_rate'=>$request->hourly_rate,
+              'estimated_hours'=>$request->estimated_hour,
+              ]);
+            return back()->with(toastr_success(__('Hourly rate and hours updated successfully.')));
+        }else{
+            return back()->with(toastr_warning(__('Job not found!')));
+        }
+    }
+
 }

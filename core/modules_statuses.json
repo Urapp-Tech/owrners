@@ -19,5 +19,6 @@
   "Integrations": true,
   "PromoteFreelancer": false,
   "FreelancerLevel": true,
-  "SecurityManage": false
+  "SecurityManage": false,
+  "HourlyJob": true
 }

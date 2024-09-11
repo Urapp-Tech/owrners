@@ -1,7 +1,7 @@
 <div class="col-xl-4 col-lg-7">
     <div class="profile-details-widget sticky_top_lg">
         <div class="profile-wrapper-item-flex flex-between align-items-center profile-border-bottom">
-            <h4 class="profile-wrapper-item-title"> Gig Catalogues </h4>
+            <h4 class="profile-wrapper-item-title"> Project Catalogues </h4>
             <a href="javascript:void(0)" class="profile-wrapper-item-browse-btn"> Browse All </a>
         </div>
         <div class="profile-wrapper-item add-project-parent radius-10">
@@ -34,7 +34,7 @@
 
                         </div>
                         <div class="profile-wrapper-item-btn flex-btn">
-                            <a href="javascript:void(0)" class="btn-profile btn-outline-gray"> View Gig </a>
+                            <a href="javascript:void(0)" class="btn-profile btn-outline-gray"> View Project </a>
                             <a href="javascript:void(0)" class="btn-profile btn-bg-1"> Order Now </a>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
 
                         </div>
                         <div class="profile-wrapper-item-btn flex-btn">
-                            <a href="javascript:void(0)" class="btn-profile btn-outline-gray"> View Gig </a>
+                            <a href="javascript:void(0)" class="btn-profile btn-outline-gray"> View Project </a>
                             <a href="javascript:void(0)" class="btn-profile btn-bg-1"> Order Now </a>
                         </div>
                     </div>

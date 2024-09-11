@@ -47,6 +47,10 @@
 <!-- global ajax setup -->
 <script> $.ajaxSetup({headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'} }) </script>
 
+@if(moduleExists('HourlyJob'))
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+@endif
+
 <script>
     (function($){
         "use strict";

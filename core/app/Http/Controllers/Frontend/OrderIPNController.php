@@ -535,6 +535,56 @@ class OrderIPNController extends Controller
         return $this->cancel_page();
     }
 
+    public function kineticpay_ipn_for_order()
+    {
+        $kineticpay = XgPaymentGateway::kineticpay();
+        $kineticpay->setMerchantKey(get_static_option('kineticpay_merchant_key') ?? '');
+        $kineticpay->setCurrency(self::globalCurrency());
+        $kineticpay->setEnv(get_static_option('kineticpay_test_mode') == 'on' ? true : false); // this must be type of boolean , string will not work
+        $kineticpay->setExchangeRate(self::usdConversionValue()); // if INR not set as currency
+        $payment_data = $kineticpay->ipn_response();
+
+        if (isset($payment_data['status']) && $payment_data['status'] === 'complete'){
+            $order_id = $payment_data['order_id'];
+            $user_id = session()->get('user_id');
+            $freelancer_id = session()->get('freelancer_id');
+            $project_or_job = session()->get('project_or_job');
+            $proposal_id = session()->get('proposal_id_for_order');
+
+            $this->update_database($order_id, $payment_data['transaction_id'] ,$user_id, $freelancer_id, $project_or_job, $proposal_id);
+            $this->send_order_mail($order_id,$user_id,$freelancer_id);
+            toastr_success('Order successfully completed');
+            $new_order_id = getLastOrderId($order_id);
+            return redirect()->route('order.user.success.page',$new_order_id);
+        }
+        return $this->cancel_page();
+    }
+
+    public function awdpay_ipn_for_order()
+    {
+        $awdpay = XgPaymentGateway::awdpay();
+        $awdpay->setPrivateKey(get_static_option('awdpay_private_key') ?? '');
+        $awdpay->setLogoUrl(get_static_option('awdpay_logo_url') ?? '');
+        $awdpay->setEnv(get_static_option('awdpay_test_mode') == 'on' ? true : false);
+        $awdpay->setCurrency(self::globalCurrency());
+        $payment_data = $awdpay->ipn_response();
+
+        if (isset($payment_data['status']) && $payment_data['status'] === 'complete'){
+            $order_id = $payment_data['order_id'];
+            $user_id = session()->get('user_id');
+            $freelancer_id = session()->get('freelancer_id');
+            $project_or_job = session()->get('project_or_job');
+            $proposal_id = session()->get('proposal_id_for_order');
+
+            $this->update_database($order_id, $payment_data['transaction_id'] ,$user_id, $freelancer_id, $project_or_job, $proposal_id);
+            $this->send_order_mail($order_id,$user_id,$freelancer_id);
+            toastr_success('Order successfully completed');
+            $new_order_id = getLastOrderId($order_id);
+            return redirect()->route('order.user.success.page',$new_order_id);
+        }
+        return $this->cancel_page();
+    }
+
     public function send_order_mail($last_order_id,$user_id,$freelancer_id)
     {
         if(empty($last_order_id)){ return redirect()->route('homepage');}

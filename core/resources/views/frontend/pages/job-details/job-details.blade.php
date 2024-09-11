@@ -2,6 +2,13 @@
 @section('site_title')
     {{ $job_details->title ?? __('Job Details') }}
 @endsection
+@if(isset($job_details->meta_title) && !empty($job_details->meta_title))
+    @section('meta_title', $job_details->meta_title)
+@endif
+
+@if(isset($job_details->meta_description) && !empty($job_details->meta_description))
+    @section('meta_description', $job_details->meta_description)
+@endif
 @section('style')
     <x-summernote.summernote-css />
 @endsection
@@ -22,7 +29,7 @@
                                 <div class="jobFilter-wrapper-item-inner section-bg-1">
                                     <div class="jobFilter-wrapper-item-top">
                                         <div class="jobFilter-wrapper-item-top-left">
-                                            <h4 class="jobFilter-wrapper-item-title">{{ $job_details->title }}</h4>
+                                            <h1 class="jobFilter-wrapper-item-title">{{ $job_details->title }}</h1>
                                             <p class="single-jobs-date">
                                                 {{ $job_details->created_at->toFormattedDateString() ?? '' }} -
                                                 <span>{{ ucfirst(__($job_details->level)) ?? '' }}</span>
@@ -36,10 +43,17 @@
                                     </div>
                                     <div class="jobFilter-wrapper-item-contents">
                                         <div class="obFilter-wrapper-item-contents-flex flex-between">
-                                            <h3 class="single-jobs-price">
-                                                {{ float_amount_with_currency_symbol($job_details->budget) }} <span
-                                                    class="single-jobs-price-fixed">{{ ucfirst($job_details->type) }}</span>
-                                            </h3>
+                                            @if($job_details->type == 'hourly')
+                                                <h3 class="single-jobs-price">
+                                                    {{ float_amount_with_currency_symbol($job_details->hourly_rate) }} <span
+                                                            class="single-jobs-price-fixed">{{ ucfirst($job_details->type) }}</span>
+                                                </h3>
+                                                @else
+                                                <h3 class="single-jobs-price">
+                                                    {{ float_amount_with_currency_symbol($job_details->budget) }} <span
+                                                        class="single-jobs-price-fixed">{{ ucfirst($job_details->type) }}</span>
+                                                </h3>
+                                                @endif
                                         </div>
                                         <div class="single-jobs-para mt-4">{!! $job_details->description !!}</div>
                                         <div class="single-jobs-tag mt-4">
@@ -51,11 +65,19 @@
                                     </div>
                                     @if (Auth::guard('web')->check())
                                         @if ($job_details->attachment)
-                                            <a href="{{ asset('assets/uploads/jobs/' . $job_details->attachment) }}"
-                                                download class="single-refundRequest-item-uploads">
-                                                <i class="fa-solid fa-cloud-arrow-down"></i>
-                                                {{ __('Download Attachment') }}
-                                            </a>
+                                            @if(cloudStorageExist() && in_array(Storage::getDefaultDriver(), ['s3', 'cloudFlareR2', 'wasabi']))
+                                                <a href="{{ render_frontend_cloud_image_if_module_exists('jobs/'.$job_details->attachment, load_from: $job_details->load_from) }}"
+                                                   download class="single-refundRequest-item-uploads">
+                                                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                                                    {{ __('Download Attachment') }}
+                                                </a>
+                                            @else
+                                                <a href="{{ asset('assets/uploads/jobs/' . $job_details->attachment) }}"
+                                                   download class="single-refundRequest-item-uploads">
+                                                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                                                    {{ __('Download Attachment') }}
+                                                </a>
+                                            @endif
                                         @endif
                                     @endif
                                 </div>
@@ -100,7 +122,9 @@
                                                 {{ $job_details->job_proposals?->count() }}
                                             </span>
                                         </li>
-                                        <li class="jobFilter-wrapper-item-bottom-list-item"><span class="item-icon">
+                                        @if(moduleExists('HourlyJob'))
+                                        <li class="jobFilter-wrapper-item-bottom-list-item">
+                                            <span class="item-icon">
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -123,9 +147,13 @@
                                                         fill="#475467" />
                                                 </svg>
                                             </span>
-                                            <span
-                                                class="item-para">{{ $job_details->job_creator?->user_verified_status == 1 ? 'Verified' : 'Not Verified' }}</span>
+                                            @if($job_details->job_creator?->user_wallet?->balance >= ($job_details->hourly_rate * $job_details->estimated_hours) )
+                                                <span class="item-para">{{  __('Verified') }}</span>
+                                            @else
+                                                <span class="item-para">{{ __('Not Verified') }}</span>
+                                            @endif
                                         </li>
+                                        @endif
                                         <li class="jobFilter-wrapper-item-bottom-list-item">
                                             <span class="item-icon">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -138,8 +166,24 @@
                                                         fill="#667085" />
                                                 </svg>
                                             </span>
-                                            <span class="item-para">{{ ucfirst($job_details->duration) ?? '' }}</span>
+                                            <span class="item-para">{{ ucfirst(__($job_details->duration)) ?? '' }}</span>
                                         </li>
+                                        @if($job_details->type == 'hourly')
+                                            <li class="jobFilter-wrapper-item-bottom-list-item">
+                                            <span class="item-icon">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                            d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"
+                                                            fill="#667085" />
+                                                    <path
+                                                            d="M15.7106 15.93C15.5806 15.93 15.4506 15.9 15.3306 15.82L12.2306 13.97C11.4606 13.51 10.8906 12.5 10.8906 11.61V7.50999C10.8906 7.09999 11.2306 6.75999 11.6406 6.75999C12.0506 6.75999 12.3906 7.09999 12.3906 7.50999V11.61C12.3906 11.97 12.6906 12.5 13.0006 12.68L16.1006 14.53C16.4606 14.74 16.5706 15.2 16.3606 15.56C16.2106 15.8 15.9606 15.93 15.7106 15.93Z"
+                                                            fill="#667085" />
+                                                </svg>
+                                            </span>
+                                                <span class="item-para">{{ __('Estimated Hours:') }} {{ $job_details->estimated_hours ?? '' }}</span>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
@@ -163,14 +207,28 @@
                                                 <input type="hidden" name="job_id" value="{{ $job_details->id }}">
                                                 <input type="hidden" name="client_id" value="{{ $job_details->user_id }}">
                                                 <div class="single-flex-input">
-                                                    <div class="single-input">
-                                                        <label class="label-title"> {{ __('Proposal amount') }} </label>
-                                                        <div class="single-input-icon">
-                                                            <input type="number" name="amount" id="amount"
-                                                                class="form--control" value="{{ $job_details->budget }}">
-                                                            <span class="input-icon">{{ get_static_option('site_global_currency') ?? '' }}</span>
+                                                    @if(moduleExists('HourlyJob'))
+                                                        @if($job_details->type == 'hourly')
+                                                        <div class="single-input">
+                                                            <label class="label-title"> {{ __('Hourly rate') }} </label>
+                                                            <div class="single-input-icon">
+                                                                <input type="number" name="amount" id="amount"
+                                                                       class="form--control" value="{{ $job_details->hourly_rate ?? '' }}">
+                                                                <span class="input-icon">{{ get_static_option('site_global_currency') ?? '' }}</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                        @endif
+                                                    @else
+                                                        <div class="single-input">
+                                                            <label class="label-title"> {{ __('Proposal amount') }} </label>
+                                                            <div class="single-input-icon">
+                                                                <input type="number" name="amount" id="amount"
+                                                                       class="form--control" value="{{ $job_details->budget }}">
+                                                                <span class="input-icon">{{ get_static_option('site_global_currency') }}</span>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+
                                                     <x-duration.delivery-time :class="'single-input'" :title="__('Delivery Time')"
                                                         :name="'duration'" :id="'duration'" />
                                                 </div>
@@ -219,8 +277,12 @@
                                         <div class="jobFilter-about-clients-flex">
                                             <span class="jobFilter-about-clients-thumb">
                                                 @if ($job_details->job_creator?->image)
+                                                    @if(cloudStorageExist() && in_array(Storage::getDefaultDriver(), ['s3', 'cloudFlareR2', 'wasabi']))
+                                                        <img src="{{ render_frontend_cloud_image_if_module_exists( 'profile/'. $job_details?->job_creator?->image, load_from: $job_details?->job_creator?->load_from ?? '') }}" alt="{{ __('profile img') }}">
+                                                    @else
                                                     <img src="{{ asset('assets/uploads/profile/' . $job_details->job_creator?->image) }}"
                                                         alt="{{ $job_details->job_creator?->fullname }}">
+                                                    @endif
                                                 @else
                                                     <img src="{{ asset('assets/static/img/author/author.jpg') }}"
                                                         alt="{{ __('AuthorImg') }}">
@@ -233,6 +295,10 @@
                                                 </h6>
                                                 <span>{{ $job_details?->job_creator?->user_state?->state }} ,
                                                     {{ $job_details?->job_creator?->user_country?->country }}</span>
+
+                                                @if($job_details->job_creator?->user_verified_status == 1)
+                                                    <span data-toggle="tooltip" title="{{ __('User Verified') }}"> <i class="fas fa-circle-check"></i> </span>
+                                                @endif
                                             </div>
                                         </div>
 

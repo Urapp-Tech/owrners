@@ -9,6 +9,7 @@
             pointer-events: none;
             cursor: default;
         }
+        .img_max_width{max-width:300px}
     </style>
 @endsection
 @section('content')

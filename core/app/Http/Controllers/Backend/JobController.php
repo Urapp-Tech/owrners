@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Mail\BasicMail;
 use App\Models\AdminNotification;
+use App\Models\Bookmark;
 use App\Models\Job;
 use App\Models\JobHistory;
 use App\Models\JobPost;
@@ -134,6 +135,7 @@ class JobController extends Controller
     {
         JobHistory::where('job_id',$id)->delete();
         AdminNotification::where('identity',$id)->delete();
+        Bookmark::where('identity',$id)->where('is_project_job','job')->delete();
         JobPost::find($id)->delete();
         return redirect()->back()->with(toastr_error(__('Job Successfully Deleted.')));
     }

@@ -79,7 +79,7 @@ class FrontendProjectsController extends Controller
         if($request->get_pro_projects == 1){
             return Project::query()->with('project_creator')
                 ->whereHas('project_creator')
-                ->select(['id', 'title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image','pro_expire_date','is_pro'])
+                ->select(['id', 'title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image','pro_expire_date','is_pro','load_from'])
                 ->where('project_on_off','1')
                 ->where('pro_expire_date','>',$this->current_date)
                 ->where('is_pro','yes')
@@ -89,7 +89,7 @@ class FrontendProjectsController extends Controller
         else{
             return Project::query()->with('project_creator')
                 ->whereHas('project_creator')
-                ->select(['id', 'title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image','pro_expire_date','is_pro'])
+                ->select(['id', 'title','slug','user_id','basic_regular_charge','basic_discount_charge','basic_delivery','description','image','pro_expire_date','is_pro','load_from'])
                 ->where('project_on_off','1')
                 ->latest()
                 ->where('status','1');

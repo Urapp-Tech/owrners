@@ -40,7 +40,7 @@
 
                     @php
                         if(get_static_option('project_enable_disable') != 'disable' && get_static_option('job_enable_disable') != 'disable'){
-                            $client_bookmarks = \App\Models\Bookmark::where('user_id',Auth::guard('web')->user()->id)->get();
+                            $client_bookmarks = \App\Models\Bookmark::whereHas('bookmark_project')->whereHas('bookmark_job')->where('user_id',Auth::guard('web')->user()->id)->get();
                         }else if(get_static_option('project_enable_disable') == 'disable' && get_static_option('job_enable_disable') == 'disable'){
                             $client_bookmarks = '';
                         }else if(get_static_option('project_enable_disable') == 'disable'){
@@ -113,7 +113,7 @@
                 @else
                     @php
                         if(get_static_option('project_enable_disable') != 'disable' && get_static_option('job_enable_disable') != 'disable'){
-                            $freelancer_bookmarks = \App\Models\Bookmark::where('user_id',Auth::guard('web')->user()->id)->get();
+                            $freelancer_bookmarks = \App\Models\Bookmark::where('user_id',Auth::guard('web')->user()->id)->whereHas('bookmark_project')->whereHas('bookmark_job')->get();
                         }else if(get_static_option('project_enable_disable') == 'disable' && get_static_option('job_enable_disable') == 'disable'){
                             $freelancer_bookmarks = '';
                         }else if(get_static_option('project_enable_disable') == 'disable'){

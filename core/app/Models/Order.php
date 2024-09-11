@@ -35,7 +35,9 @@ class Order extends Model
         'is_custom',
         'refund_amount',
         'refund_status',
-        'payment_status'
+        'payment_status',
+        'is_fixed_hourly',
+        'email_send'
         ];
 
     protected $casts = ['status'=>'integer','is_custom'=>'integer','refund_status'=>'integer','status_before_hold'=>'integer'];
@@ -69,6 +71,11 @@ class Order extends Model
         return $this->hasMany(OrderSubmitHistory::class,'order_id','id');
     }
 
+    public function order_request_revision()
+    {
+        return $this->hasMany(OrderRequestRevision::class,'order_id','id');
+    }
+
     public function rating()
     {
         return $this->hasMany(Rating::class,'order_id','id');
@@ -77,4 +84,10 @@ class Order extends Model
     public function extras() {
         return $this->hasMany(OrderExtra::class,'order_id','id');
     }
+
+    public function hourly_work_history()
+    {
+        return $this->hasMany(OrderWorkHistory::class,'order_id','id');
+    }
+
 }
