@@ -11,7 +11,7 @@ class SubcategoryJobController extends Controller
 {
     public function subcategory_jobs($slug)
     {
-        $subcategory = SubCategory::select('id','sub_category','meta_title','meta_description')->where('slug',$slug)->first();
+        $subcategory = SubCategory::select('id','sub_category')->where('slug',$slug)->first();
         if(!empty($subcategory)){
             $query = $subcategory->jobs()
                 ->with('job_creator','job_skills')

@@ -12,7 +12,7 @@ class CategoryJobController extends Controller
 {
     public function category_jobs($slug)
     {
-        $category = Category::select('id','category','meta_title','meta_description')->where('slug',$slug)->first();
+        $category = Category::select('id','category')->where('slug',$slug)->first();
         if(!empty($category)){
             $query = JobPost::with('job_creator','job_skills')
                 ->whereHas('job_creator')

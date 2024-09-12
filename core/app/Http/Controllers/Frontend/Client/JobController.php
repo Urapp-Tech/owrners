@@ -73,6 +73,9 @@ class JobController extends Controller
     //job create
     public function job_create(Request $request)
     {
+        if ($request->has('slug')) {
+            $request->merge(array('slug' =>Str::slug(purify_html( $request->slug),'-',null)));
+        }
         if($request->isMethod('post'))
         {
              $request->validate([
@@ -176,6 +179,9 @@ class JobController extends Controller
     //job edit
     public function job_edit(Request $request,$id)
     {
+        if ($request->has('slug')) {
+            $request->merge(array('slug' =>Str::slug(purify_html( $request->slug),'-',null)));
+        }
         $user_id  = Auth::guard('web')->user()->id;
         $job_details = JobPost::where('id',$id)->where('user_id',$user_id)->first();
         $get_sub_categories_from_job_category = SubCategory::where('category_id',$job_details->category)->get() ?? '';
