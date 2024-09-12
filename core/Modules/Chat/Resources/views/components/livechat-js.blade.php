@@ -4,6 +4,7 @@
     class LiveChat {
         pusher;
         channel;
+        chatNotificationChannel;
         logEnable;
         appCluster;
         appKey;
@@ -15,6 +16,7 @@
             this.appUrl ="{{env('APP_URL')}}";
             this.pusher = this.createInstance();
             this.channel = null;
+            this.chatNotificationChannel = null;
         }
 
         createInstance(){
@@ -45,6 +47,16 @@
 
         bindEvent(eventName, callback) {
             this.channel.bind(eventName, callback);
+        }
+
+        // private channels for new message notification 
+        createChatNotificationChannel(user_id) {
+                this.chatNotificationChannel = this.pusher.subscribe(`private-livechat-notification-channel.${user_id}`);
+        }
+
+        // private channels binding for  new message notification 
+        bindChatNotificationEvent(eventName, callback) {
+                this.chatNotificationChannel.bind(eventName, callback);
         }
     }
 </script>

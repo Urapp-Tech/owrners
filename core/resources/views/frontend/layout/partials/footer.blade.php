@@ -380,6 +380,44 @@
     {!! get_static_option('site_third_party_tracking_code') !!}
 @endif
 {!! renderBodyEndHooks() !!}
+
+{{-- Message notification handler --}}
+@auth
+    @if (!request()->routeIs('freelancer.live.*') && !request()->routeIs('client.live.*') )
+
+        <audio id="chat-alert-sound" style="display: none">
+            <source src="{{ asset('assets/uploads/chat_image/sound/facebook_chat.mp3') }}" />
+        </audio>
+
+        <x-chat::livechat-js />
+
+        <script>
+            let liveChat, channelName;
+            liveChat = new LiveChat();
+
+            $(document).ready(function() {
+                liveChat.createChatNotificationChannel("{{ auth()->guard('web')->user()->id }}");
+
+                liveChat.bindChatNotificationEvent(`livechat-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
+
+                    if (data && data.unseen_count) {
+                        $('.reload_unseen_message_count').html(` <i class="fa-regular fa-comment-dots"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">${data.unseen_count}</span>`);
+                    }
+
+                    if (document.getElementById("chat-alert-sound") != undefined){
+                        var alert_sound = document.getElementById("chat-alert-sound");
+                        alert_sound.play();
+                    }
+
+                    toastr_success_js("{{ __('New Message Received.') }}")
+                })
+            })
+        </script>
+    @endif
+@endauth
+
+
+
 </body>
 
 </html>

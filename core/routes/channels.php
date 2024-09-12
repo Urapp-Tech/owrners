@@ -24,3 +24,8 @@ Broadcast::channel('livechat-client-channel.{freelancer_id}.{client_id}', functi
 Broadcast::channel('livechat-freelancer-channel.{client_id}.{freelancer_id}', static function ($freelancer, $client_id){
     return (int) $freelancer->id === (int) $client_id;
 });
+
+Broadcast::channel('livechat-notification-channel.{user_id}', static function ($user_id){
+    $user = auth()->guard('web')->user()->id;
+    return $user === (int) $user_id->id;
+});

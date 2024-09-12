@@ -18,6 +18,7 @@ use InvalidArgumentException;
 use JetBrains\PhpStorm\NoReturn;
 use Modules\Chat\Entities\LiveChat;
 use Modules\Chat\Entities\LiveChatMessage;
+use Modules\Chat\Events\LiveChatMessageNotificationEvent;
 use Modules\Chat\Events\LivechatUserMessageEvent;
 use Modules\Chat\Events\LivechatVendorMessageEvent;
 
@@ -223,6 +224,9 @@ class UserChatService
                 $livechat->client_id,
                 $livechat->freelancer_id,
             ));
+
+            $this->toastNewMessage($livechat->client_id);
+
         }elseif($messageFrom == 1){
             $bladeMessage = view("chat::components.freelancer.message", [
                 "data" => $livechat,
@@ -236,6 +240,7 @@ class UserChatService
                 $livechat->client_id,
                 $livechat->freelancer_id,
             ));
+            $this->toastNewMessage($livechat->freelancer_id, 'freelancer');
         }
     }
 
@@ -316,5 +321,30 @@ class UserChatService
 
         //  now throw exception
         throw new InvalidArgumentException("Invalid id. This id should be integer " . gettype($project_id) . ' given at line:' . __LINE__ . ' File: '. __FILE__);
+    }
+
+    private function toastNewMessage($user_id, $type = 'client') {
+        $unseen_message_count = 0;
+        if($type == 'client') {
+            $unseen_message = \App\Models\User::select('id')->withCount(['client_unseen_message' => function($q){
+                $q->where('is_seen',0)->where('from_user',2);
+              }])->where('id', $user_id)->first();
+
+              if ($unseen_message->client_unseen_message_count > 0) {
+                $unseen_message_count = $unseen_message->client_unseen_message_count;
+          }
+        }
+        else {
+            $unseen_message = \App\Models\User::select('id')->withCount(['freelancer_unseen_message' => function($q){
+                $q->where('is_seen',0)->where('from_user',1);
+              }])->where('id',$user_id)->first();
+
+              if ($unseen_message->freelancer_unseen_message_count > 0) {
+                    $unseen_message_count = $unseen_message->freelancer_unseen_message_count;
+              }
+        }
+
+        event(new LiveChatMessageNotificationEvent($unseen_message_count, $user_id));
+
     }
 }
