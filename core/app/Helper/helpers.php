@@ -13,6 +13,7 @@ use App\Models\StaticOption;
 use App\Models\MediaUpload;
 use App\Menu;
 use App\Blog;
+use App\Events\AppNotificationEvent;
 use App\Models\User;
 use App\Models\UserNotification;
 use App\Models\UserSkill;
@@ -2462,6 +2463,7 @@ function freelancer_notification($identity, $freelancer_id, $type, $msg)
         'sound' => 'default',
         'fcm_device' => ''
     ];
+    event(new AppNotificationEvent($last_notification) );
     $notification = Http::withHeaders([
         'Content-Type' => 'application/json',
         'Authorization' => 'key=' . get_static_option('firebase_server_key'),
@@ -2499,6 +2501,7 @@ function client_notification($identity, $client_id, $type, $msg)
         'sound' => 'default',
         'fcm_device' => ''
     ];
+    event(new AppNotificationEvent($last_notification) );
     $notification = Http::withHeaders([
         'Content-Type' => 'application/json',
         'Authorization' => 'key=' . get_static_option('firebase_server_key'),

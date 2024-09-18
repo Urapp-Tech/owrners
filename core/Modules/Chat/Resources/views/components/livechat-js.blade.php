@@ -17,6 +17,7 @@
             this.pusher = this.createInstance();
             this.channel = null;
             this.chatNotificationChannel = null;
+            this.notificationChannel = null;
         }
 
         createInstance(){
@@ -57,6 +58,16 @@
         // private channels binding for  new message notification 
         bindChatNotificationEvent(eventName, callback) {
                 this.chatNotificationChannel.bind(eventName, callback);
+        }
+
+        // private channels for new app notification 
+        createNotificationChannel(user_id) {
+                this.notificationChannel = this.pusher.subscribe(`private-app-notification-channel.${user_id}`);
+        }
+
+        // private channels binding for new app notification 
+        bindNotificationEvent(eventName, callback) {
+                this.notificationChannel.bind(eventName, callback);
         }
     }
 </script>

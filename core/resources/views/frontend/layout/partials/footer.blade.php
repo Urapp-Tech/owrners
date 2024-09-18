@@ -1,5 +1,6 @@
 @php
     $footer_variant = !is_null(get_footer_style()) ? get_footer_style() : '02';
+    $footer_variant = '02';
 @endphp
 @include('frontend.layout.partials.footer-variant.footer-'.$footer_variant)
 
@@ -404,12 +405,29 @@
                         $('.reload_unseen_message_count').html(` <i class="fa-regular fa-comment-dots"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">${data.unseen_count}</span>`);
                     }
 
-                    if (document.getElementById("chat-alert-sound") != undefined){
-                        var alert_sound = document.getElementById("chat-alert-sound");
-                        alert_sound.play();
-                    }
+                    // if (document.getElementById("chat-alert-sound") != undefined){
+                    //     var alert_sound = document.getElementById("chat-alert-sound");
+                    //     alert_sound.play();
+                    // }
 
                     toastr_success_js("{{ __('New Message Received.') }}")
+                })
+
+                liveChat.createNotificationChannel("{{ auth()->guard('web')->user()->id }}");
+
+                liveChat.bindNotificationEvent(`app-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
+
+                    $.ajax({
+                        url: "{{ route('notification.render') }}",
+                        method: 'GET',
+                        success: function (response) {
+                            if (response.status === 'success') {
+                                $('#notifications-container').html(response.view);
+                                toastr_success_js("{{ __('New Notification Received.') }}")
+                            }
+                        }
+                    })  
+
                 })
             })
         </script>

@@ -40,6 +40,7 @@ Route::group(['middleware' => ['globalVariable', 'maintains_mode','setlang']], f
         Route::post('get-category-types','get_category_type')->name('au.category-types.all');
         Route::post('get-skill','get_skills')->name('au.skill.all');
         Route::post('get-suggested-skill','get_suggested_skills')->name('au.skill.suggested');
+        Route::get('render-notification', 'renderNotification')->name('notification.render')->middleware('auth:web');
     });
 
     // user registration

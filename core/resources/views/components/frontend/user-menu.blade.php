@@ -189,7 +189,7 @@
                             ->latest()
                             ->get();
                     @endphp
-                    <div class="navbar-right-item">
+                    <div class="navbar-right-item" id="notifications-container">
                         <div class="navbar-right-notification">
                             <a href="javascript:void(0)" class="navbar-right-notification-icon">
                                 <i class="fa-regular fa-bell"></i>
@@ -281,7 +281,7 @@
                             ->where('freelancer_id', Auth::guard('web')->user()->id)
                             ->get();
                     @endphp
-                    <div class="navbar-right-item">
+                    <div class="navbar-right-item" id="notifications-container">
                         <div class="navbar-right-notification">
                             <a href="javascript:void(0)" class="navbar-right-notification-icon">
                                 <i class="fa-regular fa-bell"></i>

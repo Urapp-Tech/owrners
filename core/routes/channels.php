@@ -29,3 +29,9 @@ Broadcast::channel('livechat-notification-channel.{user_id}', static function ($
     $user = auth()->guard('web')->user()->id;
     return $user === (int) $user_id->id;
 });
+
+// App Notification Channel.
+Broadcast::channel('app-notification-channel.{user_id}', static function ($user_id){
+    $user = auth()->guard('web')->user()->id;
+    return $user === (int) $user_id->id;
+});

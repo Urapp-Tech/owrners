@@ -89,5 +89,13 @@ class AdminUserController extends Controller
         ]);
     }
 
+    public function renderNotification() {
+
+        return response()->json([
+            'status' => 'success',
+            'view' => view('frontend.layout.partials.auth-partials._notifications')->render(),
+        ]);
+    }
+
 
 }
