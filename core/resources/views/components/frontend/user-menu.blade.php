@@ -184,8 +184,11 @@
 
                 @if (Auth::guard('web')->user()->user_type == 1)
                     @php
-                        $client_notifications = \App\Models\ClientNotification::where('is_read', 'unread')
+                        $client_notifications_unreed_count = \App\Models\ClientNotification::where('is_read', 'unread')
                             ->where('client_id', Auth::guard('web')->user()->id)
+                            ->latest()
+                            ->get();
+                        $client_notifications = \App\Models\ClientNotification::where('client_id', Auth::guard('web')->user()->id)
                             ->latest()
                             ->get();
                     @endphp
@@ -193,9 +196,9 @@
                         <div class="navbar-right-notification">
                             <a href="javascript:void(0)" class="navbar-right-notification-icon">
                                 <i class="fa-regular fa-bell"></i>
-                                @if ($client_notifications->count() > 0)
+                                @if ($client_notifications_unreed_count->count() > 0)
                                     <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $client_notifications->count() ?? 0 }}</span>
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $client_notifications_unreed_count->count() ?? 0 }}</span>
                                 @endif
                             </a>
                             <div class="navbar-right-notification-wrapper">
@@ -277,17 +280,20 @@
                     </div>
                 @else
                     @php
-                        $freelancer_notifications = \App\Models\FreelancerNotification::where('is_read', 'unread')
+                        $freelancer_notifications_unreed_count = \App\Models\FreelancerNotification::where('is_read', 'unread')
                             ->where('freelancer_id', Auth::guard('web')->user()->id)
+                            ->get();
+                        $freelancer_notifications = \App\Models\FreelancerNotification::where('freelancer_id', Auth::guard('web')->user()->id)
+                            ->latest()
                             ->get();
                     @endphp
                     <div class="navbar-right-item" id="notifications-container">
                         <div class="navbar-right-notification">
                             <a href="javascript:void(0)" class="navbar-right-notification-icon">
                                 <i class="fa-regular fa-bell"></i>
-                                @if ($freelancer_notifications->count() > 0)
+                                @if ($freelancer_notifications_unreed_count->count() > 0)
                                     <span
-                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $freelancer_notifications->count() ?? 0 }}</span>
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $freelancer_notifications_unreed_count->count() ?? 0 }}</span>
                                 @endif
                             </a>
                             <div class="navbar-right-notification-wrapper">

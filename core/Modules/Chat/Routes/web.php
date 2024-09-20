@@ -23,6 +23,7 @@ Route::group(['prefix'=>'client/live','as'=>'client.','middleware'=>['auth','use
     Route::get('/chat', [ChatController::class, 'live_chat'])->name('live.chat');
     Route::post("/fetch-chat-freelancer-record", [ChatController::class,'fetch_chat_record'])->name("fetch.chat.freelancer.record");
     Route::post('/message-send', [ChatController::class,'message_send'])->name("message.send");
+    Route::get('/contacts', [ChatController::class,'client_chats'])->name("chat.contacts");
 
     Route::get('/all-offers', [ClientOfferController::class,'all_offers'])->name("offers");
     Route::get('/offer-details/{id}', [ClientOfferController::class,'offer_details'])->name("offer.details");
@@ -35,6 +36,7 @@ Route::group(['prefix'=>'freelancer/live','as'=>'freelancer.','middleware'=>['au
     Route::get('/chat', [FreelancerChatController::class, 'live_chat'])->name('live.chat');
     Route::post("fetch-chat-client-record", [FreelancerChatController::class,'fetch_chat_record'])->name("fetch.chat.client.record");
     Route::post('/message-send', [FreelancerChatController::class,'message_send'])->name("message.send");
+    Route::get('/contacts', [FreelancerChatController::class,'freelancer_chats'])->name("chat.contacts");
     Route::post('/offer-send', [FreelancerOfferController::class,'offer_send'])->name("offer.send");
 
     Route::get('/all-offers', [FreelancerOfferController::class,'all_offers'])->name("offers");

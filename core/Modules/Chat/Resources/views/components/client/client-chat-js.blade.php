@@ -70,7 +70,7 @@
         form.append('_token', "{{ csrf_token() }}");
 
         let messages_ = $('#client-message-footer #message').val();
-
+        
         @if(moduleExists('SecurityManage'))
             //get security manage module name
             let module_exits = "<?php echo moduleExists('SecurityManage'); ?>"
@@ -112,6 +112,7 @@
             send_ajax_request("post", form, "{{ route("client.message.send") }}", function (){}, function (response){
                 $("#chat_body").append(response);
                 scrollToBottom();
+                $('#client-message-footer #message').val('');
             }, function (){})
         }else{
             return false;
@@ -127,6 +128,13 @@
             el.attr("data-page",nextPage);
         });
     });
+
+    $(document).on('keydown',function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            $('#client-send-message-to-freelancer').trigger('click');
+        }
+    })
 
     function fetch_chat_data(freelancer_id, page = 1, callback){
         //: hare call a api for fetching data from database if no data available then new item will be inserted

@@ -386,20 +386,45 @@
 @auth
     @if (!request()->routeIs('freelancer.live.*') && !request()->routeIs('client.live.*') )
 
-        <audio id="chat-alert-sound" style="display: none">
-            <source src="{{ asset('assets/uploads/chat_image/sound/facebook_chat.mp3') }}" />
-        </audio>
-
         <x-chat::livechat-js />
 
+    @endif
         <script>
-            let liveChat, channelName;
-            liveChat = new LiveChat();
+            let liveChatInstance;
+            liveChatInstance = new LiveChat();
+
+            function fetchClientsChat () {
+                $.ajax({
+                    url: "{{ route('client.chat.contacts') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        if (response.status ==='success') {
+                            if($('#clients-chat-dropdown').length  > 0) {
+                                $('#clients-chat-dropdown').html(response.view);
+                            }
+                        }
+                    }
+                })
+            }
+
+            function fetchFreelancerChat () {
+                $.ajax({
+                    url: "{{ route('freelancer.chat.contacts') }}",
+                    method: 'GET',
+                    success: function (response) {
+                        if (response.status ==='success') {
+                            if($('#clients-chat-dropdown').length  > 0) {
+                                $('#clients-chat-dropdown').html(response.view);
+                            }
+                        }
+                    }
+                })
+            }
 
             $(document).ready(function() {
-                liveChat.createChatNotificationChannel("{{ auth()->guard('web')->user()->id }}");
+                liveChatInstance.createChatNotificationChannel("{{ auth()->guard('web')->user()->id }}");
 
-                liveChat.bindChatNotificationEvent(`livechat-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
+                liveChatInstance.bindChatNotificationEvent(`livechat-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
 
                     if (data && data.unseen_count) {
                         $('.reload_unseen_message_count').html(` <i class="fa-regular fa-comment-dots"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">${data.unseen_count}</span>`);
@@ -410,12 +435,18 @@
                     //     alert_sound.play();
                     // }
 
+                    @if (auth()->guard('web')->user()->user_type == 1 )
+                        fetchClientsChat();
+                    @else 
+                        fetchFreelancerChat();
+                    @endif
+
                     toastr_success_js("{{ __('New Message Received.') }}")
                 })
 
-                liveChat.createNotificationChannel("{{ auth()->guard('web')->user()->id }}");
+                liveChatInstance.createNotificationChannel("{{ auth()->guard('web')->user()->id }}");
 
-                liveChat.bindNotificationEvent(`app-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
+                liveChatInstance.bindNotificationEvent(`app-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
 
                     $.ajax({
                         url: "{{ route('notification.render') }}",
@@ -431,7 +462,6 @@
                 })
             })
         </script>
-    @endif
 @endauth
 
 

@@ -29,7 +29,7 @@
                                     <div class="chat-wrapper-contact">
                                         <div class="chat-wrapper-contact-close">
                                             <div class="close-chat d-lg-none"> <i class="fas fa-times"></i> </div>
-                                            <ul class="chat-wrapper-contact-list">
+                                            <ul class="chat-wrapper-contact-list" id="clients-chat-dropdown">
                                                 @foreach($client_chat_list as $client_chat)
                                                     <x-chat::client.freelancer-list :clientChat="$client_chat" />
                                                 @endforeach
@@ -92,7 +92,7 @@
                                     <div class="chat-wrapper-contact">
                                         <div class="chat-wrapper-contact-close">
                                             <div class="close-chat d-lg-none"> <i class="fas fa-times"></i> </div>
-                                            <ul class="chat-wrapper-contact-list">
+                                            <ul class="chat-wrapper-contact-list" id="clients-chat-dropdown">
                                                 <h4 class="text-danger text-center mt-5">{{ __('No Contacts Yet.') }}</h4>
                                             </ul>
                                         </div>

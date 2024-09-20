@@ -113,4 +113,19 @@ class FreelancerChatController extends Controller
             'client_id'=>$request->client_id
         ]);
     }
+    
+    public function freelancer_chats()
+    {
+        $freelancer_chat_list = LiveChat::with("client","freelancer")
+            ->whereHas('client')
+            ->withCount("client_unseen_msg","freelancer_unseen_msg")
+            ->where("freelancer_id", auth("web")->id())
+            ->orderByDesc('freelancer_unseen_msg_count')
+            ->get();
+
+        return response()->json([
+            'status' => 'success',
+            'view' => view("chat::freelancer.partials._chat-sidebar",compact('freelancer_chat_list'))->render()
+        ]);
+    }
 }

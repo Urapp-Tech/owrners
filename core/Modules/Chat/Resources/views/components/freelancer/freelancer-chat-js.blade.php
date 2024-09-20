@@ -105,12 +105,19 @@
             send_ajax_request("post", form, "{{ route("freelancer.message.send") }}", function (){}, function (response){
                 $("#chat_body").append(response);
                 scrollToBottom();
+                $('#freelancer-message-footer #message').val('');
             }, function (){})
         }else{
             return false;
         }
     });
 
+    $(document).on('keydown',function (e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            $('#freelancer-send-message-to-client').trigger('click');
+        }
+    })
 
     $(document).on("click",".load-more-pagination", function (){
         let el = $(this);
