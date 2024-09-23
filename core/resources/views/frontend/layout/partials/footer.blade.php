@@ -390,6 +390,8 @@
 
     @endif
         <script>
+            let page = 1;
+            let lastPage = 1;
             let liveChatInstance;
             liveChatInstance = new LiveChat();
 
@@ -421,6 +423,44 @@
                 })
             }
 
+             function loadMoreNotifications(toast = false) {
+                    // Simulate fetching data (replace with actual API call)
+                    if (page > lastPage) {
+                        return ;
+                    }
+                    let url = "{{ route('notification.render') }}";
+                      $.ajax({
+                        url: url,
+                        data: {
+                            page: page
+                        },
+                        method: 'GET',
+                        success: function (response) {
+                            if (response.status === 'success') {
+                                lastPage = response.lastPage ;
+                                $('#notifications-container').append(response.view);
+                                if(response.notifications_unreed_count == 0 ) {
+
+                                    $('.navbar-right-notification .navbar-right-notification-icon').html(`
+                                     <i class="fa-regular fa-bell"></i>
+                                    `);
+                                }
+                                else {
+                                    $('.navbar-right-notification .navbar-right-notification-icon').html(`
+                                        <i class="fa-regular fa-bell"></i>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">${response.notifications_unreed_count.length}</span>
+                                    `);
+                                }
+                                if(toast) {
+                                    toastr_success_js("{{ __('New Notification Received.') }}")
+                                }
+                            }
+                        }
+                    })  
+
+                    page += 1;  // Increment the page number for the next request
+                }
+
             $(document).ready(function() {
                 liveChatInstance.createChatNotificationChannel("{{ auth()->guard('web')->user()->id }}");
 
@@ -447,19 +487,28 @@
                 liveChatInstance.createNotificationChannel("{{ auth()->guard('web')->user()->id }}");
 
                 liveChatInstance.bindNotificationEvent(`app-notification-${'{{ auth()->guard('web')->user()->id }}'}`, function(data) {
-
-                    $.ajax({
-                        url: "{{ route('notification.render') }}",
-                        method: 'GET',
-                        success: function (response) {
-                            if (response.status === 'success') {
-                                $('#notifications-container').html(response.view);
-                                toastr_success_js("{{ __('New Notification Received.') }}")
-                            }
-                        }
-                    })  
+ 
+                    page= 1;
+                    $('#notifications-container').empty();
+                    loadMoreNotifications(true);
 
                 })
+
+                const $notificationList = $('.navbar-right-notification-wrapper');
+                
+                $($notificationList).on('scroll',  function() {
+                    const scrollTop = $notificationList.scrollTop();
+                    const scrollHeight = $notificationList.prop('scrollHeight');
+                    const clientHeight = $notificationList.innerHeight();
+
+                    // Check if the user has scrolled near the end of the notification list
+                    if (scrollTop + clientHeight >= scrollHeight - 50) {
+                    console.log("Fetching more notifications...");
+                     loadMoreNotifications();
+                    }
+                });
+
+
             })
         </script>
 @endauth

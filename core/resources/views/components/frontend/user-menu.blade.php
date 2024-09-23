@@ -190,9 +190,9 @@
                             ->get();
                         $client_notifications = \App\Models\ClientNotification::where('client_id', Auth::guard('web')->user()->id)
                             ->latest()
-                            ->get();
+                            ->paginate(10);
                     @endphp
-                    <div class="navbar-right-item" id="notifications-container">
+                    <div class="navbar-right-item">
                         <div class="navbar-right-notification">
                             <a href="javascript:void(0)" class="navbar-right-notification-icon">
                                 <i class="fa-regular fa-bell"></i>
@@ -201,7 +201,7 @@
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $client_notifications_unreed_count->count() ?? 0 }}</span>
                                 @endif
                             </a>
-                            <div class="navbar-right-notification-wrapper">
+                            <div class="navbar-right-notification-wrapper"  id="notifications-container">
                                 <div class="navbar-right-notification-wrapper-list">
                                     @if ($client_notifications->count() > 0)
                                         @foreach ($client_notifications as $notification)
@@ -250,6 +250,15 @@
                                                         <span
                                                                 class="navbar-right-notification-wrapper-list-item-content-time">{{ $notification->created_at->toFormattedDateString() }}</span>
                                                     @endif
+
+                                                    @if ($notification->type == 'Account')
+                                                        <a href="#">
+                                                            <span
+                                                                    class="navbar-right-notification-wrapper-list-item-content-title">{{ $notification->message }}</span>
+                                                        </a>
+                                                        <span
+                                                                class="navbar-right-notification-wrapper-list-item-content-time">{{ $notification->created_at->toFormattedDateString() }}</span>
+                                                    @endif
                                                     @if ($notification->type == 'Ticket Update')
                                                         <a href="{{ route('client.ticket.details',$notification->identity) }}">
                                                         <span class="navbar-right-notification-wrapper-list-item-content-title">{{ $notification->message }}</span>
@@ -285,9 +294,9 @@
                             ->get();
                         $freelancer_notifications = \App\Models\FreelancerNotification::where('freelancer_id', Auth::guard('web')->user()->id)
                             ->latest()
-                            ->get();
+                            ->paginate(10);
                     @endphp
-                    <div class="navbar-right-item" id="notifications-container">
+                    <div class="navbar-right-item">
                         <div class="navbar-right-notification">
                             <a href="javascript:void(0)" class="navbar-right-notification-icon">
                                 <i class="fa-regular fa-bell"></i>
@@ -296,7 +305,7 @@
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ $freelancer_notifications_unreed_count->count() ?? 0 }}</span>
                                 @endif
                             </a>
-                            <div class="navbar-right-notification-wrapper">
+                            <div class="navbar-right-notification-wrapper"  id="notifications-container">
                                 <div class="navbar-right-notification-wrapper-list">
                                     @if ($freelancer_notifications->count() > 0)
                                         @foreach ($freelancer_notifications as $notification)
@@ -333,6 +342,14 @@
 
                                                     @if ($notification->type == 'Withdraw')
                                                         <a href="{{ route('freelancer.wallet.history') }}">
+                                                            <span
+                                                                    class="navbar-right-notification-wrapper-list-item-content-title">{{ $notification->message }}</span>
+                                                        </a>
+                                                        <span
+                                                                class="navbar-right-notification-wrapper-list-item-content-time">{{ $notification->created_at->toFormattedDateString() }}</span>
+                                                    @endif
+                                                    @if ($notification->type == 'Account')
+                                                        <a href="#">
                                                             <span
                                                                     class="navbar-right-notification-wrapper-list-item-content-title">{{ $notification->message }}</span>
                                                         </a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Skill;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Modules\CountryManage\Entities\City;
 use Modules\CountryManage\Entities\State;
 use Modules\Service\Entities\CategoryType;
@@ -90,10 +91,36 @@ class AdminUserController extends Controller
     }
 
     public function renderNotification() {
+        $notifications = [];
+        $notifications_unreed_count = 0;
+        $lastPage = 0;
+
+        if(Auth::guard('web')->user()->user_type == 1) {
+            $notifications_unreed_count = \App\Models\ClientNotification::where('is_read', 'unread')
+                ->where('client_id', Auth::guard('web')->user()->id)
+                ->latest()
+                ->get();
+            $notifications = \App\Models\ClientNotification::where('client_id', Auth::guard('web')->user()->id)
+                ->latest() 
+                ->paginate(10);
+        }
+
+        if(Auth::guard('web')->user()->user_type == 2) {
+            $notifications_unreed_count = \App\Models\FreelancerNotification::where('is_read', 'unread')
+                ->where('freelancer_id', Auth::guard('web')->user()->id)
+                ->get();
+            $notifications = \App\Models\FreelancerNotification::where('freelancer_id', Auth::guard('web')->user()->id)
+                ->latest()
+                ->paginate(10);
+        }
+
+        $lastPage = $notifications->lastPage();
 
         return response()->json([
             'status' => 'success',
-            'view' => view('frontend.layout.partials.auth-partials._notifications')->render(),
+            'notifications_unreed_count' => $notifications_unreed_count,
+            'lastPage' => $lastPage,
+            'view' => view('frontend.layout.partials.auth-partials._notifications',compact('notifications','notifications_unreed_count'))->render(),
         ]);
     }
 
