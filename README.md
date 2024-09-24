@@ -37,12 +37,24 @@
      DB_USERNAME=your_database_user
      DB_PASSWORD=your_database_password
      ```
-   - **Pusher Settings (if used):**
+   - **Pusher Settings:**
      ```env
      PUSHER_APP_ID=your_pusher_app_id
      PUSHER_APP_KEY=your_pusher_app_key
      PUSHER_APP_SECRET=your_pusher_app_secret
      PUSHER_APP_CLUSTER=your_pusher_app_cluster
+     ```
+    - **SMTP Mail Configuration:**  
+     Setup your SMTP settings to ensure the application can send emails.
+     ```env
+     MAIL_MAILER=smtp
+     MAIL_HOST=smtp.yourprovider.com
+     MAIL_PORT=587
+     MAIL_USERNAME=your_email@domain.com
+     MAIL_PASSWORD=your_email_password
+     MAIL_ENCRYPTION=tls
+     MAIL_FROM_ADDRESS=noreply@yourdomain.com
+     MAIL_FROM_NAME="${APP_NAME}"
      ```
 
 5. **Cache Clearing (if needed)**  
