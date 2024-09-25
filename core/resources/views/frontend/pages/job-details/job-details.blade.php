@@ -36,9 +36,9 @@
                                             </p>
                                         </div>
                                         <div class="jobFilter-wrapper-item-top-right">
-                                            <div class="jobFilter-wrapper-item-top-right-image jobbookmark">
+                                            {{-- <div class="jobFilter-wrapper-item-top-right-image jobbookmark">
                                                 <x-frontend.bookmark :identity="$job_details->id" :type="'job'" />
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="jobFilter-wrapper-item-contents">

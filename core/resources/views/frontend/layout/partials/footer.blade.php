@@ -353,6 +353,28 @@
         }
     }
 
+    //toastr success notification
+    function toastr_notification_success_js(msg){
+        Command: toastr["success"](msg)
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    }
+
     //toastr error
     function toastr_error_js(msg){
         Command: toastr["error"](msg, "Error !")
@@ -452,7 +474,7 @@
                                     `);
                                 }
                                 if(toast) {
-                                    toastr_success_js("{{ __('New Notification Received.') }}")
+                                    toastr_notification_success_js("{{ __('New Notification Received.') }}")
                                 }
                             }
                         }
@@ -481,7 +503,7 @@
                         fetchFreelancerChat();
                     @endif
 
-                    toastr_success_js("{{ __('New Message Received.') }}")
+                    toastr_notification_success_js("{{ __('New Message Received.') }}")
                 })
 
                 liveChatInstance.createNotificationChannel("{{ auth()->guard('web')->user()->id }}");

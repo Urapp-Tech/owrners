@@ -19,9 +19,9 @@
                                 </p>
                             </div>
                             <div class="categoryWrap-wrapper-item-top-right">
-                                <div class="categoryWrap-wrapper-item-top-right-image jobbookmark">
+                                {{-- <div class="categoryWrap-wrapper-item-top-right-image jobbookmark">
                                     <x-frontend.bookmark :identity="$job->id" :type="'job'" />
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="categoryWrap-wrapper-item-contents">

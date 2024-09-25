@@ -21,9 +21,9 @@
                                 </span>
                             </div>
                         </a>
-                        <div class="single-project-thumb-bookmark-container">
+                        {{-- <div class="single-project-thumb-bookmark-container">
                             <x-frontend.bookmark :identity="$project->id" :type="'project'" />
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="single-project-content">
                         <div class="single-project-content-top align-items-center flex-between">

@@ -71,9 +71,9 @@
                                             </div>
                                             <div class="project-category-item-bottom profile-border-top">
                                                 <div class="project-category-item-bottom-flex flex-between align-items-center">
-                                                    <div class="project-category-right-flex flex-btn">
+                                                    {{-- <div class="project-category-right-flex flex-btn">
                                                         <x-frontend.bookmark :identity="$project->id" :type="'project'" />
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="project-category-item-btn flex-btn">
                                                         <a href="{{ route('project.details', ['username' => $project->project_creator?->username, 'slug' => $project->slug]) }}" class="btn-profile btn-outline-1"> {{ __('Order Now') }} </a>
                                                     </div>

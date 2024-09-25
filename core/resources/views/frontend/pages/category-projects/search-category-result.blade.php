@@ -47,9 +47,9 @@
                     </div>
                     <div class="project-category-item-bottom profile-border-top">
                         <div class="project-category-item-bottom-flex flex-between align-items-center">
-                            <div class="project-category-right-flex flex-btn">
+                            {{-- <div class="project-category-right-flex flex-btn">
                                 <x-frontend.bookmark :identity="$project->id" :type="'project'" />
-                            </div>
+                            </div> --}}
                             <div class="project-category-item-btn flex-btn">
                                 @if(moduleExists('SecurityManage'))
                                     @if(Auth::guard('web')->check() && Auth::guard('web')->user()->freeze_order_create == 'freeze')
