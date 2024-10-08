@@ -37,7 +37,8 @@ class Order extends Model
         'refund_status',
         'payment_status',
         'is_fixed_hourly',
-        'email_send'
+        'email_send',
+        'accepted_at'
         ];
 
     protected $casts = ['status'=>'integer','is_custom'=>'integer','refund_status'=>'integer','status_before_hold'=>'integer'];

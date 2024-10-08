@@ -1937,17 +1937,17 @@ function float_amount_with_currency_symbol($amount, $text = false)
     if (empty($amount)) {
         $return_val = $symbol . $amount;
         if ($position == 'right') {
-            $return_val = $amount . $symbol;
+            $return_val = $amount  . ' ' .  $symbol;
         }
     }
 
     //decimal enable disable
     $decimal_yes_or_no = get_static_option('enable_disable_decimal_point');
     $amount = $decimal_yes_or_no != 'disable' ? $amount = number_format((float)$amount, 2, $decimal_separator, $thousand_separator) : $amount = number_format((int) $amount);
-    $return_val = $symbol . $amount;
+    $return_val = $symbol . ' ' .  $amount;
 
     if ($position == 'right') {
-        $return_val = $amount . $symbol;
+        $return_val = $amount . ' ' . $symbol;
     }
     return $return_val;
 }
@@ -2970,4 +2970,46 @@ function delete_frontend_cloud_image_if_module_exists($path='')
     if (in_array($driver, ['wasabi', 's3', 'cloudFlareR2'])) {
         return Storage::disk($driver)->delete($path);
     }
+}
+
+/**
+ * Check if order is delayed or not
+ * @param Order $order
+ */
+function orderIsDelayed( Order $order) {
+    $acceptedAt = \Carbon\Carbon::parse($order->accepted_at);
+
+    switch ($order->delivery_time) {
+        case '1 Days':
+        case '2 Days':
+        case '3 Days':
+            // Extract the number of days and add to the accepted_at date
+            $days = (int) filter_var($order->delivery_time, FILTER_SANITIZE_NUMBER_INT);
+            $expectedDelivery = $acceptedAt->addDays($days);
+            break;
+
+        case 'Less than a week':
+            $expectedDelivery = $acceptedAt->addWeek();
+            break;
+
+        case 'Less than a month':
+            $expectedDelivery = $acceptedAt->addMonth();
+            break;
+
+        case 'Less than 2 month':
+            $expectedDelivery = $acceptedAt->addMonths(2);
+            break;
+
+        case 'Less than 3 month':
+            $expectedDelivery = $acceptedAt->addMonths(3);
+            break;
+
+        case 'More than 3 month':
+            $expectedDelivery = $acceptedAt->addMonths(4);  // Assume 4 months for this case
+            break;
+
+        default:
+            $expectedDelivery = $acceptedAt; // Default to same day for unknown cases
+    }
+    return  now()->greaterThan($expectedDelivery);
 }

@@ -136,13 +136,13 @@
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
         <div class="profile-settings-area pat-25 pab-100 section-bg-2">
-            <div class="container">
+            <div class="container-lg p-sm-4">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
                     <div class="col-xl-12 col-lg-12">
                         <div class="profile-settings-wrapper row g-4">
                             {{-- Right Side --}}
-                            <div class="col-md-3 p-2">
+                            <div class="col-lg-3 col-md-4 p-2">
                                 <div class="section-bg-1 radius-10">
                                     {{-- Profile Image Header --}}
                                     <div class="d-flex align-items-center p-3">
@@ -227,7 +227,7 @@
                                 </div>
                             </div>
                             {{-- left Side --}}
-                            <div class="col-md-9">
+                            <div class="col-lg-9 col-md-8">
                                 <div class="">
                                     <div class="orders-listing">
                                         <div class="myOrder-wrapper-tabs">

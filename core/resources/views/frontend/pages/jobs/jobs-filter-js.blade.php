@@ -18,10 +18,11 @@
                 let min_price = $('#min_price').val();
                 let max_price = $('#max_price').val();
                 let duration = $('#duration').val();
+                let search_input = $('#search_input').val();
                 $.ajax({
                     url:"{{ route('jobs.filter')}}",
                     method:'GET',
-                    data:{country:country,type:type,level:level,min_price:min_price,max_price:max_price,duration:duration},
+                    data:{country:country,type:type,level:level,min_price:min_price,max_price:max_price,duration:duration, search: search_input},
                     success:function(res){
                         if(res.status=='nothing'){
                             $('.search_job_result').html(
@@ -44,6 +45,9 @@
                     }
                 });
             });
+            $(document).on('keyup', '#search_input', function () {
+                $('#country').trigger('change');
+            })
             $(document).on('click', '#set_price_range', function() {
                 let country = $('#country').val();
                 let type = $('#type').val();
@@ -51,10 +55,11 @@
                 let min_price = $('#min_price').val();
                 let max_price = $('#max_price').val();
                 let duration = $('#duration').val();
+                let search_input = $('#search_input').val();
                 $.ajax({
                     url:"{{ route('jobs.filter')}}",
                     method:'GET',
-                    data:{country:country,type:type,level:level,min_price:min_price,max_price:max_price,duration:duration},
+                    data:{country:country,type:type,level:level,min_price:min_price,max_price:max_price,duration:duration, search: search_input},
                     success:function(res){
                         if(res.status=='nothing'){
                             $('.search_job_result').html(
@@ -88,13 +93,14 @@
                 let min_price = $('#min_price').val();
                 let max_price = $('#max_price').val();
                 let duration = $('#duration').val();
-                jobs(page,country,type,level,min_price,max_price,duration);
+                let search_input = $('#search_input').val();
+                jobs(page,country,type,level,min_price,max_price,duration, search_input);
             });
-            function jobs(page,country,type,level,min_price,max_price,duration){
+            function jobs(page,country,type,level,min_price,max_price,duration, search){
                 $.ajax({
                     url:"{{ route('jobs.pagination').'?page='}}" + page,
                     method:'GET',
-                    data:{country:country,type:type,level:level,min_price:min_price,max_price:max_price,duration:duration},
+                    data:{country:country,type:type,level:level,min_price:min_price,max_price:max_price,duration:duration, search: search},
                     success:function(res){
                         if(res.status=='nothing'){
                             $('.search_job_result').html('<h3 class="text-center text-danger">'+"{{ __('Nothing Found') }}"+'</h3>');
@@ -116,6 +122,7 @@
                 $('#min_price').val('');
                 $('#max_price').val('');
                 $('#duration').val('');
+                $('#search_input').val('');
                 $.ajax({
                     url:"{{ route('jobs.filter.reset')}}",
                     method:'GET',

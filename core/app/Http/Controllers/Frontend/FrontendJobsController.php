@@ -65,6 +65,10 @@ class FrontendJobsController extends Controller
             if(isset($request->duration) && !empty($request->duration)){
                 $jobs = $jobs->where('duration',$request->duration);
             }
+
+            if(isset($request->search) && !empty($request->search)){
+                $jobs = $jobs->where('title', 'like','%'. $request->search . '%');
+            }
             $jobs = $jobs->paginate(10);
             return $jobs->total() >= 1 ? view('frontend.pages.jobs.search-job-result',compact('jobs'))->render() : response()->json(['status'=>__('nothing')]);
         }
@@ -111,6 +115,9 @@ class FrontendJobsController extends Controller
                 if(isset($request->duration) && !empty($request->duration)){
                     $jobs = $jobs->where('duration',$request->duration);
                 }
+            }
+            if(isset($request->search) && !empty($request->search)){
+                $jobs = $jobs->where('title', 'like','%'. $request->search . '%');
             }
             $jobs = $jobs->paginate(10);
             return $jobs->total() >= 1 ? view('frontend.pages.jobs.search-job-result', compact('jobs'))->render() : response()->json(['status'=>__('nothing')]);

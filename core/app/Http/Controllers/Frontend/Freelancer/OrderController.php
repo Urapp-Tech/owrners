@@ -202,7 +202,7 @@ class OrderController extends Controller
             JobPost::where('id',$find_order->identity)->update(['current_status'=>1]);
         }
 
-         Order::where('id',$id)->update(['status'=>1]);
+         Order::where('id',$id)->update(['status'=>1 , 'accepted_at' => now() ]);
          $order_milestone = OrderMilestone::where('order_id',$id)->first();
          if($order_milestone){
              OrderMilestone::where('id',$order_milestone->id)->update(['status'=>1]);

@@ -35,7 +35,7 @@
                             </a>
                         </li>
                        
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown freelancer-navbar-dropdown">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Business
                           </a>

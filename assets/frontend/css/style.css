@@ -23803,13 +23803,14 @@ button #project_create_load_spinner i {
   left: 15px;
   /* color:var(--main-color-one); */
   color: var(--heading-color);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.5);
   display: inline-block;
-  min-width: 150px;
+  min-width: 110px;
   padding: 7px;
   border-radius: 5px;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 10px;
+  /* font-size: 12px; */
   backdrop-filter: blur(5px);
 }
 
@@ -23822,7 +23823,7 @@ button #project_create_load_spinner i {
 span.single-project-thumb-price {
   /* color:var(--main-color-one); */
   color: var(--heading-color);
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
 }
 
@@ -24598,4 +24599,13 @@ a.btn-outline-owrners {
   border: 1px solid var(--border-color) !important;
   color: var(--paragraph-color) !important;
   background-color: white !important;
+}
+
+.freelancer-navbar-dropdown .dropdown-menu{
+  padding: 15px 0px !important;
+}
+
+.freelancer-navbar-dropdown .dropdown-menu li a:hover{
+  background-color: var(--main-color-one) !important;
+  color: white !important;
 }

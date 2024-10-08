@@ -8,7 +8,7 @@
                     <div class="single-project-thumb">
                         <a href="{{ route('project.details', ['username' => $project->project_creator?->username, 'slug' => $project->slug]) }}">
                             <img src="{{ asset('assets/uploads/project/'.$project->image) ?? '' }}" alt="{{ $project->title ?? '' }}">
-                            <div class="single-project-thumb-price-container">
+                            {{-- <div class="single-project-thumb-price-container">
                                 From <br>
                                 <span class="single-project-thumb-price">
     
@@ -19,7 +19,7 @@
                                         {{ float_amount_with_currency_symbol($project->basic_regular_charge) }}
                                     @endif
                                 </span>
-                            </div>
+                            </div> --}}
                         </a>
                         {{-- <div class="single-project-thumb-bookmark-container">
                             <x-frontend.bookmark :identity="$project->id" :type="'project'" />
@@ -43,7 +43,7 @@
                             @endif
                         </div>
                         <div>
-                            <div>
+                            <div class="align-items-center d-flex">
                                 @php
                                     $img =$project->project_creator->image;
                                     if(file_exists('assets/uploads/profile/'.$img)) {
@@ -53,13 +53,13 @@
                                         $img = asset('assets/uploads/no-image.png');;
                                     }
                                 @endphp
-                                <a href="{{ route('freelancer.profile.details', $project->project_creator->username) }}">
+                                <a href="{{ route('freelancer.profile.details', $project->project_creator->username) }}" class="d-flex align-items-center">
                                     <img src="{{  $img  }}"
                                          alt="{{ $project->project_creator->first_name }}" class="gig-user-profile">
+                                    <span class="project-category-item-bottom-name gig-user-profile-name">
+                                        {{ $project->project_creator->first_name }} {{ $project->project_creator->last_name }}
+                                    </span>
                                 </a>
-                                <span class="project-category-item-bottom-name gig-user-profile-name">
-                                    {{ $project->project_creator->first_name }} {{ $project->project_creator->last_name }}
-                                </span>
                                 <span class="project-category-item-bottom-location">
                                     @if($project->project_creator->location)
                                         {{ $project->project_creator->location }}
@@ -77,6 +77,15 @@
                             <div class="project-category-right-flex flex-btn">
                                 {!! project_rating($project->id) !!}
                             </div>
+                            <span class="single-project-thumb-price">
+    
+                                @if($project->basic_discount_charge)
+                                    {{ float_amount_with_currency_symbol($project->basic_discount_charge) }}
+                                    <s>{{ float_amount_with_currency_symbol($project->basic_regular_charge) }}</s>
+                                @else
+                                    {{ float_amount_with_currency_symbol($project->basic_regular_charge) }}
+                                @endif
+                            </span>
                         </div>
                     </div>
                 </div>

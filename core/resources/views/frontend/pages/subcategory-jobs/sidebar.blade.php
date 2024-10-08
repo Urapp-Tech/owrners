@@ -13,6 +13,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="single-shop-left bg-white radius-10 mt-4">
+            <div class="single-shop-left-title open">
+                <h5 class="title"> {{ __('Search') }} </h5>
+                <div class="single-shop-left-inner margin-top-15">
+                    <div class="single-shop-left-select">
+                        <x-form.text :title="__('')" :placeholder="'Enter Text to search'" :type="'text'" :name="'search'" :id="'search_input'" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="single-shop-left bg-white radius-10 mt-4">
             <div class="single-shop-left-title open">
                 <h5 class="title"> {{ __('Search by Country') }} </h5>
