@@ -2301,14 +2301,14 @@ function get_blog_category($data){
 }
 
 function toastr_success($success){
-    Toastr::success($success,__('Success!'), ["positionClass" => "toast-top-right","closeButton" => "true","progressBar" => "true"]);
+    Toastr::success($success,null, ["positionClass" => "toast-top-right","closeButton" => "true","progressBar" => "true"]);
 }
 
 function toastr_error($success){
-    Toastr::error($success,__('Error!'), ["positionClass" => "toast-top-right","closeButton" => "true","progressBar" => "true"]);
+    Toastr::error($success,null , ["positionClass" => "toast-top-right","closeButton" => "true","progressBar" => "true"]);
 }
 function toastr_warning($success){
-    Toastr::warning($success,__('Warning!'), ["positionClass" => "toast-top-right","closeButton" => "true","progressBar" => "true"]);
+    Toastr::warning($success,null, ["positionClass" => "toast-top-right","closeButton" => "true","progressBar" => "true"]);
 }
 
 

@@ -38,7 +38,7 @@
                                         <th>{{{__('Set Field')}}}</th>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        {{-- <tr>
                                             <td><h6>{{__('Country')}}</h6></td>
                                             @php $all_countries = \Modules\CountryManage\Entities\Country::all_countries(); @endphp
                                             <td>
@@ -52,7 +52,7 @@
                                                 </div>
                                                 <p class="text-info">{{ __('Select your states country') }}</p>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td><h6>{{__('State')}}</h6></td>
                                             <td>
@@ -64,6 +64,19 @@
                                                     <input type="hidden" name="state">
                                                 </div>
                                                 <p class="text-info">{{ __('Select state and only unique states added automatically according to the selected country.') }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6>{{__('Country')}}</h6></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control mapping_select">
+                                                        <option value="">{{__('Select Field')}}</option>
+                                                        {!! $option_markup !!}
+                                                    </select>
+                                                    <input type="hidden" name="country">
+                                                </div>
+                                                <p class="text-info">{{ __('Select country id column.') }}</p>
                                             </td>
                                         </tr>
                                         <tr>

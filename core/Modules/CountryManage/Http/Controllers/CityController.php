@@ -126,8 +126,8 @@ class CityController extends Controller
     {
         $request->validate([
             'city' => 'required',
-            'country_id' => 'required',
-            'state_id' => 'required',
+            'country' => 'required',
+            'state' => 'required',
         ]);
 
         $file_tmp_name = Session::get('import_csv_file_name');
@@ -141,6 +141,8 @@ class CityController extends Controller
         $imported_cities = 0;
         $x = 0;
         $city = array_search($request->city, $csv_data, true);
+        $state = array_search($request->state, $csv_data, true);
+        $country_id = array_search($request->country, $csv_data, true);
 
         foreach ($data as $index => $item) {
             if($x == 0){
@@ -155,15 +157,15 @@ class CityController extends Controller
             }
 
             $find_city = City::where('city', $item[$city])
-                ->where('country_id', $request->country_id)
-                ->where('state_id', $request->state_id)
+                ->where('country_id',  $item[$country_id])
+                ->where('state_id',  $item[$state])
                 ->count();
 
             if ($find_city < 1) {
                 $city_data = [
                     'city' => $item[$city] ?? '',
-                    'country_id' => $request->country_id,
-                    'state_id' => $request->state_id,
+                    'country_id' => $item[$country_id],
+                    'state_id' => $item[$state],
                     'status' => $request->status,
                 ];
             }

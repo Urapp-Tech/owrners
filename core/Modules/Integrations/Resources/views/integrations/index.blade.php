@@ -764,7 +764,8 @@
 
         //toastr warning
         function toastr_success_js(msg){
-            Command: toastr["success"](msg, "Success !")
+            Command: toastr["success"](msg)
+            // Command: toastr["success"](msg, "Success !")
             toastr.options = {
                 "closeButton": true,
                 "debug": false,

@@ -126,6 +126,7 @@ class StateController extends Controller
         $imported_states = 0;
         $x = 0;
         $state = array_search($request->state, $csv_data, true);
+        $country_id = array_search($request->country, $csv_data, true);
 
         foreach ($data as $index => $item) {
             if($x == 0){
@@ -144,7 +145,8 @@ class StateController extends Controller
             if ($find_state < 1) {
                 $state_data = [
                     'state' => $item[$state] ?? '',
-                    'country_id' => $request->country_id,
+                    'country_id' => $item[$country_id] ?? '',
+                    // 'country_id' => $request->country_id,
                     'timezone' => $request->timezone,
                     'status' => $request->status,
                 ];

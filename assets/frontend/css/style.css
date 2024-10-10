@@ -24609,3 +24609,17 @@ a.btn-outline-owrners {
   background-color: var(--main-color-one) !important;
   color: white !important;
 }
+
+.job-delayed {
+  display: inline-block;
+  background-color: rgba(var(--danger-color-rgb), 0.1);
+  color: var(--danger-color);
+  border: 1px solid transparent;
+  border-radius: 30px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  padding: 4px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}

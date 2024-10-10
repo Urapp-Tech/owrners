@@ -39,7 +39,7 @@
                                         <th>{{{__('Set Field')}}}</th>
                                         </thead>
                                         <tbody>
-                                        <tr>
+                                        {{-- <tr>
                                             <td><h6>{{__('Country')}}</h6></td>
                                             @php $countries = \Modules\CountryManage\Entities\Country::all_countries(); @endphp
                                             <td>
@@ -53,8 +53,8 @@
                                                 </div>
                                                 <p class="text-info">{{ __('Select state country ') }}</p>
                                             </td>
-                                        </tr>
-                                        <tr>
+                                        </tr> --}}
+                                        {{-- <tr>
                                             <td><h6>{{__('State')}}</h6></td>
                                             @php $cities = \Modules\CountryManage\Entities\State::all_states(); @endphp
                                             <td>
@@ -65,7 +65,7 @@
                                                 </div>
                                                 <p class="text-info">{{ __('Select cities state') }}</p>
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td><h6>{{__('City')}}</h6></td>
                                             <td>
@@ -77,6 +77,32 @@
                                                     <input type="hidden" name="city">
                                                 </div>
                                                 <p class="text-info">{{ __('Select city and only unique cities added automatically according to the selected country and state.') }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6>{{__('Country')}}</h6></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control mapping_select">
+                                                        <option value="">{{__('Select Field')}}</option>
+                                                        {!! $option_markup !!}
+                                                    </select>
+                                                    <input type="hidden" name="country">
+                                                </div>
+                                                <p class="text-info">{{ __('Select Country Id column.') }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><h6>{{__('State')}}</h6></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control mapping_select">
+                                                        <option value="">{{__('Select Field')}}</option>
+                                                        {!! $option_markup !!}
+                                                    </select>
+                                                    <input type="hidden" name="state">
+                                                </div>
+                                                <p class="text-info">{{ __('Select state Id column.') }}</p>
                                             </td>
                                         </tr>
                                         <tr>

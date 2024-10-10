@@ -36,9 +36,9 @@
                                         </h4>
                                         <div class="myOrder-single-content-btn flex-btn mt-3">
                                             <x-order.order-status :status="$order_details->status" /> 
-                                                {{-- @if (orderIsDelayed($order)) 
-                                                    <span class="badge bg-danger">Delayed</span>
-                                                @endif --}}
+                                                @if (orderIsDelayed($order_details)) 
+                                                     <span class="job-delayed">Delayed</span>
+                                                @endif
                                                
                                             <x-order.is-custom :isCustom="$order_details->is_project_job" />
                                         </div>
