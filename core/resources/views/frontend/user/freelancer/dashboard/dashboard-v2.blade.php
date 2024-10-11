@@ -136,7 +136,7 @@
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
         <div class="profile-settings-area pat-25 pab-100 section-bg-2">
-            <div class="container-lg p-sm-4">
+            <div class="container-xxl p-sm-4 py-md-0">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
                     <div class="col-xl-12 col-lg-12">
@@ -165,15 +165,15 @@
                                     <hr>
                                     <div class="col-12 px-4 py-4">
                                         <div class="row g-3">
-                                            <div class="col-12 d-flex justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between align-items-center">
                                                 <h6 class="text-muted">{{ __('Rating') }}</h6>
                                                 <span class="text-success">{!! freelancer_rating_for_profile_details_page($user->id) == ''? 0 : freelancer_rating_for_profile_details_page($user->id)  !!}</span>
                                             </div>
-                                            <div class="col-12 d-flex justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between align-items-center">
                                                 <h6 class="text-muted">{{ __('Active Gigs') }}</h6>
                                                 <span class="text-primary">{{ $active_projects_count ?? 0 }}</span>
                                             </div>
-                                            <div class="col-12  d-flex justify-content-between">
+                                            <div class="col-12  d-flex justify-content-between align-items-center">
                                                 <h6 class="text-muted">{{ __('Active Orders') }}</h6>
                                                 <span class="text-info">{{ $active_orders_count ?? __('No Active Orders') }}</span>
                                             </div>
@@ -184,7 +184,7 @@
                                 <div class="mt-5 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         <div class="row g-3">
-                                            <div class="col-12 d-flex justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between align-items-center">
                                                 <h6 class="text-muted">{{ __('Total Earned') }}</h6>
                                                 <span class="text-success"> {{ float_amount_with_currency_symbol($total_earning->total_earning ?? 0) }} </span>
                                             </div>
@@ -196,7 +196,7 @@
                                 <div class="mt-5 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         <div class="row g-3">
-                                            <div class="col-12 d-flex justify-content-between">
+                                            <div class="col-12 d-flex justify-content-between align-items-center">
                                                 <h6 class="text-muted">{{ __('Inbox') }}</h6>
                                                 <span class="text-primary"> <a href="{{route('freelancer.live.chat')}}"> View All</a></span>
                                             </div>
@@ -227,7 +227,7 @@
                                 </div>
                             </div>
                             {{-- left Side --}}
-                            <div class="col-lg-9 col-md-8">
+                            <div class="col-lg-9 col-md-8 pt-2">
                                 <div class="">
                                     <div class="orders-listing">
                                         <div class="myOrder-wrapper-tabs">

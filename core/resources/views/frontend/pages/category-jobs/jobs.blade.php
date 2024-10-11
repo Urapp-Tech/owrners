@@ -10,7 +10,7 @@
         @if(moduleExists('CoinPaymentGateway'))@else<x-frontend.category.category/>@endif
         <x-breadcrumb.user-profile-breadcrumb :title="__('Category Jobs') ?? __('Jobs')" :innerTitle=" $category->category ?? '' "/>
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-100 pab-100">
+        <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-12">

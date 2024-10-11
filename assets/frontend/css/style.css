@@ -12057,7 +12057,7 @@ span.choose-account-single-contents-icon svg path {
 }
 
 .profile-wrapper-item-title {
-  font-size: 20px;
+  font-size: 18px;
   line-height: 28px;
   margin: -3px 0 0;
 }
@@ -12264,16 +12264,16 @@ span.choose-account-single-contents-icon svg path {
 }
 
 .profile-wrapper-details-single-contents-title {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .profile-wrapper-details-single-contents-para {
-  font-size: 14px;
+  font-size: 12px;
   line-height: 24px;
   font-weight: 400;
   color: var(--paragraph-color);
-  margin-top: 7px;
+  margin-top: 0px;
 }
 
 .profile-wrapper-details-single:nth-child(3n+2) .profile-wrapper-details-single-thumb {
@@ -15476,6 +15476,7 @@ div[class*=col]:nth-child(4n+4) .myJob-wrapper-single-balance {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  border-radius: 10px !important;
 }
 
 .chat-wrapper-details-inner-chat-contents-para {
@@ -24622,4 +24623,8 @@ a.btn-outline-owrners {
   border-radius: 20px;
   font-size: 14px;
   line-height: 20px;
+}
+
+.bg-theme-primary {
+  background-color: rgb(var(--main-color-one-rgb),0.4) ;
 }

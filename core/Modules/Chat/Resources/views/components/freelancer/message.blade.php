@@ -13,7 +13,7 @@
                     <img src="{{ asset('assets/static/img/author/author.jpg') }}" alt="{{ __('author') }}">
                 @endif
             </div>
-            <div class="chat-wrapper-details-inner-chat-contents {{ !empty($project->type) ? "bg-danger p-2 text-dark bg-opacity-10" : "" }}">
+            <div class="chat-wrapper-details-inner-chat-contents rounded-2 {{ !empty($project->type) ? "bg-theme-primary p-2 text-dark bg-opacity-10" : "" }}">
                 <p class="chat-wrapper-details-inner-chat-contents-para {{ !empty($project) ? "d-none" : "" }}">
                     @if(!empty($message->message['message']))
                     <span class="chat-wrapper-details-inner-chat-contents-para-span">{{ $message->message['message'] ?? '' }}</span>

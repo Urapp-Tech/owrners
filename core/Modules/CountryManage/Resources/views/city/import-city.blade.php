@@ -89,7 +89,7 @@
                                                     </select>
                                                     <input type="hidden" name="country">
                                                 </div>
-                                                <p class="text-info">{{ __('Select Country Id column.') }}</p>
+                                                <p class="text-info">{{ __('Select Country name column.') }}</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -102,7 +102,7 @@
                                                     </select>
                                                     <input type="hidden" name="state">
                                                 </div>
-                                                <p class="text-info">{{ __('Select state Id column.') }}</p>
+                                                <p class="text-info">{{ __('Select state name column.') }}</p>
                                             </td>
                                         </tr>
                                         <tr>
