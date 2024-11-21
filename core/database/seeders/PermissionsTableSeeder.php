@@ -231,6 +231,13 @@ class PermissionsTableSeeder extends Seeder
             ["id" => "212", "menu_name" => "Category Type", "name" => "category-type-delete", "guard_name" => "admin", "created_at" => "2023-10-22 01:16:31", "updated_at" => "2023-10-22 01:16:31"],
             ["id" => "213", "menu_name" => "Category Type", "name" => "category-type-status-change", "guard_name" => "admin", "created_at" => "2023-10-22 01:16:31", "updated_at" => "2023-10-22 01:16:31"],
             ["id" => "214", "menu_name" => "Category Type", "name" => "category-type-bulk-delete", "guard_name" => "admin", "created_at" => "2023-10-22 01:16:31", "updated_at" => "2023-10-22 01:16:31"],
+            // Gig Ranking
+            ["id" => "215", "menu_name" => "Gig Ranking Manager", "name" => "gig-ranking-list", "guard_name" => "admin", "created_at" => now(), "updated_at" => now()],
+            ["id" => "216", "menu_name" => "Gig Ranking Manager", "name" => "gig-ranking-add", "guard_name" => "admin", "created_at" => now(), "updated_at" => now()],
+            ["id" => "217", "menu_name" => "Gig Ranking Manager", "name" => "gig-ranking-edit", "guard_name" => "admin", "created_at" => now(), "updated_at" => now()],
+            ["id" => "218", "menu_name" => "Gig Ranking Manager", "name" => "gig-ranking-delete", "guard_name" => "admin", "created_at" => now(), "updated_at" => now()],
+            ["id" => "219", "menu_name" => "Gig Ranking Manager", "name" => "gig-ranking-status-change", "guard_name" => "admin", "created_at" => now(), "updated_at" => now()],
+            ["id" => "220", "menu_name" => "Gig Ranking Manager", "name" => "gig-ranking-bulk-delete", "guard_name" => "admin", "created_at" => now(), "updated_at" => now()],
         ];
 
         foreach ($permissions as $permission) {

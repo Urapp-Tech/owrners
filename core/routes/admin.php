@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\ProjectHistoryController;
 use App\Http\Controllers\Backend\JobController;
 use App\Http\Controllers\Backend\SkillController;
 use App\Http\Controllers\Backend\FormBuilderController;
+use App\Http\Controllers\Backend\GigRankingController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\SuspendActiveController;
 use App\Http\Controllers\Backend\TransactionController;
@@ -47,6 +48,12 @@ Route::group(['as'=>'admin.','prefix'=>'admin'],function(){
         // dashboard
         Route::controller(DashboardController::class)->group(function () {
             Route::get('dashboard','dashboard')->name('dashboard');
+        });
+
+        // Gig ranking 
+        Route::group(['prefix' => 'gig-ranking'], function () {
+            Route::get('/', [GigRankingController::class, 'index'])->name('gig-ranking.index');
+            Route::get('toggle-status/{id}', [GigRankingController::class, 'toggleStatus'])->name('gig-ranking.toggle-status');
         });
 
         // project

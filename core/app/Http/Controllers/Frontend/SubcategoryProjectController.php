@@ -31,8 +31,7 @@ class SubcategoryProjectController extends Controller
                     $query->where('sender_type', 1);
                 }],'rating')
                 ->unsuspendCreator()
-                ->orderBy('complete_orders_count','Desc')
-                ->orderBy('ratings_avg_rating','Desc')
+                ->applyDynamicSorting()
                 ->paginate(10);
 
 
@@ -82,8 +81,7 @@ class SubcategoryProjectController extends Controller
             }
 
             $projects = $projects
-                        ->orderBy('complete_orders_count','Desc')
-                        ->orderBy('ratings_avg_rating','Desc')
+                        ->applyDynamicSorting()
                         ->paginate(10);
 
             $projectService->logProjectImpression($projects->pluck('id')->toArray());
@@ -153,8 +151,7 @@ class SubcategoryProjectController extends Controller
             }
 
             $projects = $projects
-                        ->orderBy('complete_orders_count','Desc')
-                        ->orderBy('ratings_avg_rating','Desc')
+                        ->applyDynamicSorting()
                         ->paginate(10);
 
             //project impression count

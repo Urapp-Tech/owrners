@@ -105,7 +105,10 @@ class ExploreCategoryProject extends PageBuilderBase
             ->where('status','1')
             ->where('category_id',$category->id)
             ->whereHas('project_creator')
-            ->take($items)->inRandomOrder()->get();
+            ->take($items)
+            // ->inRandomOrder()
+            ->applyDynamicSorting()
+            ->get();
 
         return  $this->renderBlade('projects.explore-category-projects',compact(['title','items','category','padding_top','padding_bottom','section_bg','explore_projects']));
     }

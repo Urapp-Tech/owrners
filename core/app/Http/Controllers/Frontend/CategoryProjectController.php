@@ -73,7 +73,7 @@ class CategoryProjectController extends Controller
                     ->having('ratings_avg_rating',">", $request->rating -1)
                     ->having('ratings_avg_rating',"<=", $request->rating);
             }
-            $projects = $projects->paginate(10);
+            $projects = $projects->applyDynamicSorting()->paginate(10);
             return $projects->total() >= 1 ? view('frontend.pages.category-projects.search-category-result', compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
         }
     }
@@ -131,7 +131,7 @@ class CategoryProjectController extends Controller
                     ->having('ratings_avg_rating',"<=", $request->rating);
             }
 
-            $projects = $projects->paginate(10);
+            $projects = $projects->applyDynamicSorting()->paginate(10);
 
             //pro project impression count
             if(moduleExists('PromoteFreelancer')){

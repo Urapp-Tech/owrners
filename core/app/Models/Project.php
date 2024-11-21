@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasDynamicSorting;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Service\Entities\Category;
@@ -9,7 +10,7 @@ use Modules\Service\Entities\SubCategory;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, HasDynamicSorting;
 
     protected $fillable = [
         'user_id',

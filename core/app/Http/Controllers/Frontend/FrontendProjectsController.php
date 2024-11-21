@@ -33,7 +33,7 @@ class FrontendProjectsController extends Controller
     public function projects_filter(Request $request)
     {
         if($request->ajax()){
-            $projects = $this->filter_query($request)->paginate(10);
+            $projects = $this->filter_query($request)->applyDynamicSorting()->paginate(10);
             return $projects->total() >= 1 ? view('frontend.pages.projects.search-result', compact('projects'))->render() : response()->json(['status'=>__('nothing')]);
         }
     }

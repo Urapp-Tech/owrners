@@ -20,5 +20,6 @@
   "PromoteFreelancer": false,
   "FreelancerLevel": true,
   "SecurityManage": false,
-  "HourlyJob": true
+  "HourlyJob": true,
+  "GigRankingManager": true
 }

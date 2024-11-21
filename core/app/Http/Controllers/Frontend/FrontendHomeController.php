@@ -150,8 +150,7 @@ class FrontendHomeController extends Controller
         }
 
         $projects = $projects
-                    ->orderBy('complete_orders_count','Desc')
-                    ->orderBy('ratings_avg_rating','Desc')
+                    ->applyDynamicSorting()
                     ->paginate(10);
 
         $projectService->logProjectImpression($projects->pluck('id')->toArray());
@@ -221,8 +220,7 @@ class FrontendHomeController extends Controller
         }
 
         $projects = $projects
-                    ->orderBy('complete_orders_count','Desc')
-                    ->orderBy('ratings_avg_rating','Desc')
+                    ->applyDynamicSorting()
                     ->paginate(10);
 
         $projectService->logProjectImpression($projects->pluck('id')->toArray());

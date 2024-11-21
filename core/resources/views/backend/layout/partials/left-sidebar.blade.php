@@ -95,6 +95,15 @@
                                 class="fa-solid fa-plug"></i>{{ __('Integrations') }}</a>
                 </li>
 
+                @if(moduleExists('GigRankingManager')) 
+                    @can('gig-ranking-list')
+                        <li class="dashboard__bottom__list__item @if (request()->routeIs(['admin.gig-ranking.index'])) active @endif">
+                            <a href="{{ route('admin.gig-ranking.index') }}"> <i
+                                        class="fa-solid fa-sort-amount-up-alt"></i>{{ __('Gigs Ranking Manager') }}</a>
+                        </li>
+                    @endcan
+                @endif
+
                 @if(moduleExists('PluginManage'))
                 <li
                         class="dashboard__bottom__list__item has-children @if (request()->is('admin/plugin-manage*')) active open @endif">
