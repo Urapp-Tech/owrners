@@ -31,6 +31,17 @@
             cursor: default;
             border:none;
         }
+
+        .bottom-right-img {
+            background-position: 80% 20% !important;=
+        }
+
+        @media (max-width:768px) {
+            .bottom-right-img {
+                opacity: 0.5;
+                background-size: 100% !important
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -41,12 +52,12 @@
         <div class="pat-25">
             <div class="container">
                 <div class="col-12">
-                    <div class="w-100 sub-category-title-container back-right-image-container" >
+                    <div class="w-100 sub-category-title-container back-right-image-container d-flex" >
                         @php $sub_cat_img = get_attachment_image_by_id($subcategory->image,null,true); @endphp
                         <div class="h-100 w-100 bottom-right-img" @if (!empty($sub_cat_img)) style="background: url('{{  $sub_cat_img['img_url'] }}')" @endif >
                         </div>
 
-                        <div class="d-flex h-100">
+                        <div class="d-flex h-100 align-self-center">
     
                             <div class="col-12 align-content-center h-100 gap-4  py-5">
                                 <div class="sub-category-title-heading-container">

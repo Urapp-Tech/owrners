@@ -4482,6 +4482,7 @@ span {
   font-weight: 600;
   line-height: 32px;
   margin: -3px 0 0;
+  word-break: break-all;
 }
 
 @media only screen and (max-width: 480px) {

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row gy-5 align-items-center justify-content-between">
             <div class="col-lg-6">
-                <div class="px-5">
+                <div class="px-sm-0 px-md-5">
                     <h1 class="signup-role-selection-title" style="font-size: 96px">{{ get_static_option('register_page_choose_role_title') ?? __('Choose a Role') }}</h1>
                     <div class="btn-wrapper mt-4">
                         <span class="btn-profile btn-bg-1 w-100 continue_to_info submit-btn d-inline">{{ get_static_option('register_page_continue_button_title') ?? __('Continue') }}</span>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="single-input mt-0">
+                                <div class="single-input mt-sm-4 mt-md-0">
                                     <div class="single-input-inner">
                                         <input class="form--control" type="password" name="confirm_password" id="confirm_password" placeholder="{{ __('Confirm Password') }}">
                                         <div class="icon toggle-password">

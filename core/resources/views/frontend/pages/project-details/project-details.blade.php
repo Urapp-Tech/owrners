@@ -23,7 +23,7 @@
             right: 10px;
         }
         .jobFilter-proposal-author-contents-subtitle{
-            padding-left:10px;
+            /* padding-left:10px; */
         }
         @endif
         .disabled-link {
@@ -315,6 +315,38 @@
         .order-options-extra:hover {
             border: 2px solid rgba(16, 16, 24, 1);
         }
+
+        @media (max-width: 767px) {
+            .jobFilter-proposal-author-thumb img {
+                border: 0 !important;
+            }
+            .jobFilter-proposal-author-thumb.position-relative a  {
+                width: 120px !important;
+            }
+
+            .jobFilter-proposal-author-contents-subtitle {
+                font-size: 13px !important;
+            }
+            .jobFilter-proposal-author-contents-subtitle span {
+                font-size: 12px !important;
+
+            }
+
+            .single-freelancer-author-name {
+                font-size: 16px !important;
+            } 
+
+            .single-freelancer-author-name a {
+                align-self: center !important;
+            } 
+            .single-freelancer-author-status-ofline {
+                font-size: 10px !important;
+            }
+        }
+
+        .jobFilter-proposal-author-thumb.position-relative a  {
+            display: block;
+        }
     </style>
 @endsection
 @section('content')
@@ -330,7 +362,7 @@
                                 <img src="{{ asset('assets/uploads/project/' . $project->image) }}"
                                     alt="{{ $project->title }}">
                             </div>
-                            <div class="project-preview">
+                            <div class="project-preview px-md-4 px-0">
                             <div class="myJob-wrapper-single-flex flex-between align-items-center">
                                 <div class="myJob-wrapper-single-contents">
                                     <div class="jobFilter-proposal-author-flex">
@@ -373,7 +405,7 @@
                                                     <span class="single-freelancer-author-status-ofline"> {{ __('Inactive') }} </span>
                                                 @endif
                                             </h4>
-                                            <p class="jobFilter-proposal-author-contents-subtitle mt-2">
+                                            <p class="jobFilter-proposal-author-contents-subtitle mt-2 pl-0">
                                                 @if($user->user_introduction?->title)
                                                 {{ $user->user_introduction?->title }} ·
                                                 @endif

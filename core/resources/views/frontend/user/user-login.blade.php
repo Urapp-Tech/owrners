@@ -11,7 +11,7 @@
                             <div class="login-right-shapes">
                                 <div class="login-right-thumb-2">
                                     @if(empty(get_static_option('login_page_sidebar_image')))
-                                    <img src="{{ asset('assets/static/single-page/login_page.png') }}" alt="loginImg">
+                                    <img src="{{ asset('assets/static/single-page/login_page.png') }}" class="object-fit-contain" alt="loginImg">
                                     @else
                                         {!! render_image_markup_by_attachment_id(get_static_option('login_page_sidebar_image')) !!}
                                     @endif

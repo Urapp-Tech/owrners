@@ -9,6 +9,10 @@
             pointer-events: none;
             cursor: default;
         }
+
+        .myJob-wrapper-single-title {
+            word-break: break-all;
+        }
     </style>
 @endsection
 @section('content')

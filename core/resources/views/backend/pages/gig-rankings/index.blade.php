@@ -7,7 +7,7 @@
 @section('content')
     <div class="dashboard__body">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="customMarkup__single">
                     <div class="customMarkup__single__item">
                         <div class="customMarkup__single__item__flex">

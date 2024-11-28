@@ -2580,6 +2580,10 @@ span {
   }
 }
 
+.section-title {
+  margin-bottom: 15px;
+} 
+
 .section-title .subtitle {
   font-size: 16px;
   font-weight: 600;
@@ -2587,7 +2591,7 @@ span {
   position: relative;
   display: inline-block;
   background-color: #fff;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   padding: 0 10px 0 0;
 }
 
@@ -2595,7 +2599,8 @@ span {
   content: "";
   position: absolute;
   height: 2px;
-  width: calc(100% + 70px);
+  width: calc(100% + -10px);
+  /* width: calc(100% + 70px); */
   left: 105%;
   top: 50%;
   /* IE 9 */
@@ -13600,6 +13605,8 @@ span.choose-account-single-contents-icon svg path {
     visibility: visible;
     opacity: 1;
     left: 0;
+    border: 2px solid var(--border-color-2);
+    box-shadow: 10px 10px 20px gray;
   }
 }
 
@@ -13626,7 +13633,7 @@ span.choose-account-single-contents-icon svg path {
     opacity: 1 !important;
     position: absolute;
     right: -40px;
-    top: 0;
+    top: -2px;
     font-size: 24px;
     color: #fff;
     background: var(--main-color-one);
@@ -13801,6 +13808,7 @@ span.choose-account-single-contents-icon svg path {
   font-weight: 600;
   line-height: 28px;
   margin: -3px 0 0;
+  word-break: break-all;
 }
 
 @media only screen and (max-width: 480px) {
@@ -23333,7 +23341,7 @@ p>a {
   height: 38px;
   border: 1px solid var(--border-color);
   width: 100%;
-  padding-right: 120px;
+  /* padding-right: 120px; */
   padding-left: 50px;
 }
 
@@ -24627,4 +24635,18 @@ a.btn-outline-owrners {
 
 .bg-theme-primary {
   background-color: rgb(var(--main-color-one-rgb),0.4) ;
+}
+
+.login-right-thumb-2 img {
+  object-fit: contain;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .footer-area-top {
+      padding: 0px 20px 70px;
+  }
+}
+
+.myJob-wrapper-single-title {
+  word-break: break-all;
 }
