@@ -29,8 +29,7 @@ class AnalyticsController extends Controller
            ->where('freelancer_id', $user->id)
            ->whereYear('created_at', Carbon::now()->subYear()->year)
            ->groupBy('month')
-           ->pluck('count', 'month');
-
+           ->pluck('total', 'month');
        // Initialize the orders array with 0s for all months
        $earning_by_last_year_month_data = array_fill(1, 12, 0);
 

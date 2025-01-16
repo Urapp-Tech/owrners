@@ -23,8 +23,39 @@
                     <x-form.country-dropdown :title="__('Select Your Country')" :id="'country_id'"/>
                 </div>
                 <div class="single-flex-input">
-                    <x-form.state-dropdown :title="__('Select Your State')" :id="'state_id'"/>
-                    <x-form.city-dropdown :title="__('Select Your City')" :id="'city_id'"/>
+                    <div class="single-input">
+                        <label class="label-title">{{ __('Select Your State') }}</label>
+                        <select name="{{ $name ?? '' }}" id="state_id" class="form-control get_country_state state_select2">
+                            <option value="">{{ __('Select State') }}</option>
+                            @if(Auth::guard('web')->user()->country_id > 0)
+                                @php
+                                    $all_states = \Modules\CountryManage\Entities\State::where('country_id',Auth::guard('web')->user()->country_id )->where('status',1)->select(['id','state','country_id','status'])->get();
+                                @endphp
+                                @foreach($all_states as $state)
+                                    <option value="{{ $state->id }}" @if(Auth::guard('web')->check() && $state->id == Auth::guard('web')->user()->state_id) selected @endif>{{ $state->state }}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
+                        <span class="state_info"></span>
+                    </div>
+                    
+
+                    <div class="single-input">
+                        <label class="label-title">{{ __('Select Your City') }}</label>
+                        <select name="{{ $name ?? '' }}" id="city_id" class="form-control get_state_city city_select2">
+                            <option value="">{{ __('Select City') }}</option>
+                            @if(Auth::guard('web')->user()->state_id > 0)
+                                @php
+                                    $all_cities = \Modules\CountryManage\Entities\City::where('state_id',Auth::guard('web')->user()->state_id )->where('status',1)->select(['id','city','country_id','state_id','status'])->get();
+                                @endphp
+                                @foreach($all_cities as $city)
+                                    <option value="{{ $city->id }}" @if($city->id == Auth::guard('web')->user()->city_id) selected @endif>{{ $city->city }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                        <span class="city_info"></span>
+                    </div>
                 </div>
             </div>
             <div class="popup-contents-btn flex-btn profile-border-top justify-content-end">
