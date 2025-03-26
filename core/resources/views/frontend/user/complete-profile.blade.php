@@ -6,11 +6,11 @@
 <section class="login-area  user_info_area">
     <div class="container">
         <div class="row gy-5 align-items-center justify-content-between">
-            <div class="col-lg-6">
+            <div class="col-lg-6 user-register-right">
                 <div class="login-right py-0">
                     <div class="global-slick-init login-slider nav-style-one dot-style-one white-dot slider-inner-margin" data-appendArrows=".append-jobs" data-dots="true" data-infinite="true" data-slidesToShow="1" data-swipeToSlide="true" data-autoplay="true" data-autoplaySpeed="2500" data-prevArrow='<div class="prev-icon"><i class="fa-solid fa-arrow-left"></i></div>' data-nextArrow='<div class="next-icon"><i class="fa-solid fa-arrow-right"></i></div>'>
                     <div class="login-right-item">
-                        <div class="login-right-shapes">
+                        <div class="login-right-shapes d-none d-md-block">
                             <div class="login-right-thumb">
                                 {{-- @if(empty(get_static_option('register_page_sidebar_image')))
                                     <img src="{{ asset('assets/static/single-page/fr_1.png') }}" alt="loginImg">
@@ -26,11 +26,11 @@
                             <h4 class="login-right-contents-title signup-role-selection-title"> Complete your Profile </h4>
                             <p class="login-right-contents-para">Tell us more about you so more talents can reach you.</p>
                             
-                            <div class="row">
+                            <div class="row skill-selection-action">
                                 <div class="btn-wrapper mt-4 col-3">
                                     <span onclick="window.location.href = '{{ route('freelancer.profile') }}'" class="header-login-btn py-0 d-block align-content-center text-center" style="min-height: 50px">{{ __('Skip') }}</span>
                                 </div>
-                                <div class="btn-wrapper mt-4 col-4">
+                                <div class="btn-wrapper mt-4 col-5">
                                     <span class="btn-profile btn-bg-1 w-100 continue_to_info submit-btn d-block py-0 align-content-center sign_up_now_button">{{ get_static_option('register_page_continue_button_title') ?? __('Continue') }}</span>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
 
                         <div class="error-message"></div>
 
-                        <form class="login-wrapper-form custom-form pb-5" method="post" action="{{ route('user.register') }}">
+                        <form class="login-wrapper-form custom-form pb-0 pb-md-5" method="post" action="{{ route('user.register') }}">
                             @csrf
 
                             <div id="complete-prfile-image-picker" role="button">

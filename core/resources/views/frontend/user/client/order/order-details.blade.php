@@ -24,7 +24,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Order Details')" :innerTitle="__('Order Details')" />
 
         <!-- Profile Details area Starts -->
-        <div class="profile-area pat-25 pab-100 section-bg-2">
+        <div class="profile-area pat-10 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
                     <div class="col-lg-8">

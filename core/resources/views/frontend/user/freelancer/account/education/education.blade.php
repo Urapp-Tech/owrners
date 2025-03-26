@@ -32,17 +32,17 @@
                         </a>
                     </div>
                     <ul class="setup-wrapper-experience-details-list">
-                        <li class="setup-wrapper-experience-details-list-item">
-                            <span class="list-inner"> <i class="fa-solid fa-graduation-cap"></i>
+                        <li class="setup-wrapper-experience-details-list-item row">
+                            <span class="list-inner col-xl-4"> <i class="fa-solid fa-graduation-cap"></i>
                                 <span class="list-inner-para">{{ __('Degree') }}</span>
                             </span>
-                            <span class="list-inner">
+                            <span class="list-inner col-xl-8">
                                 <span class="list-inner-para">{{ $education->degree }}</span>
                             </span>
                         </li>
-                        <li class="setup-wrapper-experience-details-list-item">
-                            <span class="list-inner"> <i class="fa-solid fa-calendar-days"></i> <span class="list-inner-para">{{ __('From-To') }}</span> </span>
-                            <span class="list-inner">
+                        <li class="setup-wrapper-experience-details-list-item row">
+                            <span class="list-inner col-xl-4"> <i class="fa-solid fa-calendar-days"></i> <span class="list-inner-para">{{ __('From-To') }}</span> </span>
+                            <span class="list-inner col-xl-8">
                                 <span class="list-inner-para">{{ Carbon\Carbon::parse($education->start_date)->toFormattedDateString() }} - <a href="javascript:void(0)">{{ $education->end_date ? Carbon\Carbon::parse($education->end_date)->toFormattedDateString() : __('(Expected)') }}</a></span>
                             </span>
                         </li>

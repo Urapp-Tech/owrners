@@ -7,48 +7,55 @@
     </div>
 
     @foreach($experiences as $experience)
-       <div class="setup-wrapper-experience-details">
-            <div class="setup-wrapper-experience-details-flex">
-                <div class="setup-wrapper-experience-details-left">
+       <div class="setup-wrapper-experience-details pt-1">
+            <div class="row">
+                <div class="col-sm-8 col-md-12 col-lg-8">
                     <h5 class="setup-wrapper-experience-details-title"> {{ $experience->title }} </h5>
                     <p class="setup-wrapper-experience-details-subtitle"> {{ $experience->organization }} </p>
                 </div>
-                @if(Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 2 && Auth::guard('web')->user()->username==$username)
-                    <a href="javascript:void(0)" class="setup-wrapper-experience-details-edit btn-profile btn-hover-danger delete_experience delete_experience_show_hide" data-id="{{ $experience->id }}">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </a>
-                    <a href="javascript:void(0)"
-                       class="setup-wrapper-experience-details-edit experience-click edit_single_experience edit_experience_show_hide"
-                       data-id="{{ $experience->id }}"
-                       data-title="{{ $experience->title }}"
-                       data-organization="{{ $experience->organization }}"
-                       data-address="{{ $experience->address }}"
-                       data-short_description="{{ $experience->short_description }}"
-                       data-country_id="{{ $experience->country_id }}"
-                       data-state_id="{{ $experience->state_id }}"
-                       data-start_date="{{ Carbon\Carbon::parse($experience->start_date)->toFormattedDateString() }}"
-                       data-end_date="{{ $experience->end_date ? Carbon\Carbon::parse($experience->end_date)->toFormattedDateString() : '' }}"
-                    > <i class="fa-regular fa-pen-to-square"></i>
-                    </a>
-                @endif
+                <div class="col-sm-4 col-md-12 col-lg-4 px-0 setup-wrapper-experience-details-action ">
+                    <div class="col-12">
+
+                        <div class="row">
+                            @if(Auth::guard('web')->check() && Auth::guard('web')->user()->user_type == 2 && Auth::guard('web')->user()->username==$username)
+                                <a href="javascript:void(0)" class="setup-wrapper-experience-details-edit btn-profile btn-hover-danger delete_experience delete_experience_show_hide" data-id="{{ $experience->id }}">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </a>
+                                <a href="javascript:void(0)"
+                                   class="setup-wrapper-experience-details-edit experience-click edit_single_experience edit_experience_show_hide"
+                                   data-id="{{ $experience->id }}"
+                                   data-title="{{ $experience->title }}"
+                                   data-organization="{{ $experience->organization }}"
+                                   data-address="{{ $experience->address }}"
+                                   data-short_description="{{ $experience->short_description }}"
+                                   data-country_id="{{ $experience->country_id }}"
+                                   data-state_id="{{ $experience->state_id }}"
+                                   data-start_date="{{ Carbon\Carbon::parse($experience->start_date)->toFormattedDateString() }}"
+                                   data-end_date="{{ $experience->end_date ? Carbon\Carbon::parse($experience->end_date)->toFormattedDateString() : '' }}"
+                                > <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </div>
             <ul class="setup-wrapper-experience-details-list">
-                <li class="setup-wrapper-experience-details-list-item">
-                        <span class="list-inner">
+                <li class="setup-wrapper-experience-details-list-item row">
+                        <span class="list-inner col-xl-4">
                             <i class="fa-solid fa-calendar-days"></i>
                             <span class="list-inner-para">{{ __('Duration') }}</span>
                         </span>
-                    <span class="list-inner">
+                    <span class="list-inner col-xl-8">
                         <span class="list-inner-para">
                             {{ Carbon\Carbon::parse($experience->start_date)->toFormattedDateString() }} - <a
                                 href="javascript:void(0)">{{ $experience->end_date ? Carbon\Carbon::parse($experience->end_date)->toFormattedDateString() : __('Current Position') }} </a>
                         </span>
                     </span>
                 </li>
-                <li class="setup-wrapper-experience-details-list-item">
-                        <span class="list-inner"> <i class="fa-solid fa-location-dot"></i> <span
+                <li class="setup-wrapper-experience-details-list-item row">
+                        <span class="list-inner col-xl-4"> <i class="fa-solid fa-location-dot"></i> <span
                                 class="list-inner-para">{{ __('Location') }}</span> </span>
-                    <span class="list-inner"> <span
+                    <span class="list-inner col-xl-8"> <span
                             class="list-inner-para">{{ $experience->address }}</span></span>
                 </li>
             </ul>

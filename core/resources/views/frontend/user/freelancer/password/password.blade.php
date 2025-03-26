@@ -13,7 +13,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Change Password')" :innerTitle="__('Change Password')"/>
         <!-- Password Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-10 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}

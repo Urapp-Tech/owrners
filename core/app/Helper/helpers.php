@@ -2712,6 +2712,43 @@ function freelancer_rating_for_job_details_page($freelancer_id)
     return $string;
 }
 
+function client_rating_for_job_details_page($client_id)
+{
+
+    $complete_orders = Order::select('id','identity','status')->where('user_id',$client_id)->where('status',3)->get();
+    $complete_orders_count = $complete_orders->count();
+
+
+    $count = 0;
+    $rating_count = 0;
+    $total_rating = 0;
+    foreach($complete_orders as $order){
+        $rating = Rating::where('order_id',$order->id)->where('sender_type',1)->first();
+        if($rating){
+            $total_rating = $total_rating+$rating->rating;
+            $count = $count+1;
+            $rating_count = $rating_count+1;
+        }
+    }
+
+
+    $avg_rating = $count > 0 ? $total_rating/$count : 0;
+
+
+    if($complete_orders_count >= 1){
+        $string = ' <div class="single-project-content-review mt-2">
+                <span class="single-project-content-review-icon">
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span class="single-project-content-review-rating">' .round($avg_rating,1.).'('.$rating_count.')</span>
+        </div>
+            ';
+    }else{
+        $string = '';
+    }
+    return $string;
+}
+
 function freelancer_complete_order_count($freelancer_id = null)
 {
     $order_count = Order::where('freelancer_id',$freelancer_id)->where('status',3)->count();

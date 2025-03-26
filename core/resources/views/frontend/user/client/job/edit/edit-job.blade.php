@@ -16,7 +16,7 @@
     <main>
         <x-breadcrumb.user-profile-breadcrumb :title="__('Edit Job')" :innerTitle="__('Edit Job')"/>
         <!-- Account Setup area Starts -->
-        <div class="account-area section-bg-2 pat-100 pab-100">
+        <div class="account-area section-bg-2 pat-10 pab-100">
             <div class="container">
                 <div class="account-setup-wrapper">
                     @include('frontend.user.client.job.create.job-header')

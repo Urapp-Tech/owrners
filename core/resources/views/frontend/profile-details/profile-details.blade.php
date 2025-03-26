@@ -115,7 +115,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Profile Details')" :innerTitle="__('Profile Details')"/>
 
         <!-- Profile Details area Starts -->
-        <div class="profile-area pat-25 pab-100 section-bg-2">
+        <div class="profile-area pat-10 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="col-xl-4">

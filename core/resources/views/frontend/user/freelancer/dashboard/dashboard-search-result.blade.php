@@ -1,7 +1,7 @@
 @if($orders->total() < 1)
-    <div class="myOrder-single bg-white padding-20 radius-10">
+    <div class="myOrder-single bg-white radius-10">
         <div class="myOrder-single-item">
-            <h4 class="text-danger">{{ __('No Order') }}</h4>
+            <h4 class="text-danger">{{ __('No orders available') }}</h4>
         </div>
     </div>
 @else

@@ -327,7 +327,7 @@ class RegisterController extends Controller
                 UserSkill::updateOrCreate(['user_id'=>$user_id],
                     [
                         'user_id'=>$user_id,
-                        'skill'=>$request->skills,
+                        'skill'=>$request->skills ?? '',
                     ]);
 
                 $user_id = Auth::guard('web')->user()->id;

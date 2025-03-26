@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Job;
 use App\Models\JobPost;
 use App\Models\JobProposal;
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -21,7 +22,8 @@ class JobDetailsController extends Controller
         $job_details = JobPost::with(['job_creator','job_skills','job_proposals'])->where('slug',$slug)->first();
         if(!empty($job_details)){
             $user = User::with('user_country')->where('id',$job_details->user_id)->first();
-            return  view('frontend.pages.job-details.job-details',compact('job_details','user'));
+            $user_spending =  Order::where('user_id',$user->id)->where('status',3)->sum('price');
+            return  view('frontend.pages.job-details.job-details',compact('job_details','user','user_spending'));
         }
         return back();
     }

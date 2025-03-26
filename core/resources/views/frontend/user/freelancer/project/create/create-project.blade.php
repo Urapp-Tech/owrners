@@ -35,7 +35,7 @@
 <main>
     <x-breadcrumb.user-profile-breadcrumb :title="__('Create Gig')" :innerTitle="__('Create Gig')" />
     <!-- Account Setup area Starts -->
-    <div class="account-area section-bg-2 pat-100 pab-100">
+    <div class="account-area section-bg-2 pat-10 pab-100">
         <div class="container">
             <div class="setup-wrapper create-project-wrap">
                 <div class="setup-wrapper-flex">

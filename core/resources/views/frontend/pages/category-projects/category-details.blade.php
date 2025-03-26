@@ -72,28 +72,25 @@
     <x-breadcrumb.user-profile-breadcrumb :title="$category->category ?? __('Gig Category')" :innerTitle="$category->category ?? ''" />
     <!-- Project preview area Starts -->
 
-    <div class="pat-25">
+    <div class="pat-5">
         <div class="container">
             <div class="col-12">
-                <div class="w-100 category-title-container back-right-image-container" >
+                <div class="w-100 category-title-container back-right-image-container d-flex" >
                     @php $cat_img = get_attachment_image_by_id($category->image,null,true); @endphp
                     <div class="h-100 w-100 bottom-right-img" @if (!empty($cat_img)) style="background: url('{{  $cat_img['img_url'] }}')" @endif ></div>
 
-                    <div class="d-flex h-100">
-
-                        <div class="col-xxl-6 col-12 align-content-center h-100 gap-4  py-5">
-                            <div class="category-title-heading-container">
-                                <h1 class="fw-bold py-2 back-right-image-title">{{ $category->category  }}</h1>
-                            </div>
-                            <div class="category-content">
-                            </div>
+                    <div class="col-xxl-6 col-6 align-content-center h-100 gap-4 align-self-center  " style="z-index: 1;">
+                        <div class="category-title-heading-container">
+                            <h1 class="fw-bold py-2 back-right-image-title">{{ $category->category  }}</h1>
+                        </div>
+                        <div class="category-content">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="preview-area section-bg-2 pat-50 pab-100">
+    <div class="preview-area section-bg-2 pat-25 pab-100">
         <div class="container">
             <div class="">
                 @if (moduleExists('PromoteFreelancer'))

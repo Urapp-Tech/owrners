@@ -1,6 +1,6 @@
 @if(get_static_option('job_enable_disable') != 'disable')
 <!-- Jobs area starts -->
-<section class="jobs-area pat-50 pab-100" data-padding-top="{{$padding_top ?? ''}}" data-padding-bottom="{{$padding_bottom ?? ''}}" style="background-color:{{$section_bg ?? ''}}">
+<section class="jobs-area pat-25 pab-10" data-padding-top="{{$padding_top ?? ''}}" data-padding-bottom="{{$padding_bottom ?? ''}}" style="background-color:{{$section_bg ?? ''}}">
     <div class="container">
         <div class="section-title text-left append-flex">
             <h2 class="title"> {{ $title ?? __('Recent Jobs') }} </h2>

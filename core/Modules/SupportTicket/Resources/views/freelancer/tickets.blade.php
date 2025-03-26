@@ -27,14 +27,14 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Tickets')" :innerTitle="__('Tickets')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
-            <div class="container">
+        <div class="profile-settings-area pat-10 pab-100 section-bg-2">
+            <div class="container-xxl">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
-                    <div class="col-xl-12 col-lg-12">
+                    <div class="col-xl-12 col-lg-12 mt-0">
                         <div class="profile-settings-wrapper">
 
-                            <div class="single-profile-settings" id="display_client_profile_photo">
+                            <div class="single-profile-settings py-0" id="display_client_profile_photo">
                                 <div class="single-profile-settings-flex">
                                     <div class="single-profile-settings-thumb">
                                         <h4>{{ __('Ticket') }}</h4>
@@ -49,7 +49,7 @@
                                 </div>
                             </div>
 
-                            <div class="single-profile-settings">
+                            <div class="single-profile-settings pt-0">
                                 <div class="single-profile-settings-header">
                                     <x-validation.error />
                                     <x-notice.general-notice :description="__('Notice: You can search here by ticket id, ticket status and ticket priority.')" />

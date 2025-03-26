@@ -26,7 +26,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Profile Settings')" :innerTitle="__('Profile Settings')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-10 pab-100 section-bg-2">
             <div class="container">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
@@ -36,7 +36,7 @@
 
                             <div class="single-profile-settings" id="display_client_profile_photo">
                                 <div class="single-profile-settings-flex">
-                                    <div class="single-profile-settings-thumb">
+                                    <div class="">
                                         <h4 class="balance-wallet">{{ __('Balance:') }} <strong>{{ float_amount_with_currency_symbol($total_wallet_balance ?? 00) }}</strong></h4>
                                     </div>
                                     <div class="single-profile-settings-contents">

@@ -135,7 +135,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('Dashboard')" :innerTitle="__('Dashboard')"/>
         <!-- Profile Settings area Starts -->
         <div class="responsive-overlay"></div>
-        <div class="profile-settings-area pat-25 pab-100 section-bg-2">
+        <div class="profile-settings-area pat-10 pab-100 section-bg-2">
             <div class="container-xxl p-sm-4 py-md-0">
                 <div class="row g-4">
                     {{-- @include('frontend.user.layout.partials.sidebar') --}}
@@ -162,18 +162,18 @@
 
                                     </div>
                                     {{-- Ratings and details --}}
-                                    <hr>
-                                    <div class="col-12 px-4 py-4">
+                                    <hr class="mt-0">
+                                    <div class="col-12 px-4 py-1">
                                         <div class="row g-3">
-                                            <div class="col-12 d-flex justify-content-between align-items-center">
+                                            <div class="col-12 d-flex justify-content-between align-items-center mt-1">
                                                 <h6 class="text-muted">{{ __('Rating') }}</h6>
                                                 <span class="text-success">{!! freelancer_rating_for_profile_details_page($user->id) == ''? 0 : freelancer_rating_for_profile_details_page($user->id)  !!}</span>
                                             </div>
-                                            <div class="col-12 d-flex justify-content-between align-items-center">
+                                            <div class="col-12 d-flex justify-content-between align-items-center mt-1">
                                                 <h6 class="text-muted">{{ __('Active Gigs') }}</h6>
                                                 <span class="text-primary">{{ $active_projects_count ?? 0 }}</span>
                                             </div>
-                                            <div class="col-12  d-flex justify-content-between align-items-center">
+                                            <div class="col-12  d-flex justify-content-between align-items-center mt-1">
                                                 <h6 class="text-muted">{{ __('Active Orders') }}</h6>
                                                 <span class="text-info">{{ $active_orders_count ?? __('No Active Orders') }}</span>
                                             </div>
@@ -181,7 +181,7 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-5 section-bg-1 radius-10">
+                                <div class="mt-3 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         <div class="row g-3">
                                             <div class="col-12 d-flex justify-content-between align-items-center">
@@ -193,7 +193,7 @@
                                     </div>
 
                                 </div>
-                                <div class="mt-5 section-bg-1 radius-10">
+                                <div class="mt-3 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         <div class="row g-3">
                                             <div class="col-12 d-flex justify-content-between align-items-center">
@@ -206,21 +206,21 @@
                                 </div>
 
                                 {{-- Work Experince --}}
-                                <div class="mt-5 section-bg-1 radius-10">
+                                <div class="mt-3 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         @include('frontend.profile-details.experience')
                                     </div>
                                 </div>
 
                                 {{-- Education --}}
-                                <div class="mt-5 section-bg-1 radius-10">
+                                <div class="mt-3 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         @include('frontend.profile-details.education')
                                     </div>
                                 </div>
 
                                 {{-- Education --}}
-                                <div class="mt-5 section-bg-1 radius-10">
+                                <div class="mt-3 section-bg-1 radius-10">
                                     <div class="col-12 px-4 py-3">
                                         @include('frontend.profile-details.skill')
                                     </div>

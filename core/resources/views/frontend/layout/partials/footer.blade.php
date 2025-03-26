@@ -234,8 +234,14 @@
             })
 
             //job search from home page
-            $(document).on('keyup', '#search_popular_searches',function(){
+            $(document).on('keyup', '#search_popular_searches',function(e){
                 let job_search_string = $('#search_popular_searches').val();
+                const excludedKeys = ['ArrowUp', 'ArrowDown', 'Enter', 'Tab', 'Escape'];
+
+                 // Prevent API fetching for excluded keys
+                if (excludedKeys.includes(e.key)) {
+                    return;
+                }
                 $('.display_search_result').hide()
 
                 if(job_search_string.length >= 1){
@@ -281,6 +287,45 @@
 
         });
     }(jQuery));
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('search_popular_searches');
+    const searchResultsContainer = document.querySelector('.display_search_result');
+    let activeIndex = -1;
+
+    searchInput.addEventListener('keyup', function (e) {
+        const suggestions = document.querySelectorAll('.suggestion-service-item');
+        const totalSuggestions = suggestions.length;
+
+        if (e.key === 'ArrowDown') {
+            // Move down
+            activeIndex = (activeIndex + 1) % totalSuggestions;
+            updateActiveItem(suggestions, activeIndex);
+        } else if (e.key === 'ArrowUp') {
+            // Move up
+            activeIndex = (activeIndex - 1 + totalSuggestions) % totalSuggestions;
+            updateActiveItem(suggestions, activeIndex);
+        } else if (e.key === 'Enter' && activeIndex >= 0) {
+            // Enter key selects the active item
+            suggestions[activeIndex].querySelector('a').click();
+        }
+    });
+
+    function updateActiveItem(items, index) {
+        items.forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('active');
+                item.scrollIntoView({ block: 'nearest' }); // Ensure the active item is visible
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    }
+});
+
 </script>
 
 

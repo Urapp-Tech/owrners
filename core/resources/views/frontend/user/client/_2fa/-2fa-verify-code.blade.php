@@ -1,7 +1,7 @@
 @extends('frontend.layout.master')
 @section('content')
     <!-- login Area Starts -->
-    <section class="login-area pat-100 pab-100">
+    <section class="login-area pab-20">
         <div class="container">
             <div class="row gy-5 align-items-center justify-content-between">
                 <div class="offset-md-3 col-md-6">

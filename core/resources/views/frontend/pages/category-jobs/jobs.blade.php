@@ -13,7 +13,7 @@
         <div class="preview-area section-bg-2 pat-25 pab-100">
             <div class="container">
                 <div class="row g-4">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-0">
                         <div class="categoryWrap-wrapper">
                             <div class="shop-contents-wrapper responsive-lg">
                                 <div class="shop-icon">

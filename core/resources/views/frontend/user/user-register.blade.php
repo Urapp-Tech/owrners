@@ -3,10 +3,10 @@
 @section('content')
 
 <!-- login Area Starts -->
-<section class="choose-account-area pat-100  user_type_area">
+<section class="choose-account-area  user_type_area">
     <div class="container">
         <div class="row gy-5 align-items-center justify-content-between">
-            <div class="col-lg-6">
+            <div class="col-lg-6 chose-area-left">
                 <div class="px-sm-0 px-md-5">
                     <h1 class="signup-role-selection-title" style="font-size: 96px">{{ get_static_option('register_page_choose_role_title') ?? __('Choose a Role') }}</h1>
                     <div class="btn-wrapper mt-4">
@@ -16,8 +16,9 @@
                     </span>
                 </div>
             </div>
-            <div class="col-lg-6 py-5">
+            <div class="col-lg-6 chose-area-right">
                 <div class="choose-account center-text">
+                    <h3 class="login-wrapper-contents-title d-lg-none">{{ get_static_option('register_page_choose_role_title') ?? __('Choose a Role') }}</h3>
                     <p class="choose-account-para mt-2">{{get_static_option('register_page_choose_role_subtitle') ?? __('Choose a role from below to continue signing up') }}</p>
                     <div class="choose-account-flex d-flex mt-4">
                         <div class="choose-account-single selected join_as_a_freelancer w-100">
@@ -65,11 +66,11 @@
 <section class="login-area  user_info_area">
     <div class="container">
         <div class="row gy-5 align-items-center justify-content-between">
-            <div class="col-lg-6">
+            <div class="col-lg-6 user-register-right">
                 <div class="login-right py-0">
                     <div class="global-slick-init login-slider nav-style-one dot-style-one white-dot slider-inner-margin" data-appendArrows=".append-jobs" data-dots="true" data-infinite="true" data-slidesToShow="1" data-swipeToSlide="true" data-autoplay="true" data-autoplaySpeed="2500" data-prevArrow='<div class="prev-icon"><i class="fa-solid fa-arrow-left"></i></div>' data-nextArrow='<div class="next-icon"><i class="fa-solid fa-arrow-right"></i></div>'>
                         <div class="login-right-item">
-                            <div class="login-right-shapes">
+                            <div class="login-right-shapes d-none d-lg-block">
                                 <div class="login-right-thumb">
                                     @if(empty(get_static_option('register_page_sidebar_image')))
                                         <img src="{{ asset('assets/static/single-page/fr_1.png') }}" alt="loginImg">
@@ -109,8 +110,10 @@
                 </div>
             </div>
             <div class="col-lg-5">
-                <div class="login-wrapper">
+                <div class="login-wrapper d-flex justify-content-center">
                     <div class="login-wrapper-contents">
+                        <h3 class="login-wrapper-contents-title d-lg-none">{{ get_static_option('register_page_sidebar_title') ?? __('Register and start discover') }}</h3>
+
                         {{-- <h3 class="login-wrapper-contents-title">{{ __('Sign Up') }}</h3> --}}
 
                         <div class="error-message"></div>
@@ -174,7 +177,7 @@
                             </div>
                             <br>
                             <input type="checkbox" class="form-check-input" id="terms_condition" name="terms_condition">
-                            <label class="form-check-label" for="toc_and_privacy">
+                            <label class="form-check-label d-inline" for="toc_and_privacy">
                                 {{ __('Accept all') }}
                                 <a target="_blank" href="{{ url(get_static_option('toc_page_link') ?? '') }}" class="fw-bold">{{ __('Terms and Conditions') }}</a> &amp;
                                 <a target="_blank" href="{{ url(get_static_option('privacy_policy_link') ?? '') }}" class="fw-bold">{{ __('Privacy Policy') }}</a>

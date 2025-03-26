@@ -1,4 +1,4 @@
-<section class="dynamic-page-content-area section-bg-2 pat-100 pab-100">
+<section class="dynamic-page-content-area section-bg-2 pat-10 pab-100">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

@@ -54,6 +54,19 @@
             background: rgb(230 230 250 / 50%);
             box-shadow: 10px 20px 30px;
         }
+
+        @media screen and (max-width: 768px) {
+            .signup-title-main, .signup-title {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+            .signup-area  {
+                min-height: 95vh;
+                align-items: center;
+                display: flex;
+            }
+        }
     </style>
 @endsection
 @section('content')

@@ -5,10 +5,10 @@
     <section class="login-area ">
         <div class="container">
             <div class="row gy-5 align-items-center justify-content-between">
-                <div class="col-lg-6">
+                <div class="col-lg-6 d-none d-lg-block ">
                     <div class="login-right">
                         <div class="login-right-item">
-                            <div class="login-right-shapes">
+                            <div class="login-right-shapes ">
                                 <div class="login-right-thumb-2">
                                     @if(empty(get_static_option('login_page_sidebar_image')))
                                     <img src="{{ asset('assets/static/single-page/login_page.png') }}" class="object-fit-contain" alt="loginImg">
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <div class="login-wrapper">
+                    <div class="login-wrapper d-flex justify-content-center">
                         <div class="login-wrapper-contents">
                             <h3 class="login-wrapper-contents-title">{{ get_static_option('login_page_title') ?? __('Log In ') }}</h3>
                             <x-validation.error/>

@@ -49,7 +49,7 @@
         <x-frontend.category.category/>
         <x-breadcrumb.user-profile-breadcrumb :title="$subcategory->sub_category ?? __('Gig Category')" :innerTitle="$subcategory->sub_category ?? '' "/>
         {{-- Sub Category Banner Starts --}}
-        <div class="pat-25">
+        <div class="pat-5">
             <div class="container">
                 <div class="col-12">
                     <div class="w-100 sub-category-title-container back-right-image-container d-flex" >
@@ -59,7 +59,7 @@
 
                         <div class="d-flex h-100 align-self-center">
     
-                            <div class="col-12 align-content-center h-100 gap-4  py-5">
+                            <div class="col-12 align-content-center h-100 gap-4 ">
                                 <div class="sub-category-title-heading-container">
                                     <h1 class="fw-bold py-2 back-right-image-title">{{ $subcategory->sub_category  }}</h1>
                                 </div>
@@ -76,7 +76,7 @@
         </div>
         {{-- Sub Category Banner Ends --}}
         <!-- Project preview area Starts -->
-        <div class="preview-area section-bg-2 pat-50 pab-100">
+        <div class="preview-area section-bg-2 pat-10 pab-100">
             <div class="container">
                 <div class="row g-4">
                     @if(moduleExists('PromoteFreelancer'))

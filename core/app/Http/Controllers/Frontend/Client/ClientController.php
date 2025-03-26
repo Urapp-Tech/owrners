@@ -99,13 +99,22 @@ class ClientController extends Controller
                 'address'=>'required|max:191',
                 'zipcode'=>'required|max:191',
                 'national_id_number'=>'required|max:255',
-                'front_image'=>'required|image|mimes:jpeg,png,jpg|max:5120',
-                'back_image'=>'required|image|mimes:jpeg,png,jpg|max:5120',
+                'front_image'=>'sometimes|image|mimes:jpeg,png,jpg|max:5120',
+                'back_image'=>'sometimes|image|mimes:jpeg,png,jpg|max:5120',
             ]);
 
             $verification_image = IdentityVerification::where('user_id',$user_id)->first();
             $delete_front_img = '';
             $delete_back_img = '';
+
+            
+            if (!$verification_image) {
+                $request->validate([
+                    'front_image'=>'required|image|mimes:jpeg,png,jpg|max:5120',
+                    'back_image'=>'required|image|mimes:jpeg,png,jpg|max:5120',
+                ]);
+            }
+
 
             if(!empty($verification_image)){
                 $delete_front_img =  'assets/uploads/verification/'.$verification_image->front_image;

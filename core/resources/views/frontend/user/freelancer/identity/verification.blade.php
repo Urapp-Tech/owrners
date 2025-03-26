@@ -8,7 +8,7 @@
             <x-breadcrumb.user-profile-breadcrumb :title="__('Identity Verification')" :innerTitle="__('Identity Verification')"/>
             <!-- Profile Settings area Starts -->
             <div class="responsive-overlay"></div>
-            <div class="profile-settings-area pat-25 pab-100 section-bg-2">
+            <div class="profile-settings-area pat-10 pab-100 section-bg-2">
                 <div class="container">
                     <div class="row g-4">
                         {{-- @include('frontend.user.layout.partials.sidebar') --}}
@@ -104,10 +104,49 @@
                                                     </div>
                                                 </div>
                                                 <input type="hidden" name="verify_by" id="verify_by" value="National ID Card">
-                                                <x-form.country-dropdown :title="__('ID issuing country')" :name="'country'" :id="'country'"/>
+                                                <div class="single-input">
+                                                    <label class="label-title">{{ __('ID issuing country') }}</label>
+                                                    <select name="country" id="country" class="form-control country_select2">
+                                                        <option value="">{{ __('Select Country') }}</option>
+                                                        @foreach($all_countries = \Modules\CountryManage\Entities\Country::all_countries() as $country)
+                                                            <option value="{{ $country->id }}" @if($country->id == $user_identity?->country_id) selected @endif>{{ $country->country }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <span class="country_info"></span>
+                                                </div>
                                                 <div class="single-flex-input">
-                                                    <x-form.state-dropdown :title="__('State')" :name="'state'" :id="'state'"/>
-                                                    <x-form.city-dropdown :title="__('City (optional)')" :name="'city'" :id="'city'"/>
+                                                    <div class="single-input">
+                                                        <label class="label-title">{{ __('Select Your State') }}</label>
+                                                        <select id="state" name="state" class="form-control get_country_state state_select2">
+                                                            <option value="">{{ __('Select State') }}</option>
+                                                            @if( $user_identity?->country_id > 0)
+                                                                @php
+                                                                    $all_states = \Modules\CountryManage\Entities\State::where('country_id', $user_identity?->country_id )->where('status',1)->select(['id','state','country_id','status'])->get();
+                                                                @endphp
+                                                                @foreach($all_states as $state)
+                                                                    <option value="{{ $state->id }}" @if(Auth::guard('web')->check() && $state->id ==  $user_identity?->state_id) selected @endif>{{ $state->state }}</option>
+                                                                @endforeach
+                                                            @endif
+                                
+                                                        </select>
+                                                        <span class="state_info"></span>
+                                                    </div>
+                                                    
+                                                    <div class="single-input">
+                                                        <label class="label-title">{{ __('Select Your City') }}</label>
+                                                        <select id="city" name="city" class="form-control get_state_city city_select2">
+                                                            <option value="">{{ __('Select City') }}</option>
+                                                            @if( $user_identity?->state_id > 0)
+                                                                @php
+                                                                    $all_cities = \Modules\CountryManage\Entities\City::where('state_id', $user_identity?->state_id )->where('status',1)->select(['id','city','country_id','state_id','status'])->get();
+                                                                @endphp
+                                                                @foreach($all_cities as $city)
+                                                                    <option value="{{ $city->id }}" @if($city->id ==  $user_identity?->city_id) selected @endif>{{ $city->city }}</option>
+                                                                @endforeach
+                                                            @endif
+                                                        </select>
+                                                        <span class="city_info"></span>
+                                                    </div>
                                                 </div>
                                                 <x-form.text :title="__('Address')" :type="'text'" :name="'address'" :id="'address'" :value="$user_identity->address ?? old('address')" :placeholder="__('Enter address')" :class="'form--control'" />
                                                 <x-form.text :title="__('Zip Code')" :type="'text'" :name="'zipcode'" :id="'zipcode'" :value="$user_identity->zipcode ?? old('zipcode')" :placeholder="__('Enter zip code')" :class="'form--control'" />

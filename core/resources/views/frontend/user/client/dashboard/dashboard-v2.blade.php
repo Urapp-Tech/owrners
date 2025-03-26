@@ -94,7 +94,7 @@
 
             </div>
 
-            <div class="pat-50">
+            <div class="pat-10">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-title text-left append-flex">
@@ -102,7 +102,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12 pat-25">
+                    <div class="col-12 pat-5">
 
                         <div class="row">
                             <div class="col-md-3 col-lg-2">

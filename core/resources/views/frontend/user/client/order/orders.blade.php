@@ -9,7 +9,7 @@
         <x-breadcrumb.user-profile-breadcrumb :title="__('My Orders')" :innerTitle="__('My Orders')" />
 
         <!-- Profile Details area Starts -->
-        <div class="profile-area pat-25 pab-100 section-bg-2">
+        <div class="profile-area pat-10 pab-100 section-bg-2">
             <div class="container">
                 <div class="row gy-4 justify-content-center">
                     <div class="@if(get_static_option('project_enable_disable') != 'disable') col-xl-8 col-lg-9 @else col-12 @endif">
